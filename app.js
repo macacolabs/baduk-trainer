@@ -4,6 +4,13 @@ const WHITE = 2;
 const KOMI = 6.5;
 const STORAGE_KEY = "baduk-trainer-progress-v2";
 
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+function resetViewportTop() {
+  window.requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0 }));
+  window.setTimeout(() => window.scrollTo({ top: 0, left: 0 }), 80);
+}
+
 const lessons = [
   {
     title: "바둑판과 교차점",
@@ -2670,4 +2677,7 @@ loadProgress();
 renderTerms();
 updateTrainingCounts();
 setupLesson();
+resetViewportTop();
+window.addEventListener("load", resetViewportTop);
+window.addEventListener("pageshow", resetViewportTop);
 setStatus("학습 준비", "진도와 약점 기록을 이 브라우저에 자동 저장합니다.");

@@ -21,6 +21,8 @@ body {
   line-height: 1.45;
   margin: 0;
   min-height: 100vh;
+  overflow-y: auto;
+  scroll-padding-top: 18px;
   background:
     radial-gradient(circle at 16% 8%, rgba(255, 255, 250, 0.82), transparent 26rem),
     radial-gradient(circle at 84% 12%, rgba(222, 231, 222, 0.58), transparent 24rem),
@@ -57,12 +59,13 @@ button:disabled {
 }
 
 .app {
+  align-items: start;
   display: grid;
   gap: 28px;
   grid-template-columns: minmax(310px, 380px) minmax(420px, 1fr);
   margin: 0 auto;
   max-width: 1160px;
-  min-height: 100vh;
+  min-height: 100svh;
   padding: 22px;
 }
 
@@ -73,11 +76,11 @@ button:disabled {
   }
 
   .board-wrap {
-    --board-size: min(62vh, calc(100vw - 430px), 600px);
+    --board-size: min(calc(100svh - 190px), calc(100vw - 430px), 600px);
   }
 
   .board-wrap:has(.board.full-board) {
-    --board-size: min(70vh, calc(100vw - 420px), 680px);
+    --board-size: min(calc(100svh - 190px), calc(100vw - 420px), 680px);
   }
 }
 
@@ -603,7 +606,7 @@ select {
 }
 
 .board-wrap {
-  --board-size: min(68vh, calc(100vw - 500px), 620px);
+  --board-size: min(calc(100svh - 190px), calc(100vw - 500px), 620px);
   align-content: start;
   display: grid;
   gap: 14px;
@@ -611,7 +614,7 @@ select {
 }
 
 .board-wrap:has(.board.full-board) {
-  --board-size: min(78vh, calc(100vw - 460px), 760px);
+  --board-size: min(calc(100svh - 190px), calc(100vw - 460px), 760px);
 }
 
 .board-top {
