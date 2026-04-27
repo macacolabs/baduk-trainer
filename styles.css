@@ -396,7 +396,8 @@ h2 {
 .weakness-card,
 .dan-roadmap-card,
 .lesson-coach-card,
-.quiz-card {
+.quiz-card,
+.next-step-card {
   background: rgba(239, 236, 227, 0.82);
   border: 1px solid rgba(43, 49, 45, 0.08);
   border-radius: 16px;
@@ -406,7 +407,8 @@ h2 {
 .reading-card.hidden,
 .wrong-note-card.hidden,
 .dan-roadmap-card.hidden,
-.quiz-card.hidden {
+.quiz-card.hidden,
+.next-step-card.hidden {
   display: none;
 }
 
@@ -415,7 +417,8 @@ h2 {
 .weakness-card span,
 .dan-roadmap-card > span,
 .lesson-coach-card > span,
-.quiz-card > span {
+.quiz-card > span,
+.next-step-card > span {
   color: var(--muted);
   display: block;
   font-size: 12px;
@@ -434,19 +437,22 @@ h2 {
 .weakness-card strong,
 .dan-roadmap-card > strong,
 .lesson-coach-card strong,
-.quiz-card strong {
+.quiz-card strong,
+.next-step-card > strong {
   display: block;
   font-size: 14px;
 }
 
 .wrong-note-card p,
 .weakness-card p,
-.lesson-coach-card p {
+.lesson-coach-card p,
+.next-step-card p {
   margin: 6px 0 0;
 }
 
 .lesson-coach-list,
-.quiz-options {
+.quiz-options,
+.next-step-list {
   display: grid;
   gap: 7px;
   margin-top: 10px;
@@ -478,6 +484,34 @@ h2 {
   background: rgba(95, 126, 105, 0.16);
   border-color: rgba(95, 126, 105, 0.32);
   color: var(--ink);
+}
+
+.next-step-list {
+  gap: 8px;
+}
+
+.next-step-item {
+  background: rgba(255, 254, 248, 0.62);
+  border: 1px solid rgba(43, 49, 45, 0.06);
+  border-radius: 12px;
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+}
+
+.next-step-item b {
+  color: var(--accent);
+  font-size: 11px;
+}
+
+.next-step-item strong {
+  font-size: 14px;
+}
+
+.next-step-item span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .dan-roadmap-list {

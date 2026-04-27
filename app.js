@@ -1418,6 +1418,7 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="rankMap">급수표</button>
       <button type="button" class="ghost" id="conceptQuiz">개념 퀴즈</button>
       <button type="button" class="ghost" id="studyRoutine">15분 루틴</button>
+      <button type="button" class="ghost" id="nextStepPlan">다음 단계</button>
       <button type="button" class="ghost" id="danChallenge">5급 집중</button>
       <button type="button" class="ghost" id="danRoadmap">5급+ 로드맵</button>
       <button type="button" class="ghost" id="danBenchmark">심화 시험</button>
@@ -1446,6 +1447,12 @@ function ensureLearningBoostUI() {
       <strong id="quizQuestion">질문</strong>
       <div class="quiz-options" id="quizOptions"></div>
     </div>
+    <div class="next-step-card hidden" id="nextStepCard">
+      <span>다음 단계 플랜</span>
+      <strong id="nextStepTitle">오늘 할 일</strong>
+      <p id="nextStepText">현재 수준에서 가장 효율적인 다음 훈련을 추천합니다.</p>
+      <div class="next-step-list" id="nextStepList"></div>
+    </div>
     <div class="wrong-note-card hidden" id="wrongNoteCard">
       <span>최근 오답</span>
       <strong id="wrongNoteTitle">아직 오답이 없습니다</strong>
@@ -1473,6 +1480,7 @@ function ensureLearningBoostUI() {
   document.querySelector("#rankMap").addEventListener("click", showRankCurriculum);
   document.querySelector("#conceptQuiz").addEventListener("click", startConceptQuiz);
   document.querySelector("#studyRoutine").addEventListener("click", startStudyRoutine);
+  document.querySelector("#nextStepPlan").addEventListener("click", showNextStepPlan);
   document.querySelector("#danChallenge").addEventListener("click", startDanChallenge);
   document.querySelector("#danRoadmap").addEventListener("click", startFiveKyuRoadmap);
   document.querySelector("#danBenchmark").addEventListener("click", startDanBenchmark);
@@ -1737,6 +1745,78 @@ function startStudyRoutine() {
   }
   card?.scrollIntoView({ behavior: "smooth", block: "center" });
   setStatus("15분 루틴", routine.join(" → "));
+}
+
+function nextLearningSteps() {
+  const rank = currentRank();
+  const plan = currentPracticePlan();
+  const weak = topWeakness();
+  const due = dueWrongNotes().length;
+  const accuracy = state.attemptCount ? Math.round((state.correctCount / state.attemptCount) * 100) : 0;
+  const nextRank = rankLadder.find((item) => item.min > rank.min);
+  const steps = [];
+
+  if (due) {
+    steps.push({
+      label: "1. 오답 회수",
+      title: `오답 재출제 ${due}개`,
+      text: "틀린 문제는 바로 넘어가지 말고 하루 뒤 다시 맞혀야 실전 기억으로 바뀝니다.",
+    });
+  }
+
+  steps.push({
+    label: `${steps.length + 1}. 핵심 훈련`,
+    title: `${plan.rank} ${plan.count}문제`,
+    text: `${plan.categories.map((item) => categoryLabels[item]).join(", ")} 유형을 우선 반복합니다.`,
+  });
+
+  steps.push({
+    label: `${steps.length + 1}. 수읽기 기준`,
+    title: accuracy >= 75 ? "3수 읽기 유지" : "1수-2수 읽기 안정화",
+    text: accuracy >= 75 ? "후보수 2개를 비교한 뒤 상대 응수까지 말하고 둡니다." : "정답을 보기 전에 내 수와 상대 응수 하나를 꼭 말합니다.",
+  });
+
+  if (weak) {
+    steps.push({
+      label: `${steps.length + 1}. 약점 보강`,
+      title: `${categoryLabels[weak.type] || "기초"} 집중`,
+      text: `최근 오답 ${weak.wrong}회입니다. 약점 훈련 버튼으로 같은 유형을 5문제 더 풉니다.`,
+    });
+  }
+
+  steps.push({
+    label: `${steps.length + 1}. 실전 연결`,
+    title: "AI 9줄 1판 + 복기",
+    text: "문제에서 배운 수를 대국에서 써 보고, 복기 분석으로 실수 태그를 확인합니다.",
+  });
+
+  steps.push({
+    label: `${steps.length + 1}. 통과 기준`,
+    title: nextRank ? `${nextRank.name} 준비` : "1급 준비 반복",
+    text: nextRank ? `${nextRank.goal} 기준으로 승급 시험 80점 이상을 노립니다.` : "심화 시험 85점 이상과 실전 복기 습관을 유지합니다.",
+  });
+
+  return steps.slice(0, 6);
+}
+
+function showNextStepPlan() {
+  const rank = currentRank();
+  const nextRank = rankLadder.find((item) => item.min > rank.min);
+  const steps = nextLearningSteps();
+  const card = document.querySelector("#nextStepCard");
+  const list = document.querySelector("#nextStepList");
+  card.classList.remove("hidden");
+  document.querySelector("#nextStepTitle").textContent = nextRank ? `${rank.name}에서 ${nextRank.name}로 가는 길` : `${rank.name} 이후 유지 루틴`;
+  document.querySelector("#nextStepText").textContent = "버튼을 많이 누르는 것보다, 아래 순서대로 반복하는 것이 더 빨리 늡니다.";
+  list.innerHTML = "";
+  for (const step of steps) {
+    const item = document.createElement("div");
+    item.className = "next-step-item";
+    item.innerHTML = `<b>${step.label}</b><strong>${step.title}</strong><span>${step.text}</span>`;
+    list.append(item);
+  }
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+  setStatus("다음 단계", steps.map((step) => step.title).join(" → "));
 }
 
 function topWeakness() {
@@ -2847,6 +2927,7 @@ function setupLesson() {
   updateLearningBoost(lesson);
   document.querySelector("#readingCard")?.classList.add("hidden");
   document.querySelector("#quizCard")?.classList.add("hidden");
+  document.querySelector("#nextStepCard")?.classList.add("hidden");
   el.boardLabel.textContent = "입문 훈련";
   el.boardTitle.textContent = lesson.title;
   el.topPlayerName.textContent = "학습 목표";
