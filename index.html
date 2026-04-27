@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>첫 단수 바둑</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="side">
+        <div>
+          <p class="eyebrow">처음 배우는 바둑</p>
+          <h1>첫 단수 바둑</h1>
+          <p class="lead">활로를 보고, 단수를 만들고, 돌을 잡는 연습 게임.</p>
+        </div>
+
+        <div class="mode-tabs" role="tablist" aria-label="게임 모드">
+          <button class="tab active" data-mode="learn">배우기</button>
+          <button class="tab" data-mode="local">2인 대국</button>
+          <button class="tab" data-mode="ai">AI 대국</button>
+        </div>
+
+        <div class="panel" id="lessonPanel">
+          <div class="panel-head">
+            <span id="lessonStep">1 / 50</span>
+            <strong id="lessonTitle">활로 찾기</strong>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span id="lessonProgress"></span>
+          </div>
+          <p class="lesson-concept" id="lessonConcept"></p>
+          <p id="lessonText"></p>
+          <div class="learning-aids">
+            <div>
+              <span>생각 순서</span>
+              <ol id="thinkingSteps"></ol>
+            </div>
+            <div>
+              <span>이번 목표</span>
+              <p id="lessonGoal"></p>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="prevLesson" class="ghost">이전</button>
+            <button id="resetLesson" class="ghost">다시</button>
+            <button id="nextLesson">다음</button>
+            <button id="showAnswer" class="ghost">정답 보기</button>
+          </div>
+          <div class="answer-note hidden" id="answerNote"></div>
+          <div class="drill-tools">
+            <label class="field compact">
+              <span>반복 훈련</span>
+              <select id="drillCategory">
+                <option value="all">전체</option>
+                <option value="capture">포획</option>
+                <option value="connect">연결/끊기</option>
+                <option value="shape">행마/모양</option>
+                <option value="life">사활</option>
+                <option value="opening">포석/큰 곳</option>
+                <option value="endgame">끝내기</option>
+              </select>
+            </label>
+            <label class="field compact">
+              <span>난이도</span>
+              <select id="drillDifficulty">
+                <option value="all">전체</option>
+                <option value="basic">기초</option>
+                <option value="intermediate">중급</option>
+                <option value="advanced">고급</option>
+                <option value="mistake">오답만</option>
+              </select>
+            </label>
+            <button id="randomDrill" class="ghost">랜덤 문제</button>
+          </div>
+        </div>
+
+        <details class="panel terms-panel" id="termsPanel">
+          <summary>
+            <span>용어 사전</span>
+            <strong>47개 + 648문제</strong>
+          </summary>
+          <div class="terms" id="termList"></div>
+        </details>
+
+        <div class="panel hidden" id="gamePanel">
+          <div class="panel-head">
+            <span>현재 차례</span>
+            <strong id="turnText">흑</strong>
+          </div>
+
+          <label class="field">
+            <span>판 크기</span>
+            <select id="boardSize">
+              <option value="19" selected>19줄</option>
+              <option value="13">13줄</option>
+              <option value="9">9줄</option>
+            </select>
+          </label>
+
+          <div class="score-row">
+            <span>흑 잡은 돌 <b id="blackCaps">0</b></span>
+            <span>백 잡은 돌 <b id="whiteCaps">0</b></span>
+            <span>흑 영역 <b id="blackScore">0</b></span>
+            <span>백 영역 <b id="whiteScore">0</b></span>
+          </div>
+
+          <div class="actions">
+            <button id="newGame">새 대국</button>
+            <button id="undoMove" class="ghost">되돌리기</button>
+            <button id="passTurn" class="ghost">패스</button>
+          </div>
+        </div>
+
+        <div class="panel status" id="statusPanel">
+          <strong id="statusTitle">시작</strong>
+          <p id="statusText">표시된 점을 눌러 첫 연습을 시작하세요.</p>
+        </div>
+
+        <div class="panel rule-panel">
+          <div class="panel-head">
+            <span>룰</span>
+            <strong>기본 중국식 계가</strong>
+          </div>
+          <p>착수, 활로, 포획, 자살수 금지, 단순 패 금지, 연속 패스 종국을 지원합니다.</p>
+        </div>
+      </section>
+
+      <section class="board-wrap">
+        <div class="board-top">
+          <div>
+            <p class="eyebrow" id="boardLabel">단수 훈련</p>
+            <h2 id="boardTitle">활로 찾기</h2>
+          </div>
+          <button id="hintButton" class="icon-button" aria-label="힌트">?</button>
+        </div>
+        <div class="player-card opponent-card">
+          <div class="avatar white-avatar"></div>
+          <div>
+            <strong id="topPlayerName">백</strong>
+            <span id="topPlayerMeta">상대 · 6.5 덤</span>
+          </div>
+          <time id="topTimer">10:00</time>
+        </div>
+        <div id="board" class="board" aria-label="바둑판"></div>
+        <div class="player-card self-card">
+          <div class="avatar black-avatar"></div>
+          <div>
+            <strong id="bottomPlayerName">흑</strong>
+            <span id="bottomPlayerMeta">플레이어 · 선착</span>
+          </div>
+          <time id="bottomTimer">10:00</time>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
