@@ -1229,6 +1229,7 @@ const state = {
   hintLevel: 0,
   softHintTargets: [],
   readingDepth: 0,
+  conceptQuiz: null,
   gameLog: [],
   activeMission: null,
   aiLevel: "normal",
@@ -1415,6 +1416,8 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="readingTraining">수읽기</button>
       <button type="button" class="ghost" id="rankCourse">급수별 코스</button>
       <button type="button" class="ghost" id="rankMap">급수표</button>
+      <button type="button" class="ghost" id="conceptQuiz">개념 퀴즈</button>
+      <button type="button" class="ghost" id="studyRoutine">15분 루틴</button>
       <button type="button" class="ghost" id="danChallenge">5급 집중</button>
       <button type="button" class="ghost" id="danRoadmap">5급+ 로드맵</button>
       <button type="button" class="ghost" id="danBenchmark">심화 시험</button>
@@ -1431,6 +1434,17 @@ function ensureLearningBoostUI() {
         <li>상대가 가장 불편하게 받는 수를 예상한다.</li>
         <li>그 뒤에도 내 돌이 안전한지 확인한다.</li>
       </ol>
+    </div>
+    <div class="lesson-coach-card" id="lessonCoachCard">
+      <span>단계 코치</span>
+      <strong id="lessonCoachTitle">생각 순서를 잡는 중</strong>
+      <p id="lessonCoachText">현재 문제의 핵심을 한 문장으로 정리합니다.</p>
+      <div class="lesson-coach-list" id="lessonCoachList"></div>
+    </div>
+    <div class="quiz-card hidden" id="quizCard">
+      <span>개념 퀴즈</span>
+      <strong id="quizQuestion">질문</strong>
+      <div class="quiz-options" id="quizOptions"></div>
     </div>
     <div class="wrong-note-card hidden" id="wrongNoteCard">
       <span>최근 오답</span>
@@ -1457,6 +1471,8 @@ function ensureLearningBoostUI() {
   document.querySelector("#readingTraining").addEventListener("click", startReadingTraining);
   document.querySelector("#rankCourse").addEventListener("click", startRankCourse);
   document.querySelector("#rankMap").addEventListener("click", showRankCurriculum);
+  document.querySelector("#conceptQuiz").addEventListener("click", startConceptQuiz);
+  document.querySelector("#studyRoutine").addEventListener("click", startStudyRoutine);
   document.querySelector("#danChallenge").addEventListener("click", startDanChallenge);
   document.querySelector("#danRoadmap").addEventListener("click", startFiveKyuRoadmap);
   document.querySelector("#danBenchmark").addEventListener("click", startDanBenchmark);
@@ -1503,6 +1519,7 @@ function updateLearningBoost(lesson) {
   updateWeaknessCard();
   updateDanRoadmapCard();
   updateRankCurriculum();
+  updateLessonCoach(lesson);
 }
 
 function updateWrongNoteCard() {
@@ -1587,6 +1604,139 @@ function showRankCurriculum() {
   updateRankCurriculum();
   const rank = currentRank();
   setStatus("급수표", `현재 위치는 ${rank.name}입니다. 각 급수의 통과 조건을 보며 오늘 코스와 수읽기 훈련을 진행하세요.`);
+}
+
+function lessonCoachDetails(lesson) {
+  const type = lessonType(lesson);
+  const [r, c] = lesson.targets[0];
+  const coord = coordLabel(r, c);
+  const byType = {
+    capture: {
+      title: "활로를 세면 정답이 보입니다",
+      text: `${coord}는 상대 돌의 자유를 줄이는 자리입니다. 먼저 잡을 돌을 고르고 활로 숫자를 세세요.`,
+      checks: ["잡을 돌의 활로를 손가락으로 센다.", "내 돌이 되잡히는지 확인한다.", "잡는 수와 단수 치는 수를 비교한다."],
+    },
+    connect: {
+      title: "끊기는 곳과 이어야 할 곳을 비교합니다",
+      text: `${coord}는 연결 또는 절단의 핵심입니다. 서로 떨어진 돌 사이의 약점을 먼저 보세요.`,
+      checks: ["내 돌 두 덩어리가 분리되는지 본다.", "상대가 끊으면 어느 돌이 약해지는지 본다.", "연결하면서 상대를 압박하는지 확인한다."],
+    },
+    shape: {
+      title: "좋은 모양은 다음 수가 편합니다",
+      text: `${coord}는 돌을 무겁게 만들지 않고 다음 움직임을 남깁니다. 빈삼각보다 뻗음, 날일자, 마늘모를 우선 보세요.`,
+      checks: ["빈삼각이 되는지 확인한다.", "활로가 넓어지는지 본다.", "상대 절단점이 줄어드는지 본다."],
+    },
+    life: {
+      title: "사활은 눈의 중심 급소입니다",
+      text: `${coord}는 눈 모양을 만들거나 없애는 자리입니다. 두 눈 가능성과 가짜 눈을 구분하세요.`,
+      checks: ["눈 후보가 두 개인지 본다.", "상대가 바로 메울 수 있는지 본다.", "중심 급소를 먼저 둔다."],
+    },
+    opening: {
+      title: "초반은 큰 곳과 약한 돌의 균형입니다",
+      text: `${coord}는 판 전체 효율이 큰 자리입니다. 귀, 변, 중앙 순서와 내 돌의 거리감을 보세요.`,
+      checks: ["귀와 변 중 더 큰 곳을 본다.", "내 약한 돌이 있는지 본다.", "상대 큰 자리도 같이 비교한다."],
+    },
+    endgame: {
+      title: "끝내기는 집 차이가 나는 경계입니다",
+      text: `${coord}는 흑과 백의 경계를 확정합니다. 한 수로 양쪽 집 차이가 얼마나 나는지 비교하세요.`,
+      checks: ["내 집이 늘어나는 양을 센다.", "상대 집이 줄어드는 양을 센다.", "상대가 꼭 받아야 하는 선수인지 본다."],
+    },
+    general: {
+      title: "문제 목표와 가장 직접 연결되는 수입니다",
+      text: `${coord}가 현재 목표를 가장 빠르게 해결합니다. 후보수를 줄이고 목적에 맞는 수를 고르세요.`,
+      checks: ["문제 목표를 한 문장으로 말한다.", "후보수 2개만 남긴다.", "둔 뒤 활로와 연결을 확인한다."],
+    },
+  };
+  return byType[type] || byType.general;
+}
+
+function updateLessonCoach(lesson) {
+  const card = document.querySelector("#lessonCoachCard");
+  if (!card) return;
+  const details = lessonCoachDetails(lesson);
+  document.querySelector("#lessonCoachTitle").textContent = details.title;
+  document.querySelector("#lessonCoachText").textContent = details.text;
+  const list = document.querySelector("#lessonCoachList");
+  list.innerHTML = "";
+  for (const check of details.checks) {
+    const item = document.createElement("label");
+    item.innerHTML = `<input type="checkbox"> <span>${check}</span>`;
+    list.append(item);
+  }
+}
+
+function conceptQuestionFor(lesson) {
+  const type = lessonType(lesson);
+  const data = {
+    capture: ["단수 문제에서 가장 먼저 볼 것은?", ["상대 돌의 활로", "판 중앙", "돌 색깔"], 0, "활로가 1개 남으면 단수입니다."],
+    connect: ["연결 문제에서 좋은 수는?", ["두 돌을 이어 약점을 줄이는 수", "무조건 중앙으로 뛰는 수", "상대 돌 옆에 아무 데나 붙이는 수"], 0, "연결은 끊김을 막고 약한 돌을 안정시킵니다."],
+    shape: ["나쁜 모양으로 자주 피해야 하는 것은?", ["빈삼각", "날일자", "마늘모"], 0, "빈삼각은 활로와 효율이 나빠지기 쉽습니다."],
+    life: ["사활에서 급소는 보통 어디에 있나요?", ["눈 모양의 중심", "가장 먼 변", "이미 막힌 돌 위"], 0, "눈의 중심을 차지하면 삶과 죽음이 갈립니다."],
+    opening: ["초반에 보통 큰 곳 순서는?", ["귀, 변, 중앙", "중앙, 변, 귀", "무조건 상대 옆"], 0, "귀가 가장 집을 만들기 쉽고 다음이 변입니다."],
+    endgame: ["끝내기에서 먼저 볼 것은?", ["집 차이가 크게 나는 경계", "이미 산 돌의 안쪽", "무조건 중앙"], 0, "내 집 증가와 상대 집 감소를 같이 봅니다."],
+    general: ["문제를 풀 때 후보수는 어떻게 줄이나요?", ["목표와 직접 연결되는 수만 남긴다", "아무 곳이나 둔다", "가장 예쁜 곳을 고른다"], 0, "목표와 연결되지 않는 후보는 먼저 버립니다."],
+  };
+  const [question, options, answer, explain] = data[type] || data.general;
+  return { question, options, answer, explain };
+}
+
+function startConceptQuiz() {
+  const lesson = state.activeDrill || lessons[state.lessonIndex];
+  const quiz = conceptQuestionFor(lesson);
+  quiz.answered = false;
+  state.conceptQuiz = quiz;
+  const card = document.querySelector("#quizCard");
+  const question = document.querySelector("#quizQuestion");
+  const options = document.querySelector("#quizOptions");
+  card.classList.remove("hidden");
+  question.textContent = quiz.question;
+  options.innerHTML = "";
+  quiz.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "ghost";
+    button.textContent = option;
+    button.addEventListener("click", () => answerConceptQuiz(index));
+    options.append(button);
+  });
+  setStatus("개념 퀴즈", "착수 전에 말로 설명할 수 있는지 확인합니다.");
+}
+
+function answerConceptQuiz(index) {
+  const quiz = state.conceptQuiz;
+  if (!quiz || quiz.answered) return;
+  quiz.answered = true;
+  const ok = index === quiz.answer;
+  document.querySelectorAll("#quizOptions button").forEach((button, buttonIndex) => {
+    button.disabled = true;
+    if (buttonIndex === quiz.answer) button.classList.add("selected");
+  });
+  setStatus(ok ? "개념 정답" : "개념 다시 보기", `${ok ? "좋습니다." : "아쉽습니다."} ${quiz.explain}`);
+}
+
+function startStudyRoutine() {
+  const weak = topWeakness();
+  const rank = currentRank();
+  const due = dueWrongNotes().length;
+  const routine = [
+    due ? `오답 재출제 ${due}개` : "핵심 복습 1개",
+    "수읽기 버튼 3회",
+    weak ? `${categoryLabels[weak.type]} 약점 문제 5개` : "급수별 코스 5개",
+    "AI 9줄 대국 1판",
+    "복기 분석으로 실수 태그 확인",
+  ];
+  const card = document.querySelector("#lessonCoachCard");
+  document.querySelector("#lessonCoachTitle").textContent = `${rank.name} 오늘 15분 루틴`;
+  document.querySelector("#lessonCoachText").textContent = "적은 양을 매일 반복하도록 구성했습니다.";
+  const list = document.querySelector("#lessonCoachList");
+  list.innerHTML = "";
+  for (const itemText of routine) {
+    const item = document.createElement("label");
+    item.innerHTML = `<input type="checkbox"> <span>${itemText}</span>`;
+    list.append(item);
+  }
+  card?.scrollIntoView({ behavior: "smooth", block: "center" });
+  setStatus("15분 루틴", routine.join(" → "));
 }
 
 function topWeakness() {
@@ -2595,6 +2745,9 @@ function answerExplanation(lesson) {
   const [r, c] = lesson.targets[0];
   const coord = `${r + 1}행 ${c + 1}열`;
   const type = lessonType(lesson);
+  const board = emptyBoard(9);
+  for (const [sr, sc, color] of lesson.board) board[sr][sc] = color;
+  const diagnostics = lessonDiagnostics(lesson, r, c, board);
   const why = {
     capture: "그 자리는 상대 활로를 줄이거나 마지막 활로를 막습니다.",
     connect: "그 자리는 내 돌의 연결을 지키거나 상대 연결을 끊습니다.",
@@ -2604,7 +2757,36 @@ function answerExplanation(lesson) {
     endgame: "그 자리는 집 경계를 확정해 실점과 득점을 동시에 만듭니다.",
     general: "그 자리는 현재 문제의 핵심 목적을 가장 직접 해결합니다.",
   };
-  return `정답은 ${coord}입니다. ${why[type] || why.general}`;
+  return `정답은 ${coord}입니다. ${why[type] || why.general} ${diagnostics}`;
+}
+
+function lessonDiagnostics(lesson, r, c, board = state.board) {
+  const opponent = lesson.turn === BLACK ? WHITE : BLACK;
+  const beforeAtari = countAtariGroups(board, opponent);
+  const result = playMove(board, r, c, lesson.turn);
+  if (!result.ok) return "이 수는 문제 조건에서만 의미를 확인하세요.";
+  const afterAtari = countAtariGroups(result.board, opponent);
+  const group = groupAt(result.board, r, c);
+  const captured = result.captured.length;
+  const captureText = captured ? `상대 돌 ${captured}개를 잡습니다.` : "";
+  const atariText = afterAtari > beforeAtari ? `상대 단수 무리가 ${afterAtari - beforeAtari}개 늘어납니다.` : "";
+  const libertyText = `둔 뒤 내 돌 활로는 ${group.liberties.size}개입니다.`;
+  return [captureText, atariText, libertyText].filter(Boolean).join(" ");
+}
+
+function mistakeExplanation(lesson, r, c) {
+  const [ar, ac] = lesson.targets[0];
+  const type = lessonType(lesson);
+  const advice = {
+    capture: "틀린 수는 상대 활로를 충분히 줄이지 못했습니다. 마지막 활로부터 다시 세어보세요.",
+    connect: "틀린 수는 연결점 또는 절단점을 직접 해결하지 못했습니다. 두 돌 사이 빈 곳을 먼저 보세요.",
+    shape: "틀린 수는 모양 효율이 낮습니다. 빈삼각이 되는지, 활로가 좁아지는지 확인하세요.",
+    life: "틀린 수는 눈의 중심 급소를 놓쳤습니다. 두 눈을 만들거나 없애는 중심점을 찾으세요.",
+    opening: "틀린 수는 판 전체에서 작은 자리일 수 있습니다. 귀와 변의 큰 곳을 다시 비교하세요.",
+    endgame: "틀린 수는 집 차이가 작습니다. 내 집 증가와 상대 집 감소가 동시에 있는 경계를 보세요.",
+    general: "틀린 수는 문제 목표와 직접 연결되지 않았습니다. 후보수 2개로 줄여 다시 비교하세요.",
+  };
+  return `내 수 ${coordLabel(r, c)} / 정답 ${coordLabel(ar, ac)}. ${advice[type] || advice.general}`;
 }
 
 function renderLearningAids(lesson) {
@@ -2649,6 +2831,7 @@ function setupLesson() {
   state.softHintTargets = [];
   state.coachCandidates = [];
   state.readingDepth = 0;
+  state.conceptQuiz = null;
   state.gameOver = false;
   state.history = [];
   state.passCount = 0;
@@ -2663,6 +2846,7 @@ function setupLesson() {
   renderLearningAids(lesson);
   updateLearningBoost(lesson);
   document.querySelector("#readingCard")?.classList.add("hidden");
+  document.querySelector("#quizCard")?.classList.add("hidden");
   el.boardLabel.textContent = "입문 훈련";
   el.boardTitle.textContent = lesson.title;
   el.topPlayerName.textContent = "학습 목표";
@@ -2747,6 +2931,8 @@ function handleLessonMove(r, c) {
     updateLearningBoost(lesson);
     saveProgress();
     const steps = thinkingStepsFor(lesson);
+    el.answerNote.textContent = mistakeExplanation(lesson, r, c);
+    el.answerNote.classList.remove("hidden");
     setStatus("다시 보기", `${steps[0]} ${steps[1]}`);
     return;
   }
