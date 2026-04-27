@@ -1396,6 +1396,7 @@ function ensureLearningBoostUI() {
     <div class="study-actions">
       <button type="button" class="ghost" id="coreReview">핵심 복습</button>
       <button type="button" class="ghost" id="weakReview">약점 훈련</button>
+      <button type="button" class="ghost" id="retryWrong">오답 재출제</button>
       <button type="button" class="ghost" id="chapterTest">단원 테스트</button>
       <button type="button" class="ghost" id="readingTraining">수읽기</button>
       <button type="button" class="ghost" id="rankCourse">급수별 코스</button>
@@ -1435,6 +1436,7 @@ function ensureLearningBoostUI() {
   el.lessonPanel.querySelector(".learning-aids").after(boost);
   document.querySelector("#coreReview").addEventListener("click", startCoreReview);
   document.querySelector("#weakReview").addEventListener("click", startWeakReview);
+  document.querySelector("#retryWrong").addEventListener("click", startWrongRetry);
   document.querySelector("#chapterTest").addEventListener("click", startChapterTest);
   document.querySelector("#readingTraining").addEventListener("click", startReadingTraining);
   document.querySelector("#rankCourse").addEventListener("click", startRankCourse);
@@ -1488,11 +1490,12 @@ function updateLearningBoost(lesson) {
 function updateWrongNoteCard() {
   const card = document.querySelector("#wrongNoteCard");
   if (!card) return;
-  const latest = state.wrongNotes.at(-1);
+  const dueCount = dueWrongNotes().length;
+  const latest = state.wrongNotes.find((note) => note.dueAt && note.dueAt <= Date.now()) || state.wrongNotes.at(-1);
   card.classList.toggle("hidden", !latest);
   if (!latest) return;
-  document.querySelector("#wrongNoteTitle").textContent = latest.title;
-  document.querySelector("#wrongNoteText").textContent = `내 수: ${latest.played} / 정답: ${latest.answer}. ${latest.reason}`;
+  document.querySelector("#wrongNoteTitle").textContent = `${latest.title}${dueCount ? ` · 재출제 ${dueCount}개` : ""}`;
+  document.querySelector("#wrongNoteText").textContent = `내 수: ${latest.played} / 정답: ${latest.answer}. ${latest.reason} ${latest.reviewCount ? `${latest.reviewCount}회 복습 중입니다.` : "오답 재출제로 다시 풀 수 있습니다."}`;
 }
 
 function updateWeaknessCard() {
@@ -1584,7 +1587,7 @@ function loadProgress() {
     state.lessonIndex = Math.min(lessons.length - 1, Math.max(0, Number(data.lessonIndex) || 0));
     state.completedLessons = new Set(Array.isArray(data.completedLessons) ? data.completedLessons : []);
     state.mistakes = new Set(Array.isArray(data.mistakes) ? data.mistakes : []);
-    state.wrongNotes = Array.isArray(data.wrongNotes) ? data.wrongNotes.slice(-12) : [];
+    state.wrongNotes = Array.isArray(data.wrongNotes) ? data.wrongNotes.slice(-20) : [];
     state.weaknessStats = data.weaknessStats && typeof data.weaknessStats === "object" ? data.weaknessStats : {};
     state.promotionBest = Number(data.promotionBest) || 0;
     state.danBest = Number(data.danBest) || 0;
@@ -1779,6 +1782,7 @@ function ensureReviewTimeline() {
       <button type="button" class="ghost" id="reviewNext">다음 수</button>
       <button type="button" class="ghost" id="reviewLive">현재로</button>
     </div>
+    <div class="review-coach" id="reviewCoachText">수순을 선택하면 복기 코치가 좋은 점과 아쉬운 점을 짚어줍니다.</div>
     <div class="review-moves" id="reviewMoves"></div>
   `;
   el.gamePanel.append(panel);
@@ -1815,7 +1819,9 @@ function reviewCurrentGame() {
   }
   const missedCapture = bestTacticalMove(state.turn);
   if (isTacticalMove(missedCapture, state.turn)) {
-    setStatus("복기 분석", `${stoneName(state.turn)} 차례 추천수는 ${coordLabel(missedCapture.r, missedCapture.c)}입니다. 바로 잡거나 단수를 만드는 전술 가치가 큽니다.`);
+    const coach = `${stoneName(state.turn)} 차례 추천수는 ${coordLabel(missedCapture.r, missedCapture.c)}입니다. 바로 잡거나 단수를 만드는 전술 가치가 큽니다. 후보수 비교: 잡는 수, 단수 치는 수, 큰 곳 중 강제성이 있는 수를 우선 보세요.`;
+    updateReviewCoach(coach);
+    setStatus("복기 분석", coach);
     state.revealedAnswer = [missedCapture.r, missedCapture.c];
     render();
     return;
@@ -1824,19 +1830,25 @@ function reviewCurrentGame() {
   const ownAtari = findAtari(state.board, state.turn);
   const score = estimateScore();
   if (ownAtari) {
-    setStatus("복기 분석", `${stoneName(state.turn)} 돌 중 단수인 무리가 있습니다. 다음 수에는 살리거나 반대로 잡는 수를 먼저 보세요.`);
+    const coach = `${stoneName(state.turn)} 돌 중 단수인 무리가 있습니다. 다음 수에는 살리기, 맞단수, 버리기 중 어느 쪽이 큰지 비교하세요.`;
+    updateReviewCoach(coach);
+    setStatus("복기 분석", coach);
     render();
     return;
   }
   if (opponentAtari) {
-    setStatus("복기 분석", `${stoneName(opponentAtari.color)} 돌이 단수입니다. 바로 잡을 수 있는지 확인하세요.`);
+    const coach = `${stoneName(opponentAtari.color)} 돌이 단수입니다. 바로 잡는 수가 선수인지, 더 큰 공격이 있는지 확인하세요.`;
+    updateReviewCoach(coach);
+    setStatus("복기 분석", coach);
     render();
     return;
   }
   const best = bestTacticalMove(state.turn);
   const last = state.gameLog.at(-1);
   const lastText = last ? ` 마지막 수는 ${stoneName(last.color)} ${coordLabel(last.r, last.c)}입니다.` : "";
-  setStatus("복기 분석", `간이 형세 흑 ${score.black.toFixed(1)} / 백 ${score.white.toFixed(1)}.${lastText} 다음 후보는 ${best ? coordLabel(best.r, best.c) : "패스"}입니다. 단수가 없으면 큰 곳과 경계를 먼저 보세요.`);
+  const coach = `간이 형세 흑 ${score.black.toFixed(1)} / 백 ${score.white.toFixed(1)}.${lastText} 다음 후보는 ${best ? coordLabel(best.r, best.c) : "패스"}입니다. 단수가 없으면 큰 곳, 약한 돌, 끝내기 경계 순서로 보세요.`;
+  updateReviewCoach(coach);
+  setStatus("복기 분석", coach);
   if (best) {
     state.revealedAnswer = [best.r, best.c];
     render();
@@ -1878,9 +1890,32 @@ function showReviewMove(index) {
   const snapshot = state.history[move.historyIndex] || state.history[index + 1] || state.history.at(-1);
   const score = snapshot ? estimateScore(snapshot.board) : estimateScore();
   const captureText = move.captured ? ` ${move.captured}개를 잡은 수입니다.` : "";
-  setStatus("복기 타임라인", `${index + 1}수 ${stoneName(move.color)} ${coordLabel(move.r, move.c)}.${captureText} 이 장면 형세는 흑 ${score.black.toFixed(1)} / 백 ${score.white.toFixed(1)}입니다.`);
+  const coach = reviewCoachForMove(move, snapshot?.board || state.board, score);
+  updateReviewCoach(coach);
+  setStatus("복기 타임라인", `${index + 1}수 ${stoneName(move.color)} ${coordLabel(move.r, move.c)}.${captureText} 이 장면 형세는 흑 ${score.black.toFixed(1)} / 백 ${score.white.toFixed(1)}입니다. ${coach}`);
   updateReviewTimeline();
   render();
+}
+
+function updateReviewCoach(text) {
+  const coach = document.querySelector("#reviewCoachText");
+  if (coach) coach.textContent = text;
+}
+
+function reviewCoachForMove(move, board, score) {
+  const color = move.color;
+  const opponent = color === BLACK ? WHITE : BLACK;
+  const group = board[move.r]?.[move.c] === color ? groupAt(board, move.r, move.c) : null;
+  const liberties = group?.liberties.size || 0;
+  const opponentAtari = countAtariGroups(board, opponent);
+  const ownAtari = countAtariGroups(board, color);
+  const lead = color === BLACK ? score.black - score.white : score.white - score.black;
+  if (move.captured > 0) return `좋은 점: 포획으로 확실한 실리를 얻었습니다. 다음 확인: 잡은 뒤 내 돌 활로 ${liberties}개라 연결 약점이 없는지 보세요.`;
+  if (opponentAtari > 0) return `좋은 점: 상대 약한 돌을 단수로 몰았습니다. 다음 수에는 바로 잡는 수와 더 큰 공격을 비교하세요.`;
+  if (ownAtari > 0 || liberties <= 1) return `주의: 둔 뒤 내 돌이 단수에 가깝습니다. 이런 수는 잡는 이득이 없으면 위험합니다.`;
+  if (liberties >= 4 && lead >= -5) return `좋은 점: 활로 ${liberties}개로 돌이 가볍고 안정적입니다. 다음은 주변 약한 돌을 공격으로 연결하세요.`;
+  if (Math.abs(lead) >= 12) return `형세 포인트: 이 장면은 ${stoneName(color)} 기준 ${lead > 0 ? "앞서는" : "밀리는"} 흐름입니다. 큰 곳과 끝내기 우선순위를 다시 보세요.`;
+  return `복기 포인트: 포획은 없지만 모양을 정돈한 수입니다. 후보수 2개를 비교해 더 큰 자리였는지 확인하세요.`;
 }
 
 function stepReview(delta) {
@@ -1931,6 +1966,10 @@ function startCoreReview() {
 }
 
 function startWeakReview() {
+  if (dueWrongNotes().length) {
+    startWrongRetry();
+    return;
+  }
   const weak = topWeakness();
   if (weak) {
     el.drillCategory.value = weak.type;
@@ -1947,6 +1986,56 @@ function startWeakReview() {
   el.drillDifficulty.value = "basic";
   startRandomDrill();
   setStatus("약점 훈련", "아직 오답이 없어 기초 반복 문제부터 시작합니다.");
+}
+
+function dueWrongNotes() {
+  const now = Date.now();
+  return state.wrongNotes.filter((note) => !note.mastered && (!note.dueAt || note.dueAt <= now));
+}
+
+function findLessonForWrongNote(note) {
+  if (note.lessonKind === "lesson" && Number.isInteger(note.lessonIndex)) return lessons[note.lessonIndex];
+  if (note.lessonId) return drillBank.find((drill) => drill.id === note.lessonId);
+  return drillBank.find((drill) => drill.title === note.title) || lessons.find((lesson) => lesson.title === note.title);
+}
+
+function scheduleWrongNote(note, ok) {
+  note.reviewCount = (note.reviewCount || 0) + 1;
+  note.lastReviewedAt = Date.now();
+  if (ok) {
+    note.mastered = note.reviewCount >= 2;
+    note.dueAt = Date.now() + (note.mastered ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 5);
+  } else {
+    note.mastered = false;
+    note.dueAt = Date.now();
+  }
+}
+
+function startWrongRetry() {
+  const due = dueWrongNotes();
+  if (!due.length) {
+    setStatus("오답 재출제", "지금 다시 풀 오답이 없습니다. 새 문제를 풀면 자동으로 오답 큐에 들어갑니다.");
+    updateWrongNoteCard();
+    return;
+  }
+  const note = due.sort((a, b) => (a.dueAt || 0) - (b.dueAt || 0))[0];
+  note.id = note.id || note.lessonId || `wrong-${note.title}-${note.answer || ""}`;
+  const lesson = findLessonForWrongNote(note);
+  if (!lesson) {
+    note.mastered = true;
+    saveProgress();
+    setStatus("오답 재출제", "이전 오답 문제를 찾을 수 없어 큐에서 제외했습니다.");
+    updateWrongNoteCard();
+    return;
+  }
+  state.activeDrill = {
+    ...lesson,
+    id: lesson.id || note.lessonId,
+    title: `오답 재출제: ${lesson.title}`,
+    retryNoteId: note.id,
+  };
+  setupLesson();
+  setStatus("오답 재출제", `${note.reason} 같은 실수를 고치기 위해 다시 출제했습니다. 정답 전 후보수 2개를 비교하세요.`);
 }
 
 function showWeaknessReport() {
@@ -2018,6 +2107,7 @@ function coordLabel(r, c) {
 function addWrongNote(lesson, r, c) {
   const [ar, ac] = lesson.targets[0];
   const type = lessonType(lesson);
+  const existingId = lesson.retryNoteId || lesson.id || `lesson-${state.lessonIndex}`;
   const reason = {
     capture: "활로를 더 줄이는 자리를 먼저 찾아야 합니다.",
     connect: "연결점과 절단점을 다시 비교해 보세요.",
@@ -2027,13 +2117,24 @@ function addWrongNote(lesson, r, c) {
     endgame: "경계에서 집 차이가 가장 크게 나는 곳을 봐야 합니다.",
     general: "문제의 목표와 가장 직접 연결되는 수를 찾아야 합니다.",
   };
-  state.wrongNotes.push({
+  const existing = state.wrongNotes.find((note) => note.id === existingId);
+  const note = existing || {
+    id: existingId,
+    lessonId: lesson.id || null,
+    lessonKind: lesson.id ? "drill" : "lesson",
+    lessonIndex: lesson.id ? null : state.lessonIndex,
     title: lesson.title,
-    played: coordLabel(r, c),
-    answer: coordLabel(ar, ac),
-    reason: reason[type] || reason.general,
-  });
-  state.wrongNotes = state.wrongNotes.slice(-12);
+    category: type,
+    reviewCount: 0,
+  };
+  note.played = coordLabel(r, c);
+  note.answer = coordLabel(ar, ac);
+  note.reason = reason[type] || reason.general;
+  note.mastered = false;
+  note.dueAt = Date.now();
+  note.lastWrongAt = Date.now();
+  if (!existing) state.wrongNotes.push(note);
+  state.wrongNotes = state.wrongNotes.slice(-20);
 }
 
 function hintCandidates(lesson) {
@@ -2363,6 +2464,10 @@ function handleLessonMove(r, c) {
   state.captures[state.turn] += result.captured.length;
   state.locked = true;
   state.revealedAnswer = null;
+  if (lesson.retryNoteId) {
+    const note = state.wrongNotes.find((item) => item.id === lesson.retryNoteId);
+    if (note) scheduleWrongNote(note, true);
+  }
   if (state.activeDrill?.id) state.mistakes.delete(state.activeDrill.id);
   if (lesson.isChapterTest) {
     state.testCorrect += 1;

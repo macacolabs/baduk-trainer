@@ -602,6 +602,16 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.review-coach {
+  background: rgba(239, 236, 227, 0.82);
+  border: 1px solid rgba(43, 49, 45, 0.08);
+  border-radius: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  padding: 10px 12px;
+}
+
 .review-moves {
   display: flex;
   gap: 6px;
