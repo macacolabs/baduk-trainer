@@ -1856,6 +1856,14 @@ function ensureGameReviewButton() {
   button.textContent = "복기 분석";
   button.addEventListener("click", reviewCurrentGame);
   el.gamePanel.querySelector(".actions").append(button);
+
+  const deepButton = document.createElement("button");
+  deepButton.id = "deepAnalyze";
+  deepButton.type = "button";
+  deepButton.className = "ghost";
+  deepButton.textContent = "딥러닝 분석";
+  deepButton.addEventListener("click", analyzeWithKataGo);
+  el.gamePanel.querySelector(".actions").append(deepButton);
 }
 
 function ensureGameCoachPanel() {
@@ -1909,6 +1917,88 @@ function updateGameCoach(title, text, candidates = [], tags = []) {
       candidateEl.append(button);
     });
   }
+}
+
+function colorCode(color) {
+  return color === BLACK ? "B" : "W";
+}
+
+function gtpCoord(r, c, size = state.size) {
+  const letters = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+  return `${letters[c]}${size - r}`;
+}
+
+function parseGtpCoord(move, size = state.size) {
+  if (!move || move.toLowerCase() === "pass") return null;
+  const letters = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
+  const col = letters.indexOf(move[0].toUpperCase());
+  const row = size - Number(move.slice(1));
+  if (col < 0 || !Number.isInteger(row) || !inBounds(row, col, size)) return null;
+  return [row, col];
+}
+
+function katagoRequestPayload() {
+  return {
+    id: `baduk-${Date.now()}`,
+    boardSize: state.size,
+    komi: KOMI,
+    rules: "chinese",
+    maxVisits: 96,
+    moves: state.gameLog.map((move) => [colorCode(move.color), gtpCoord(move.r, move.c, state.size)]),
+    initialPlayer: colorCode(state.turn),
+  };
+}
+
+async function analyzeWithKataGo() {
+  if (state.mode === "learn") {
+    setStatus("딥러닝 분석", "대국 모드에서 몇 수 둔 뒤 분석할 수 있습니다.");
+    return;
+  }
+  updateGameCoach("딥러닝 분석 요청", "내 PC의 KataGo 로컬 서버에 현재 판을 보내는 중입니다.", [], ["KataGo", "localhost"]);
+  setStatus("딥러닝 분석", "로컬 서버 http://localhost:8765/analyze 를 호출합니다.");
+  try {
+    const response = await fetch("http://localhost:8765/analyze", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(katagoRequestPayload()),
+    });
+    const data = await response.json();
+    if (!response.ok || !data.ok) throw new Error(data.error || data.message || "KataGo 분석 실패");
+    applyKataGoAnalysis(data);
+  } catch (error) {
+    updateGameCoach(
+      "KataGo 연결 필요",
+      `${error.message}. PC에서 local-katago-server.cjs를 실행하고 KATAGO_PATH, KATAGO_MODEL, KATAGO_CONFIG를 설정하세요.`,
+      [],
+      ["설정 필요", "로컬 서버"]
+    );
+    setStatus("딥러닝 분석", "KataGo 로컬 서버가 아직 준비되지 않았습니다. 프로젝트의 local-katago-server.cjs를 실행해야 합니다.");
+  }
+}
+
+function applyKataGoAnalysis(data) {
+  const candidates = (data.candidates || []).map((item) => {
+    const point = parseGtpCoord(item.move, state.size);
+    return point ? {
+      r: point[0],
+      c: point[1],
+      reason: `${Math.round((item.winrate || 0) * 100)}% · ${Number(item.scoreLead || 0).toFixed(1)}집`,
+    } : null;
+  }).filter(Boolean);
+  const best = data.bestMove || data.candidates?.[0]?.move || "pass";
+  const bestPoint = parseGtpCoord(best, state.size);
+  const winrate = Number(data.winrate || data.candidates?.[0]?.winrate || 0);
+  const scoreLead = Number(data.scoreLead || data.candidates?.[0]?.scoreLead || 0);
+  if (bestPoint) state.revealedAnswer = bestPoint;
+  const bestText = bestPoint ? coordLabel(...bestPoint) : "패스";
+  updateGameCoach(
+    "KataGo 딥러닝 분석",
+    `추천수 ${bestText}. 승률 ${Math.round(winrate * 100)}%, 예상 집 차이 ${scoreLead.toFixed(1)}집입니다.`,
+    candidates,
+    ["딥러닝", "승률", "집 차이"]
+  );
+  setStatus("KataGo 분석", `추천수 ${best}. 후보 ${candidates.length}개를 표시했습니다.`);
+  render();
 }
 
 function ensureReviewTimeline() {
