@@ -2078,6 +2078,7 @@ function ensureGameReviewButton() {
   ensureAiLevelControl();
   ensureGameCoachPanel();
   ensureReviewTimeline();
+  ensureGameReportPanel();
   if (document.querySelector("#reviewGame")) return;
   const button = document.createElement("button");
   button.id = "reviewGame";
@@ -2198,11 +2199,11 @@ async function analyzeWithKataGo() {
   } catch (error) {
     updateGameCoach(
       "KataGo 연결 필요",
-      `${error.message}. PC에서 local-katago-server.cjs를 실행하고 KATAGO_PATH, KATAGO_MODEL, KATAGO_CONFIG를 설정하세요.`,
+      `${error.message}. 정적 페이지와 기본 AI/복기는 계속 동작합니다. 딥러닝 추천수만 쓰려면 PC에서 local-katago-server.cjs를 실행하세요.`,
       [],
-      ["설정 필요", "로컬 서버"]
+      ["선택 기능", "로컬 서버"]
     );
-    setStatus("딥러닝 분석", "KataGo 로컬 서버가 아직 준비되지 않았습니다. 프로젝트의 local-katago-server.cjs를 실행해야 합니다.");
+    setStatus("딥러닝 분석", "KataGo가 없어도 앱은 정상 동작합니다. 딥러닝 분석 버튼만 로컬 서버가 필요합니다.");
   }
 }
 
@@ -2256,6 +2257,124 @@ function ensureReviewTimeline() {
   panel.querySelector("#reviewLive").addEventListener("click", exitReviewMode);
 }
 
+function ensureGameReportPanel() {
+  if (document.querySelector("#gameReportPanel")) return;
+  const panel = document.createElement("div");
+  panel.id = "gameReportPanel";
+  panel.className = "game-report hidden";
+  panel.innerHTML = `
+    <div class="game-report-head">
+      <span>대국 후 학습 리포트</span>
+      <strong id="gameReportTitle">복기 분석을 누르면 생성됩니다</strong>
+    </div>
+    <p id="gameReportSummary">대국 기록을 바탕으로 실수 유형과 다음 훈련을 추천합니다.</p>
+    <div class="game-report-grid" id="gameReportGrid"></div>
+    <div class="game-report-list" id="gameReportList"></div>
+  `;
+  const timeline = document.querySelector("#reviewTimeline");
+  if (timeline) timeline.before(panel);
+  else el.gamePanel.append(panel);
+}
+
+function buildGameLearningReport() {
+  const score = estimateScore();
+  const blackMoves = state.gameLog.filter((move) => move.color === BLACK);
+  const whiteMoves = state.gameLog.filter((move) => move.color === WHITE);
+  const allTags = state.gameLog.flatMap((move) => move.tags || []);
+  const tagCounts = allTags.reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+  }, {});
+  const rankedTags = Object.entries(tagCounts).sort((a, b) => b[1] - a[1]);
+  const dangerMoves = state.gameLog.filter((move) => (move.tags || []).includes("자충 위험"));
+  const captureMoves = state.gameLog.filter((move) => move.captured > 0);
+  const atariMoves = state.gameLog.filter((move) => (move.tags || []).includes("단수 압박"));
+  const winner = score.black > score.white ? "흑" : "백";
+  const margin = Math.abs(score.black - score.white).toFixed(1);
+  const mainWeakness = dangerMoves.length
+    ? "자충 위험"
+    : rankedTags[0]?.[0] || "후보수 비교";
+  const nextTrainingByWeakness = {
+    "자충 위험": "수읽기 버튼으로 내 돌 활로를 먼저 세는 훈련",
+    "단수 압박": "포획/단수 문제 5개",
+    "포획 성공": "잡은 뒤 연결이 안전한지 확인하는 복기",
+    "안정된 모양": "급수별 코스와 9줄 AI 대국 반복",
+    "후보수 비교": "다음 단계 플랜에서 후보수 2개 비교 루틴",
+  };
+  const criticalMoves = [
+    ...dangerMoves.slice(0, 2).map((move) => ({
+      title: `${move.historyIndex + 1}수 ${coordLabel(move.r, move.c)}`,
+      text: "둔 뒤 내 돌이 단수에 가까워졌습니다. 다음에는 먼저 내 활로를 세세요.",
+    })),
+    ...atariMoves.slice(0, 2).map((move) => ({
+      title: `${move.historyIndex + 1}수 ${coordLabel(move.r, move.c)}`,
+      text: "상대 약한 돌을 압박했습니다. 바로 잡을지, 더 큰 곳으로 갈지 비교하세요.",
+    })),
+    ...captureMoves.slice(0, 2).map((move) => ({
+      title: `${move.historyIndex + 1}수 ${coordLabel(move.r, move.c)}`,
+      text: `${move.captured}개를 잡았습니다. 잡은 뒤 내 돌 연결까지 확인하면 좋습니다.`,
+    })),
+  ].slice(0, 3);
+
+  if (!criticalMoves.length && state.gameLog.length) {
+    criticalMoves.push({
+      title: "대표 장면 부족",
+      text: "큰 전투보다 잔잔한 흐름입니다. 다음 판에서는 단수와 연결을 의식해서 두세요.",
+    });
+  }
+
+  return {
+    title: `${state.gameLog.length}수 복기: ${winner} ${margin}집 우세`,
+    summary: `흑 ${blackMoves.length}수, 백 ${whiteMoves.length}수. 핵심 약점은 ${mainWeakness}입니다.`,
+    metrics: [
+      ["총 수순", `${state.gameLog.length}수`],
+      ["포획 장면", `${captureMoves.length}회`],
+      ["단수 압박", `${atariMoves.length}회`],
+      ["주의 장면", `${dangerMoves.length}회`],
+    ],
+    lessons: [
+      {
+        title: "오늘의 핵심",
+        text: nextTrainingByWeakness[mainWeakness] || "후보수 2개를 비교하는 훈련",
+      },
+      {
+        title: "다음 대국 목표",
+        text: dangerMoves.length ? "내 돌이 단수인지 확인한 뒤 두기" : "상대 약한 돌을 단수로 몰아가기",
+      },
+      {
+        title: "추천 훈련",
+        text: dangerMoves.length ? "약점 훈련 → 수읽기 → AI 9줄 1판" : "급수별 코스 → 실전 미션 → 복기 분석",
+      },
+      ...criticalMoves,
+    ],
+  };
+}
+
+function updateGameLearningReport() {
+  ensureGameReportPanel();
+  const panel = document.querySelector("#gameReportPanel");
+  const report = buildGameLearningReport();
+  panel.classList.remove("hidden");
+  document.querySelector("#gameReportTitle").textContent = report.title;
+  document.querySelector("#gameReportSummary").textContent = report.summary;
+  const grid = document.querySelector("#gameReportGrid");
+  grid.innerHTML = "";
+  for (const [label, value] of report.metrics) {
+    const item = document.createElement("div");
+    item.className = "game-report-metric";
+    item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
+    grid.append(item);
+  }
+  const list = document.querySelector("#gameReportList");
+  list.innerHTML = "";
+  for (const lesson of report.lessons) {
+    const item = document.createElement("div");
+    item.className = "game-report-item";
+    item.innerHTML = `<strong>${lesson.title}</strong><span>${lesson.text}</span>`;
+    list.append(item);
+  }
+}
+
 function updateMission(playedColor, result) {
   if (!state.activeMission) return;
   if (state.activeMission.id === "finish-compact" && state.gameOver) {
@@ -2281,6 +2400,7 @@ function reviewCurrentGame() {
   if (state.gameLog.length) {
     state.reviewIndex = state.gameLog.length - 1;
     updateReviewTimeline();
+    updateGameLearningReport();
   }
   const missedCapture = bestTacticalMove(state.turn);
   if (isTacticalMove(missedCapture, state.turn)) {

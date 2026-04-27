@@ -690,7 +690,8 @@ h2 {
 }
 
 .game-coach,
-.rank-curriculum {
+.rank-curriculum,
+.game-report {
   background: rgba(239, 236, 227, 0.72);
   border: 1px solid rgba(43, 49, 45, 0.08);
   border-radius: 18px;
@@ -704,8 +705,13 @@ h2 {
   display: none;
 }
 
+.game-report.hidden {
+  display: none;
+}
+
 .game-coach-head,
-.rank-curriculum-head {
+.rank-curriculum-head,
+.game-report-head {
   align-items: center;
   display: flex;
   gap: 10px;
@@ -713,14 +719,50 @@ h2 {
 }
 
 .game-coach-head span,
-.rank-curriculum-head span {
+.rank-curriculum-head span,
+.game-report-head span {
   color: var(--muted);
   font-size: 13px;
   font-weight: 800;
 }
 
-.game-coach p {
+.game-coach p,
+.game-report p {
   margin: 0;
+}
+
+.game-report-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+}
+
+.game-report-metric,
+.game-report-item {
+  background: rgba(255, 254, 248, 0.68);
+  border: 1px solid rgba(43, 49, 45, 0.07);
+  border-radius: 14px;
+  padding: 10px;
+}
+
+.game-report-metric span,
+.game-report-item span {
+  color: var(--muted);
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.game-report-metric strong,
+.game-report-item strong {
+  display: block;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.game-report-list {
+  display: grid;
+  gap: 8px;
 }
 
 .coach-tags,
