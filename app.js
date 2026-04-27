@@ -1233,6 +1233,9 @@ const state = {
   activeMission: null,
   aiLevel: "normal",
   reviewIndex: null,
+  coachCandidates: [],
+  lastCoachText: "",
+  lastCoachTags: [],
   showDanRoadmap: false,
   revealedAnswer: null,
   lastMove: null,
@@ -1354,6 +1357,17 @@ const rankPracticePlans = [
   { rank: "1급 준비", max: Infinity, categories: ["life", "capture", "endgame", "opening", "shape"], difficulty: "advanced", count: 120 },
 ];
 
+const rankCurriculum = [
+  ["30급", "교차점, 활로, 단수", "9줄에서 정답률 70%, 단수 문제 20개"],
+  ["25급", "포획, 연결, 끊기", "연결/끊기 문제 30개, 오답 재출제 5개 해결"],
+  ["20급", "축, 장문, 맞단수", "3수 읽기 훈련 20회, 전투 문제 40개"],
+  ["15급", "좋은 모양, 나쁜 모양", "빈삼각 회피, 행마 문제 50개"],
+  ["10급", "사활, 포석, 끝내기", "사는 수/죽이는 수 구분, 실전 미션 3회"],
+  ["5급", "3수 이상 수읽기, 약한 돌 공격", "심화 시험 85점, 복기 태그 실수 3개 이하"],
+  ["3급", "전투 선택, 버릴 돌 판단", "5수 읽기 훈련, AI 도전 난이도 복기"],
+  ["1급 준비", "후보수 비교, 형세 판단", "대국마다 복기 코치로 실수 유형 정리"],
+];
+
 const danRoadmap = [
   ["5급", "3수 읽기", "내 후보-상대 최강 응수-내 다음 수를 말하고 둡니다."],
   ["3급", "전투 선택", "잡기, 살리기, 버리기 중 가장 큰 결과를 비교합니다."],
@@ -1400,6 +1414,7 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="chapterTest">단원 테스트</button>
       <button type="button" class="ghost" id="readingTraining">수읽기</button>
       <button type="button" class="ghost" id="rankCourse">급수별 코스</button>
+      <button type="button" class="ghost" id="rankMap">급수표</button>
       <button type="button" class="ghost" id="danChallenge">5급 집중</button>
       <button type="button" class="ghost" id="danRoadmap">5급+ 로드맵</button>
       <button type="button" class="ghost" id="danBenchmark">심화 시험</button>
@@ -1434,12 +1449,14 @@ function ensureLearningBoostUI() {
     </div>
   `;
   el.lessonPanel.querySelector(".learning-aids").after(boost);
+  ensureRankCurriculumUI();
   document.querySelector("#coreReview").addEventListener("click", startCoreReview);
   document.querySelector("#weakReview").addEventListener("click", startWeakReview);
   document.querySelector("#retryWrong").addEventListener("click", startWrongRetry);
   document.querySelector("#chapterTest").addEventListener("click", startChapterTest);
   document.querySelector("#readingTraining").addEventListener("click", startReadingTraining);
   document.querySelector("#rankCourse").addEventListener("click", startRankCourse);
+  document.querySelector("#rankMap").addEventListener("click", showRankCurriculum);
   document.querySelector("#danChallenge").addEventListener("click", startDanChallenge);
   document.querySelector("#danRoadmap").addEventListener("click", startFiveKyuRoadmap);
   document.querySelector("#danBenchmark").addEventListener("click", startDanBenchmark);
@@ -1485,6 +1502,7 @@ function updateLearningBoost(lesson) {
   updateWrongNoteCard();
   updateWeaknessCard();
   updateDanRoadmapCard();
+  updateRankCurriculum();
 }
 
 function updateWrongNoteCard() {
@@ -1530,6 +1548,45 @@ function updateDanRoadmapCard() {
     item.innerHTML = `<b>${level}</b><strong>${skill}</strong><span>${routine}</span>`;
     list.append(item);
   }
+}
+
+function ensureRankCurriculumUI() {
+  if (document.querySelector("#rankCurriculum")) return;
+  const panel = document.createElement("div");
+  panel.id = "rankCurriculum";
+  panel.className = "rank-curriculum hidden";
+  panel.innerHTML = `
+    <div class="rank-curriculum-head">
+      <span>급수별 커리큘럼</span>
+      <strong>30급부터 1급 준비까지</strong>
+    </div>
+    <div class="rank-curriculum-list" id="rankCurriculumList"></div>
+  `;
+  document.querySelector("#learningBoost").after(panel);
+  updateRankCurriculum();
+}
+
+function updateRankCurriculum() {
+  const list = document.querySelector("#rankCurriculumList");
+  if (!list) return;
+  const current = currentRank().name;
+  list.innerHTML = "";
+  for (const [rank, focus, pass] of rankCurriculum) {
+    const item = document.createElement("div");
+    item.className = "rank-step";
+    if (current.includes(rank)) item.classList.add("active");
+    item.innerHTML = `<b>${rank}</b><strong>${focus}</strong><span>${pass}</span>`;
+    list.append(item);
+  }
+}
+
+function showRankCurriculum() {
+  ensureRankCurriculumUI();
+  const panel = document.querySelector("#rankCurriculum");
+  panel.classList.toggle("hidden");
+  updateRankCurriculum();
+  const rank = currentRank();
+  setStatus("급수표", `현재 위치는 ${rank.name}입니다. 각 급수의 통과 조건을 보며 오늘 코스와 수읽기 훈련을 진행하세요.`);
 }
 
 function topWeakness() {
@@ -1612,16 +1669,49 @@ function showLevelCheck() {
 
 function startReadingTraining() {
   const lesson = state.activeDrill || lessons[state.lessonIndex];
-  state.readingDepth = Math.min(3, state.readingDepth + 1);
-  state.softHintTargets = hintCandidates(lesson);
+  state.readingDepth = Math.min(5, state.readingDepth + 1);
+  state.softHintTargets = readingCandidates(lesson, state.readingDepth);
+  updateReadingCard(lesson);
   document.querySelector("#readingCard")?.classList.remove("hidden");
   render();
   const messages = [
     "1수 읽기: 내가 둘 후보를 먼저 고르세요.",
     "2수 읽기: 그 수를 두면 상대가 어디로 받을지 예상하세요.",
     "3수 읽기: 상대 응수 뒤에도 내 돌이 안전하고 이득인지 확인하세요.",
+    "4수 읽기: 상대의 반격까지 보고 손해 보는 교환을 피하세요.",
+    "5수 읽기: 최종 장면에서 잡는 수, 살리는 수, 큰 곳을 비교하세요.",
   ];
-  setStatus("수읽기 훈련", messages[state.readingDepth - 1] || messages[2]);
+  setStatus("수읽기 훈련", messages[state.readingDepth - 1] || messages.at(-1));
+}
+
+function readingCandidates(lesson, depth) {
+  const candidates = hintCandidates(lesson);
+  if (depth >= 4) {
+    for (const [r, c] of lesson.targets) {
+      for (const [nr, nc] of neighbors(r, c, state.size)) {
+        if (state.board[nr][nc] === EMPTY && !candidates.some(([cr, cc]) => cr === nr && cc === nc)) candidates.push([nr, nc]);
+      }
+    }
+  }
+  return candidates.slice(0, depth >= 5 ? 6 : 3);
+}
+
+function updateReadingCard(lesson) {
+  const card = document.querySelector("#readingCard");
+  if (!card) return;
+  const type = lessonType(lesson);
+  const checklist = [
+    "후보수 2개를 먼저 고른다.",
+    "내 첫 수 뒤 상대가 가장 불편하게 받는 자리를 예상한다.",
+    "상대 응수 뒤 내 돌의 활로와 연결을 다시 센다.",
+    "상대 반격, 맞단수, 끊김이 생기는지 확인한다.",
+    `${categoryLabels[type] || "기초"} 목표와 최종 이득을 말로 설명한다.`,
+  ];
+  card.innerHTML = `
+    <span>수읽기 ${state.readingDepth}수 루틴</span>
+    <strong>${lesson.title}</strong>
+    <ol>${checklist.slice(0, state.readingDepth).map((item) => `<li>${item}</li>`).join("")}</ol>
+  `;
 }
 
 function startPracticalMission() {
@@ -1756,6 +1846,7 @@ function startPromotionTest() {
 
 function ensureGameReviewButton() {
   ensureAiLevelControl();
+  ensureGameCoachPanel();
   ensureReviewTimeline();
   if (document.querySelector("#reviewGame")) return;
   const button = document.createElement("button");
@@ -1765,6 +1856,59 @@ function ensureGameReviewButton() {
   button.textContent = "복기 분석";
   button.addEventListener("click", reviewCurrentGame);
   el.gamePanel.querySelector(".actions").append(button);
+}
+
+function ensureGameCoachPanel() {
+  if (document.querySelector("#gameCoachPanel")) return;
+  const panel = document.createElement("div");
+  panel.id = "gameCoachPanel";
+  panel.className = "game-coach";
+  panel.innerHTML = `
+    <div class="game-coach-head">
+      <span>실전형 AI 코치</span>
+      <strong id="gameCoachTitle">대국 중 후보수 비교</strong>
+    </div>
+    <p id="gameCoachText">착수하면 AI 코치가 좋은 점, 위험한 점, 다음 후보수를 짚어줍니다.</p>
+    <div class="coach-tags" id="gameCoachTags"></div>
+    <div class="coach-candidates" id="gameCoachCandidates"></div>
+  `;
+  el.gamePanel.querySelector(".score-row").after(panel);
+}
+
+function updateGameCoach(title, text, candidates = [], tags = []) {
+  ensureGameCoachPanel();
+  state.lastCoachText = text;
+  state.lastCoachTags = tags;
+  state.coachCandidates = candidates.map((move) => [move.r, move.c]);
+  const titleEl = document.querySelector("#gameCoachTitle");
+  const textEl = document.querySelector("#gameCoachText");
+  const tagEl = document.querySelector("#gameCoachTags");
+  const candidateEl = document.querySelector("#gameCoachCandidates");
+  if (titleEl) titleEl.textContent = title;
+  if (textEl) textEl.textContent = text;
+  if (tagEl) {
+    tagEl.innerHTML = "";
+    for (const tag of tags) {
+      const item = document.createElement("span");
+      item.textContent = tag;
+      tagEl.append(item);
+    }
+  }
+  if (candidateEl) {
+    candidateEl.innerHTML = "";
+    candidates.slice(0, 3).forEach((move, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "ghost";
+      button.textContent = `${index + 1}. ${coordLabel(move.r, move.c)} ${move.reason}`;
+      button.addEventListener("click", () => {
+        state.revealedAnswer = [move.r, move.c];
+        render();
+        setStatus("후보수 표시", `${coordLabel(move.r, move.c)}: ${move.reason}`);
+      });
+      candidateEl.append(button);
+    });
+  }
 }
 
 function ensureReviewTimeline() {
@@ -1783,6 +1927,7 @@ function ensureReviewTimeline() {
       <button type="button" class="ghost" id="reviewLive">현재로</button>
     </div>
     <div class="review-coach" id="reviewCoachText">수순을 선택하면 복기 코치가 좋은 점과 아쉬운 점을 짚어줍니다.</div>
+    <div class="review-tags" id="reviewTags"></div>
     <div class="review-moves" id="reviewMoves"></div>
   `;
   el.gamePanel.append(panel);
@@ -1860,6 +2005,7 @@ function updateReviewTimeline() {
   if (!panel) return;
   const summary = panel.querySelector("#reviewSummary");
   const moves = panel.querySelector("#reviewMoves");
+  const tags = panel.querySelector("#reviewTags");
   const prev = panel.querySelector("#reviewPrev");
   const next = panel.querySelector("#reviewNext");
   const live = panel.querySelector("#reviewLive");
@@ -1867,6 +2013,15 @@ function updateReviewTimeline() {
     ? `${state.reviewIndex + 1}수 보는 중`
     : state.gameLog.length ? `${state.gameLog.length}수 기록` : "아직 수순 없음";
   moves.innerHTML = "";
+  if (tags) {
+    const reviewTags = reviewMistakeTags();
+    tags.innerHTML = "";
+    for (const tag of reviewTags) {
+      const item = document.createElement("span");
+      item.textContent = tag;
+      tags.append(item);
+    }
+  }
   state.gameLog.forEach((move, index) => {
     const button = document.createElement("button");
     button.type = "button";
@@ -1880,6 +2035,17 @@ function updateReviewTimeline() {
   prev.disabled = !reviewing || state.reviewIndex <= 0;
   next.disabled = !reviewing || state.reviewIndex >= state.gameLog.length - 1;
   live.disabled = !reviewing;
+}
+
+function reviewMistakeTags() {
+  const allTags = state.gameLog.flatMap((move) => move.tags || []);
+  const counts = allTags.reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+  }, {});
+  const ranked = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+  if (!ranked.length) return state.gameLog.length ? ["큰 실수 적음", "후보수 비교 권장"] : ["대국 후 자동 태그 표시"];
+  return ranked.map(([tag, count]) => `${tag} ${count}`);
 }
 
 function showReviewMove(index) {
@@ -2258,6 +2424,40 @@ function setStatus(title, text) {
   el.statusText.textContent = text;
 }
 
+function ensureMobileNav() {
+  if (document.querySelector("#mobileNav")) return;
+  const nav = document.createElement("nav");
+  nav.id = "mobileNav";
+  nav.className = "mobile-nav";
+  nav.setAttribute("aria-label", "빠른 이동");
+  nav.innerHTML = `
+    <button type="button" data-mobile-mode="learn">학습</button>
+    <button type="button" data-mobile-mode="ai">AI</button>
+    <button type="button" data-mobile-mode="local">2인</button>
+    <button type="button" data-mobile-action="review">복기</button>
+  `;
+  nav.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    const mode = button.dataset.mobileMode;
+    if (mode) {
+      switchMode(mode);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    if (button.dataset.mobileAction === "review") {
+      if (state.mode === "learn" || !state.gameLog.length) {
+        setStatus("복기", "대국을 몇 수 진행한 뒤 복기를 열 수 있습니다.");
+        return;
+      }
+      reviewCurrentGame();
+      document.querySelector("#reviewTimeline")?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+  document.body.append(nav);
+  nav.querySelector("[data-mobile-mode='learn']")?.classList.add("active");
+}
+
 function stoneName(color) {
   return color === BLACK ? "흑" : "백";
 }
@@ -2357,6 +2557,7 @@ function setupLesson() {
   state.revealedAnswer = null;
   state.hintLevel = 0;
   state.softHintTargets = [];
+  state.coachCandidates = [];
   state.readingDepth = 0;
   state.gameOver = false;
   state.history = [];
@@ -2402,6 +2603,9 @@ function startGame(mode) {
   state.history = [];
   state.gameLog = [];
   state.reviewIndex = null;
+  state.coachCandidates = [];
+  state.lastCoachText = "";
+  state.lastCoachTags = [];
   saveHistory();
   el.boardLabel.textContent = mode === "ai" ? "AI 대국" : "2인 대국";
   el.boardTitle.textContent = mode === "ai" ? "흑으로 AI와 두기" : "서로 번갈아 두기";
@@ -2411,12 +2615,14 @@ function startGame(mode) {
   el.bottomPlayerName.textContent = mode === "ai" ? "플레이어 흑" : "흑";
   el.bottomPlayerMeta.textContent = "선착";
   el.bottomTimer.textContent = "10:00";
+  updateGameCoach("대국 코치 준비", mode === "ai" ? "흑으로 착수하면 AI 코치가 후보수와 위험 요소를 비교합니다." : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.", [], ["후보수", "복기 태그"]);
   setStatus("새 대국", mode === "ai" ? "당신은 흑입니다. AI는 백입니다." : "흑부터 시작합니다.");
   render();
 }
 
 function switchMode(mode) {
   el.tabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.mode === mode));
+  document.querySelectorAll("[data-mobile-mode]").forEach((button) => button.classList.toggle("active", button.dataset.mobileMode === mode));
   el.lessonPanel.classList.toggle("hidden", mode !== "learn");
   el.termsPanel.classList.toggle("hidden", mode !== "learn");
   el.gamePanel.classList.toggle("hidden", mode === "learn");
@@ -2523,10 +2729,12 @@ function handleGameMove(r, c) {
   }
 
   const playedColor = state.turn;
+  const candidates = state.mode === "learn" ? [] : topMoveCandidates(playedColor);
+  const coach = state.mode === "learn" ? null : coachTextForMove(playedColor, r, c, result, candidates);
   state.board = result.board;
   state.lastMove = [r, c];
   state.captures[playedColor] += result.captured.length;
-  const logEntry = { color: playedColor, r, c, captured: result.captured.length, historyIndex: null };
+  const logEntry = { color: playedColor, r, c, captured: result.captured.length, historyIndex: null, tags: coach?.tags || [] };
   state.gameLog.push(logEntry);
   state.turn = playedColor === BLACK ? WHITE : BLACK;
   state.passCount = 0;
@@ -2537,6 +2745,10 @@ function handleGameMove(r, c) {
   const capturedText = result.captured.length ? ` ${result.captured.length}개 잡았습니다.` : "";
   setStatus("착수", `${stoneName(state.turn)} 차례입니다.${capturedText}`);
   updateMission(playedColor, result);
+  if (coach) {
+    const title = state.mode === "ai" && playedColor === WHITE ? "AI 수 설명" : "내 수 코치";
+    updateGameCoach(title, coach.text, candidates, coach.tags);
+  }
   render();
 
   if (state.mode === "ai" && state.turn === WHITE) {
@@ -2631,6 +2843,49 @@ function scoreMove(move, color) {
     center * 0.28 +
     Math.random() * 2
   );
+}
+
+function topMoveCandidates(color) {
+  const moves = legalMoves(color);
+  for (const move of moves) {
+    move.score = scoreMove(move, color);
+    move.reason = moveReason(move, color);
+  }
+  return moves.sort((a, b) => b.score - a.score).slice(0, 3);
+}
+
+function moveReason(move, color) {
+  const opponent = color === BLACK ? WHITE : BLACK;
+  const own = groupAt(move.result.board, move.r, move.c);
+  if (move.result.captured.length) return `${move.result.captured.length}개 포획`;
+  if (countAtariGroups(move.result.board, opponent) > 0) return "상대 단수";
+  if (countAtariGroups(move.result.board, color) > 0 || own.liberties.size <= 1) return "위험 확인";
+  if (starPoints(state.size).some(([sr, sc]) => sr === move.r && sc === move.c)) return "큰 자리";
+  if (own.liberties.size >= 4) return "활로 안정";
+  return "모양 정리";
+}
+
+function coachTagsForMove(move, color) {
+  const opponent = color === BLACK ? WHITE : BLACK;
+  const tags = [];
+  const own = groupAt(move.result.board, move.r, move.c);
+  if (move.result.captured.length) tags.push("포획 성공");
+  if (countAtariGroups(move.result.board, opponent) > 0) tags.push("단수 압박");
+  if (countAtariGroups(move.result.board, color) > 0 || own.liberties.size <= 1) tags.push("자충 위험");
+  if (!tags.length && own.liberties.size >= 4) tags.push("안정된 모양");
+  if (!tags.length) tags.push("후보수 비교");
+  return tags;
+}
+
+function coachTextForMove(color, r, c, result, candidates) {
+  const played = candidates.find((move) => move.r === r && move.c === c);
+  const best = candidates[0];
+  const tags = coachTagsForMove({ r, c, result, score: played?.score || 0 }, color);
+  const bestText = best ? `추천 후보는 ${coordLabel(best.r, best.c)}(${best.reason})입니다.` : "추천 후보가 없습니다.";
+  const playedText = played ? `${coordLabel(r, c)} 수는 후보 ${candidates.indexOf(played) + 1}순위입니다.` : `${coordLabel(r, c)} 수는 AI 상위 후보 밖입니다.`;
+  const captureText = result.captured.length ? ` ${result.captured.length}개를 잡아 실리가 큽니다.` : "";
+  const warning = tags.includes("자충 위험") ? " 둔 뒤 내 돌 활로가 좁아 다음 수 반격을 꼭 확인하세요." : "";
+  return { text: `${stoneName(color)} ${playedText}${captureText} ${bestText}${warning}`, tags };
 }
 
 function bestTacticalMove(color) {
@@ -2815,6 +3070,7 @@ function render() {
       if (targets.some(([tr, tc]) => tr === r && tc === c)) point.classList.add("target");
       if (state.revealedAnswer?.[0] === r && state.revealedAnswer?.[1] === c) point.classList.add("answer");
       if (state.softHintTargets.some(([hr, hc]) => hr === r && hc === c)) point.classList.add("hint-candidate");
+      if (state.coachCandidates.some(([hr, hc]) => hr === r && hc === c)) point.classList.add("coach-candidate");
       if (atari?.liberty === `${r},${c}`) point.classList.add("hint");
       if (displayLastMove?.[0] === r && displayLastMove?.[1] === c) point.classList.add("last");
       if (displayBoard[r][c] !== EMPTY) {
@@ -2867,6 +3123,7 @@ el.boardSize.addEventListener("change", () => {
 el.hintButton.addEventListener("click", showHint);
 
 loadProgress();
+ensureMobileNav();
 renderTerms();
 updateTrainingCounts();
 setupLesson();

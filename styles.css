@@ -612,6 +612,100 @@ h2 {
   padding: 10px 12px;
 }
 
+.game-coach,
+.rank-curriculum {
+  background: rgba(239, 236, 227, 0.72);
+  border: 1px solid rgba(43, 49, 45, 0.08);
+  border-radius: 18px;
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 13px;
+}
+
+.rank-curriculum.hidden {
+  display: none;
+}
+
+.game-coach-head,
+.rank-curriculum-head {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.game-coach-head span,
+.rank-curriculum-head span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.game-coach p {
+  margin: 0;
+}
+
+.coach-tags,
+.review-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.coach-tags span,
+.review-tags span {
+  background: rgba(255, 254, 248, 0.8);
+  border: 1px solid rgba(43, 49, 45, 0.08);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 5px 8px;
+}
+
+.coach-candidates {
+  display: grid;
+  gap: 6px;
+}
+
+.coach-candidates button {
+  justify-content: start;
+  min-height: 36px;
+  text-align: left;
+}
+
+.rank-curriculum-list {
+  display: grid;
+  gap: 8px;
+}
+
+.rank-step {
+  background: rgba(255, 254, 248, 0.62);
+  border: 1px solid rgba(43, 49, 45, 0.07);
+  border-radius: 14px;
+  display: grid;
+  gap: 2px;
+  grid-template-columns: 54px 1fr;
+  padding: 10px;
+}
+
+.rank-step b {
+  align-self: center;
+  color: var(--accent);
+  grid-row: span 2;
+}
+
+.rank-step span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.rank-step.active {
+  border-color: rgba(43, 49, 45, 0.32);
+  box-shadow: inset 4px 0 0 var(--accent);
+}
+
 .review-moves {
   display: flex;
   gap: 6px;
@@ -844,6 +938,12 @@ select {
   border-style: dashed;
 }
 
+.point.coach-candidate::after {
+  background: rgba(255, 254, 248, 0.36);
+  border-color: rgba(43, 49, 45, 0.82);
+  border-style: dotted;
+}
+
 .point.answer::after {
   background: rgba(43, 49, 45, 0.08);
   border-color: var(--accent-2);
@@ -892,6 +992,10 @@ select {
 .last .stone {
   outline: 3px solid rgba(43, 49, 45, 0.64);
   outline-offset: 2px;
+}
+
+.mobile-nav {
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -955,6 +1059,7 @@ select {
 @media (max-width: 520px) {
   body {
     background: linear-gradient(180deg, #faf8f2, #e9eee7);
+    padding-bottom: 76px;
   }
 
   button,
@@ -987,6 +1092,38 @@ select {
   .mode-tabs,
   .score-row {
     grid-template-columns: 1fr;
+  }
+
+  .mobile-nav {
+    align-items: center;
+    backdrop-filter: blur(18px);
+    background: rgba(255, 254, 248, 0.9);
+    border: 1px solid rgba(43, 49, 45, 0.08);
+    border-radius: 18px;
+    bottom: 10px;
+    box-shadow: 0 18px 44px rgba(34, 49, 45, 0.14);
+    display: grid;
+    gap: 6px;
+    grid-template-columns: repeat(4, 1fr);
+    left: 10px;
+    padding: 6px;
+    position: fixed;
+    right: 10px;
+    z-index: 20;
+  }
+
+  .mobile-nav button {
+    background: transparent;
+    border-radius: 13px;
+    color: var(--muted);
+    font-size: 13px;
+    min-height: 42px;
+    padding: 0 6px;
+  }
+
+  .mobile-nav button.active {
+    background: var(--accent);
+    color: #fbfaf4;
   }
 
   .tab {
@@ -1038,9 +1175,14 @@ select {
     grid-template-columns: 1fr;
   }
 
+  .rank-step {
+    grid-template-columns: 1fr;
+  }
+
   .stage-card,
   .coach-row,
-  .study-actions {
+  .study-actions,
+  .review-controls {
     grid-template-columns: 1fr;
   }
 
