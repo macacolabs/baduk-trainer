@@ -1,16 +1,53 @@
 const http = require("node:http");
 const { spawn } = require("node:child_process");
 const fs = require("node:fs");
+const path = require("node:path");
 
 const port = Number(process.env.PORT || 8765);
-const katagoPath = process.env.KATAGO_PATH || "";
-const modelPath = process.env.KATAGO_MODEL || "";
-const configPath = process.env.KATAGO_CONFIG || "";
+const defaultKatagoDir = process.env.KATAGO_DIR || "C:\\katago";
 const defaultVisits = Number(process.env.KATAGO_VISITS || 96);
 
 let engine = null;
 let nextId = 1;
 const pending = new Map();
+
+function firstExisting(candidates) {
+  return candidates.find((candidate) => candidate && fs.existsSync(candidate)) || "";
+}
+
+function newestFile(dir, pattern) {
+  try {
+    return fs.readdirSync(dir)
+      .filter((name) => pattern.test(name))
+      .map((name) => {
+        const fullPath = path.join(dir, name);
+        return { fullPath, mtime: fs.statSync(fullPath).mtimeMs };
+      })
+      .sort((a, b) => b.mtime - a.mtime)[0]?.fullPath || "";
+  } catch {
+    return "";
+  }
+}
+
+function katagoPaths() {
+  return {
+    katagoPath: firstExisting([
+      process.env.KATAGO_PATH,
+      path.join(defaultKatagoDir, "katago.exe"),
+      path.join(defaultKatagoDir, "katago"),
+    ]),
+    modelPath: firstExisting([
+      process.env.KATAGO_MODEL,
+      newestFile(defaultKatagoDir, /\.bin\.gz$/i),
+    ]),
+    configPath: firstExisting([
+      process.env.KATAGO_CONFIG,
+      path.join(defaultKatagoDir, "analysis.cfg"),
+      path.join(defaultKatagoDir, "analysis_example.cfg"),
+      path.join(defaultKatagoDir, "default_gtp.cfg"),
+    ]),
+  };
+}
 
 function cors(res) {
   res.setHeader("access-control-allow-origin", "*");
@@ -20,13 +57,18 @@ function cors(res) {
 }
 
 function configured() {
+  const { katagoPath, modelPath, configPath } = katagoPaths();
   return Boolean(katagoPath && modelPath && configPath &&
     fs.existsSync(katagoPath) && fs.existsSync(modelPath) && fs.existsSync(configPath));
 }
 
 function setupMessage() {
+  const paths = katagoPaths();
   return [
     "KataGo setup needed.",
+    `Auto-detected katago: ${paths.katagoPath || "missing"}`,
+    `Auto-detected model: ${paths.modelPath || "missing"}`,
+    `Auto-detected config: ${paths.configPath || "missing"}`,
     "Set KATAGO_PATH to katago.exe.",
     "Set KATAGO_MODEL to a KataGo .bin.gz model.",
     "Set KATAGO_CONFIG to analysis config.",
@@ -41,6 +83,7 @@ function setupMessage() {
 function startEngine() {
   if (engine) return engine;
   if (!configured()) throw new Error(setupMessage());
+  const { katagoPath, modelPath, configPath } = katagoPaths();
 
   engine = spawn(katagoPath, ["analysis", "-model", modelPath, "-config", configPath], {
     stdio: ["pipe", "pipe", "pipe"],
@@ -157,8 +200,14 @@ const server = http.createServer(async (req, res) => {
 
   const url = new URL(req.url, `http://${req.headers.host}`);
   if (req.method === "GET" && url.pathname === "/health") {
+    const paths = katagoPaths();
     res.writeHead(200, { "content-type": "application/json; charset=utf-8" });
-    res.end(JSON.stringify({ ok: true, configured: configured(), message: configured() ? "ready" : setupMessage() }));
+    res.end(JSON.stringify({
+      ok: true,
+      configured: configured(),
+      paths,
+      message: configured() ? "ready" : setupMessage(),
+    }));
     return;
   }
 
