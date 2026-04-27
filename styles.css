@@ -531,6 +531,58 @@ h2 {
   padding-top: 14px;
 }
 
+.review-timeline {
+  border-top: 1px solid rgba(43, 49, 45, 0.08);
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.review-head {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-head span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.review-head strong {
+  font-size: 14px;
+}
+
+.review-controls {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.review-moves {
+  display: flex;
+  gap: 6px;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.review-move {
+  background: rgba(255, 254, 248, 0.78);
+  border-radius: 999px;
+  flex: 0 0 auto;
+  font-size: 12px;
+  min-height: 34px;
+  padding: 7px 10px;
+}
+
+.review-move.active {
+  background: #262927;
+  color: #fbfaf4;
+}
+
 select {
   appearance: none;
   background:

@@ -1224,6 +1224,7 @@ const state = {
   gameLog: [],
   activeMission: null,
   aiLevel: "normal",
+  reviewIndex: null,
   revealedAnswer: null,
   lastMove: null,
   locked: false,
@@ -1659,6 +1660,7 @@ function startPromotionTest() {
 
 function ensureGameReviewButton() {
   ensureAiLevelControl();
+  ensureReviewTimeline();
   if (document.querySelector("#reviewGame")) return;
   const button = document.createElement("button");
   button.id = "reviewGame";
@@ -1667,6 +1669,29 @@ function ensureGameReviewButton() {
   button.textContent = "복기 분석";
   button.addEventListener("click", reviewCurrentGame);
   el.gamePanel.querySelector(".actions").append(button);
+}
+
+function ensureReviewTimeline() {
+  if (document.querySelector("#reviewTimeline")) return;
+  const panel = document.createElement("div");
+  panel.id = "reviewTimeline";
+  panel.className = "review-timeline";
+  panel.innerHTML = `
+    <div class="review-head">
+      <span>복기 타임라인</span>
+      <strong id="reviewSummary">아직 수순 없음</strong>
+    </div>
+    <div class="review-controls">
+      <button type="button" class="ghost" id="reviewPrev">이전 수</button>
+      <button type="button" class="ghost" id="reviewNext">다음 수</button>
+      <button type="button" class="ghost" id="reviewLive">현재로</button>
+    </div>
+    <div class="review-moves" id="reviewMoves"></div>
+  `;
+  el.gamePanel.append(panel);
+  panel.querySelector("#reviewPrev").addEventListener("click", () => stepReview(-1));
+  panel.querySelector("#reviewNext").addEventListener("click", () => stepReview(1));
+  panel.querySelector("#reviewLive").addEventListener("click", exitReviewMode);
 }
 
 function updateMission(playedColor, result) {
@@ -1691,6 +1716,10 @@ function reviewCurrentGame() {
     setStatus("복기 분석", "아직 복기할 대국 기록이 없습니다.");
     return;
   }
+  if (state.gameLog.length) {
+    state.reviewIndex = state.gameLog.length - 1;
+    updateReviewTimeline();
+  }
   const missedCapture = bestTacticalMove(state.turn);
   if (isTacticalMove(missedCapture, state.turn)) {
     setStatus("복기 분석", `${stoneName(state.turn)} 차례 추천수는 ${coordLabel(missedCapture.r, missedCapture.c)}입니다. 바로 잡거나 단수를 만드는 전술 가치가 큽니다.`);
@@ -1703,10 +1732,12 @@ function reviewCurrentGame() {
   const score = estimateScore();
   if (ownAtari) {
     setStatus("복기 분석", `${stoneName(state.turn)} 돌 중 단수인 무리가 있습니다. 다음 수에는 살리거나 반대로 잡는 수를 먼저 보세요.`);
+    render();
     return;
   }
   if (opponentAtari) {
     setStatus("복기 분석", `${stoneName(opponentAtari.color)} 돌이 단수입니다. 바로 잡을 수 있는지 확인하세요.`);
+    render();
     return;
   }
   const best = bestTacticalMove(state.turn);
@@ -1717,6 +1748,60 @@ function reviewCurrentGame() {
     state.revealedAnswer = [best.r, best.c];
     render();
   }
+}
+
+function updateReviewTimeline() {
+  const panel = document.querySelector("#reviewTimeline");
+  if (!panel) return;
+  const summary = panel.querySelector("#reviewSummary");
+  const moves = panel.querySelector("#reviewMoves");
+  const prev = panel.querySelector("#reviewPrev");
+  const next = panel.querySelector("#reviewNext");
+  const live = panel.querySelector("#reviewLive");
+  summary.textContent = state.reviewIndex !== null
+    ? `${state.reviewIndex + 1}수 보는 중`
+    : state.gameLog.length ? `${state.gameLog.length}수 기록` : "아직 수순 없음";
+  moves.innerHTML = "";
+  state.gameLog.forEach((move, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "review-move";
+    if (state.reviewIndex === index) button.classList.add("active");
+    button.textContent = `${index + 1}. ${stoneName(move.color)} ${coordLabel(move.r, move.c)}`;
+    button.addEventListener("click", () => showReviewMove(index));
+    moves.append(button);
+  });
+  const reviewing = state.reviewIndex !== null;
+  prev.disabled = !reviewing || state.reviewIndex <= 0;
+  next.disabled = !reviewing || state.reviewIndex >= state.gameLog.length - 1;
+  live.disabled = !reviewing;
+}
+
+function showReviewMove(index) {
+  if (!state.gameLog[index]) return;
+  state.reviewIndex = index;
+  const move = state.gameLog[index];
+  state.revealedAnswer = [move.r, move.c];
+  const snapshot = state.history[move.historyIndex] || state.history[index + 1] || state.history.at(-1);
+  const score = snapshot ? estimateScore(snapshot.board) : estimateScore();
+  const captureText = move.captured ? ` ${move.captured}개를 잡은 수입니다.` : "";
+  setStatus("복기 타임라인", `${index + 1}수 ${stoneName(move.color)} ${coordLabel(move.r, move.c)}.${captureText} 이 장면 형세는 흑 ${score.black.toFixed(1)} / 백 ${score.white.toFixed(1)}입니다.`);
+  updateReviewTimeline();
+  render();
+}
+
+function stepReview(delta) {
+  if (!state.gameLog.length) return;
+  const current = state.reviewIndex ?? state.gameLog.length - 1;
+  showReviewMove(Math.max(0, Math.min(state.gameLog.length - 1, current + delta)));
+}
+
+function exitReviewMode() {
+  state.reviewIndex = null;
+  state.revealedAnswer = null;
+  updateReviewTimeline();
+  setStatus("복기 종료", `${stoneName(state.turn)} 차례로 돌아왔습니다.`);
+  render();
 }
 
 function renderConceptChecklist() {
@@ -2120,6 +2205,7 @@ function startGame(mode) {
   state.passCount = 0;
   state.history = [];
   state.gameLog = [];
+  state.reviewIndex = null;
   saveHistory();
   el.boardLabel.textContent = mode === "ai" ? "AI 대국" : "2인 대국";
   el.boardTitle.textContent = mode === "ai" ? "흑으로 AI와 두기" : "서로 번갈아 두기";
@@ -2147,6 +2233,10 @@ function switchMode(mode) {
 
 function handlePoint(r, c) {
   if (state.locked || state.gameOver) return;
+  if (state.reviewIndex !== null) {
+    setStatus("복기 중", "현재로 돌아온 뒤 착수하세요.");
+    return;
+  }
   if (state.mode === "learn") return handleLessonMove(r, c);
   if (state.mode === "ai" && state.turn === WHITE) return;
   handleGameMove(r, c);
@@ -2236,10 +2326,13 @@ function handleGameMove(r, c) {
   state.board = result.board;
   state.lastMove = [r, c];
   state.captures[playedColor] += result.captured.length;
-  state.gameLog.push({ color: playedColor, r, c, captured: result.captured.length });
+  const logEntry = { color: playedColor, r, c, captured: result.captured.length, historyIndex: null };
+  state.gameLog.push(logEntry);
   state.turn = playedColor === BLACK ? WHITE : BLACK;
   state.passCount = 0;
   saveHistory();
+  logEntry.historyIndex = state.history.length - 1;
+  updateReviewTimeline();
 
   const capturedText = result.captured.length ? ` ${result.captured.length}개 잡았습니다.` : "";
   setStatus("착수", `${stoneName(state.turn)} 차례입니다.${capturedText}`);
@@ -2254,6 +2347,10 @@ function handleGameMove(r, c) {
 
 function passTurn() {
   if (state.locked || state.gameOver) return;
+  if (state.reviewIndex !== null) {
+    setStatus("복기 중", "현재로 돌아온 뒤 패스하세요.");
+    return;
+  }
   state.turn = state.turn === BLACK ? WHITE : BLACK;
   state.passCount += 1;
   saveHistory();
@@ -2276,8 +2373,11 @@ function undoMove() {
     while (state.history.length > 1 && state.history.at(-1).turn !== BLACK) state.history.pop();
   }
   restoreSnapshot(state.history.at(-1));
+  state.gameLog = state.gameLog.filter((move) => move.historyIndex < state.history.length);
+  state.reviewIndex = null;
   state.locked = false;
   setStatus("되돌림", `${stoneName(state.turn)} 차례로 돌아갔습니다.`);
+  updateReviewTimeline();
   render();
 }
 
@@ -2493,9 +2593,14 @@ function render() {
   drawGrid();
 
   const lesson = state.activeDrill || lessons[state.lessonIndex];
+  const reviewMove = state.reviewIndex !== null ? state.gameLog[state.reviewIndex] : null;
+  const reviewSnapshot = reviewMove ? state.history[reviewMove.historyIndex] || state.history[state.reviewIndex + 1] : null;
+  const displayBoard = reviewSnapshot ? reviewSnapshot.board : state.board;
+  const displayLastMove = reviewSnapshot?.lastMove || state.lastMove;
+  const displayCaptures = reviewSnapshot?.captures || state.captures;
   const targets = state.mode === "learn" && !lesson.hideTarget && !state.locked ? lesson.targets : [];
-  const atari = state.mode !== "learn" ? findAtari(state.board, state.turn === BLACK ? WHITE : BLACK) : null;
-  const score = estimateScore();
+  const atari = state.mode !== "learn" ? findAtari(displayBoard, state.turn === BLACK ? WHITE : BLACK) : null;
+  const score = estimateScore(displayBoard);
 
   for (let r = 0; r < state.size; r += 1) {
     for (let c = 0; c < state.size; c += 1) {
@@ -2506,15 +2611,15 @@ function render() {
       point.style.top = pos.top;
       point.setAttribute("aria-label", `${r + 1}행 ${c + 1}열`);
       point.addEventListener("click", () => handlePoint(r, c));
-      if (state.board[r][c] === EMPTY && !state.locked && !state.gameOver) point.classList.add("playable");
+      if (displayBoard[r][c] === EMPTY && !state.locked && !state.gameOver && state.reviewIndex === null) point.classList.add("playable");
       if (targets.some(([tr, tc]) => tr === r && tc === c)) point.classList.add("target");
       if (state.revealedAnswer?.[0] === r && state.revealedAnswer?.[1] === c) point.classList.add("answer");
       if (state.softHintTargets.some(([hr, hc]) => hr === r && hc === c)) point.classList.add("hint-candidate");
       if (atari?.liberty === `${r},${c}`) point.classList.add("hint");
-      if (state.lastMove?.[0] === r && state.lastMove?.[1] === c) point.classList.add("last");
-      if (state.board[r][c] !== EMPTY) {
+      if (displayLastMove?.[0] === r && displayLastMove?.[1] === c) point.classList.add("last");
+      if (displayBoard[r][c] !== EMPTY) {
         const stone = document.createElement("span");
-        stone.className = `stone ${state.board[r][c] === BLACK ? "black" : "white"}`;
+        stone.className = `stone ${displayBoard[r][c] === BLACK ? "black" : "white"}`;
         point.append(stone);
       }
       el.board.append(point);
@@ -2522,11 +2627,12 @@ function render() {
   }
 
   el.turnText.textContent = stoneName(state.turn);
-  el.blackCaps.textContent = state.captures[BLACK];
-  el.whiteCaps.textContent = state.captures[WHITE];
+  el.blackCaps.textContent = displayCaptures[BLACK];
+  el.whiteCaps.textContent = displayCaptures[WHITE];
   el.blackScore.textContent = score.black.toFixed(1);
   el.whiteScore.textContent = score.white.toFixed(1);
   el.undoMove.disabled = state.mode === "learn" || state.history.length <= 1;
+  updateReviewTimeline();
 }
 
 el.tabs.forEach((tab) => tab.addEventListener("click", () => switchMode(tab.dataset.mode)));
