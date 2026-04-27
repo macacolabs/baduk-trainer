@@ -141,7 +141,7 @@ function analyze(payload) {
     const timeout = setTimeout(() => {
       pending.delete(id);
       reject(new Error("KataGo analysis timed out."));
-    }, Number(process.env.KATAGO_TIMEOUT_MS || 45000));
+    }, Number(process.env.KATAGO_TIMEOUT_MS || 180000));
     pending.set(id, {
       resolve: (data) => {
         clearTimeout(timeout);
