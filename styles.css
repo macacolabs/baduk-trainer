@@ -381,7 +381,7 @@ h2 {
 }
 
 .rank-road {
-  grid-template-columns: repeat(6, minmax(74px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
 }
 
 .rank-road-step {

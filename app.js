@@ -1221,6 +1221,8 @@ const state = {
   testTotal: 0,
   testCorrect: 0,
   testMode: null,
+  diagnosisStats: {},
+  lastDiagnosis: null,
   rankExamBest: {},
   rankExamTarget: null,
   promotionBest: 0,
@@ -1357,6 +1359,7 @@ const rankLadder = [
   { name: "5급 도전", min: 190, goal: "3수 수읽기와 형세 판단 연결" },
   { name: "3급 입문", min: 280, goal: "전투, 사활, 끝내기 우선순위 판단" },
   { name: "1급 준비", min: 380, goal: "복기 기반 약점 수정과 5수 후보 비교" },
+  { name: "1급 도전", min: 520, goal: "실전 복기, 형세 판단, 수읽기 루틴 고정" },
 ];
 
 const rankPracticePlans = [
@@ -1367,8 +1370,15 @@ const rankPracticePlans = [
   { rank: "10급 실전", max: 189, categories: ["opening", "endgame", "life", "shape"], difficulty: "intermediate", count: 60 },
   { rank: "5급 도전", max: 279, categories: ["capture", "life", "opening", "endgame", "shape"], difficulty: "advanced", count: 80 },
   { rank: "3급 입문", max: 379, categories: ["capture", "life", "endgame", "shape"], difficulty: "advanced", count: 100 },
-  { rank: "1급 준비", max: Infinity, categories: ["life", "capture", "endgame", "opening", "shape"], difficulty: "advanced", count: 120 },
+  { rank: "1급 준비", max: 519, categories: ["life", "capture", "endgame", "opening", "shape"], difficulty: "advanced", count: 120 },
+  { rank: "1급 도전", max: Infinity, categories: ["life", "capture", "endgame", "opening", "shape"], difficulty: "advanced", count: 150 },
 ];
+
+const targetRank = {
+  name: "1급",
+  score: 520,
+  habit: "문제, 대국, 복기, 약점 보강을 한 루틴으로 묶기",
+};
 
 const aiStyles = {
   beginner: {
@@ -1406,12 +1416,15 @@ const rankCurriculum = [
   ["5급", "3수 이상 수읽기, 약한 돌 공격", "심화 시험 85점, 복기 태그 실수 3개 이하"],
   ["3급", "전투 선택, 버릴 돌 판단", "5수 읽기 훈련, AI 도전 난이도 복기"],
   ["1급 준비", "후보수 비교, 형세 판단", "대국마다 복기 코치로 실수 유형 정리"],
+  ["1급 도전", "실전 복기 루틴, 타협, 끝내기 계산", "대국 1판마다 악수 3개를 고쳐 쓰고 다음 루틴에 반영"],
 ];
 
 const danRoadmap = [
+  ["10급", "기본 실전", "사활, 포석, 끝내기를 대국 한 판 안에서 같이 확인합니다."],
   ["5급", "3수 읽기", "내 후보-상대 최강 응수-내 다음 수를 말하고 둡니다."],
   ["3급", "전투 선택", "잡기, 살리기, 버리기 중 가장 큰 결과를 비교합니다."],
-  ["1급", "복기 수정", "실전 뒤 놓친 단수, 큰 곳, 끝내기를 기록하고 반복합니다."],
+  ["1급 준비", "5수 후보 비교", "후보수 2개를 고르고 상대 최강 응수까지 비교합니다."],
+  ["1급 도전", "복기 수정", "실전 뒤 놓친 단수, 큰 곳, 끝내기를 기록하고 다음 훈련에 반영합니다."],
 ];
 
 const practicalMissions = [
@@ -1460,8 +1473,8 @@ function ensureLearningBoostUI() {
         <p id="dashboardSummary">오늘 할 일을 계산하는 중입니다.</p>
       </div>
       <div class="dashboard-meter">
-        <b id="dashboardToFive">5급까지</b>
-        <span id="dashboardDistance">190점</span>
+        <b id="dashboardToFive">1급까지</b>
+        <span id="dashboardDistance">520점</span>
       </div>
       <div class="dashboard-stats" id="dashboardStats"></div>
       <div class="rank-road" id="rankRoad"></div>
@@ -1497,12 +1510,13 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="judgmentQuiz">판단 퀴즈</button>
       <button type="button" class="ghost" id="studyRoutine">15분 루틴</button>
       <button type="button" class="ghost" id="nextStepPlan">다음 단계</button>
-      <button type="button" class="ghost" id="danChallenge">5급 집중</button>
-      <button type="button" class="ghost" id="danRoadmap">5급+ 로드맵</button>
+      <button type="button" class="ghost" id="danChallenge">상급 집중</button>
+      <button type="button" class="ghost" id="danRoadmap">1급 로드맵</button>
       <button type="button" class="ghost" id="danBenchmark">심화 시험</button>
       <button type="button" class="ghost" id="promotionTest">승급 시험</button>
       <button type="button" class="ghost" id="weaknessReport">약점 진단</button>
       <button type="button" class="ghost" id="levelCheck">레벨 평가</button>
+      <button type="button" class="ghost" id="diagnosisTest">급수 진단</button>
       <button type="button" class="ghost" id="missionStart">실전 미션</button>
       <button type="button" id="todayCourse">오늘 코스</button>
     </div>
@@ -1543,6 +1557,12 @@ function ensureLearningBoostUI() {
       <p id="rankExamText">합격 기준은 80점입니다. 불합격하면 약점 코스로 돌아갑니다.</p>
       <div class="rank-exam-list" id="rankExamList"></div>
     </div>
+    <div class="rank-exam-card hidden" id="diagnosisCard">
+      <span>급수 진단</span>
+      <strong id="diagnosisTitle">현재 위치를 먼저 확인하세요</strong>
+      <p id="diagnosisText">15-18문제로 예상 급수, 약점, 오늘 루틴을 계산합니다.</p>
+      <div class="rank-exam-list" id="diagnosisList"></div>
+    </div>
     <div class="wrong-note-card hidden" id="wrongNoteCard">
       <span>최근 오답</span>
       <strong id="wrongNoteTitle">아직 오답이 없습니다</strong>
@@ -1555,8 +1575,8 @@ function ensureLearningBoostUI() {
       <p id="weaknessText">문제를 풀면 가장 자주 틀리는 유형을 찾아 다음 훈련으로 연결합니다.</p>
     </div>
     <div class="dan-roadmap-card hidden" id="danRoadmapCard">
-      <span>5급 이상 루틴</span>
-      <strong id="danRoadmapTitle">3수 읽기부터 시작</strong>
+      <span>1급 목표 루틴</span>
+      <strong id="danRoadmapTitle">기초를 다지고 1급까지</strong>
       <div class="dan-roadmap-list" id="danRoadmapList"></div>
     </div>
   `;
@@ -1580,6 +1600,7 @@ function ensureLearningBoostUI() {
   document.querySelector("#promotionTest").addEventListener("click", startPromotionTest);
   document.querySelector("#weaknessReport").addEventListener("click", showWeaknessReport);
   document.querySelector("#levelCheck").addEventListener("click", showLevelCheck);
+  document.querySelector("#diagnosisTest").addEventListener("click", startDiagnosisTest);
   document.querySelector("#missionStart").addEventListener("click", startPracticalMission);
   document.querySelector("#todayCourse").addEventListener("click", continueCourse);
   document.querySelector("#dashWrong").addEventListener("click", startWrongRetry);
@@ -1598,7 +1619,7 @@ function updateLearningDashboard(lesson) {
   const weak = topWeakness();
   const due = dueWrongNotes().length;
   const score = Math.round(progressScore());
-  const toFive = Math.max(0, 190 - score);
+  const toTarget = Math.max(0, targetRank.score - score);
   const accuracy = state.attemptCount ? Math.round((state.correctCount / state.attemptCount) * 100) : 0;
   const rankBest = state.rankExamBest?.[plan.rank] || 0;
   const today = due
@@ -1608,12 +1629,13 @@ function updateLearningDashboard(lesson) {
       : `${categoryLabels[lessonType(lesson)] || "기초"} 문제를 이어가세요.`;
 
   document.querySelector("#dashboardRank").textContent = rank.name;
-  document.querySelector("#dashboardSummary").textContent = `${today} 추천 코스는 ${plan.rank}입니다.`;
-  document.querySelector("#dashboardDistance").textContent = toFive ? `${toFive}점 남음` : "5급권 진입";
-  document.querySelector("#dashboardToFive").textContent = toFive ? "5급까지" : "현재 목표";
+  document.querySelector("#dashboardSummary").textContent = `${today} 추천 코스는 ${plan.rank}입니다. 목표는 ${targetRank.name}까지 가는 훈련 루틴입니다.`;
+  document.querySelector("#dashboardDistance").textContent = toTarget ? `${toTarget}점 남음` : "1급권 루틴";
+  document.querySelector("#dashboardToFive").textContent = toTarget ? "1급까지" : "현재 목표";
 
   const stats = [
     ["성장 점수", `${score}`],
+    ["목표", targetRank.name],
     ["정답률", `${accuracy}%`],
     ["오답", `${state.wrongNotes.length}개`],
     ["시험 최고", `${rankBest}점`],
@@ -1631,7 +1653,7 @@ function updateLearningDashboard(lesson) {
   const road = document.querySelector("#rankRoad");
   if (road) {
     road.innerHTML = "";
-    for (const step of rankLadder.slice(0, 6)) {
+    for (const step of rankLadder) {
       const item = document.createElement("div");
       item.className = "rank-road-step";
       if (score >= step.min) item.classList.add("done");
@@ -1676,6 +1698,7 @@ function updateLearningBoost(lesson) {
   updateRankCurriculum();
   updateLessonCoach(lesson);
   updateRankExamCard();
+  updateDiagnosisCard();
   updateLearningDashboard(lesson);
 }
 
@@ -1727,7 +1750,7 @@ function updateDanRoadmapCard() {
   card.classList.toggle("hidden", !unlocked);
   if (!unlocked) return;
   document.querySelector("#danRoadmapTitle").textContent =
-    `${rank.name} 기준: 심화 최고 ${state.danBest}점, 승급 최고 ${state.promotionBest}점`;
+    `${rank.name} 기준: ${targetRank.name}까지 심화 ${state.danBest}점, 승급 ${state.promotionBest}점`;
   const list = document.querySelector("#danRoadmapList");
   list.innerHTML = "";
   for (const [level, skill, routine] of danRoadmap) {
@@ -1746,7 +1769,7 @@ function ensureRankCurriculumUI() {
   panel.innerHTML = `
     <div class="rank-curriculum-head">
       <span>급수별 커리큘럼</span>
-      <strong>30급부터 1급 준비까지</strong>
+      <strong>30급부터 1급 도전까지</strong>
     </div>
     <div class="rank-curriculum-list" id="rankCurriculumList"></div>
   `;
@@ -1971,16 +1994,20 @@ function startStudyRoutine() {
   const weak = topWeakness();
   const rank = currentRank();
   const due = dueWrongNotes().length;
+  const score = progressScore();
+  const readingTask = score >= 380 ? "5수 읽기 3회" : score >= 190 ? "3수 읽기 3회" : "수읽기 버튼 3회";
+  const gameTask = score >= 280 ? "AI 19줄 대국 1판 + 복기" : "AI 9줄 대국 1판";
+  const reviewTask = score >= 190 ? "복기에서 악수 3개를 고쳐 쓰기" : "복기 분석으로 실수 태그 확인";
   const routine = [
     due ? `오답 재출제 ${due}개` : "핵심 복습 1개",
-    "수읽기 버튼 3회",
+    readingTask,
     weak ? `${categoryLabels[weak.type]} 약점 문제 5개` : "급수별 코스 5개",
-    "AI 9줄 대국 1판",
-    "복기 분석으로 실수 태그 확인",
+    gameTask,
+    reviewTask,
   ];
   const card = document.querySelector("#lessonCoachCard");
-  document.querySelector("#lessonCoachTitle").textContent = `${rank.name} 오늘 15분 루틴`;
-  document.querySelector("#lessonCoachText").textContent = "적은 양을 매일 반복하도록 구성했습니다.";
+  document.querySelector("#lessonCoachTitle").textContent = `${rank.name} → ${targetRank.name} 오늘 루틴`;
+  document.querySelector("#lessonCoachText").textContent = `${targetRank.habit}. 매일 적은 양이라도 같은 순서로 반복합니다.`;
   const list = document.querySelector("#lessonCoachList");
   list.innerHTML = "";
   for (const itemText of routine) {
@@ -1998,6 +2025,7 @@ function nextLearningSteps() {
   const weak = topWeakness();
   const due = dueWrongNotes().length;
   const accuracy = state.attemptCount ? Math.round((state.correctCount / state.attemptCount) * 100) : 0;
+  const score = progressScore();
   const nextRank = rankLadder.find((item) => item.min > rank.min);
   const steps = [];
 
@@ -2017,8 +2045,12 @@ function nextLearningSteps() {
 
   steps.push({
     label: `${steps.length + 1}. 수읽기 기준`,
-    title: accuracy >= 75 ? "3수 읽기 유지" : "1수-2수 읽기 안정화",
-    text: accuracy >= 75 ? "후보수 2개를 비교한 뒤 상대 응수까지 말하고 둡니다." : "정답을 보기 전에 내 수와 상대 응수 하나를 꼭 말합니다.",
+    title: score >= 380 ? "5수 읽기 진입" : accuracy >= 75 ? "3수 읽기 유지" : "1수-2수 읽기 안정화",
+    text: score >= 380
+      ? "후보수 2개, 상대 최강 응수, 내 보강 수까지 비교한 뒤 둡니다."
+      : accuracy >= 75
+        ? "후보수 2개를 비교한 뒤 상대 응수까지 말하고 둡니다."
+        : "정답을 보기 전에 내 수와 상대 응수 하나를 꼭 말합니다.",
   });
 
   if (weak) {
@@ -2031,14 +2063,16 @@ function nextLearningSteps() {
 
   steps.push({
     label: `${steps.length + 1}. 실전 연결`,
-    title: "AI 9줄 1판 + 복기",
-    text: "문제에서 배운 수를 대국에서 써 보고, 복기 분석으로 실수 태그를 확인합니다.",
+    title: score >= 280 ? "AI 19줄 1판 + 복기" : "AI 9줄 1판 + 복기",
+    text: score >= 190
+      ? "문제에서 배운 수를 대국에서 쓰고, 복기에서 악수 3개를 다음 수로 고쳐 씁니다."
+      : "문제에서 배운 수를 대국에서 써 보고, 복기 분석으로 실수 태그를 확인합니다.",
   });
 
   steps.push({
     label: `${steps.length + 1}. 통과 기준`,
-    title: nextRank ? `${nextRank.name} 준비` : "1급 준비 반복",
-    text: nextRank ? `${nextRank.goal} 기준으로 승급 시험 80점 이상을 노립니다.` : "심화 시험 85점 이상과 실전 복기 습관을 유지합니다.",
+    title: nextRank ? `${nextRank.name} 준비` : `${targetRank.name} 루틴 유지`,
+    text: nextRank ? `${nextRank.goal} 기준으로 승급 시험 80점 이상을 노립니다.` : "심화 시험 85점 이상, 실전 복기, 약점 보강을 한 묶음으로 유지합니다.",
   });
 
   return steps.slice(0, 6);
@@ -2051,8 +2085,8 @@ function showNextStepPlan() {
   const card = document.querySelector("#nextStepCard");
   const list = document.querySelector("#nextStepList");
   card.classList.remove("hidden");
-  document.querySelector("#nextStepTitle").textContent = nextRank ? `${rank.name}에서 ${nextRank.name}로 가는 길` : `${rank.name} 이후 유지 루틴`;
-  document.querySelector("#nextStepText").textContent = "버튼을 많이 누르는 것보다, 아래 순서대로 반복하는 것이 더 빨리 늡니다.";
+  document.querySelector("#nextStepTitle").textContent = nextRank ? `${rank.name}에서 ${nextRank.name}로 가는 길` : `${targetRank.name} 유지 루틴`;
+  document.querySelector("#nextStepText").textContent = `${targetRank.name} 목표는 문제량보다 루틴 품질이 중요합니다. 아래 순서로 반복합니다.`;
   list.innerHTML = "";
   for (const step of steps) {
     const item = document.createElement("div");
@@ -2074,6 +2108,20 @@ function topWeakness() {
 function recordWeakness(type, ok) {
   if (!state.weaknessStats[type]) state.weaknessStats[type] = { correct: 0, wrong: 0 };
   state.weaknessStats[type][ok ? "correct" : "wrong"] += 1;
+}
+
+function recordDiagnosis(type, ok) {
+  if (state.testMode !== "diagnosis") return;
+  const key = type || "general";
+  if (!state.diagnosisStats[key]) state.diagnosisStats[key] = { correct: 0, total: 0 };
+  state.diagnosisStats[key].total += 1;
+  if (ok) state.diagnosisStats[key].correct += 1;
+}
+
+function markSkippedDiagnosisQuestion() {
+  if (state.testMode !== "diagnosis" || !state.activeDrill || state.activeDrill.diagnosisScored) return;
+  recordDiagnosis(lessonType(state.activeDrill), false);
+  state.activeDrill.diagnosisScored = true;
 }
 
 function currentRank() {
@@ -2125,6 +2173,67 @@ function updateRankExamCard() {
   }
 }
 
+function diagnosisRankFor(score) {
+  if (score >= 90) return "1급 준비";
+  if (score >= 80) return "3급 입문";
+  if (score >= 68) return "5급 도전";
+  if (score >= 55) return "10급 실전";
+  if (score >= 40) return "15급 사활";
+  if (score >= 25) return "20급 전투";
+  return "25급 기초";
+}
+
+function diagnosisWeaknesses(stats = {}) {
+  return Object.entries(stats)
+    .map(([type, stat]) => ({
+      type,
+      total: stat.total || 0,
+      correct: stat.correct || 0,
+      rate: stat.total ? stat.correct / stat.total : 1,
+    }))
+    .filter((item) => item.total > 0)
+    .sort((a, b) => a.rate - b.rate || b.total - a.total)
+    .slice(0, 2);
+}
+
+function diagnosisRoutine(result) {
+  const weak = diagnosisWeaknesses(result?.stats || {});
+  const weakText = weak.length
+    ? weak.map((item) => `${categoryLabels[item.type] || "기초"} 5문제`).join(" + ")
+    : "급수별 코스 5문제";
+  const reading = result?.score >= 70 ? "3수 읽기 3회" : "1수-2수 읽기 3회";
+  const board = result?.score >= 75 ? "AI 19줄 1판" : "AI 9줄 1판";
+  return [weakText, reading, board, "복기에서 실수 태그 확인"];
+}
+
+function updateDiagnosisCard() {
+  const card = document.querySelector("#diagnosisCard");
+  if (!card) return;
+  const result = state.lastDiagnosis;
+  if (!result) return;
+  card.classList.remove("hidden");
+  const weak = diagnosisWeaknesses(result.stats);
+  const routine = diagnosisRoutine(result);
+  document.querySelector("#diagnosisTitle").textContent = `예상 위치: ${result.rank} (${result.score}점)`;
+  document.querySelector("#diagnosisText").textContent = weak.length
+    ? `약점은 ${weak.map((item) => categoryLabels[item.type] || "기초").join(", ")}입니다. 오늘 루틴을 자동 추천했습니다.`
+    : "큰 약점은 아직 뚜렷하지 않습니다. 다음 루틴으로 안정도를 올리세요.";
+  const list = document.querySelector("#diagnosisList");
+  list.innerHTML = "";
+  const rows = [
+    ["정답", `${result.correct}/${result.total}`],
+    ["예상 급수", result.rank],
+    ["약점", weak.length ? weak.map((item) => categoryLabels[item.type] || "기초").join(", ") : "없음"],
+    ["오늘 루틴", routine.join(" → ")],
+  ];
+  for (const [label, value] of rows) {
+    const item = document.createElement("div");
+    item.className = "rank-exam-item";
+    item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
+    list.append(item);
+  }
+}
+
 function saveProgress() {
   const data = {
     lessonIndex: state.lessonIndex,
@@ -2135,6 +2244,7 @@ function saveProgress() {
     rankExamBest: state.rankExamBest,
     promotionBest: state.promotionBest,
     danBest: state.danBest,
+    lastDiagnosis: state.lastDiagnosis,
     correctCount: state.correctCount,
     attemptCount: state.attemptCount,
     streak: state.streak,
@@ -2160,6 +2270,7 @@ function loadProgress() {
     state.rankExamBest = data.rankExamBest && typeof data.rankExamBest === "object" ? data.rankExamBest : {};
     state.promotionBest = Number(data.promotionBest) || 0;
     state.danBest = Number(data.danBest) || 0;
+    state.lastDiagnosis = data.lastDiagnosis && typeof data.lastDiagnosis === "object" ? data.lastDiagnosis : null;
     state.correctCount = Number(data.correctCount) || 0;
     state.attemptCount = Number(data.attemptCount) || 0;
     state.streak = Number(data.streak) || 0;
@@ -2178,7 +2289,7 @@ function showLevelCheck() {
   const next = rankLadder.find((item) => item.min > rank.min);
   const accuracy = state.attemptCount ? Math.round((state.correctCount / state.attemptCount) * 100) : 0;
   const nextText = next ? `다음 목표는 ${next.name}: ${next.goal}.` : "현재 로드맵의 마지막 단계입니다. 실전 미션과 복기를 반복하세요.";
-  const danText = state.danBest >= 85 ? "5급 이상 훈련 기준을 통과했습니다." : "5급 이상 목표는 심화 시험 85점 이상과 3수 읽기 안정화입니다.";
+  const danText = state.danBest >= 85 ? "1급 목표 심화 훈련 기준을 통과했습니다." : "1급 목표는 심화 시험 85점 이상, 3수-5수 읽기, 실전 복기 루틴입니다.";
   setStatus("레벨 평가", `현재 ${rank.name}입니다. 성장 점수 ${Math.round(progressScore())}, 정답률 ${accuracy}%, 승급 최고 ${state.promotionBest}점, 심화 최고 ${state.danBest}점. 추천 훈련은 ${plan.rank} ${plan.count}문제 코스입니다. ${nextText} ${danText}`);
 }
 
@@ -2300,6 +2411,27 @@ function startRankExam() {
   loadNextTestQuestion();
 }
 
+function startDiagnosisTest() {
+  const categories = ["capture", "connect", "life", "shape", "opening", "endgame"];
+  const selected = [];
+  for (const category of categories) {
+    const pool = drillBank.filter((drill) => drill.category === category);
+    selected.push(...pool.sort(() => Math.random() - 0.5).slice(0, 3));
+  }
+  if (selected.length < 10) {
+    setStatus("급수 진단", "진단 문제를 만들 문제가 부족합니다. 먼저 학습 문제를 더 진행하세요.");
+    return;
+  }
+  state.testQueue = selected.sort(() => Math.random() - 0.5).slice(0, 18);
+  state.testTotal = state.testQueue.length;
+  state.testCorrect = 0;
+  state.testMode = "diagnosis";
+  state.diagnosisStats = {};
+  state.lastDiagnosis = null;
+  document.querySelector("#diagnosisCard")?.classList.remove("hidden");
+  loadNextTestQuestion();
+}
+
 function advancedPool() {
   return drillBank.filter((drill) =>
     drill.difficulty === "advanced" &&
@@ -2310,7 +2442,7 @@ function advancedPool() {
 function startDanChallenge() {
   const pool = advancedPool();
   if (!pool.length) {
-    setStatus("5급 집중", "고급 문제가 아직 없습니다.");
+    setStatus("상급 집중", "고급 문제가 아직 없습니다.");
     return;
   }
   const priority = ["life", "capture", "endgame", "shape", "opening"];
@@ -2318,7 +2450,7 @@ function startDanChallenge() {
   const focused = pool.filter((drill) => drill.category === targetCategory);
   state.activeDrill = (focused.length ? focused : pool)[Math.floor(Math.random() * (focused.length || pool.length))];
   setupLesson();
-  setStatus("5급 집중", `${categoryLabels[targetCategory]} 고급 문제입니다. 정답 전에 3수까지 읽고 두세요.`);
+  setStatus("상급 집중", `${categoryLabels[targetCategory]} 고급 문제입니다. 정답 전에 3수, 가능하면 5수까지 읽고 두세요.`);
 }
 
 function startFiveKyuRoadmap() {
@@ -2326,13 +2458,14 @@ function startFiveKyuRoadmap() {
   document.querySelector("#danRoadmapCard")?.classList.remove("hidden");
   const pool = advancedPool();
   if (!pool.length) {
-    setStatus("5급+ 로드맵", "고급 문제를 먼저 추가해야 합니다.");
+    setStatus("1급 로드맵", "고급 문제를 먼저 추가해야 합니다.");
     return;
   }
   const plan = [
     "1. 심화 문제는 정답을 누르기 전 후보수 2개를 비교합니다.",
-    "2. 사활/포획은 3수, 끝내기/포석은 집 차이를 말하고 둡니다.",
-    "3. AI 대국 뒤 복기 타임라인으로 놓친 단수와 큰 곳을 확인합니다.",
+    "2. 사활/포획은 3수에서 시작해 5수까지 늘립니다.",
+    "3. 끝내기/포석은 집 차이와 약한 돌 위치를 말하고 둡니다.",
+    "4. AI 대국 뒤 복기 타임라인으로 악수 3개를 고쳐 씁니다.",
   ];
   const weak = topWeakness();
   const category = weak?.type || ["life", "capture", "endgame", "shape", "opening"][state.correctCount % 5];
@@ -2340,7 +2473,7 @@ function startFiveKyuRoadmap() {
   state.activeDrill = (focused.length ? focused : pool)[Math.floor(Math.random() * (focused.length || pool.length))];
   state.readingDepth = 3;
   setupLesson();
-  setStatus("5급+ 로드맵", `${categoryLabels[category] || "고급"}부터 시작합니다. ${plan.join(" ")}`);
+  setStatus("1급 로드맵", `${categoryLabels[category] || "고급"}부터 시작합니다. ${plan.join(" ")}`);
 }
 
 function startDanBenchmark() {
@@ -3168,17 +3301,30 @@ function loadNextTestQuestion() {
       state.rankExamBest[finishedRank] = Math.max(state.rankExamBest[finishedRank] || 0, score);
       state.promotionBest = Math.max(state.promotionBest, score);
     }
+    if (state.testMode === "diagnosis") {
+      state.lastDiagnosis = {
+        score,
+        rank: diagnosisRankFor(score),
+        correct: state.testCorrect,
+        total: state.testTotal,
+        stats: { ...state.diagnosisStats },
+        at: Date.now(),
+      };
+    }
     state.activeDrill = null;
-    const label = finishedMode === "rank" ? "급수 시험 완료" : finishedMode === "promotion" ? "승급 시험 완료" : finishedMode === "dan" ? "심화 시험 완료" : "단원 테스트 완료";
+    const label = finishedMode === "diagnosis" ? "급수 진단 완료" : finishedMode === "rank" ? "급수 시험 완료" : finishedMode === "promotion" ? "승급 시험 완료" : finishedMode === "dan" ? "심화 시험 완료" : "단원 테스트 완료";
     const passLine = finishedMode === "dan" ? 85 : 80;
     const failGuide = weak ? `${categoryLabels[weak.type]} 약점 훈련부터 다시 진행하세요.` : "약점 훈련과 오답 재출제로 다시 반복하세요.";
-    const guide = score >= passLine ? "합격입니다. 다음 단계 플랜으로 올라가세요." : failGuide;
+    const diagnosisGuide = state.lastDiagnosis ? `예상 위치는 ${state.lastDiagnosis.rank}입니다. ${diagnosisRoutine(state.lastDiagnosis).join(" → ")}` : "";
+    const guide = finishedMode === "diagnosis" ? diagnosisGuide : score >= passLine ? "합격입니다. 다음 단계 플랜으로 올라가세요." : failGuide;
     state.testMode = null;
     state.rankExamTarget = null;
     saveProgress();
     setupLesson();
     updateRankExamCard();
-    document.querySelector("#rankExamCard")?.classList.remove("hidden");
+    updateDiagnosisCard();
+    if (finishedMode !== "diagnosis") document.querySelector("#rankExamCard")?.classList.remove("hidden");
+    if (finishedMode === "diagnosis") document.querySelector("#diagnosisCard")?.classList.remove("hidden");
     setStatus(label, `${state.testCorrect}/${state.testTotal} 정답, ${score}점입니다. ${guide}`);
     return;
   }
@@ -3190,7 +3336,7 @@ function loadNextTestQuestion() {
     sourceLessonIndex: typeof nextItem === "number" ? nextItem : null,
   };
   setupLesson();
-  const label = state.testMode === "rank" ? "급수 시험" : state.testMode === "promotion" ? "승급 시험" : state.testMode === "dan" ? "심화 시험" : "단원 테스트";
+  const label = state.testMode === "diagnosis" ? "급수 진단" : state.testMode === "rank" ? "급수 시험" : state.testMode === "promotion" ? "승급 시험" : state.testMode === "dan" ? "심화 시험" : "단원 테스트";
   const stageName = typeof nextItem === "number" ? currentStage(nextItem).name : "고급 실전";
   const rankText = state.testMode === "rank" && state.rankExamTarget ? `${state.rankExamTarget} ` : "";
   setStatus(label, `${rankText}${stageName} ${state.testCorrect}/${state.testTotal} 진행 중입니다.`);
@@ -3530,7 +3676,8 @@ function setupLesson() {
   state.captures = { [BLACK]: 0, [WHITE]: 0 };
   for (const [r, c, color] of lesson.board) state.board[r][c] = color;
   saveHistory();
-  el.lessonStep.textContent = lesson.isChapterTest ? `단원 테스트 ${state.testCorrect}/${state.testTotal}` : state.activeDrill ? `훈련 ${drillBank.length}문제 중 랜덤` : `${state.lessonIndex + 1} / ${lessons.length}`;
+  const testLabel = state.testMode === "diagnosis" ? "급수 진단" : state.testMode === "rank" ? "급수 시험" : state.testMode === "promotion" ? "승급 시험" : state.testMode === "dan" ? "심화 시험" : "단원 테스트";
+  el.lessonStep.textContent = lesson.isChapterTest ? `${testLabel} ${state.testCorrect}/${state.testTotal}` : state.activeDrill ? `훈련 ${drillBank.length}문제 중 랜덤` : `${state.lessonIndex + 1} / ${lessons.length}`;
   el.lessonTitle.textContent = lesson.title;
   el.lessonProgress.style.width = `${((state.lessonIndex + 1) / lessons.length) * 100}%`;
   el.lessonConcept.textContent = lesson.concept;
@@ -3551,7 +3698,7 @@ function setupLesson() {
   el.bottomPlayerMeta.textContent = "정답을 찾는 중";
   el.bottomTimer.textContent = lesson.isChapterTest ? "TEST" : state.activeDrill ? "DRILL" : "LESSON";
   el.prevLesson.disabled = state.lessonIndex === 0;
-  el.nextLesson.textContent = lesson.isChapterTest ? "다음 테스트" : state.activeDrill ? "코스로" : state.lessonIndex === lessons.length - 1 ? "처음으로" : "다음";
+  el.nextLesson.textContent = lesson.isChapterTest ? "다음 문제" : state.activeDrill ? "코스로" : state.lessonIndex === lessons.length - 1 ? "처음으로" : "다음";
   setStatus("연습", "설명을 읽고 표시된 좋은 수를 찾아 두세요.");
   render();
 }
@@ -3622,6 +3769,10 @@ function handleLessonMove(r, c) {
   state.attemptCount += 1;
   const ok = lesson.targets.some(([tr, tc]) => tr === r && tc === c);
   if (!ok) {
+    if (state.testMode === "diagnosis" && !lesson.diagnosisScored) {
+      recordDiagnosis(type, false);
+      lesson.diagnosisScored = true;
+    }
     if (state.activeDrill?.id) state.mistakes.add(state.activeDrill.id);
     recordWeakness(type, false);
     addWrongNote(lesson, r, c);
@@ -3649,8 +3800,13 @@ function handleLessonMove(r, c) {
     if (note) scheduleWrongNote(note, true);
   }
   if (state.activeDrill?.id) state.mistakes.delete(state.activeDrill.id);
+  const diagnosisFirstAnswer = state.testMode === "diagnosis" && !lesson.diagnosisScored;
+  if (diagnosisFirstAnswer) {
+    recordDiagnosis(type, true);
+    lesson.diagnosisScored = true;
+  }
   if (lesson.isChapterTest) {
-    state.testCorrect += 1;
+    if (state.testMode !== "diagnosis" || diagnosisFirstAnswer) state.testCorrect += 1;
     if (Number.isInteger(lesson.sourceLessonIndex)) state.completedLessons.add(lesson.sourceLessonIndex);
   } else if (!state.activeDrill) state.completedLessons.add(state.lessonIndex);
   recordWeakness(type, true);
@@ -4078,6 +4234,7 @@ el.prevLesson.addEventListener("click", () => {
 el.resetLesson.addEventListener("click", setupLesson);
 el.nextLesson.addEventListener("click", () => {
   if (state.activeDrill?.isChapterTest) {
+    markSkippedDiagnosisQuestion();
     loadNextTestQuestion();
     return;
   }
