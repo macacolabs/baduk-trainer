@@ -1223,6 +1223,7 @@ const state = {
   testMode: null,
   diagnosisStats: {},
   lastDiagnosis: null,
+  activeRoutine: null,
   rankExamBest: {},
   rankExamTarget: null,
   promotionBest: 0,
@@ -1562,6 +1563,7 @@ function ensureLearningBoostUI() {
       <strong id="diagnosisTitle">현재 위치를 먼저 확인하세요</strong>
       <p id="diagnosisText">15-18문제로 예상 급수, 약점, 오늘 루틴을 계산합니다.</p>
       <div class="rank-exam-list" id="diagnosisList"></div>
+      <button type="button" class="ghost" id="diagnosisRoutineStart">추천 루틴 시작</button>
     </div>
     <div class="wrong-note-card hidden" id="wrongNoteCard">
       <span>최근 오답</span>
@@ -1601,6 +1603,7 @@ function ensureLearningBoostUI() {
   document.querySelector("#weaknessReport").addEventListener("click", showWeaknessReport);
   document.querySelector("#levelCheck").addEventListener("click", showLevelCheck);
   document.querySelector("#diagnosisTest").addEventListener("click", startDiagnosisTest);
+  document.querySelector("#diagnosisRoutineStart").addEventListener("click", startDiagnosisRoutine);
   document.querySelector("#missionStart").addEventListener("click", startPracticalMission);
   document.querySelector("#todayCourse").addEventListener("click", continueCourse);
   document.querySelector("#dashWrong").addEventListener("click", startWrongRetry);
@@ -2206,6 +2209,25 @@ function diagnosisRoutine(result) {
   return [weakText, reading, board, "복기에서 실수 태그 확인"];
 }
 
+function diagnosisFocusTypes(result) {
+  const weak = diagnosisWeaknesses(result?.stats || {}).map((item) => item.type);
+  if (weak.length) return weak;
+  return currentPracticePlan().categories.slice(0, 2);
+}
+
+function diagnosisRoutineSteps(result) {
+  const focusTypes = diagnosisFocusTypes(result);
+  const focusText = focusTypes.map((type) => categoryLabels[type] || "기초").join(", ");
+  const readingDepth = result?.score >= 70 ? 3 : 2;
+  const boardSize = result?.score >= 75 ? 19 : 9;
+  return [
+    { title: "약점 문제", text: `${focusText} 유형을 먼저 풉니다.` },
+    { title: `${readingDepth}수 읽기`, text: "후보수와 상대 응수를 말한 뒤 둡니다." },
+    { title: `AI ${boardSize}줄 대국`, text: "문제에서 배운 수를 실전에 연결합니다." },
+    { title: "복기 정리", text: "놓친 단수, 큰 곳, 끝내기 손실을 확인합니다." },
+  ];
+}
+
 function updateDiagnosisCard() {
   const card = document.querySelector("#diagnosisCard");
   if (!card) return;
@@ -2232,6 +2254,95 @@ function updateDiagnosisCard() {
     item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
     list.append(item);
   }
+  const button = document.querySelector("#diagnosisRoutineStart");
+  if (button) button.disabled = false;
+}
+
+function startDiagnosisRoutine() {
+  const result = state.lastDiagnosis;
+  if (!result) {
+    startDiagnosisTest();
+    setStatus("급수 진단", "먼저 진단을 끝내면 추천 루틴을 만들 수 있습니다.");
+    return;
+  }
+  state.activeRoutine = {
+    result,
+    step: 0,
+    focusTypes: diagnosisFocusTypes(result),
+    readingDepth: result.score >= 70 ? 3 : 2,
+    boardSize: result.score >= 75 ? 19 : 9,
+  };
+  runDiagnosisRoutineStep();
+}
+
+function renderDiagnosisRoutineCoach() {
+  if (!state.activeRoutine) return;
+  const card = document.querySelector("#lessonCoachCard");
+  const list = document.querySelector("#lessonCoachList");
+  if (!card || !list) return;
+  const steps = diagnosisRoutineSteps(state.activeRoutine.result);
+  const current = Math.min(state.activeRoutine.step, steps.length - 1);
+  document.querySelector("#lessonCoachTitle").textContent = `추천 루틴 ${current + 1}/${steps.length}: ${steps[current].title}`;
+  document.querySelector("#lessonCoachText").textContent = steps[current].text;
+  list.innerHTML = "";
+  steps.forEach((step, index) => {
+    const item = document.createElement("label");
+    item.innerHTML = `<input type="checkbox" ${index < current ? "checked" : ""}> <span>${step.title}: ${step.text}</span>`;
+    list.append(item);
+  });
+  const next = document.createElement("button");
+  next.type = "button";
+  next.className = "ghost";
+  next.textContent = current >= steps.length - 1 ? "루틴 완료" : "다음 루틴";
+  next.addEventListener("click", advanceDiagnosisRoutine);
+  list.append(next);
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+function runDiagnosisRoutineStep() {
+  if (!state.activeRoutine) return;
+  document.querySelector("#routineNextGame")?.classList.add("hidden");
+  const step = state.activeRoutine.step;
+  if (step === 0) {
+    const pool = drillBank.filter((drill) => state.activeRoutine.focusTypes.includes(drill.category));
+    state.activeDrill = (pool.length ? pool : drillBank)[Math.floor(Math.random() * (pool.length || drillBank.length))];
+    setupLesson();
+    renderDiagnosisRoutineCoach();
+    setStatus("추천 루틴", "약점 문제부터 시작합니다. 정답 전 후보수를 말하고 두세요.");
+    return;
+  }
+  if (step === 1) {
+    switchMode("learn");
+    for (let i = 0; i < state.activeRoutine.readingDepth; i += 1) startReadingTraining();
+    renderDiagnosisRoutineCoach();
+    setStatus("추천 루틴", `${state.activeRoutine.readingDepth}수 읽기를 켰습니다. 후보수와 응수를 확인하세요.`);
+    return;
+  }
+  if (step === 2) {
+    el.boardSize.value = String(state.activeRoutine.boardSize);
+    switchMode("ai");
+    document.querySelector("#routineNextGame")?.classList.remove("hidden");
+    setStatus("추천 루틴", `AI ${state.activeRoutine.boardSize}줄 대국으로 실전 연결을 시작합니다.`);
+    return;
+  }
+  switchMode("learn");
+  showNextStepPlan();
+  renderDiagnosisRoutineCoach();
+  setStatus("추천 루틴 완료", "복기 정리까지 끝났습니다. 다음에는 급수 시험이나 심화 시험으로 확인하세요.");
+}
+
+function advanceDiagnosisRoutine() {
+  if (!state.activeRoutine) return;
+  const maxStep = diagnosisRoutineSteps(state.activeRoutine.result).length - 1;
+  if (state.activeRoutine.step >= maxStep) {
+    state.activeRoutine = null;
+    document.querySelector("#routineNextGame")?.classList.add("hidden");
+    setStatus("추천 루틴 완료", "오늘 루틴을 마쳤습니다. 기록이 쌓이면 다음 진단 정확도가 올라갑니다.");
+    updateLearningBoost(state.activeDrill || lessons[state.lessonIndex]);
+    return;
+  }
+  state.activeRoutine.step += 1;
+  runDiagnosisRoutineStep();
 }
 
 function saveProgress() {
@@ -2538,6 +2649,14 @@ function ensureGameReviewButton() {
   deepButton.textContent = "딥러닝 분석";
   deepButton.addEventListener("click", analyzeWithKataGo);
   el.gamePanel.querySelector(".actions").append(deepButton);
+
+  const routineButton = document.createElement("button");
+  routineButton.id = "routineNextGame";
+  routineButton.type = "button";
+  routineButton.className = "ghost hidden";
+  routineButton.textContent = "다음 루틴";
+  routineButton.addEventListener("click", advanceDiagnosisRoutine);
+  el.gamePanel.querySelector(".actions").append(routineButton);
 }
 
 function ensureMissionPanel() {
