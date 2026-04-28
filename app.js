@@ -1232,6 +1232,7 @@ const state = {
   softHintTargets: [],
   readingDepth: 0,
   conceptQuiz: null,
+  judgmentQuiz: null,
   gameLog: [],
   activeMission: null,
   lastMissionResult: null,
@@ -1465,6 +1466,7 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="rankExam">급수 시험</button>
       <button type="button" class="ghost" id="rankMap">급수표</button>
       <button type="button" class="ghost" id="conceptQuiz">개념 퀴즈</button>
+      <button type="button" class="ghost" id="judgmentQuiz">판단 퀴즈</button>
       <button type="button" class="ghost" id="studyRoutine">15분 루틴</button>
       <button type="button" class="ghost" id="nextStepPlan">다음 단계</button>
       <button type="button" class="ghost" id="danChallenge">5급 집중</button>
@@ -1494,6 +1496,12 @@ function ensureLearningBoostUI() {
       <span>개념 퀴즈</span>
       <strong id="quizQuestion">질문</strong>
       <div class="quiz-options" id="quizOptions"></div>
+    </div>
+    <div class="judgment-card hidden" id="judgmentCard">
+      <span>실전 판단</span>
+      <strong id="judgmentQuestion">지금 무엇을 볼까?</strong>
+      <p id="judgmentSituation">상황을 읽고 가장 좋은 방향을 고르세요.</p>
+      <div class="judgment-options" id="judgmentOptions"></div>
     </div>
     <div class="next-step-card hidden" id="nextStepCard">
       <span>다음 단계 플랜</span>
@@ -1535,6 +1543,7 @@ function ensureLearningBoostUI() {
   document.querySelector("#rankExam").addEventListener("click", startRankExam);
   document.querySelector("#rankMap").addEventListener("click", showRankCurriculum);
   document.querySelector("#conceptQuiz").addEventListener("click", startConceptQuiz);
+  document.querySelector("#judgmentQuiz").addEventListener("click", startJudgmentQuiz);
   document.querySelector("#studyRoutine").addEventListener("click", startStudyRoutine);
   document.querySelector("#nextStepPlan").addEventListener("click", showNextStepPlan);
   document.querySelector("#danChallenge").addEventListener("click", startDanChallenge);
@@ -1834,6 +1843,101 @@ function answerConceptQuiz(index) {
     if (buttonIndex === quiz.answer) button.classList.add("selected");
   });
   setStatus(ok ? "개념 정답" : "개념 다시 보기", `${ok ? "좋습니다." : "아쉽습니다."} ${quiz.explain}`);
+}
+
+function judgmentQuestionFor(lesson) {
+  const type = lessonType(lesson);
+  const data = {
+    capture: {
+      question: "상대 돌이 단수에 가깝습니다. 먼저 무엇을 해야 할까요?",
+      situation: "잡을 수 있어 보여도 내 돌이 되잡히면 손해입니다.",
+      options: ["상대 활로를 세고 잡는 수를 확인한다", "무조건 붙여서 공격한다", "집이 큰 곳으로 손을 뺀다"],
+      answer: 0,
+      explain: "포획은 활로 계산이 먼저입니다. 잡고 나서 내 돌이 안전한지도 같이 봐야 합니다.",
+    },
+    connect: {
+      question: "내 돌 두 덩어리가 끊길 수 있습니다. 좋은 판단은?",
+      situation: "끊기면 두 돌 모두 약해지고 다음 수가 어려워집니다.",
+      options: ["끊김을 막으며 두 돌을 안정시킨다", "상대 돌만 계속 쫓는다", "아무 빈 곳이나 큰 곳으로 간다"],
+      answer: 0,
+      explain: "약한 돌은 먼저 연결해야 공격과 집짓기가 모두 편해집니다.",
+    },
+    shape: {
+      question: "후보수 두 개가 있습니다. 어떤 모양을 고를까요?",
+      situation: "하나는 빈삼각이고 하나는 뻗음/마늘모처럼 넓게 움직입니다.",
+      options: ["활로와 다음 움직임이 많은 모양", "돌이 빽빽하게 뭉치는 모양", "상대 옆에 무조건 붙는 모양"],
+      answer: 0,
+      explain: "좋은 모양은 다음 선택지를 남깁니다. 무거운 돌은 공격받기 쉽습니다.",
+    },
+    life: {
+      question: "내 돌이 살지 죽을지 애매합니다. 첫 판단은?",
+      situation: "상대가 안쪽 급소를 차지하면 눈이 사라질 수 있습니다.",
+      options: ["두 눈이 가능한지 급소부터 본다", "밖에서 멀리 도망만 간다", "이미 막힌 곳을 채운다"],
+      answer: 0,
+      explain: "사활은 눈의 중심과 가짜 눈 구분이 핵심입니다.",
+    },
+    opening: {
+      question: "초반에 둘 곳이 많습니다. 무엇을 우선 비교할까요?",
+      situation: "큰 곳도 있고, 약한 돌을 돌봐야 하는 곳도 있습니다.",
+      options: ["큰 곳과 약한 돌을 함께 비교한다", "중앙 한가운데만 둔다", "상대 옆에 계속 붙는다"],
+      answer: 0,
+      explain: "초반은 귀·변의 큰 곳과 약한 돌의 안전을 같이 보는 게임입니다.",
+    },
+    endgame: {
+      question: "끝내기에서 먼저 둘 곳을 고를 때 기준은?",
+      situation: "비슷해 보이는 경계가 여러 곳 있습니다.",
+      options: ["내 집 증가와 상대 집 감소가 큰 곳", "이미 완전히 산 돌 안쪽", "가장 멀리 떨어진 중앙"],
+      answer: 0,
+      explain: "끝내기는 한 수로 바뀌는 집 차이가 큰 곳부터 둡니다.",
+    },
+    general: {
+      question: "실전에서 다음 한 수를 고를 때 가장 좋은 순서는?",
+      situation: "후보수가 많을수록 먼저 목적을 좁혀야 합니다.",
+      options: ["목표를 정하고 후보수 2개만 비교한다", "눈에 띄는 곳을 바로 둔다", "상대가 둔 곳 근처만 본다"],
+      answer: 0,
+      explain: "판단은 목표 정리, 후보수 압축, 결과 확인 순서로 하면 흔들림이 줄어듭니다.",
+    },
+  };
+  const quiz = data[type] || data.general;
+  return { ...quiz, answered: false, category: type };
+}
+
+function startJudgmentQuiz() {
+  const lesson = state.activeDrill || lessons[state.lessonIndex];
+  const quiz = judgmentQuestionFor(lesson);
+  state.judgmentQuiz = quiz;
+  const card = document.querySelector("#judgmentCard");
+  const question = document.querySelector("#judgmentQuestion");
+  const situation = document.querySelector("#judgmentSituation");
+  const options = document.querySelector("#judgmentOptions");
+  card.classList.remove("hidden");
+  question.textContent = quiz.question;
+  situation.textContent = quiz.situation;
+  options.innerHTML = "";
+  quiz.options.forEach((option, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "ghost";
+    button.textContent = option;
+    button.addEventListener("click", () => answerJudgmentQuiz(index));
+    options.append(button);
+  });
+  setStatus("실전 판단", "착수 전 판단 기준을 먼저 고르세요.");
+}
+
+function answerJudgmentQuiz(index) {
+  const quiz = state.judgmentQuiz;
+  if (!quiz || quiz.answered) return;
+  quiz.answered = true;
+  const ok = index === quiz.answer;
+  document.querySelectorAll("#judgmentOptions button").forEach((button, buttonIndex) => {
+    button.disabled = true;
+    if (buttonIndex === quiz.answer) button.classList.add("selected");
+  });
+  recordWeakness(quiz.category, ok);
+  saveProgress();
+  setStatus(ok ? "판단 정답" : "판단 보강", `${ok ? "좋습니다." : "한 번 더 생각하세요."} ${quiz.explain}`);
+  updateLearningBoost(state.activeDrill || lessons[state.lessonIndex]);
 }
 
 function startStudyRoutine() {
@@ -3338,6 +3442,7 @@ function setupLesson() {
   state.coachCandidates = [];
   state.readingDepth = 0;
   state.conceptQuiz = null;
+  state.judgmentQuiz = null;
   state.gameOver = false;
   state.history = [];
   state.passCount = 0;
@@ -3353,6 +3458,7 @@ function setupLesson() {
   updateLearningBoost(lesson);
   document.querySelector("#readingCard")?.classList.add("hidden");
   document.querySelector("#quizCard")?.classList.add("hidden");
+  document.querySelector("#judgmentCard")?.classList.add("hidden");
   document.querySelector("#nextStepCard")?.classList.add("hidden");
   if (!state.testMode) document.querySelector("#rankExamCard")?.classList.add("hidden");
   el.boardLabel.textContent = "입문 훈련";

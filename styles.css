@@ -472,6 +472,7 @@ h2 {
 .weakness-card,
 .dan-roadmap-card,
 .lesson-coach-card,
+.judgment-card,
 .quiz-card,
 .next-step-card,
 .rank-exam-card {
@@ -484,6 +485,7 @@ h2 {
 .reading-card.hidden,
 .wrong-note-card.hidden,
 .dan-roadmap-card.hidden,
+.judgment-card.hidden,
 .quiz-card.hidden,
 .next-step-card.hidden,
 .rank-exam-card.hidden {
@@ -495,6 +497,7 @@ h2 {
 .weakness-card span,
 .dan-roadmap-card > span,
 .lesson-coach-card > span,
+.judgment-card > span,
 .quiz-card > span,
 .next-step-card > span,
 .rank-exam-card > span {
@@ -516,6 +519,7 @@ h2 {
 .weakness-card strong,
 .dan-roadmap-card > strong,
 .lesson-coach-card strong,
+.judgment-card strong,
 .quiz-card strong,
 .next-step-card > strong,
 .rank-exam-card > strong {
@@ -526,6 +530,7 @@ h2 {
 .wrong-note-card p,
 .weakness-card p,
 .lesson-coach-card p,
+.judgment-card p,
 .next-step-card p,
 .rank-exam-card p {
   margin: 6px 0 0;
@@ -560,6 +565,7 @@ h2 {
 }
 
 .lesson-coach-list,
+.judgment-options,
 .quiz-options,
 .next-step-list,
 .rank-exam-list {
@@ -586,10 +592,12 @@ h2 {
   margin-top: 3px;
 }
 
+.judgment-options,
 .quiz-options {
   grid-template-columns: 1fr;
 }
 
+.judgment-options button.selected,
 .quiz-options button.selected {
   background: rgba(95, 126, 105, 0.16);
   border-color: rgba(95, 126, 105, 0.32);
