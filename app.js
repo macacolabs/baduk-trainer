@@ -2586,6 +2586,7 @@ function ensureGameReportPanel() {
     </div>
     <p id="gameReportSummary">대국 기록을 바탕으로 실수 유형과 다음 훈련을 추천합니다.</p>
     <div class="game-report-grid" id="gameReportGrid"></div>
+    <div class="game-report-focus" id="gameReportFocus"></div>
     <div class="game-report-list" id="gameReportList"></div>
   `;
   const timeline = document.querySelector("#reviewTimeline");
@@ -2606,6 +2607,7 @@ function buildGameLearningReport() {
   const dangerMoves = state.gameLog.filter((move) => (move.tags || []).includes("자충 위험"));
   const captureMoves = state.gameLog.filter((move) => move.captured > 0);
   const atariMoves = state.gameLog.filter((move) => (move.tags || []).includes("단수 압박"));
+  const shapeMoves = state.gameLog.filter((move) => (move.tags || []).includes("안정된 모양"));
   const winner = score.black > score.white ? "흑" : "백";
   const margin = Math.abs(score.black - score.white).toFixed(1);
   const mainWeakness = dangerMoves.length
@@ -2640,6 +2642,41 @@ function buildGameLearningReport() {
     });
   }
 
+  const bestMove = captureMoves[0] || atariMoves[0] || shapeMoves[0] || state.gameLog.find((move) => move.color === BLACK) || state.gameLog[0];
+  const riskyMove = dangerMoves[0] || state.gameLog.find((move) => (move.tags || []).length === 0 && move.color === BLACK) || state.gameLog.at(-1);
+  const nextGoal = dangerMoves.length
+    ? "두기 전 내 돌 활로를 먼저 세고, 단수이면 연결·도망·버리기 중 하나를 고르기"
+    : atariMoves.length
+      ? "상대 약한 돌을 단수로 몰았을 때 바로 잡기와 큰 곳을 비교하기"
+      : "모든 착수 전 후보수 2개를 만들고 더 큰 이유를 말한 뒤 두기";
+  const focus = [
+    {
+      label: "좋았던 수",
+      title: bestMove ? `${bestMove.historyIndex + 1}수 ${stoneName(bestMove.color)} ${coordLabel(bestMove.r, bestMove.c)}` : "기록 없음",
+      text: bestMove
+        ? bestMove.captured
+          ? `${bestMove.captured}개를 잡아 실리를 얻었습니다. 잡은 뒤 연결까지 확인하면 더 좋습니다.`
+          : (bestMove.tags || []).includes("단수 압박")
+            ? "상대 약한 돌을 압박했습니다. 다음 수까지 이어지는 공격 방향을 복기하세요."
+            : "돌이 무겁지 않고 다음 움직임을 남겼습니다. 이런 모양을 반복하세요."
+        : "대국을 한 판 두면 좋은 장면을 자동으로 골라줍니다.",
+    },
+    {
+      label: "위험했던 수",
+      title: riskyMove ? `${riskyMove.historyIndex + 1}수 ${stoneName(riskyMove.color)} ${coordLabel(riskyMove.r, riskyMove.c)}` : "기록 없음",
+      text: riskyMove
+        ? dangerMoves.includes(riskyMove)
+          ? "둔 뒤 내 돌이 단수에 가까워졌습니다. 착수 전 내 활로를 먼저 확인하세요."
+          : "큰 실수는 아니지만 목적이 약한 수입니다. 다음에는 후보수 2개를 비교하세요."
+        : "위험 장면이 없으면 다음 판에서는 공격 목표를 더 분명히 잡아보세요.",
+    },
+    {
+      label: "다음 판 목표",
+      title: mainWeakness,
+      text: nextGoal,
+    },
+  ];
+
   return {
     title: `${state.gameLog.length}수 복기: ${winner} ${margin}집 우세`,
     summary: `흑 ${blackMoves.length}수, 백 ${whiteMoves.length}수. 핵심 약점은 ${mainWeakness}입니다.`,
@@ -2649,6 +2686,7 @@ function buildGameLearningReport() {
       ["단수 압박", `${atariMoves.length}회`],
       ["주의 장면", `${dangerMoves.length}회`],
     ],
+    focus,
     lessons: [
       {
         title: "오늘의 핵심",
@@ -2681,6 +2719,14 @@ function updateGameLearningReport() {
     item.className = "game-report-metric";
     item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
     grid.append(item);
+  }
+  const focus = document.querySelector("#gameReportFocus");
+  focus.innerHTML = "";
+  for (const item of report.focus) {
+    const card = document.createElement("div");
+    card.className = "game-report-focus-card";
+    card.innerHTML = `<span>${item.label}</span><strong>${item.title}</strong><p>${item.text}</p>`;
+    focus.append(card);
   }
   const list = document.querySelector("#gameReportList");
   list.innerHTML = "";

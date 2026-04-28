@@ -908,7 +908,14 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
 }
 
+.game-report-focus {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
 .game-report-metric,
+.game-report-focus-card,
 .game-report-item {
   background: rgba(255, 254, 248, 0.68);
   border: 1px solid rgba(43, 49, 45, 0.07);
@@ -917,6 +924,7 @@ h2 {
 }
 
 .game-report-metric span,
+.game-report-focus-card span,
 .game-report-item span {
   color: var(--muted);
   display: block;
@@ -925,10 +933,18 @@ h2 {
 }
 
 .game-report-metric strong,
+.game-report-focus-card strong,
 .game-report-item strong {
   display: block;
   font-size: 14px;
   margin-top: 2px;
+}
+
+.game-report-focus-card p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+  margin-top: 6px;
 }
 
 .game-report-list {
