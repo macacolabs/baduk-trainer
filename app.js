@@ -1249,6 +1249,14 @@ const state = {
   gameOver: false,
 };
 
+const REVIEW_DAY = 1000 * 60 * 60 * 24;
+const REVIEW_STEPS = [
+  { label: "즉시", delay: 0 },
+  { label: "1일", delay: REVIEW_DAY },
+  { label: "3일", delay: REVIEW_DAY * 3 },
+  { label: "7일", delay: REVIEW_DAY * 7 },
+];
+
 const el = {
   board: document.querySelector("#board"),
   tabs: document.querySelectorAll(".tab"),
@@ -1503,6 +1511,7 @@ function ensureLearningBoostUI() {
       <span>최근 오답</span>
       <strong id="wrongNoteTitle">아직 오답이 없습니다</strong>
       <p id="wrongNoteText">틀린 수가 생기면 정답과 비교해 줍니다.</p>
+      <div class="review-schedule" id="reviewSchedule"></div>
     </div>
     <div class="weakness-card" id="weaknessCard">
       <span>약점 진단</span>
@@ -1629,7 +1638,21 @@ function updateWrongNoteCard() {
   card.classList.toggle("hidden", !latest);
   if (!latest) return;
   document.querySelector("#wrongNoteTitle").textContent = `${latest.title}${dueCount ? ` · 재출제 ${dueCount}개` : ""}`;
-  document.querySelector("#wrongNoteText").textContent = `내 수: ${latest.played} / 정답: ${latest.answer}. ${latest.reason} ${latest.reviewCount ? `${latest.reviewCount}회 복습 중입니다.` : "오답 재출제로 다시 풀 수 있습니다."}`;
+  const reviewState = wrongNoteReviewState(latest);
+  document.querySelector("#wrongNoteText").textContent = `내 수: ${latest.played} / 정답: ${latest.answer}. ${latest.reason} ${reviewState.text}`;
+  const schedule = document.querySelector("#reviewSchedule");
+  if (!schedule) return;
+  schedule.innerHTML = "";
+  REVIEW_STEPS.forEach((step, index) => {
+    const chip = document.createElement("span");
+    chip.className = [
+      "review-chip",
+      index < reviewState.step ? "done" : "",
+      index === reviewState.step && !latest.mastered ? "current" : "",
+    ].filter(Boolean).join(" ");
+    chip.textContent = step.label;
+    schedule.append(chip);
+  });
 }
 
 function updateWeaknessCard() {
@@ -2001,7 +2024,7 @@ function loadProgress() {
     state.lessonIndex = Math.min(lessons.length - 1, Math.max(0, Number(data.lessonIndex) || 0));
     state.completedLessons = new Set(Array.isArray(data.completedLessons) ? data.completedLessons : []);
     state.mistakes = new Set(Array.isArray(data.mistakes) ? data.mistakes : []);
-    state.wrongNotes = Array.isArray(data.wrongNotes) ? data.wrongNotes.slice(-20) : [];
+    state.wrongNotes = Array.isArray(data.wrongNotes) ? data.wrongNotes.slice(-20).map(normalizeWrongNote) : [];
     state.weaknessStats = data.weaknessStats && typeof data.weaknessStats === "object" ? data.weaknessStats : {};
     state.rankExamBest = data.rankExamBest && typeof data.rankExamBest === "object" ? data.rankExamBest : {};
     state.promotionBest = Number(data.promotionBest) || 0;
@@ -2831,6 +2854,35 @@ function dueWrongNotes() {
   return state.wrongNotes.filter((note) => !note.mastered && (!note.dueAt || note.dueAt <= now));
 }
 
+function normalizeWrongNote(note) {
+  note.reviewCount = Math.max(0, Number(note.reviewCount) || 0);
+  note.dueAt = Number(note.dueAt) || Date.now();
+  note.mastered = Boolean(note.mastered);
+  return note;
+}
+
+function nextWrongNote() {
+  const now = Date.now();
+  return state.wrongNotes
+    .filter((note) => !note.mastered && note.dueAt && note.dueAt > now)
+    .sort((a, b) => a.dueAt - b.dueAt)[0] || null;
+}
+
+function formatReviewDue(dueAt) {
+  const diff = Number(dueAt) - Date.now();
+  if (diff <= 0) return "오늘";
+  const hours = Math.ceil(diff / (1000 * 60 * 60));
+  if (hours < 24) return `${hours}시간 후`;
+  return `${Math.ceil(diff / REVIEW_DAY)}일 후`;
+}
+
+function wrongNoteReviewState(note) {
+  const step = Math.min(Number(note.reviewCount) || 0, REVIEW_STEPS.length - 1);
+  if (note.mastered) return { step: REVIEW_STEPS.length, text: "1·3·7일 복습을 통과해 장기 기억으로 넘겼습니다." };
+  if (!note.dueAt || note.dueAt <= Date.now()) return { step, text: "오늘 다시 풀 차례입니다." };
+  return { step, text: `다음 복습은 ${formatReviewDue(note.dueAt)}입니다.` };
+}
+
 function findLessonForWrongNote(note) {
   if (note.lessonKind === "lesson" && Number.isInteger(note.lessonIndex)) return lessons[note.lessonIndex];
   if (note.lessonId) return drillBank.find((drill) => drill.id === note.lessonId);
@@ -2838,12 +2890,15 @@ function findLessonForWrongNote(note) {
 }
 
 function scheduleWrongNote(note, ok) {
-  note.reviewCount = (note.reviewCount || 0) + 1;
+  normalizeWrongNote(note);
   note.lastReviewedAt = Date.now();
   if (ok) {
-    note.mastered = note.reviewCount >= 2;
-    note.dueAt = Date.now() + (note.mastered ? 1000 * 60 * 60 * 24 * 7 : 1000 * 60 * 5);
+    note.reviewCount += 1;
+    note.mastered = note.reviewCount >= REVIEW_STEPS.length;
+    const nextStep = REVIEW_STEPS[Math.min(note.reviewCount, REVIEW_STEPS.length - 1)];
+    note.dueAt = Date.now() + nextStep.delay;
   } else {
+    note.reviewCount = 0;
     note.mastered = false;
     note.dueAt = Date.now();
   }
@@ -2852,7 +2907,11 @@ function scheduleWrongNote(note, ok) {
 function startWrongRetry() {
   const due = dueWrongNotes();
   if (!due.length) {
-    setStatus("오답 재출제", "지금 다시 풀 오답이 없습니다. 새 문제를 풀면 자동으로 오답 큐에 들어갑니다.");
+    const next = nextWrongNote();
+    const message = next
+      ? `지금 다시 풀 오답은 없습니다. 다음 복습은 ${formatReviewDue(next.dueAt)}입니다.`
+      : "지금 다시 풀 오답이 없습니다. 새 문제를 풀면 자동으로 오답 큐에 들어갑니다.";
+    setStatus("오답 재출제", message);
     updateWrongNoteCard();
     return;
   }
@@ -2873,7 +2932,8 @@ function startWrongRetry() {
     retryNoteId: note.id,
   };
   setupLesson();
-  setStatus("오답 재출제", `${note.reason} 같은 실수를 고치기 위해 다시 출제했습니다. 정답 전 후보수 2개를 비교하세요.`);
+  const reviewState = wrongNoteReviewState(note);
+  setStatus("오답 재출제", `${note.reason} ${reviewState.text} 정답 전 후보수 2개를 비교하세요.`);
 }
 
 function showWeaknessReport() {
@@ -2981,6 +3041,7 @@ function addWrongNote(lesson, r, c) {
   note.played = coordLabel(r, c);
   note.answer = coordLabel(ar, ac);
   note.reason = reason[type] || reason.general;
+  note.reviewCount = 0;
   note.mastered = false;
   note.dueAt = Date.now();
   note.lastWrongAt = Date.now();

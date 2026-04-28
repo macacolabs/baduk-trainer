@@ -531,6 +531,34 @@ h2 {
   margin: 6px 0 0;
 }
 
+.review-schedule {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 10px;
+}
+
+.review-chip {
+  background: rgba(255, 254, 248, 0.72);
+  border: 1px solid rgba(43, 49, 45, 0.08);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 6px 4px;
+  text-align: center;
+}
+
+.review-chip.done {
+  background: #262927;
+  color: #fbfaf4;
+}
+
+.review-chip.current {
+  background: var(--accent);
+  color: #1f211f;
+}
+
 .lesson-coach-list,
 .quiz-options,
 .next-step-list,
