@@ -1221,6 +1221,8 @@ const state = {
   testTotal: 0,
   testCorrect: 0,
   testMode: null,
+  rankExamBest: {},
+  rankExamTarget: null,
   promotionBest: 0,
   danBest: 0,
   correctCount: 0,
@@ -1415,6 +1417,7 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="chapterTest">단원 테스트</button>
       <button type="button" class="ghost" id="readingTraining">수읽기</button>
       <button type="button" class="ghost" id="rankCourse">급수별 코스</button>
+      <button type="button" class="ghost" id="rankExam">급수 시험</button>
       <button type="button" class="ghost" id="rankMap">급수표</button>
       <button type="button" class="ghost" id="conceptQuiz">개념 퀴즈</button>
       <button type="button" class="ghost" id="studyRoutine">15분 루틴</button>
@@ -1453,6 +1456,12 @@ function ensureLearningBoostUI() {
       <p id="nextStepText">현재 수준에서 가장 효율적인 다음 훈련을 추천합니다.</p>
       <div class="next-step-list" id="nextStepList"></div>
     </div>
+    <div class="rank-exam-card hidden" id="rankExamCard">
+      <span>급수 시험</span>
+      <strong id="rankExamTitle">현재 급수 시험 준비</strong>
+      <p id="rankExamText">합격 기준은 80점입니다. 불합격하면 약점 코스로 돌아갑니다.</p>
+      <div class="rank-exam-list" id="rankExamList"></div>
+    </div>
     <div class="wrong-note-card hidden" id="wrongNoteCard">
       <span>최근 오답</span>
       <strong id="wrongNoteTitle">아직 오답이 없습니다</strong>
@@ -1477,6 +1486,7 @@ function ensureLearningBoostUI() {
   document.querySelector("#chapterTest").addEventListener("click", startChapterTest);
   document.querySelector("#readingTraining").addEventListener("click", startReadingTraining);
   document.querySelector("#rankCourse").addEventListener("click", startRankCourse);
+  document.querySelector("#rankExam").addEventListener("click", startRankExam);
   document.querySelector("#rankMap").addEventListener("click", showRankCurriculum);
   document.querySelector("#conceptQuiz").addEventListener("click", startConceptQuiz);
   document.querySelector("#studyRoutine").addEventListener("click", startStudyRoutine);
@@ -1528,6 +1538,7 @@ function updateLearningBoost(lesson) {
   updateDanRoadmapCard();
   updateRankCurriculum();
   updateLessonCoach(lesson);
+  updateRankExamCard();
 }
 
 function updateWrongNoteCard() {
@@ -1845,6 +1856,41 @@ function currentPracticePlan() {
   return rankPracticePlans.find((plan) => score <= plan.max) || rankPracticePlans.at(-1);
 }
 
+function rankExamPool(plan) {
+  const pool = drillBank.filter((drill) => {
+    const categoryOk = plan.categories.includes(drill.category);
+    const difficultyOk = plan.difficulty === "advanced" ? true : drill.difficulty === plan.difficulty || drill.difficulty === "basic";
+    return categoryOk && difficultyOk;
+  });
+  return pool.length ? pool : drillBank.filter((drill) => plan.categories.includes(drill.category));
+}
+
+function updateRankExamCard() {
+  const card = document.querySelector("#rankExamCard");
+  if (!card) return;
+  const plan = currentPracticePlan();
+  const best = state.rankExamBest?.[plan.rank] || 0;
+  const nextRank = rankLadder.find((item) => item.min > currentRank().min);
+  document.querySelector("#rankExamTitle").textContent = `${plan.rank} 시험: 최고 ${best}점`;
+  document.querySelector("#rankExamText").textContent = best >= 80
+    ? `${nextRank ? `${nextRank.name} 목표로 올라갈 준비가 됐습니다.` : "마지막 단계까지 왔습니다."}`
+    : `${plan.categories.map((item) => categoryLabels[item]).join(", ")} 중심으로 80점 이상을 목표로 합니다.`;
+  const list = document.querySelector("#rankExamList");
+  list.innerHTML = "";
+  const rows = [
+    ["시험 범위", plan.categories.map((item) => categoryLabels[item]).join(", ")],
+    ["문제 수", "10문제"],
+    ["합격 기준", "80점 이상"],
+    ["불합격 루트", "약점 훈련과 오답 재출제"],
+  ];
+  for (const [label, value] of rows) {
+    const item = document.createElement("div");
+    item.className = "rank-exam-item";
+    item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
+    list.append(item);
+  }
+}
+
 function saveProgress() {
   const data = {
     lessonIndex: state.lessonIndex,
@@ -1852,6 +1898,7 @@ function saveProgress() {
     mistakes: [...state.mistakes],
     wrongNotes: state.wrongNotes,
     weaknessStats: state.weaknessStats,
+    rankExamBest: state.rankExamBest,
     promotionBest: state.promotionBest,
     danBest: state.danBest,
     correctCount: state.correctCount,
@@ -1876,6 +1923,7 @@ function loadProgress() {
     state.mistakes = new Set(Array.isArray(data.mistakes) ? data.mistakes : []);
     state.wrongNotes = Array.isArray(data.wrongNotes) ? data.wrongNotes.slice(-20) : [];
     state.weaknessStats = data.weaknessStats && typeof data.weaknessStats === "object" ? data.weaknessStats : {};
+    state.rankExamBest = data.rankExamBest && typeof data.rankExamBest === "object" ? data.rankExamBest : {};
     state.promotionBest = Number(data.promotionBest) || 0;
     state.danBest = Number(data.danBest) || 0;
     state.correctCount = Number(data.correctCount) || 0;
@@ -1989,6 +2037,23 @@ function startRankCourse() {
   state.activeDrill = pool[Math.floor(Math.random() * pool.length)];
   setupLesson();
   setStatus("급수별 코스", `${plan.rank}: ${plan.categories.map((item) => categoryLabels[item]).join(", ")} 중심 ${plan.count}문제 루틴입니다.`);
+}
+
+function startRankExam() {
+  const plan = currentPracticePlan();
+  const pool = rankExamPool(plan);
+  if (pool.length < 5) {
+    setStatus("급수 시험", "시험을 만들 문제가 부족합니다. 먼저 급수별 코스나 랜덤 문제를 진행하세요.");
+    return;
+  }
+  const selected = pool.sort(() => Math.random() - 0.5).slice(0, Math.min(10, pool.length));
+  state.testQueue = selected;
+  state.testTotal = state.testQueue.length;
+  state.testCorrect = 0;
+  state.testMode = "rank";
+  state.rankExamTarget = plan.rank;
+  document.querySelector("#rankExamCard")?.classList.remove("hidden");
+  loadNextTestQuestion();
 }
 
 function advancedPool() {
@@ -2660,6 +2725,7 @@ function continueCourse() {
   state.testTotal = 0;
   state.testCorrect = 0;
   state.testMode = null;
+  state.rankExamTarget = null;
   state.lessonIndex = Math.min(lessons.length - 1, state.lessonIndex + 1);
   saveProgress();
   setupLesson();
@@ -2681,15 +2747,26 @@ function loadNextTestQuestion() {
   const nextItem = state.testQueue.shift();
   if (nextItem === undefined) {
     const score = state.testTotal ? Math.round((state.testCorrect / state.testTotal) * 100) : 0;
+    const finishedMode = state.testMode;
+    const finishedRank = state.rankExamTarget;
+    const weak = topWeakness();
     if (state.testMode === "promotion") state.promotionBest = Math.max(state.promotionBest, score);
     if (state.testMode === "dan") state.danBest = Math.max(state.danBest, score);
+    if (state.testMode === "rank" && finishedRank) {
+      state.rankExamBest[finishedRank] = Math.max(state.rankExamBest[finishedRank] || 0, score);
+      state.promotionBest = Math.max(state.promotionBest, score);
+    }
     state.activeDrill = null;
-    const label = state.testMode === "promotion" ? "승급 시험 완료" : state.testMode === "dan" ? "심화 시험 완료" : "단원 테스트 완료";
-    const passLine = state.testMode === "dan" ? 85 : 80;
-    const guide = score >= passLine ? "다음 단계로 올라갈 준비가 됐습니다." : "부족한 유형은 약점 훈련과 5급 집중으로 반복하세요.";
+    const label = finishedMode === "rank" ? "급수 시험 완료" : finishedMode === "promotion" ? "승급 시험 완료" : finishedMode === "dan" ? "심화 시험 완료" : "단원 테스트 완료";
+    const passLine = finishedMode === "dan" ? 85 : 80;
+    const failGuide = weak ? `${categoryLabels[weak.type]} 약점 훈련부터 다시 진행하세요.` : "약점 훈련과 오답 재출제로 다시 반복하세요.";
+    const guide = score >= passLine ? "합격입니다. 다음 단계 플랜으로 올라가세요." : failGuide;
     state.testMode = null;
+    state.rankExamTarget = null;
     saveProgress();
     setupLesson();
+    updateRankExamCard();
+    document.querySelector("#rankExamCard")?.classList.remove("hidden");
     setStatus(label, `${state.testCorrect}/${state.testTotal} 정답, ${score}점입니다. ${guide}`);
     return;
   }
@@ -2701,9 +2778,10 @@ function loadNextTestQuestion() {
     sourceLessonIndex: typeof nextItem === "number" ? nextItem : null,
   };
   setupLesson();
-  const label = state.testMode === "promotion" ? "승급 시험" : state.testMode === "dan" ? "심화 시험" : "단원 테스트";
+  const label = state.testMode === "rank" ? "급수 시험" : state.testMode === "promotion" ? "승급 시험" : state.testMode === "dan" ? "심화 시험" : "단원 테스트";
   const stageName = typeof nextItem === "number" ? currentStage(nextItem).name : "고급 실전";
-  setStatus(label, `${stageName} ${state.testCorrect}/${state.testTotal} 진행 중입니다.`);
+  const rankText = state.testMode === "rank" && state.rankExamTarget ? `${state.rankExamTarget} ` : "";
+  setStatus(label, `${rankText}${stageName} ${state.testCorrect}/${state.testTotal} 진행 중입니다.`);
 }
 
 function coordLabel(r, c) {
@@ -3048,6 +3126,7 @@ function setupLesson() {
   document.querySelector("#readingCard")?.classList.add("hidden");
   document.querySelector("#quizCard")?.classList.add("hidden");
   document.querySelector("#nextStepCard")?.classList.add("hidden");
+  if (!state.testMode) document.querySelector("#rankExamCard")?.classList.add("hidden");
   el.boardLabel.textContent = "입문 훈련";
   el.boardTitle.textContent = lesson.title;
   el.topPlayerName.textContent = "학습 목표";

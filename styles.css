@@ -397,7 +397,8 @@ h2 {
 .dan-roadmap-card,
 .lesson-coach-card,
 .quiz-card,
-.next-step-card {
+.next-step-card,
+.rank-exam-card {
   background: rgba(239, 236, 227, 0.82);
   border: 1px solid rgba(43, 49, 45, 0.08);
   border-radius: 16px;
@@ -408,7 +409,8 @@ h2 {
 .wrong-note-card.hidden,
 .dan-roadmap-card.hidden,
 .quiz-card.hidden,
-.next-step-card.hidden {
+.next-step-card.hidden,
+.rank-exam-card.hidden {
   display: none;
 }
 
@@ -418,7 +420,8 @@ h2 {
 .dan-roadmap-card > span,
 .lesson-coach-card > span,
 .quiz-card > span,
-.next-step-card > span {
+.next-step-card > span,
+.rank-exam-card > span {
   color: var(--muted);
   display: block;
   font-size: 12px;
@@ -438,7 +441,8 @@ h2 {
 .dan-roadmap-card > strong,
 .lesson-coach-card strong,
 .quiz-card strong,
-.next-step-card > strong {
+.next-step-card > strong,
+.rank-exam-card > strong {
   display: block;
   font-size: 14px;
 }
@@ -446,13 +450,15 @@ h2 {
 .wrong-note-card p,
 .weakness-card p,
 .lesson-coach-card p,
-.next-step-card p {
+.next-step-card p,
+.rank-exam-card p {
   margin: 6px 0 0;
 }
 
 .lesson-coach-list,
 .quiz-options,
-.next-step-list {
+.next-step-list,
+.rank-exam-list {
   display: grid;
   gap: 7px;
   margin-top: 10px;
@@ -512,6 +518,29 @@ h2 {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.4;
+}
+
+.rank-exam-list {
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+}
+
+.rank-exam-item {
+  background: rgba(255, 254, 248, 0.62);
+  border: 1px solid rgba(43, 49, 45, 0.06);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.rank-exam-item span {
+  color: var(--muted);
+  display: block;
+  font-size: 12px;
+}
+
+.rank-exam-item strong {
+  display: block;
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 .dan-roadmap-list {
