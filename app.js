@@ -1234,6 +1234,7 @@ const state = {
   conceptQuiz: null,
   gameLog: [],
   activeMission: null,
+  lastMissionResult: null,
   aiLevel: "normal",
   reviewIndex: null,
   coachCandidates: [],
@@ -1385,10 +1386,28 @@ const practicalMissions = [
     target: 3,
   },
   {
+    id: "atari-three",
+    title: "상대 돌을 3번 단수로 몰기",
+    text: "잡기 전 단계인 단수 압박을 실전에서 반복합니다.",
+    target: 3,
+  },
+  {
+    id: "escape-two",
+    title: "단수 위기에서 2번 살아나기",
+    text: "내 돌이 위험할 때 늘기, 잡기, 연결로 빠져나오세요.",
+    target: 2,
+  },
+  {
+    id: "stable-shape",
+    title: "안정된 모양 3번 만들기",
+    text: "둔 뒤 활로가 넓고 끊김이 적은 수를 목표로 합니다.",
+    target: 3,
+  },
+  {
     id: "finish-compact",
-    title: "9줄 대국을 연속 패스로 끝내기",
-    text: "끝내기와 패스 타이밍까지 경험해 봅니다.",
-    target: 1,
+    title: "40수 이상 버티고 복기하기",
+    text: "초반 전투를 넘겨 중반과 끝내기까지 이어가세요.",
+    target: 40,
   },
 ];
 
@@ -1995,8 +2014,10 @@ function updateReadingCard(lesson) {
 function startPracticalMission() {
   const mission = practicalMissions[Math.floor(Math.random() * practicalMissions.length)];
   state.activeMission = { ...mission, progress: 0 };
+  state.lastMissionResult = null;
   el.boardSize.value = "9";
   switchMode("ai");
+  updateMissionPanel();
   setStatus("실전 미션", `${mission.title}. ${mission.text}`);
 }
 
@@ -2142,6 +2163,7 @@ function startPromotionTest() {
 function ensureGameReviewButton() {
   ensureAiLevelControl();
   ensureGameCoachPanel();
+  ensureMissionPanel();
   ensureReviewTimeline();
   ensureGameReportPanel();
   if (document.querySelector("#reviewGame")) return;
@@ -2160,6 +2182,48 @@ function ensureGameReviewButton() {
   deepButton.textContent = "딥러닝 분석";
   deepButton.addEventListener("click", analyzeWithKataGo);
   el.gamePanel.querySelector(".actions").append(deepButton);
+}
+
+function ensureMissionPanel() {
+  if (document.querySelector("#missionPanel")) return;
+  const panel = document.createElement("div");
+  panel.id = "missionPanel";
+  panel.className = "mission-panel hidden";
+  panel.innerHTML = `
+    <div class="mission-head">
+      <span>실전 미션</span>
+      <strong id="missionTitle">미션 없음</strong>
+    </div>
+    <p id="missionText">실전 미션을 시작하면 진행률이 표시됩니다.</p>
+    <div class="mission-progress">
+      <span id="missionProgressBar"></span>
+    </div>
+    <div class="mission-meta" id="missionMeta">0%</div>
+  `;
+  const coach = document.querySelector("#gameCoachPanel");
+  if (coach) coach.after(panel);
+  else el.gamePanel.querySelector(".score-row").after(panel);
+}
+
+function updateMissionPanel() {
+  const panel = document.querySelector("#missionPanel");
+  if (!panel) return;
+  const mission = state.activeMission;
+  if (!mission) {
+    panel.classList.toggle("hidden", !state.lastMissionResult);
+    if (!state.lastMissionResult) return;
+    document.querySelector("#missionTitle").textContent = state.lastMissionResult.title;
+    document.querySelector("#missionText").textContent = state.lastMissionResult.text;
+    document.querySelector("#missionProgressBar").style.width = "100%";
+    document.querySelector("#missionMeta").textContent = state.lastMissionResult.success ? "성공" : "종료";
+    return;
+  }
+  const percent = Math.min(100, Math.round((mission.progress / mission.target) * 100));
+  panel.classList.remove("hidden");
+  document.querySelector("#missionTitle").textContent = mission.title;
+  document.querySelector("#missionText").textContent = mission.text;
+  document.querySelector("#missionProgressBar").style.width = `${percent}%`;
+  document.querySelector("#missionMeta").textContent = `${mission.progress}/${mission.target}`;
 }
 
 function ensureGameCoachPanel() {
@@ -2438,22 +2502,64 @@ function updateGameLearningReport() {
     item.innerHTML = `<strong>${lesson.title}</strong><span>${lesson.text}</span>`;
     list.append(item);
   }
+  if (state.lastMissionResult) {
+    const item = document.createElement("div");
+    item.className = "game-report-item";
+    item.innerHTML = `<strong>${state.lastMissionResult.title}</strong><span>${state.lastMissionResult.text}</span>`;
+    list.prepend(item);
+  }
 }
 
-function updateMission(playedColor, result) {
+function completeMission(success, text) {
   if (!state.activeMission) return;
-  if (state.activeMission.id === "finish-compact" && state.gameOver) {
-    setStatus("미션 성공", "9줄 대국을 끝까지 마쳤습니다. 이제 복기 분석으로 놓친 곳을 확인하세요.");
-    state.activeMission = null;
+  state.lastMissionResult = {
+    title: success ? "미션 성공" : "미션 종료",
+    text,
+    success,
+    missionId: state.activeMission.id,
+  };
+  state.activeMission = null;
+  updateMissionPanel();
+}
+
+function updateMission(playedColor, result, context = {}) {
+  if (!state.activeMission) return;
+  const mission = state.activeMission;
+  if (mission.id === "finish-compact") {
+    mission.progress = Math.min(mission.target, state.gameLog.length);
+    if (mission.progress >= mission.target) {
+      completeMission(true, "40수 이상 버텼습니다. 이제 복기 리포트로 중반 실수를 확인하세요.");
+      setStatus("미션 성공", state.lastMissionResult.text);
+      return;
+    }
+    if (state.gameOver) {
+      completeMission(false, "40수 전에 대국이 끝났습니다. 다음 판은 큰 전투보다 연결과 생존을 우선하세요.");
+      setStatus("미션 종료", state.lastMissionResult.text);
+      return;
+    }
+    updateMissionPanel();
     return;
   }
   if (playedColor !== BLACK) return;
-  if (state.activeMission.id === "capture-three") {
-    state.activeMission.progress = state.captures[BLACK];
-    if (state.activeMission.progress >= state.activeMission.target) {
-      setStatus("미션 성공", "흑으로 돌 3개를 잡았습니다. 단수와 포획을 실전에 연결했습니다.");
-      state.activeMission = null;
-    }
+  if (mission.id === "capture-three") {
+    mission.progress = state.captures[BLACK];
+  } else if (mission.id === "atari-three" && context.logEntry?.tags?.includes("단수 압박")) {
+    mission.progress += 1;
+  } else if (mission.id === "escape-two" && context.hadOwnAtari && !countAtariGroups(result.board, BLACK)) {
+    mission.progress += 1;
+  } else if (mission.id === "stable-shape" && context.logEntry?.tags?.includes("안정된 모양")) {
+    mission.progress += 1;
+  }
+  updateMissionPanel();
+  if (mission.progress >= mission.target) {
+    const successText = {
+      "capture-three": "흑으로 돌 3개를 잡았습니다. 단수와 포획을 실전에 연결했습니다.",
+      "atari-three": "상대 돌을 3번 단수로 몰았습니다. 공격 방향을 잘 잡았습니다.",
+      "escape-two": "단수 위기에서 2번 살아났습니다. 연결과 활로 계산이 좋아졌습니다.",
+      "stable-shape": "안정된 모양을 3번 만들었습니다. 무리한 전투보다 좋은 형태를 선택했습니다.",
+    }[mission.id] || "실전 목표를 달성했습니다.";
+    completeMission(true, successText);
+    setStatus("미션 성공", successText);
   }
 }
 
@@ -3160,6 +3266,7 @@ function startGame(mode) {
   state.coachCandidates = [];
   state.lastCoachText = "";
   state.lastCoachTags = [];
+  if (!state.activeMission) state.lastMissionResult = null;
   saveHistory();
   el.boardLabel.textContent = mode === "ai" ? "AI 대국" : "2인 대국";
   el.boardTitle.textContent = mode === "ai" ? "흑으로 AI와 두기" : "서로 번갈아 두기";
@@ -3170,6 +3277,7 @@ function startGame(mode) {
   el.bottomPlayerMeta.textContent = "선착";
   el.bottomTimer.textContent = "10:00";
   updateGameCoach("대국 코치 준비", mode === "ai" ? "흑으로 착수하면 AI 코치가 후보수와 위험 요소를 비교합니다." : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.", [], ["후보수", "복기 태그"]);
+  updateMissionPanel();
   setStatus("새 대국", mode === "ai" ? "당신은 흑입니다. AI는 백입니다." : "흑부터 시작합니다.");
   render();
 }
@@ -3285,6 +3393,7 @@ function handleGameMove(r, c) {
   }
 
   const playedColor = state.turn;
+  const hadOwnAtari = countAtariGroups(state.board, playedColor) > 0;
   const candidates = state.mode === "learn" ? [] : topMoveCandidates(playedColor);
   const coach = state.mode === "learn" ? null : coachTextForMove(playedColor, r, c, result, candidates);
   state.board = result.board;
@@ -3300,7 +3409,7 @@ function handleGameMove(r, c) {
 
   const capturedText = result.captured.length ? ` ${result.captured.length}개 잡았습니다.` : "";
   setStatus("착수", `${stoneName(state.turn)} 차례입니다.${capturedText}`);
-  updateMission(playedColor, result);
+  updateMission(playedColor, result, { hadOwnAtari, logEntry });
   if (coach) {
     const title = state.mode === "ai" && playedColor === WHITE ? "AI 수 설명" : "내 수 코치";
     updateGameCoach(title, coach.text, candidates, coach.tags);
