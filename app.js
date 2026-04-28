@@ -1417,6 +1417,24 @@ function ensureLearningBoostUI() {
   boost.id = "learningBoost";
   boost.className = "learning-boost";
   boost.innerHTML = `
+    <div class="learning-dashboard" id="learningDashboard">
+      <div class="dashboard-main">
+        <span>내 학습 현황</span>
+        <strong id="dashboardRank">30급 입문</strong>
+        <p id="dashboardSummary">오늘 할 일을 계산하는 중입니다.</p>
+      </div>
+      <div class="dashboard-meter">
+        <b id="dashboardToFive">5급까지</b>
+        <span id="dashboardDistance">190점</span>
+      </div>
+      <div class="dashboard-stats" id="dashboardStats"></div>
+      <div class="dashboard-actions">
+        <button type="button" class="ghost" id="dashWrong">오답</button>
+        <button type="button" class="ghost" id="dashExam">시험</button>
+        <button type="button" class="ghost" id="dashMission">미션</button>
+        <button type="button" class="ghost" id="dashPlan">오늘</button>
+      </div>
+    </div>
     <div class="stage-card">
       <div>
         <span id="stageLabel">입문</span>
@@ -1518,10 +1536,52 @@ function ensureLearningBoostUI() {
   document.querySelector("#levelCheck").addEventListener("click", showLevelCheck);
   document.querySelector("#missionStart").addEventListener("click", startPracticalMission);
   document.querySelector("#todayCourse").addEventListener("click", continueCourse);
+  document.querySelector("#dashWrong").addEventListener("click", startWrongRetry);
+  document.querySelector("#dashExam").addEventListener("click", startRankExam);
+  document.querySelector("#dashMission").addEventListener("click", startPracticalMission);
+  document.querySelector("#dashPlan").addEventListener("click", showNextStepPlan);
 }
 
 function currentStage(index = state.lessonIndex) {
   return learningStages.find((stage) => index >= stage.range[0] && index <= stage.range[1]) || learningStages.at(-1);
+}
+
+function updateLearningDashboard(lesson) {
+  const rank = currentRank();
+  const plan = currentPracticePlan();
+  const weak = topWeakness();
+  const due = dueWrongNotes().length;
+  const score = Math.round(progressScore());
+  const toFive = Math.max(0, 190 - score);
+  const accuracy = state.attemptCount ? Math.round((state.correctCount / state.attemptCount) * 100) : 0;
+  const rankBest = state.rankExamBest?.[plan.rank] || 0;
+  const today = due
+    ? `오답 ${due}개를 먼저 회수하세요.`
+    : weak
+      ? `${categoryLabels[weak.type]} 약점을 먼저 보강하세요.`
+      : `${categoryLabels[lessonType(lesson)] || "기초"} 문제를 이어가세요.`;
+
+  document.querySelector("#dashboardRank").textContent = rank.name;
+  document.querySelector("#dashboardSummary").textContent = `${today} 추천 코스는 ${plan.rank}입니다.`;
+  document.querySelector("#dashboardDistance").textContent = toFive ? `${toFive}점 남음` : "5급권 진입";
+  document.querySelector("#dashboardToFive").textContent = toFive ? "5급까지" : "현재 목표";
+
+  const stats = [
+    ["성장 점수", `${score}`],
+    ["정답률", `${accuracy}%`],
+    ["오답", `${state.wrongNotes.length}개`],
+    ["시험 최고", `${rankBest}점`],
+    ["심화", `${state.danBest}점`],
+    ["약점", weak ? categoryLabels[weak.type] : "없음"],
+  ];
+  const container = document.querySelector("#dashboardStats");
+  container.innerHTML = "";
+  for (const [label, value] of stats) {
+    const item = document.createElement("div");
+    item.className = "dashboard-stat";
+    item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
+    container.append(item);
+  }
 }
 
 function updateLearningBoost(lesson) {
@@ -1558,6 +1618,7 @@ function updateLearningBoost(lesson) {
   updateRankCurriculum();
   updateLessonCoach(lesson);
   updateRankExamCard();
+  updateLearningDashboard(lesson);
 }
 
 function updateWrongNoteCard() {

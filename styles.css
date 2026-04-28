@@ -316,6 +316,82 @@ h2 {
   margin-top: 12px;
 }
 
+.learning-dashboard {
+  background: rgba(255, 254, 248, 0.78);
+  border: 1px solid rgba(43, 49, 45, 0.08);
+  border-radius: 20px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr auto;
+  padding: 14px;
+}
+
+.dashboard-main span,
+.dashboard-stat span {
+  color: var(--muted);
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.dashboard-main strong {
+  display: block;
+  font-size: 22px;
+  margin-top: 4px;
+}
+
+.dashboard-main p {
+  margin: 6px 0 0;
+}
+
+.dashboard-meter {
+  align-items: center;
+  background: #262927;
+  border-radius: 18px;
+  color: #fbfaf4;
+  display: grid;
+  justify-items: center;
+  min-width: 104px;
+  padding: 12px;
+}
+
+.dashboard-meter b {
+  font-size: 12px;
+}
+
+.dashboard-meter span {
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.dashboard-stats,
+.dashboard-actions {
+  display: grid;
+  gap: 8px;
+  grid-column: 1 / -1;
+}
+
+.dashboard-stats {
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+}
+
+.dashboard-actions {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.dashboard-stat {
+  background: rgba(239, 236, 227, 0.7);
+  border: 1px solid rgba(43, 49, 45, 0.06);
+  border-radius: 12px;
+  padding: 9px;
+}
+
+.dashboard-stat strong {
+  display: block;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
 .stage-card {
   align-items: center;
   background: rgba(255, 254, 248, 0.72);
@@ -1358,10 +1434,15 @@ select {
   }
 
   .stage-card,
+  .learning-dashboard,
   .coach-row,
   .study-actions,
   .review-controls {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-actions {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .terms {
