@@ -1236,7 +1236,7 @@ const state = {
   gameLog: [],
   activeMission: null,
   lastMissionResult: null,
-  aiLevel: "normal",
+  aiLevel: "k20",
   reviewIndex: null,
   coachCandidates: [],
   lastCoachText: "",
@@ -1370,6 +1370,33 @@ const rankPracticePlans = [
   { rank: "1급 준비", max: Infinity, categories: ["life", "capture", "endgame", "opening", "shape"], difficulty: "advanced", count: 120 },
 ];
 
+const aiStyles = {
+  beginner: {
+    label: "입문",
+    note: "잡을 수 있는 수를 자주 놓치는 연습 상대",
+    width: 10,
+    blunder: 0.55,
+  },
+  k20: {
+    label: "20급",
+    note: "단수와 포획은 보지만 큰 곳 판단은 흔들리는 상대",
+    width: 6,
+    blunder: 0.32,
+  },
+  k10: {
+    label: "10급",
+    note: "포획, 연결, 큰 곳을 균형 있게 보는 상대",
+    width: 3,
+    blunder: 0.16,
+  },
+  k5: {
+    label: "5급",
+    note: "전술 수와 위험한 자충을 거의 놓치지 않는 상대",
+    width: 1,
+    blunder: 0.04,
+  },
+};
+
 const rankCurriculum = [
   ["30급", "교차점, 활로, 단수", "9줄에서 정답률 70%, 단수 문제 20개"],
   ["25급", "포획, 연결, 끊기", "연결/끊기 문제 30개, 오답 재출제 5개 해결"],
@@ -1437,6 +1464,7 @@ function ensureLearningBoostUI() {
         <span id="dashboardDistance">190점</span>
       </div>
       <div class="dashboard-stats" id="dashboardStats"></div>
+      <div class="rank-road" id="rankRoad"></div>
       <div class="dashboard-actions">
         <button type="button" class="ghost" id="dashWrong">오답</button>
         <button type="button" class="ghost" id="dashExam">시험</button>
@@ -1599,6 +1627,18 @@ function updateLearningDashboard(lesson) {
     item.className = "dashboard-stat";
     item.innerHTML = `<span>${label}</span><strong>${value}</strong>`;
     container.append(item);
+  }
+  const road = document.querySelector("#rankRoad");
+  if (road) {
+    road.innerHTML = "";
+    for (const step of rankLadder.slice(0, 6)) {
+      const item = document.createElement("div");
+      item.className = "rank-road-step";
+      if (score >= step.min) item.classList.add("done");
+      if (rank.name === step.name) item.classList.add("current");
+      item.innerHTML = `<strong>${step.name.replace(" ", "<br>")}</strong><span>${step.goal}</span>`;
+      road.append(item);
+    }
   }
 }
 
@@ -1848,58 +1888,45 @@ function answerConceptQuiz(index) {
 function judgmentQuestionFor(lesson) {
   const type = lessonType(lesson);
   const data = {
-    capture: {
-      question: "상대 돌이 단수에 가깝습니다. 먼저 무엇을 해야 할까요?",
-      situation: "잡을 수 있어 보여도 내 돌이 되잡히면 손해입니다.",
-      options: ["상대 활로를 세고 잡는 수를 확인한다", "무조건 붙여서 공격한다", "집이 큰 곳으로 손을 뺀다"],
-      answer: 0,
-      explain: "포획은 활로 계산이 먼저입니다. 잡고 나서 내 돌이 안전한지도 같이 봐야 합니다.",
-    },
-    connect: {
-      question: "내 돌 두 덩어리가 끊길 수 있습니다. 좋은 판단은?",
-      situation: "끊기면 두 돌 모두 약해지고 다음 수가 어려워집니다.",
-      options: ["끊김을 막으며 두 돌을 안정시킨다", "상대 돌만 계속 쫓는다", "아무 빈 곳이나 큰 곳으로 간다"],
-      answer: 0,
-      explain: "약한 돌은 먼저 연결해야 공격과 집짓기가 모두 편해집니다.",
-    },
-    shape: {
-      question: "후보수 두 개가 있습니다. 어떤 모양을 고를까요?",
-      situation: "하나는 빈삼각이고 하나는 뻗음/마늘모처럼 넓게 움직입니다.",
-      options: ["활로와 다음 움직임이 많은 모양", "돌이 빽빽하게 뭉치는 모양", "상대 옆에 무조건 붙는 모양"],
-      answer: 0,
-      explain: "좋은 모양은 다음 선택지를 남깁니다. 무거운 돌은 공격받기 쉽습니다.",
-    },
-    life: {
-      question: "내 돌이 살지 죽을지 애매합니다. 첫 판단은?",
-      situation: "상대가 안쪽 급소를 차지하면 눈이 사라질 수 있습니다.",
-      options: ["두 눈이 가능한지 급소부터 본다", "밖에서 멀리 도망만 간다", "이미 막힌 곳을 채운다"],
-      answer: 0,
-      explain: "사활은 눈의 중심과 가짜 눈 구분이 핵심입니다.",
-    },
-    opening: {
-      question: "초반에 둘 곳이 많습니다. 무엇을 우선 비교할까요?",
-      situation: "큰 곳도 있고, 약한 돌을 돌봐야 하는 곳도 있습니다.",
-      options: ["큰 곳과 약한 돌을 함께 비교한다", "중앙 한가운데만 둔다", "상대 옆에 계속 붙는다"],
-      answer: 0,
-      explain: "초반은 귀·변의 큰 곳과 약한 돌의 안전을 같이 보는 게임입니다.",
-    },
-    endgame: {
-      question: "끝내기에서 먼저 둘 곳을 고를 때 기준은?",
-      situation: "비슷해 보이는 경계가 여러 곳 있습니다.",
-      options: ["내 집 증가와 상대 집 감소가 큰 곳", "이미 완전히 산 돌 안쪽", "가장 멀리 떨어진 중앙"],
-      answer: 0,
-      explain: "끝내기는 한 수로 바뀌는 집 차이가 큰 곳부터 둡니다.",
-    },
-    general: {
-      question: "실전에서 다음 한 수를 고를 때 가장 좋은 순서는?",
-      situation: "후보수가 많을수록 먼저 목적을 좁혀야 합니다.",
-      options: ["목표를 정하고 후보수 2개만 비교한다", "눈에 띄는 곳을 바로 둔다", "상대가 둔 곳 근처만 본다"],
-      answer: 0,
-      explain: "판단은 목표 정리, 후보수 압축, 결과 확인 순서로 하면 흔들림이 줄어듭니다.",
-    },
+    capture: [
+      ["상대 돌이 단수에 가깝습니다. 먼저 무엇을 해야 할까요?", "잡을 수 있어 보여도 내 돌이 되잡히면 손해입니다.", ["상대 활로를 세고 잡는 수를 확인한다", "무조건 붙여서 공격한다", "집이 큰 곳으로 손을 뺀다"], "포획은 활로 계산이 먼저입니다."],
+      ["잡는 수와 단수 치는 수가 같이 보입니다. 무엇을 비교할까요?", "바로 잡는 수가 작고, 단수로 몰면 더 큰 이득일 수 있습니다.", ["상대가 반드시 받는지 확인한다", "눈에 보이는 돌부터 잡는다", "내 집 안쪽을 메운다"], "강제성이 있으면 단수 압박이 더 클 수 있습니다."],
+      ["상대 돌을 잡았지만 내 돌도 약합니다. 다음 판단은?", "포획 뒤 연결이 약하면 되잡힘이 생깁니다.", ["잡은 뒤 내 활로와 연결을 확인한다", "잡았으니 다른 곳만 본다", "중앙 빈 곳에 아무 데나 둔다"], "잡은 뒤 안전 확인이 포획의 완성입니다."],
+    ],
+    connect: [
+      ["내 돌 두 덩어리가 끊길 수 있습니다. 좋은 판단은?", "끊기면 두 돌 모두 약해지고 다음 수가 어려워집니다.", ["끊김을 막으며 두 돌을 안정시킨다", "상대 돌만 계속 쫓는다", "아무 빈 곳이나 큰 곳으로 간다"], "약한 돌은 먼저 연결해야 합니다."],
+      ["상대가 끊으려 합니다. 어떤 연결이 좋을까요?", "단순 연결보다 상대 약점까지 보는 연결이 더 큽니다.", ["잇고 나서 상대 약점도 남기는 수", "내 돌을 더 무겁게 뭉치는 수", "끊김을 무시하는 손빼기"], "좋은 연결은 수비와 공격을 함께 남깁니다."],
+      ["연결과 손빼기 중 고민입니다. 기준은?", "끊겨도 살 수 있다면 손빼기가 가능하지만, 둘 다 약하면 위험합니다.", ["끊긴 뒤 약한 돌이 생기는지 본다", "항상 손을 뺀다", "상대 가까이 붙인다"], "손빼기는 끊겨도 버틸 수 있을 때 가능합니다."],
+    ],
+    shape: [
+      ["후보수 두 개가 있습니다. 어떤 모양을 고를까요?", "하나는 빈삼각이고 하나는 뻗음/마늘모처럼 넓게 움직입니다.", ["활로와 다음 움직임이 많은 모양", "돌이 빽빽하게 뭉치는 모양", "상대 옆에 무조건 붙는 모양"], "좋은 모양은 다음 선택지를 남깁니다."],
+      ["돌이 공격받고 있습니다. 어떤 행마가 가볍나요?", "무겁게 붙으면 계속 공격받습니다.", ["한칸뜀이나 날일자로 탈출한다", "같은 곳에 계속 붙인다", "내 집 안쪽만 채운다"], "가벼운 행마는 활로와 도망길을 만듭니다."],
+      ["빈삼각이 생기는 수가 보입니다. 판단은?", "가끔 필요하지만 초보 단계에서는 대부분 비효율입니다.", ["다른 후보수와 활로 수를 비교한다", "항상 빈삼각으로 둔다", "상대 돌을 무조건 따라간다"], "빈삼각은 활로와 효율을 망칠 수 있습니다."],
+    ],
+    life: [
+      ["내 돌이 살지 죽을지 애매합니다. 첫 판단은?", "상대가 안쪽 급소를 차지하면 눈이 사라질 수 있습니다.", ["두 눈이 가능한지 급소부터 본다", "밖에서 멀리 도망만 간다", "이미 막힌 곳을 채운다"], "사활은 눈의 중심과 가짜 눈 구분이 핵심입니다."],
+      ["상대가 내 눈 모양을 깨려 합니다. 무엇을 지킬까요?", "눈 둘이 연결돼야 살아납니다.", ["눈 두 개가 될 후보를 먼저 지킨다", "가장 먼 곳으로 뛴다", "상대 집만 줄인다"], "사는 수는 눈 공간을 지키는 수입니다."],
+      ["상대 돌을 죽일 기회입니다. 어디를 볼까요?", "밖을 막는 것보다 안쪽 급소가 더 빠를 수 있습니다.", ["눈 모양의 중심 급소", "이미 막힌 변", "내 돌 많은 곳 안쪽"], "죽이는 수는 상대 눈을 없애는 급소입니다."],
+    ],
+    opening: [
+      ["초반에 둘 곳이 많습니다. 무엇을 우선 비교할까요?", "큰 곳도 있고, 약한 돌을 돌봐야 하는 곳도 있습니다.", ["큰 곳과 약한 돌을 함께 비교한다", "중앙 한가운데만 둔다", "상대 옆에 계속 붙는다"], "초반은 큰 곳과 약한 돌의 균형입니다."],
+      ["귀와 변 중 어디가 더 쉬운 집일까요?", "집은 귀에서 가장 쉽게 만들어집니다.", ["귀를 먼저 보고 변으로 넓힌다", "무조건 중앙부터 둔다", "상대 돌 옆만 따라간다"], "귀-변-중앙 순서로 집 효율이 달라집니다."],
+      ["내 돌은 안정, 상대 돌은 약함. 좋은 방향은?", "상대 약한 돌을 공격하면 내 집도 커질 수 있습니다.", ["공격하면서 큰 곳을 넓힌다", "내 집 안쪽만 메운다", "무조건 패스한다"], "좋은 공격은 이득을 만들며 따라갑니다."],
+    ],
+    endgame: [
+      ["끝내기에서 먼저 둘 곳을 고를 때 기준은?", "비슷해 보이는 경계가 여러 곳 있습니다.", ["내 집 증가와 상대 집 감소가 큰 곳", "이미 완전히 산 돌 안쪽", "가장 멀리 떨어진 중앙"], "끝내기는 한 수로 바뀌는 집 차이가 큰 곳부터 둡니다."],
+      ["상대가 꼭 받아야 하는 끝내기가 있습니다. 판단은?", "선수 끝내기는 내가 한 번 더 둘 기회를 줍니다.", ["선수인지 확인하고 먼저 둔다", "항상 작은 집부터 둔다", "무조건 패스한다"], "선수 끝내기는 같은 집 차이라도 가치가 큽니다."],
+      ["경계가 열린 곳과 닫힌 곳이 있습니다. 어디가 큽니까?", "열린 경계는 양쪽 집 차이를 동시에 바꿉니다.", ["열린 경계부터 막거나 밀어간다", "이미 확정된 집 안쪽", "상대가 못 들어오는 곳"], "끝내기는 열린 경계가 핵심입니다."],
+    ],
+    general: [
+      ["실전에서 다음 한 수를 고를 때 가장 좋은 순서는?", "후보수가 많을수록 먼저 목적을 좁혀야 합니다.", ["목표를 정하고 후보수 2개만 비교한다", "눈에 띄는 곳을 바로 둔다", "상대가 둔 곳 근처만 본다"], "판단은 목표 정리, 후보수 압축, 결과 확인 순서입니다."],
+      ["시간이 부족합니다. 그래도 꼭 볼 것은?", "모든 수를 읽을 수 없어도 큰 실수는 피해야 합니다.", ["내 돌 단수와 상대 단수를 먼저 본다", "아무 곳이나 빠르게 둔다", "중앙만 본다"], "단수 확인만 해도 큰 실수가 줄어듭니다."],
+      ["후보수 둘이 비슷합니다. 마지막 기준은?", "좋은 수는 다음 수가 편합니다.", ["둔 뒤 내 돌이 안전한지 본다", "더 예쁜 모양만 고른다", "무조건 상대 가까이 둔다"], "착수 뒤 안전과 다음 선택지가 마지막 기준입니다."],
+    ],
   };
-  const quiz = data[type] || data.general;
-  return { ...quiz, answered: false, category: type };
+  const pool = data[type] || data.general;
+  const [question, situation, options, explain] = pool[Math.floor(Math.random() * pool.length)];
+  return { question, situation, options, answer: 0, explain, answered: false, category: type };
 }
 
 function startJudgmentQuiz() {
@@ -2136,7 +2163,10 @@ function loadProgress() {
     state.correctCount = Number(data.correctCount) || 0;
     state.attemptCount = Number(data.attemptCount) || 0;
     state.streak = Number(data.streak) || 0;
-    state.aiLevel = typeof data.aiLevel === "string" ? data.aiLevel : "normal";
+    state.aiLevel = typeof data.aiLevel === "string" ? data.aiLevel : "k20";
+    if (state.aiLevel === "easy") state.aiLevel = "beginner";
+    if (state.aiLevel === "normal") state.aiLevel = "k20";
+    if (state.aiLevel === "hard") state.aiLevel = "k5";
   } catch {
     localStorage.removeItem(STORAGE_KEY);
   }
@@ -2213,21 +2243,26 @@ function ensureAiLevelControl() {
   if (document.querySelector("#aiLevel")) return;
   const field = document.createElement("label");
   field.className = "field ai-level-field";
+  const options = Object.entries(aiStyles)
+    .map(([value, style]) => `<option value="${value}">${style.label}</option>`)
+    .join("");
   field.innerHTML = `
-    <span>AI 강도</span>
+    <span>AI 급수</span>
     <select id="aiLevel">
-      <option value="easy">입문</option>
-      <option value="normal" selected>기본</option>
-      <option value="hard">도전</option>
+      ${options}
     </select>
   `;
   el.boardSize.closest(".field").after(field);
   const select = field.querySelector("#aiLevel");
+  if (state.aiLevel === "easy") state.aiLevel = "beginner";
+  if (state.aiLevel === "normal") state.aiLevel = "k20";
+  if (state.aiLevel === "hard") state.aiLevel = "k5";
   select.value = state.aiLevel;
   select.addEventListener("change", (event) => {
     state.aiLevel = event.target.value;
     saveProgress();
-    setStatus("AI 강도", `AI 강도를 ${event.target.selectedOptions[0].textContent}으로 바꿨습니다. 새 대국부터 체감이 큽니다.`);
+    const style = aiStyles[state.aiLevel] || aiStyles.k20;
+    setStatus("AI 급수", `${style.label} 스타일로 바꿨습니다. ${style.note}`);
   });
 }
 
@@ -3545,12 +3580,13 @@ function startGame(mode) {
   el.boardLabel.textContent = mode === "ai" ? "AI 대국" : "2인 대국";
   el.boardTitle.textContent = mode === "ai" ? "흑으로 AI와 두기" : "서로 번갈아 두기";
   el.topPlayerName.textContent = mode === "ai" ? "AI 백" : "백";
-  el.topPlayerMeta.textContent = "상대 · 6.5 덤";
+  const aiStyle = aiStyles[state.aiLevel] || aiStyles.k20;
+  el.topPlayerMeta.textContent = mode === "ai" ? `${aiStyle.label} 스타일 · 6.5 덤` : "상대 · 6.5 덤";
   el.topTimer.textContent = "10:00";
   el.bottomPlayerName.textContent = mode === "ai" ? "플레이어 흑" : "흑";
   el.bottomPlayerMeta.textContent = "선착";
   el.bottomTimer.textContent = "10:00";
-  updateGameCoach("대국 코치 준비", mode === "ai" ? "흑으로 착수하면 AI 코치가 후보수와 위험 요소를 비교합니다." : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.", [], ["후보수", "복기 태그"]);
+  updateGameCoach("대국 코치 준비", mode === "ai" ? `${aiStyle.label} AI와 둡니다. ${aiStyle.note}` : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.", [], ["후보수", "복기 태그"]);
   updateMissionPanel();
   setStatus("새 대국", mode === "ai" ? "당신은 흑입니다. AI는 백입니다." : "흑부터 시작합니다.");
   render();
@@ -3753,9 +3789,12 @@ function chooseAiMove() {
   }
 
   moves.sort((a, b) => b.score - a.score);
-  if (state.aiLevel === "easy") return moves[Math.min(moves.length - 1, Math.floor(Math.random() * Math.min(8, moves.length)))];
-  if (state.aiLevel === "hard") return moves[0];
-  return moves[Math.min(moves.length - 1, Math.floor(Math.random() * Math.min(3, moves.length)))];
+  const style = aiStyles[state.aiLevel] || aiStyles.k20;
+  const tactical = bestTacticalMove(WHITE);
+  if (style.width <= 1 && isTacticalMove(tactical, WHITE)) return tactical;
+  const width = Math.min(style.width, moves.length);
+  const noisyIndex = Math.random() < style.blunder ? Math.floor(Math.random() * width) : 0;
+  return moves[Math.min(moves.length - 1, noisyIndex)];
 }
 
 function scoreMove(move, color) {

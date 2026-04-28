@@ -365,6 +365,7 @@ h2 {
 }
 
 .dashboard-stats,
+.rank-road,
 .dashboard-actions {
   display: grid;
   gap: 8px;
@@ -377,6 +378,42 @@ h2 {
 
 .dashboard-actions {
   grid-template-columns: repeat(4, 1fr);
+}
+
+.rank-road {
+  grid-template-columns: repeat(6, minmax(74px, 1fr));
+}
+
+.rank-road-step {
+  background: rgba(239, 236, 227, 0.72);
+  border: 1px solid rgba(43, 49, 45, 0.06);
+  border-radius: 12px;
+  color: var(--muted);
+  min-height: 70px;
+  padding: 8px;
+}
+
+.rank-road-step.done {
+  background: rgba(95, 126, 105, 0.13);
+  color: var(--ink);
+}
+
+.rank-road-step.current {
+  border-color: rgba(38, 41, 39, 0.32);
+  box-shadow: inset 0 0 0 1px rgba(38, 41, 39, 0.2);
+}
+
+.rank-road-step strong {
+  display: block;
+  font-size: 12px;
+  line-height: 1.15;
+}
+
+.rank-road-step span {
+  display: block;
+  font-size: 10px;
+  line-height: 1.25;
+  margin-top: 5px;
 }
 
 .dashboard-stat {
@@ -1488,13 +1525,38 @@ select {
   .stage-card,
   .learning-dashboard,
   .coach-row,
-  .study-actions,
   .review-controls {
     grid-template-columns: 1fr;
   }
 
+  .study-actions {
+    display: flex;
+    gap: 8px;
+    margin: 0 -14px;
+    overflow-x: auto;
+    padding: 0 14px 6px;
+    scroll-snap-type: x proximity;
+  }
+
+  .study-actions button {
+    flex: 0 0 auto;
+    min-width: 112px;
+    scroll-snap-align: start;
+    white-space: nowrap;
+  }
+
   .dashboard-actions {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .rank-road {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+
+  .rank-road-step {
+    flex: 0 0 96px;
   }
 
   .terms {
