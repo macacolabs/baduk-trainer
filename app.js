@@ -2802,7 +2802,7 @@ function renderConceptChecklist() {
   panel.innerHTML = `
     <summary>
       <span>학습 체크리스트</span>
-      <strong>아마추어 입문 루틴</strong>
+      <strong>오늘의 성장 루틴</strong>
     </summary>
     <div class="checklist-grid"></div>
   `;
