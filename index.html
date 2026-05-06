@@ -89,6 +89,12 @@
             <strong id="turnText">흑</strong>
           </div>
 
+          <div class="game-type-switch" role="group" aria-label="게임 선택">
+            <button type="button" class="game-type active" data-game-type="baduk">바둑</button>
+            <button type="button" class="game-type" data-game-type="omok">오목</button>
+          </div>
+          <p class="game-type-help" id="gameTypeHelp">바둑: 집, 포획, 패스 종국으로 승부합니다.</p>
+
           <label class="field">
             <span>판 크기</span>
             <select id="boardSize">
@@ -99,10 +105,10 @@
           </label>
 
           <div class="score-row">
-            <span>흑 잡은 돌 <b id="blackCaps">0</b></span>
-            <span>백 잡은 돌 <b id="whiteCaps">0</b></span>
-            <span>흑 영역 <b id="blackScore">0</b></span>
-            <span>백 영역 <b id="whiteScore">0</b></span>
+            <span id="blackCapsLabel">흑 잡은 돌 <b id="blackCaps">0</b></span>
+            <span id="whiteCapsLabel">백 잡은 돌 <b id="whiteCaps">0</b></span>
+            <span id="blackScoreLabel">흑 영역 <b id="blackScore">0</b></span>
+            <span id="whiteScoreLabel">백 영역 <b id="whiteScore">0</b></span>
           </div>
 
           <div class="actions">
@@ -120,9 +126,9 @@
         <div class="panel rule-panel">
           <div class="panel-head">
             <span>룰</span>
-            <strong>기본 중국식 계가</strong>
+            <strong id="ruleTitle">기본 중국식 계가</strong>
           </div>
-          <p>착수, 활로, 포획, 자살수 금지, 단순 패 금지, 연속 패스 종국을 지원합니다.</p>
+          <p id="ruleText">착수, 활로, 포획, 자살수 금지, 단순 패 금지, 연속 패스 종국을 지원합니다.</p>
         </div>
       </section>
 

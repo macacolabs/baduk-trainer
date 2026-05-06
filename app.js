@@ -3,6 +3,20 @@ const BLACK = 1;
 const WHITE = 2;
 const KOMI = 6.5;
 const STORAGE_KEY = "baduk-trainer-progress-v2";
+const GAME_TYPES = {
+  baduk: {
+    label: "바둑",
+    sizes: [19, 13, 9],
+    defaultSize: 19,
+    help: "바둑: 집, 포획, 패스 종국으로 승부합니다.",
+  },
+  omok: {
+    label: "오목",
+    sizes: [15, 19, 13],
+    defaultSize: 15,
+    help: "오목: 가로, 세로, 대각선으로 5개 이상 먼저 잇는 사람이 이깁니다.",
+  },
+};
 
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
@@ -1207,6 +1221,7 @@ function buildDrillBank() {
 
 const state = {
   mode: "learn",
+  gameType: "baduk",
   size: 9,
   board: emptyBoard(9),
   turn: BLACK,
@@ -1251,6 +1266,8 @@ const state = {
   history: [],
   passCount: 0,
   gameOver: false,
+  winner: null,
+  winningLine: [],
 };
 
 const REVIEW_DAY = 1000 * 60 * 60 * 24;
@@ -1286,12 +1303,20 @@ const el = {
   newGame: document.querySelector("#newGame"),
   undoMove: document.querySelector("#undoMove"),
   passTurn: document.querySelector("#passTurn"),
+  gameTypes: document.querySelectorAll("[data-game-type]"),
+  gameTypeHelp: document.querySelector("#gameTypeHelp"),
+  ruleTitle: document.querySelector("#ruleTitle"),
+  ruleText: document.querySelector("#ruleText"),
   boardSize: document.querySelector("#boardSize"),
   turnText: document.querySelector("#turnText"),
   blackCaps: document.querySelector("#blackCaps"),
   whiteCaps: document.querySelector("#whiteCaps"),
   blackScore: document.querySelector("#blackScore"),
   whiteScore: document.querySelector("#whiteScore"),
+  blackCapsLabel: document.querySelector("#blackCapsLabel"),
+  whiteCapsLabel: document.querySelector("#whiteCapsLabel"),
+  blackScoreLabel: document.querySelector("#blackScoreLabel"),
+  whiteScoreLabel: document.querySelector("#whiteScoreLabel"),
   statusTitle: document.querySelector("#statusTitle"),
   statusText: document.querySelector("#statusText"),
   boardLabel: document.querySelector("#boardLabel"),
@@ -3089,6 +3114,23 @@ function reviewCurrentGame() {
     setStatus("복기 분석", "아직 복기할 대국 기록이 없습니다.");
     return;
   }
+  if (state.gameType === "omok") {
+    if (state.gameLog.length) {
+      state.reviewIndex = state.gameLog.length - 1;
+      updateReviewTimeline();
+      updateGameLearningReport();
+    }
+    const best = chooseOmokAiMove(state.turn);
+    const last = state.gameLog.at(-1);
+    const lastText = last ? ` 마지막 수는 ${stoneName(last.color)} ${coordLabel(last.r, last.c)}입니다.` : "";
+    const winText = state.winner ? ` ${stoneName(state.winner)}의 승리 라인을 다시 확인하세요.` : "";
+    const coach = `${lastText}${winText} 다음 후보는 ${best ? coordLabel(best.r, best.c) : "없음"}입니다. 내 4목 완성, 상대 4목 차단, 열린 3목 만들기 순서로 보세요.`;
+    updateReviewCoach(coach);
+    setStatus("오목 복기", coach);
+    if (best) state.revealedAnswer = [best.r, best.c];
+    render();
+    return;
+  }
   if (state.gameLog.length) {
     state.reviewIndex = state.gameLog.length - 1;
     updateReviewTimeline();
@@ -3603,6 +3645,8 @@ function saveHistory() {
     lastMove: state.lastMove ? [...state.lastMove] : null,
     passCount: state.passCount,
     gameOver: state.gameOver,
+    winner: state.winner,
+    winningLine: state.winningLine.map((point) => [...point]),
   });
 }
 
@@ -3613,11 +3657,47 @@ function restoreSnapshot(snapshot) {
   state.lastMove = snapshot.lastMove ? [...snapshot.lastMove] : null;
   state.passCount = snapshot.passCount;
   state.gameOver = snapshot.gameOver;
+  state.winner = snapshot.winner || null;
+  state.winningLine = snapshot.winningLine ? snapshot.winningLine.map((point) => [...point]) : [];
 }
 
 function setStatus(title, text) {
   el.statusTitle.textContent = title;
   el.statusText.textContent = text;
+}
+
+function updateGameTypeControls(forceDefaultSize = false) {
+  const config = GAME_TYPES[state.gameType] || GAME_TYPES.baduk;
+  const currentSize = Number(el.boardSize.value);
+  el.gameTypes.forEach((button) => button.classList.toggle("active", button.dataset.gameType === state.gameType));
+  el.gameTypeHelp.textContent = config.help;
+  el.boardSize.innerHTML = config.sizes.map((size) => `<option value="${size}">${size}줄</option>`).join("");
+  el.boardSize.value = !forceDefaultSize && config.sizes.includes(currentSize) ? String(currentSize) : String(config.defaultSize);
+  el.passTurn.textContent = state.gameType === "omok" ? "규칙" : "패스";
+  el.ruleTitle.textContent = state.gameType === "omok" ? "오목 자유룰" : "기본 중국식 계가";
+  el.ruleText.textContent = state.gameType === "omok"
+    ? "15줄 기본판에서 흑이 먼저 둡니다. 가로, 세로, 대각선으로 5개 이상 연속이면 승리합니다."
+    : "착수, 활로, 포획, 자살수 금지, 단순 패 금지, 연속 패스 종국을 지원합니다.";
+}
+
+function setMetricLabel(labelEl, text) {
+  const value = labelEl.querySelector("b");
+  labelEl.firstChild.textContent = `${text} `;
+  labelEl.append(value);
+}
+
+function updateScoreLabels() {
+  if (state.gameType === "omok") {
+    setMetricLabel(el.blackCapsLabel, "흑 돌 수");
+    setMetricLabel(el.whiteCapsLabel, "백 돌 수");
+    setMetricLabel(el.blackScoreLabel, "흑 결과");
+    setMetricLabel(el.whiteScoreLabel, "백 결과");
+    return;
+  }
+  setMetricLabel(el.blackCapsLabel, "흑 잡은 돌");
+  setMetricLabel(el.whiteCapsLabel, "백 잡은 돌");
+  setMetricLabel(el.blackScoreLabel, "흑 영역");
+  setMetricLabel(el.whiteScoreLabel, "백 영역");
 }
 
 function ensureMobileNav() {
@@ -3778,9 +3858,12 @@ function setupLesson() {
   state.mode = "learn";
   state.size = 9;
   el.board.classList.remove("full-board");
+  el.board.classList.remove("omok-board");
   state.board = emptyBoard(9);
   state.turn = lesson.turn;
   state.lastMove = null;
+  state.winner = null;
+  state.winningLine = [];
   state.locked = false;
   state.revealedAnswer = null;
   state.hintLevel = 0;
@@ -3824,9 +3907,12 @@ function setupLesson() {
 
 function startGame(mode) {
   ensureGameReviewButton();
+  updateGameTypeControls();
+  updateScoreLabels();
   state.mode = mode;
   state.size = Number(el.boardSize.value);
   el.board.classList.toggle("full-board", state.size === 19);
+  el.board.classList.toggle("omok-board", state.gameType === "omok");
   state.board = emptyBoard(state.size);
   state.turn = BLACK;
   state.captures = { [BLACK]: 0, [WHITE]: 0 };
@@ -3837,24 +3923,36 @@ function startGame(mode) {
   state.passCount = 0;
   state.history = [];
   state.gameLog = [];
+  state.winner = null;
+  state.winningLine = [];
   state.reviewIndex = null;
   state.coachCandidates = [];
   state.lastCoachText = "";
   state.lastCoachTags = [];
   if (!state.activeMission) state.lastMissionResult = null;
   saveHistory();
-  el.boardLabel.textContent = mode === "ai" ? "AI 대국" : "2인 대국";
-  el.boardTitle.textContent = mode === "ai" ? "흑으로 AI와 두기" : "서로 번갈아 두기";
-  el.topPlayerName.textContent = mode === "ai" ? "AI 백" : "백";
+  const gameLabel = state.gameType === "omok" ? "오목" : "바둑";
+  el.boardLabel.textContent = mode === "ai" ? `${gameLabel} AI 대국` : `${gameLabel} 2인 대국`;
+  el.boardTitle.textContent = mode === "ai" ? `흑으로 ${gameLabel} AI와 두기` : `${gameLabel} 서로 번갈아 두기`;
+  el.topPlayerName.textContent = mode === "ai" ? `AI 백` : "백";
   const aiStyle = aiStyles[state.aiLevel] || aiStyles.k20;
-  el.topPlayerMeta.textContent = mode === "ai" ? `${aiStyle.label} 스타일 · 6.5 덤` : "상대 · 6.5 덤";
+  el.topPlayerMeta.textContent = state.gameType === "omok"
+    ? mode === "ai" ? "오목 수읽기 AI" : "상대 · 5목 승부"
+    : mode === "ai" ? `${aiStyle.label} 스타일 · 6.5 덤` : "상대 · 6.5 덤";
   el.topTimer.textContent = "10:00";
   el.bottomPlayerName.textContent = mode === "ai" ? "플레이어 흑" : "흑";
-  el.bottomPlayerMeta.textContent = "선착";
+  el.bottomPlayerMeta.textContent = state.gameType === "omok" ? "흑 선 · 5목 만들기" : "선착";
   el.bottomTimer.textContent = "10:00";
-  updateGameCoach("대국 코치 준비", mode === "ai" ? `${aiStyle.label} AI와 둡니다. ${aiStyle.note}` : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.", [], ["후보수", "복기 태그"]);
+  updateGameCoach(
+    state.gameType === "omok" ? "오목 코치 준비" : "대국 코치 준비",
+    state.gameType === "omok"
+      ? "중앙을 잡고, 내 4목은 완성하고 상대 4목은 즉시 막으세요. 열린 3목도 큰 위협입니다."
+      : mode === "ai" ? `${aiStyle.label} AI와 둡니다. ${aiStyle.note}` : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.",
+    [],
+    state.gameType === "omok" ? ["5목", "4목 막기"] : ["후보수", "복기 태그"]
+  );
   updateMissionPanel();
-  setStatus("새 대국", mode === "ai" ? "당신은 흑입니다. AI는 백입니다." : "흑부터 시작합니다.");
+  setStatus("새 대국", state.gameType === "omok" ? "흑부터 시작합니다. 5개 이상 연속으로 잇는 쪽이 이깁니다." : mode === "ai" ? "당신은 흑입니다. AI는 백입니다." : "흑부터 시작합니다.");
   render();
 }
 
@@ -3939,6 +4037,177 @@ function handleLessonMove(r, c) {
   render();
 }
 
+const OMOK_DIRECTIONS = [[1, 0], [0, 1], [1, 1], [1, -1]];
+
+function omokLine(board, r, c, color, dr, dc) {
+  const line = [[r, c]];
+  for (const direction of [1, -1]) {
+    let nr = r + dr * direction;
+    let nc = c + dc * direction;
+    while (inBounds(nr, nc, board.length) && board[nr][nc] === color) {
+      if (direction === 1) line.push([nr, nc]);
+      else line.unshift([nr, nc]);
+      nr += dr * direction;
+      nc += dc * direction;
+    }
+  }
+  return line;
+}
+
+function omokWinningLine(board, r, c, color) {
+  for (const [dr, dc] of OMOK_DIRECTIONS) {
+    const line = omokLine(board, r, c, color, dr, dc);
+    if (line.length >= 5) return line;
+  }
+  return [];
+}
+
+function omokOpenEnds(board, line, dr, dc) {
+  const head = line[0];
+  const tail = line.at(-1);
+  let ends = 0;
+  const before = [head[0] - dr, head[1] - dc];
+  const after = [tail[0] + dr, tail[1] + dc];
+  if (inBounds(before[0], before[1], board.length) && board[before[0]][before[1]] === EMPTY) ends += 1;
+  if (inBounds(after[0], after[1], board.length) && board[after[0]][after[1]] === EMPTY) ends += 1;
+  return ends;
+}
+
+function omokShapeScore(board, r, c, color) {
+  let best = 0;
+  for (const [dr, dc] of OMOK_DIRECTIONS) {
+    const line = omokLine(board, r, c, color, dr, dc);
+    const openEnds = omokOpenEnds(board, line, dr, dc);
+    const length = line.length;
+    const value = length >= 5 ? 100000 : length * length * 22 + openEnds * 18 + (length >= 4 ? 380 : 0) + (length === 3 && openEnds === 2 ? 180 : 0);
+    best = Math.max(best, value);
+  }
+  return best;
+}
+
+function omokCandidateMoves(color) {
+  const moves = [];
+  const seen = new Set();
+  const hasStone = state.board.some((row) => row.some((cell) => cell !== EMPTY));
+  if (!hasStone) {
+    const center = Math.floor(state.size / 2);
+    return [{ r: center, c: center, reason: "중앙 선점", score: 0 }];
+  }
+
+  for (let r = 0; r < state.size; r += 1) {
+    for (let c = 0; c < state.size; c += 1) {
+      if (state.board[r][c] === EMPTY) continue;
+      for (let dr = -2; dr <= 2; dr += 1) {
+        for (let dc = -2; dc <= 2; dc += 1) {
+          const nr = r + dr;
+          const nc = c + dc;
+          const key = `${nr},${nc}`;
+          if (!inBounds(nr, nc, state.size) || state.board[nr][nc] !== EMPTY || seen.has(key)) continue;
+          seen.add(key);
+          moves.push({ r: nr, c: nc, reason: "근처 확장", score: 0 });
+        }
+      }
+    }
+  }
+  return moves.length ? moves : legalEmptyPoints().map(([r, c]) => ({ r, c, reason: "빈 자리", score: 0 }));
+}
+
+function legalEmptyPoints() {
+  const points = [];
+  for (let r = 0; r < state.size; r += 1) {
+    for (let c = 0; c < state.size; c += 1) {
+      if (state.board[r][c] === EMPTY) points.push([r, c]);
+    }
+  }
+  return points;
+}
+
+function scoreOmokMove(r, c, color) {
+  const opponent = color === BLACK ? WHITE : BLACK;
+  state.board[r][c] = color;
+  const attack = omokShapeScore(state.board, r, c, color);
+  state.board[r][c] = opponent;
+  const defense = omokShapeScore(state.board, r, c, opponent);
+  state.board[r][c] = EMPTY;
+  const center = Math.abs(r - (state.size - 1) / 2) + Math.abs(c - (state.size - 1) / 2);
+  return attack * 1.12 + defense * 1.05 - center * 1.4 + Math.random() * 0.4;
+}
+
+function topOmokCandidates(color, limit = 3) {
+  return omokCandidateMoves(color).map((move) => {
+    const score = scoreOmokMove(move.r, move.c, color);
+    let reason = "연결 확장";
+    state.board[move.r][move.c] = color;
+    if (omokWinningLine(state.board, move.r, move.c, color).length) reason = "즉시 승리";
+    else if (omokShapeScore(state.board, move.r, move.c, color) >= 520) reason = "4목 위협";
+    else if (omokShapeScore(state.board, move.r, move.c, color) >= 300) reason = "열린 3목";
+    state.board[move.r][move.c] = EMPTY;
+    return { ...move, score, reason };
+  }).sort((a, b) => b.score - a.score).slice(0, limit);
+}
+
+function chooseOmokAiMove(color = WHITE) {
+  const opponent = color === BLACK ? WHITE : BLACK;
+  const moves = omokCandidateMoves(color);
+  for (const move of moves) {
+    state.board[move.r][move.c] = color;
+    const wins = omokWinningLine(state.board, move.r, move.c, color).length > 0;
+    state.board[move.r][move.c] = EMPTY;
+    if (wins) return { ...move, reason: "즉시 승리" };
+  }
+  for (const move of moves) {
+    state.board[move.r][move.c] = opponent;
+    const blocks = omokWinningLine(state.board, move.r, move.c, opponent).length > 0;
+    state.board[move.r][move.c] = EMPTY;
+    if (blocks) return { ...move, reason: "상대 5목 차단" };
+  }
+  return topOmokCandidates(color, 1)[0] || null;
+}
+
+function handleOmokMove(r, c) {
+  if (!inBounds(r, c, state.size) || state.board[r][c] !== EMPTY) {
+    setStatus("둘 수 없음", "빈 교차점에만 둘 수 있습니다.");
+    return;
+  }
+
+  const playedColor = state.turn;
+  state.board[r][c] = playedColor;
+  state.lastMove = [r, c];
+  state.passCount = 0;
+  const line = omokWinningLine(state.board, r, c, playedColor);
+  const candidates = state.gameOver ? [] : topOmokCandidates(playedColor);
+  const tags = line.length ? ["승리", "5목 완성"] : candidates.slice(0, 2).map((move) => move.reason);
+  const logEntry = { color: playedColor, r, c, captured: 0, historyIndex: null, tags };
+  state.gameLog.push(logEntry);
+
+  if (line.length) {
+    state.gameOver = true;
+    state.winner = playedColor;
+    state.winningLine = line;
+    saveHistory();
+    logEntry.historyIndex = state.history.length - 1;
+    updateReviewTimeline();
+    updateGameCoach("오목 승리", `${stoneName(playedColor)}이 ${line.length}개를 이었습니다. 승리 라인을 표시했습니다.`, [], tags);
+    setStatus("오목 승리", `${stoneName(playedColor)} 승리입니다. 새 대국으로 다시 시작할 수 있습니다.`);
+    render();
+    return;
+  }
+
+  state.turn = playedColor === BLACK ? WHITE : BLACK;
+  saveHistory();
+  logEntry.historyIndex = state.history.length - 1;
+  updateReviewTimeline();
+  const nextCandidates = topOmokCandidates(state.turn);
+  updateGameCoach("오목 후보수", `${stoneName(state.turn)} 차례입니다. 4목은 바로 막고, 열린 3목은 다음 위협으로 키우세요.`, nextCandidates, nextCandidates.map((move) => move.reason));
+  setStatus("착수", `${stoneName(state.turn)} 차례입니다. 5개 이상 연속을 노리세요.`);
+  render();
+
+  if (state.mode === "ai" && state.turn === WHITE) {
+    state.locked = true;
+    window.setTimeout(aiMove, 280);
+  }
+}
+
 function showCurrentAnswer() {
   const lesson = state.activeDrill || lessons[state.lessonIndex];
   state.hintLevel = 3;
@@ -3970,6 +4239,11 @@ function startRandomDrill() {
 }
 
 function handleGameMove(r, c) {
+  if (state.gameType === "omok") {
+    handleOmokMove(r, c);
+    return;
+  }
+
   const previousKey = state.history.at(-2)?.key;
   const result = playMove(state.board, r, c, state.turn, { previousKey });
   if (!result.ok) {
@@ -4013,6 +4287,10 @@ function passTurn() {
     setStatus("복기 중", "현재로 돌아온 뒤 패스하세요.");
     return;
   }
+  if (state.gameType === "omok") {
+    setStatus("오목 규칙", "오목은 패스 없이 둡니다. 5개 이상 연속으로 잇는 쪽이 승리합니다.");
+    return;
+  }
   state.turn = state.turn === BLACK ? WHITE : BLACK;
   state.passCount += 1;
   saveHistory();
@@ -4045,6 +4323,12 @@ function undoMove() {
 
 function aiMove() {
   if (state.gameOver) return;
+  if (state.gameType === "omok") {
+    const move = chooseOmokAiMove(WHITE);
+    state.locked = false;
+    if (move) handleOmokMove(move.r, move.c);
+    return;
+  }
   const move = chooseAiMove();
   if (!move) {
     state.locked = false;
@@ -4245,6 +4529,15 @@ function showHint() {
     showCurrentAnswer();
     return;
   }
+  if (state.gameType === "omok") {
+    const winning = chooseOmokAiMove(state.turn);
+    if (winning) {
+      state.revealedAnswer = [winning.r, winning.c];
+      render();
+      setStatus("오목 힌트", `${coordLabel(winning.r, winning.c)} 후보를 보세요. 내 연결을 키우거나 상대 5목을 막는 자리입니다.`);
+      return;
+    }
+  }
   const target = findAtari(state.board, state.turn === BLACK ? WHITE : BLACK);
   if (target) {
     setStatus("힌트", `${stoneName(target.color)}돌이 단수입니다. 표시된 마지막 활로를 막아보세요.`);
@@ -4261,6 +4554,7 @@ function showHint() {
 function starPoints(size) {
   if (size === 9) return [[2, 2], [2, 6], [4, 4], [6, 2], [6, 6]];
   if (size === 13) return [[3, 3], [3, 9], [6, 6], [9, 3], [9, 9]];
+  if (size === 15) return [[3, 3], [3, 11], [7, 7], [11, 3], [11, 11]];
   return [[3, 3], [3, 9], [3, 15], [9, 3], [9, 9], [9, 15], [15, 3], [15, 9], [15, 15]];
 }
 
@@ -4306,8 +4600,9 @@ function render() {
   const displayBoard = reviewSnapshot ? reviewSnapshot.board : state.board;
   const displayLastMove = reviewSnapshot?.lastMove || state.lastMove;
   const displayCaptures = reviewSnapshot?.captures || state.captures;
+  const displayWinningLine = reviewSnapshot?.winningLine || state.winningLine;
   const targets = state.mode === "learn" && !lesson.hideTarget && !state.locked ? lesson.targets : [];
-  const atari = state.mode !== "learn" ? findAtari(displayBoard, state.turn === BLACK ? WHITE : BLACK) : null;
+  const atari = state.mode !== "learn" && state.gameType === "baduk" ? findAtari(displayBoard, state.turn === BLACK ? WHITE : BLACK) : null;
   const score = estimateScore(displayBoard);
 
   for (let r = 0; r < state.size; r += 1) {
@@ -4326,6 +4621,7 @@ function render() {
       if (state.coachCandidates.some(([hr, hc]) => hr === r && hc === c)) point.classList.add("coach-candidate");
       if (atari?.liberty === `${r},${c}`) point.classList.add("hint");
       if (displayLastMove?.[0] === r && displayLastMove?.[1] === c) point.classList.add("last");
+      if (displayWinningLine.some(([wr, wc]) => wr === r && wc === c)) point.classList.add("winning");
       if (displayBoard[r][c] !== EMPTY) {
         const stone = document.createElement("span");
         stone.className = `stone ${displayBoard[r][c] === BLACK ? "black" : "white"}`;
@@ -4336,15 +4632,29 @@ function render() {
   }
 
   el.turnText.textContent = stoneName(state.turn);
-  el.blackCaps.textContent = displayCaptures[BLACK];
-  el.whiteCaps.textContent = displayCaptures[WHITE];
-  el.blackScore.textContent = score.black.toFixed(1);
-  el.whiteScore.textContent = score.white.toFixed(1);
+  if (state.gameType === "omok") {
+    const blackStones = displayBoard.flat().filter((cell) => cell === BLACK).length;
+    const whiteStones = displayBoard.flat().filter((cell) => cell === WHITE).length;
+    el.blackCaps.textContent = blackStones;
+    el.whiteCaps.textContent = whiteStones;
+    el.blackScore.textContent = state.winner === BLACK ? "승" : "-";
+    el.whiteScore.textContent = state.winner === WHITE ? "승" : "-";
+  } else {
+    el.blackCaps.textContent = displayCaptures[BLACK];
+    el.whiteCaps.textContent = displayCaptures[WHITE];
+    el.blackScore.textContent = score.black.toFixed(1);
+    el.whiteScore.textContent = score.white.toFixed(1);
+  }
   el.undoMove.disabled = state.mode === "learn" || state.history.length <= 1;
   updateReviewTimeline();
 }
 
 el.tabs.forEach((tab) => tab.addEventListener("click", () => switchMode(tab.dataset.mode)));
+el.gameTypes.forEach((button) => button.addEventListener("click", () => {
+  state.gameType = button.dataset.gameType === "omok" ? "omok" : "baduk";
+  updateGameTypeControls(true);
+  if (state.mode !== "learn") startGame(state.mode);
+}));
 el.prevLesson.addEventListener("click", () => {
   state.lessonIndex = Math.max(0, state.lessonIndex - 1);
   saveProgress();
@@ -4378,6 +4688,8 @@ el.hintButton.addEventListener("click", showHint);
 
 loadProgress();
 ensureMobileNav();
+updateGameTypeControls();
+updateScoreLabels();
 renderTerms();
 updateTrainingCounts();
 setupLesson();

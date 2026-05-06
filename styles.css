@@ -777,6 +777,39 @@ h2 {
   color: var(--ink);
 }
 
+.game-type-switch {
+  background: rgba(239, 236, 227, 0.74);
+  border: 1px solid rgba(43, 49, 45, 0.08);
+  border-radius: 18px;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 16px;
+  padding: 6px;
+}
+
+.game-type {
+  background: transparent;
+  border-radius: 13px;
+  color: var(--muted);
+  font-weight: 900;
+  min-height: 42px;
+}
+
+.game-type.active {
+  background: #262927;
+  color: #fbfaf4;
+  box-shadow: 0 10px 22px rgba(42, 57, 53, 0.14);
+}
+
+.game-type-help {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin: 10px 2px 0;
+}
+
 .score-row {
   display: grid;
   gap: 8px;
@@ -1201,6 +1234,12 @@ select {
   --size: var(--board-size);
 }
 
+.board.omok-board {
+  background:
+    radial-gradient(circle at 26% 18%, rgba(255, 255, 255, 0.2), transparent 24%),
+    linear-gradient(145deg, #d9ddd1, #c8cec2);
+}
+
 .line {
   background: var(--line);
   position: absolute;
@@ -1335,6 +1374,21 @@ select {
 .last .stone {
   outline: 3px solid rgba(43, 49, 45, 0.64);
   outline-offset: 2px;
+}
+
+.winning .stone {
+  outline: 4px solid rgba(106, 128, 91, 0.9);
+  outline-offset: 3px;
+}
+
+.winning::before {
+  background: rgba(106, 128, 91, 0.86);
+  border-radius: 999px;
+  content: "";
+  height: 8px;
+  position: absolute;
+  width: 8px;
+  z-index: 4;
 }
 
 .mobile-nav {
