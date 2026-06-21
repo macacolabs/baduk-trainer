@@ -13,6 +13,7 @@
    - 2차 완료: 글을 묶는 학습 허브 `learn.html`을 추가했습니다.
    - 3차 완료: `baduk-opening.html`, `baduk-life-and-death.html`, `baduk-endgame.html`, `baduk-sente-gote.html`, `omok-threats.html`을 추가했습니다.
    - 4차 완료: 질문형 검색 유입을 위한 `faq.html`을 추가했습니다.
+   - 운영 계획 완료: 다음 검색 유입 글 후보를 관리하는 `CONTENT_PLAN.md`를 추가했습니다.
 
 2. 정책 페이지 유지
    - `privacy.html`, `terms.html`을 유지합니다.
@@ -76,6 +77,7 @@
 
 - `README.md`: 배포, Search Console, AdSense 준비 요약
 - `OPERATION_CHECKLIST.md`: 매주/매월 반복 운영 체크리스트
+- `CONTENT_PLAN.md`: 검색 유입용 글 후보와 월간 콘텐츠 운영 계획
 - `ADSENSE_AFTER_APPROVAL.md`: AdSense 승인 후 광고 적용 절차
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지

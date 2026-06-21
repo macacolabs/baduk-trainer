@@ -16,6 +16,7 @@ const requiredFiles = [
   "sitemap.xml",
   "manifest.webmanifest",
   "ADSENSE_AFTER_APPROVAL.md",
+  "CONTENT_PLAN.md",
   "app.js",
   "styles.css",
 ];

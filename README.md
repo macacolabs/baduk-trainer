@@ -69,6 +69,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - `sitemap.xml`
 - 검색 유입용 학습 글
 - 질문형 검색 유입용 `faq.html`
+- 콘텐츠 확장 계획 `CONTENT_PLAN.md`
 - 광고 예정 영역 `ad-slot`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
@@ -110,6 +111,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 
 - `SERVICE_ROADMAP.md`: 서비스와 수익화 운영 계획
 - `OPERATION_CHECKLIST.md`: 배포, 검색 등록, 광고 운영 반복 체크리스트
+- `CONTENT_PLAN.md`: 검색 유입용 글 후보와 월간 콘텐츠 운영 계획
 - `ADSENSE_AFTER_APPROVAL.md`: AdSense 승인 후 광고 적용 절차
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 - `KATAGO_LOCAL_SETUP.md`: 로컬 KataGo 분석 서버 설정
