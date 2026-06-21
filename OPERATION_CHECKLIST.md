@@ -47,6 +47,7 @@
 2. `https://macacolabs.github.io/baduk-trainer/sitemap.xml` 제출
 3. `learn.html`과 주요 학습 글 색인 요청
 4. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
+5. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
 
 ## AdSense 신청 전 최종 확인
 

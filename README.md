@@ -64,6 +64,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - `privacy.html`
 - `terms.html`
 - `ADSENSE_AFTER_APPROVAL.md`
+- `EXTERNAL_ACCOUNT_CHECKLIST.md`
 - `adsense-checklist.html`
 - `robots.txt`
 - `sitemap.xml`
@@ -112,6 +113,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - `SERVICE_ROADMAP.md`: 서비스와 수익화 운영 계획
 - `OPERATION_CHECKLIST.md`: 배포, 검색 등록, 광고 운영 반복 체크리스트
 - `CONTENT_PLAN.md`: 검색 유입용 글 후보와 월간 콘텐츠 운영 계획
+- `EXTERNAL_ACCOUNT_CHECKLIST.md`: Search Console과 AdSense 외부 계정 작업 체크리스트
 - `ADSENSE_AFTER_APPROVAL.md`: AdSense 승인 후 광고 적용 절차
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 - `KATAGO_LOCAL_SETUP.md`: 로컬 KataGo 분석 서버 설정

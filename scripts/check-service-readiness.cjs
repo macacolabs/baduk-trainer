@@ -17,6 +17,7 @@ const requiredFiles = [
   "manifest.webmanifest",
   "ADSENSE_AFTER_APPROVAL.md",
   "CONTENT_PLAN.md",
+  "EXTERNAL_ACCOUNT_CHECKLIST.md",
   "app.js",
   "styles.css",
 ];
