@@ -33,6 +33,7 @@
 5. 성능
    - 첫 화면에서 빠르게 열려야 합니다.
    - `app.js`가 커지고 있으니 다음 단계에서는 학습 데이터와 게임 로직 분리를 검토합니다.
+   - 배포 전 기본 점검은 `node scripts/check-service-readiness.cjs`로 확인합니다.
 
 ## 운영 루틴
 
@@ -75,6 +76,7 @@
 - `OPERATION_CHECKLIST.md`: 매주/매월 반복 운영 체크리스트
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
+- `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 
 ## 참고한 공식 기준
 

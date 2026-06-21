@@ -1,0 +1,118 @@
+const fs = require("fs");
+const path = require("path");
+
+const root = path.resolve(__dirname, "..");
+const siteBase = "https://macacolabs.github.io/baduk-trainer/";
+
+const requiredFiles = [
+  "index.html",
+  "learn.html",
+  "privacy.html",
+  "terms.html",
+  "adsense-checklist.html",
+  "search-console.html",
+  "robots.txt",
+  "sitemap.xml",
+  "manifest.webmanifest",
+  "app.js",
+  "styles.css",
+];
+
+const articleFiles = [
+  "baduk-beginner.html",
+  "baduk-atari.html",
+  "baduk-liberties.html",
+  "baduk-glossary.html",
+  "baduk-opening.html",
+  "baduk-life-and-death.html",
+  "baduk-endgame.html",
+  "baduk-sente-gote.html",
+  "omok-strategy.html",
+  "omok-threats.html",
+];
+
+const errors = [];
+const warnings = [];
+
+function read(file) {
+  return fs.readFileSync(path.join(root, file), "utf8");
+}
+
+function exists(file) {
+  return fs.existsSync(path.join(root, file));
+}
+
+function check(condition, message) {
+  if (!condition) errors.push(message);
+}
+
+function warn(condition, message) {
+  if (!condition) warnings.push(message);
+}
+
+for (const file of [...requiredFiles, ...articleFiles]) {
+  check(exists(file), `Missing required file: ${file}`);
+}
+
+const htmlFiles = [...requiredFiles.filter((file) => file.endsWith(".html")), ...articleFiles];
+for (const file of htmlFiles) {
+  if (!exists(file)) continue;
+  const html = read(file);
+  check(/<html\s+lang="ko"/.test(html), `${file}: missing Korean html lang`);
+  check(/<meta\s+name="viewport"/.test(html), `${file}: missing viewport meta`);
+  check(/<title>[^<]+<\/title>/.test(html), `${file}: missing title`);
+  warn(/<meta\s+name="description"/.test(html), `${file}: missing description meta`);
+  warn(/rel="canonical"/.test(html), `${file}: missing canonical link`);
+}
+
+if (exists("sitemap.xml")) {
+  const sitemap = read("sitemap.xml");
+  check(sitemap.includes(`${siteBase}</loc>`), "sitemap.xml: missing site root URL");
+  for (const file of ["learn.html", "adsense-checklist.html", "search-console.html", ...articleFiles]) {
+    check(sitemap.includes(`${siteBase}${file}`), `sitemap.xml: missing ${file}`);
+  }
+}
+
+if (exists("robots.txt")) {
+  const robots = read("robots.txt");
+  check(/Sitemap:\s*https:\/\/macacolabs\.github\.io\/baduk-trainer\/sitemap\.xml/.test(robots), "robots.txt: missing sitemap URL");
+}
+
+if (exists("learn.html")) {
+  const learn = read("learn.html");
+  for (const file of articleFiles) {
+    check(learn.includes(`href="${file}"`), `learn.html: missing article link ${file}`);
+  }
+}
+
+if (exists("index.html")) {
+  const index = read("index.html");
+  for (const file of ["learn.html", "adsense-checklist.html", "search-console.html", "privacy.html", "terms.html"]) {
+    check(index.includes(`href="${file}"`), `index.html: missing footer/navigation link ${file}`);
+  }
+}
+
+const allText = fs
+  .readdirSync(root)
+  .filter((file) => file.endsWith(".html") || file.endsWith(".js"))
+  .map((file) => read(file))
+  .join("\n");
+
+check(!/adsbygoogle|pagead2\.googlesyndication\.com|google_ad_client/.test(allText), "AdSense script found before approval");
+check((allText.match(/class="ad-slot/g) || []).length >= 2, "Expected visible ad-slot placeholders");
+
+console.log("Service readiness check");
+console.log(`Checked ${htmlFiles.length} HTML pages and ${articleFiles.length} learning articles.`);
+
+if (warnings.length) {
+  console.log("\nWarnings:");
+  for (const item of warnings) console.log(`- ${item}`);
+}
+
+if (errors.length) {
+  console.error("\nErrors:");
+  for (const item of errors) console.error(`- ${item}`);
+  process.exit(1);
+}
+
+console.log("\nOK: service readiness checks passed.");

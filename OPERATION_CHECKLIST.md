@@ -6,6 +6,7 @@
 
 - `git status --short --branch`로 의도하지 않은 변경이 없는지 확인
 - `node --check app.js`로 JavaScript 문법 확인
+- `node scripts/check-service-readiness.cjs`로 sitemap, 학습 글 링크, 광고 준비 상태 확인
 - 새 HTML 페이지를 추가했다면 `learn.html` 또는 관련 글에서 연결
 - 새 공개 페이지를 추가했다면 `sitemap.xml`에 URL 추가
 - 모바일 폭에서 바둑판, 오목판, 주요 버튼이 겹치지 않는지 확인

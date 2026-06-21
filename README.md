@@ -36,6 +36,7 @@ node serve-mobile.cjs
 ```powershell
 git status --short --branch
 node --check app.js
+node scripts/check-service-readiness.cjs
 git add -A
 git commit -m "변경 내용"
 git push origin main
@@ -64,6 +65,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - `sitemap.xml`
 - 검색 유입용 학습 글
 - 광고 예정 영역 `ad-slot`
+- 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 
 광고 배치 금지 구역:
 
