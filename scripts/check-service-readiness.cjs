@@ -31,6 +31,8 @@ const articleFiles = [
   "omok-threats.html",
 ];
 
+const structuredDataFiles = ["index.html", "learn.html", "search-console.html"];
+
 const errors = [];
 const warnings = [];
 
@@ -63,6 +65,13 @@ for (const file of htmlFiles) {
   check(/<title>[^<]+<\/title>/.test(html), `${file}: missing title`);
   warn(/<meta\s+name="description"/.test(html), `${file}: missing description meta`);
   warn(/rel="canonical"/.test(html), `${file}: missing canonical link`);
+}
+
+for (const file of structuredDataFiles) {
+  if (!exists(file)) continue;
+  const html = read(file);
+  check(/<script\s+type="application\/ld\+json">/.test(html), `${file}: missing JSON-LD structured data`);
+  check(/"@context":\s*"https:\/\/schema\.org"/.test(html), `${file}: missing schema.org context`);
 }
 
 if (exists("sitemap.xml")) {
