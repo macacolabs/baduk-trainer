@@ -79,6 +79,8 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 
 ## 운영 루틴
 
+자세한 반복 점검표는 `OPERATION_CHECKLIST.md`를 기준으로 관리합니다.
+
 매주:
 
 - 모바일에서 10분 직접 사용
@@ -96,4 +98,5 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 ## 관련 문서
 
 - `SERVICE_ROADMAP.md`: 서비스와 수익화 운영 계획
+- `OPERATION_CHECKLIST.md`: 배포, 검색 등록, 광고 운영 반복 체크리스트
 - `KATAGO_LOCAL_SETUP.md`: 로컬 KataGo 분석 서버 설정

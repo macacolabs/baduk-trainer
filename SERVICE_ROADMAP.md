@@ -41,6 +41,7 @@
 - GitHub Pages 배포 상태 확인
 - Search Console 색인/검색어 확인
 - 사용자 입장에서 새 문제 5개 이상 추가
+- 세부 반복 점검은 `OPERATION_CHECKLIST.md` 기준으로 확인
 
 ### 매월
 
@@ -66,6 +67,12 @@
 3. 바둑/오목 문제 즐겨찾기와 이어풀기
 4. 모바일 하단 광고가 들어갈 수 있는 안전 영역 설계
 5. 로컬 학습 기록 백업/복원
+
+## 현재 운영 문서
+
+- `README.md`: 배포, Search Console, AdSense 준비 요약
+- `OPERATION_CHECKLIST.md`: 매주/매월 반복 운영 체크리스트
+- `adsense-checklist.html`: 공개 신청 전 점검 페이지
 
 ## 참고한 공식 기준
 
