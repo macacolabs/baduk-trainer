@@ -1433,6 +1433,20 @@ const aiStyles = {
   },
 };
 
+const omokAiNotes = {
+  beginner: "입문: 열린 3과 4목을 자주 놓치는 연습 상대",
+  k20: "20급: 즉시 승리는 보지만 방어 실수가 남는 상대",
+  k10: "10급: 공격과 방어를 대부분 확인하는 상대",
+  k5: "5급: 4목 차단과 열린 3목 확장을 거의 놓치지 않는 상대",
+};
+
+const omokTacticalReliability = {
+  beginner: 0.35,
+  k20: 0.68,
+  k10: 0.9,
+  k5: 1,
+};
+
 const rankCurriculum = [
   ["30급", "교차점, 활로, 단수", "9줄에서 정답률 70%, 단수 문제 20개"],
   ["25급", "포획, 연결, 끊기", "연결/끊기 문제 30개, 오답 재출제 5개 해결"],
@@ -2494,7 +2508,7 @@ function ensureAiLevelControl() {
     .map(([value, style]) => `<option value="${value}">${style.label}</option>`)
     .join("");
   field.innerHTML = `
-    <span>AI 급수</span>
+    <span>AI 난이도</span>
     <select id="aiLevel">
       ${options}
     </select>
@@ -2509,7 +2523,8 @@ function ensureAiLevelControl() {
     state.aiLevel = event.target.value;
     saveProgress();
     const style = aiStyles[state.aiLevel] || aiStyles.k20;
-    setStatus("AI 급수", `${style.label} 스타일로 바꿨습니다. ${style.note}`);
+    const note = state.gameType === "omok" ? omokAiNotes[state.aiLevel] || omokAiNotes.k20 : style.note;
+    setStatus("AI 난이도", `${style.label} 스타일로 바꿨습니다. ${note}`);
   });
 }
 
@@ -3936,8 +3951,9 @@ function startGame(mode) {
   el.boardTitle.textContent = mode === "ai" ? `흑으로 ${gameLabel} AI와 두기` : `${gameLabel} 서로 번갈아 두기`;
   el.topPlayerName.textContent = mode === "ai" ? `AI 백` : "백";
   const aiStyle = aiStyles[state.aiLevel] || aiStyles.k20;
+  const omokAiNote = omokAiNotes[state.aiLevel] || omokAiNotes.k20;
   el.topPlayerMeta.textContent = state.gameType === "omok"
-    ? mode === "ai" ? "오목 수읽기 AI" : "상대 · 5목 승부"
+    ? mode === "ai" ? `${aiStyle.label} 오목 AI` : "상대 · 5목 승부"
     : mode === "ai" ? `${aiStyle.label} 스타일 · 6.5 덤` : "상대 · 6.5 덤";
   el.topTimer.textContent = "10:00";
   el.bottomPlayerName.textContent = mode === "ai" ? "플레이어 흑" : "흑";
@@ -3946,7 +3962,7 @@ function startGame(mode) {
   updateGameCoach(
     state.gameType === "omok" ? "오목 코치 준비" : "대국 코치 준비",
     state.gameType === "omok"
-      ? "중앙을 잡고, 내 4목은 완성하고 상대 4목은 즉시 막으세요. 열린 3목도 큰 위협입니다."
+      ? `${omokAiNote}. 중앙을 잡고, 내 4목은 완성하고 상대 4목은 즉시 막으세요. 열린 3목도 큰 위협입니다.`
       : mode === "ai" ? `${aiStyle.label} AI와 둡니다. ${aiStyle.note}` : "착수마다 후보수, 포획, 단수, 자충 위험을 기록합니다.",
     [],
     state.gameType === "omok" ? ["5목", "4목 막기"] : ["후보수", "복기 태그"]
@@ -4149,19 +4165,25 @@ function topOmokCandidates(color, limit = 3) {
 function chooseOmokAiMove(color = WHITE) {
   const opponent = color === BLACK ? WHITE : BLACK;
   const moves = omokCandidateMoves(color);
+  const style = aiStyles[state.aiLevel] || aiStyles.k20;
+  const reliability = omokTacticalReliability[state.aiLevel] ?? omokTacticalReliability.k20;
   for (const move of moves) {
     state.board[move.r][move.c] = color;
     const wins = omokWinningLine(state.board, move.r, move.c, color).length > 0;
     state.board[move.r][move.c] = EMPTY;
-    if (wins) return { ...move, reason: "즉시 승리" };
+    if (wins && Math.random() <= Math.min(1, reliability + 0.18)) return { ...move, reason: "즉시 승리" };
   }
   for (const move of moves) {
     state.board[move.r][move.c] = opponent;
     const blocks = omokWinningLine(state.board, move.r, move.c, opponent).length > 0;
     state.board[move.r][move.c] = EMPTY;
-    if (blocks) return { ...move, reason: "상대 5목 차단" };
+    if (blocks && Math.random() <= reliability) return { ...move, reason: "상대 5목 차단" };
   }
-  return topOmokCandidates(color, 1)[0] || null;
+  const width = Math.min(style.width, Math.max(1, moves.length));
+  const candidates = topOmokCandidates(color, width);
+  if (!candidates.length) return null;
+  const noisyIndex = Math.random() < style.blunder ? Math.floor(Math.random() * candidates.length) : 0;
+  return candidates[Math.min(candidates.length - 1, noisyIndex)] || null;
 }
 
 function handleOmokMove(r, c) {

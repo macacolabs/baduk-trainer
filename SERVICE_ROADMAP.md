@@ -11,6 +11,7 @@
    - 현재 앱 내부 문제는 좋지만, 검색엔진과 광고 심사자가 평가할 수 있는 설명형 콘텐츠가 더 필요합니다.
    - 1차 완료: `baduk-beginner.html`, `baduk-atari.html`, `baduk-liberties.html`, `omok-strategy.html`, `baduk-glossary.html`을 추가했습니다.
    - 2차 완료: 글을 묶는 학습 허브 `learn.html`을 추가했습니다.
+   - 3차 완료: `baduk-opening.html`, `baduk-life-and-death.html`, `baduk-endgame.html`, `baduk-sente-gote.html`, `omok-threats.html`을 추가했습니다.
 
 2. 정책 페이지 유지
    - `privacy.html`, `terms.html`을 유지합니다.
@@ -52,7 +53,7 @@
 
 1. 기능 안정화
 2. 정책 페이지/SEO 파일 정리
-3. 검색 유입용 설명 페이지 5-10개 추가
+3. 검색 유입용 설명 페이지 10개 이상 유지
 4. Google Search Console 등록
 5. AdSense 신청
 6. 승인 후 광고를 게임판과 조작 버튼에서 떨어진 위치에만 배치
