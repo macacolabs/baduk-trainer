@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://macacolabs.github.io/baduk-trainer/sitemap.xml
