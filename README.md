@@ -58,6 +58,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 
 - `privacy.html`
 - `terms.html`
+- `adsense-checklist.html`
 - `robots.txt`
 - `sitemap.xml`
 - 검색 유입용 학습 글

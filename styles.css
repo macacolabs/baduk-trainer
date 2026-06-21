@@ -1521,6 +1521,12 @@ select {
   padding-left: 22px;
 }
 
+.checklist-list li::marker {
+  content: "□ ";
+  color: var(--accent-2);
+  font-weight: 900;
+}
+
 .article-card-grid {
   display: grid;
   gap: 12px;
