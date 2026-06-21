@@ -12,6 +12,7 @@
    - 1차 완료: `baduk-beginner.html`, `baduk-atari.html`, `baduk-liberties.html`, `omok-strategy.html`, `baduk-glossary.html`을 추가했습니다.
    - 2차 완료: 글을 묶는 학습 허브 `learn.html`을 추가했습니다.
    - 3차 완료: `baduk-opening.html`, `baduk-life-and-death.html`, `baduk-endgame.html`, `baduk-sente-gote.html`, `omok-threats.html`을 추가했습니다.
+   - 4차 완료: 질문형 검색 유입을 위한 `faq.html`을 추가했습니다.
 
 2. 정책 페이지 유지
    - `privacy.html`, `terms.html`을 유지합니다.

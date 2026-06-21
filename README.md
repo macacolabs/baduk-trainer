@@ -15,6 +15,7 @@
 - 오목 AI 대국
 - 급수 진단과 추천 루틴
 - 바둑/오목 학습 글
+- 바둑/오목 FAQ
 - 개인정보처리방침, 이용약관, sitemap, robots
 
 ## 로컬 확인
@@ -65,6 +66,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - `robots.txt`
 - `sitemap.xml`
 - 검색 유입용 학습 글
+- 질문형 검색 유입용 `faq.html`
 - 광고 예정 영역 `ad-slot`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`

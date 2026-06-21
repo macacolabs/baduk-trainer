@@ -7,6 +7,7 @@ const siteBase = "https://macacolabs.github.io/baduk-trainer/";
 const requiredFiles = [
   "index.html",
   "learn.html",
+  "faq.html",
   "privacy.html",
   "terms.html",
   "adsense-checklist.html",
@@ -31,7 +32,7 @@ const articleFiles = [
   "omok-threats.html",
 ];
 
-const structuredDataFiles = ["index.html", "learn.html", "search-console.html"];
+const structuredDataFiles = ["index.html", "learn.html", "faq.html", "search-console.html"];
 
 const errors = [];
 const warnings = [];
@@ -83,7 +84,7 @@ for (const file of structuredDataFiles) {
 if (exists("sitemap.xml")) {
   const sitemap = read("sitemap.xml");
   check(sitemap.includes(`${siteBase}</loc>`), "sitemap.xml: missing site root URL");
-  for (const file of ["learn.html", "adsense-checklist.html", "search-console.html", ...articleFiles]) {
+  for (const file of ["learn.html", "faq.html", "adsense-checklist.html", "search-console.html", ...articleFiles]) {
     check(sitemap.includes(`${siteBase}${file}`), `sitemap.xml: missing ${file}`);
   }
 }
@@ -102,7 +103,7 @@ if (exists("learn.html")) {
 
 if (exists("index.html")) {
   const index = read("index.html");
-  for (const file of ["learn.html", "adsense-checklist.html", "search-console.html", "privacy.html", "terms.html"]) {
+  for (const file of ["learn.html", "faq.html", "adsense-checklist.html", "search-console.html", "privacy.html", "terms.html"]) {
     check(index.includes(`href="${file}"`), `index.html: missing footer/navigation link ${file}`);
   }
 }
