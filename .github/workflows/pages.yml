@@ -51,3 +51,5 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Check live site
+        run: node scripts/check-live-site.cjs

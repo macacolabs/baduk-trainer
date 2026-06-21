@@ -15,7 +15,7 @@
 
 ## 매주
 
-- GitHub Pages 배포 URL 접속 확인
+- `node scripts/check-live-site.cjs`로 GitHub Pages live URL 접속 확인
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트
 - 모바일에서 착수 위치와 버튼 클릭 확인

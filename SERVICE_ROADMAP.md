@@ -43,7 +43,7 @@
 ### 매주
 
 - 실제 모바일에서 10분 사용하며 클릭 오류, 판 위치, 글자 겹침 확인
-- GitHub Pages 배포 상태 확인
+- `node scripts/check-live-site.cjs`로 GitHub Pages 배포 상태 확인
 - Search Console 색인/검색어 확인
 - 사용자 입장에서 새 문제 5개 이상 추가
 - 세부 반복 점검은 `OPERATION_CHECKLIST.md` 기준으로 확인
@@ -85,6 +85,7 @@
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검
 - `scripts/check-performance-budget.cjs`: 주요 파일 크기 예산 자동 점검
+- `scripts/check-live-site.cjs`: 배포 후 live URL 자동 점검
 
 ## 참고한 공식 기준
 

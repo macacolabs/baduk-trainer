@@ -47,6 +47,12 @@ git push origin main
 
 GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 
+배포 후 live URL 확인:
+
+```powershell
+node scripts/check-live-site.cjs
+```
+
 ## Search Console
 
 1. Google Search Console에서 URL 접두어 속성으로 등록합니다.
@@ -75,6 +81,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
+- 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
 - 메인, 학습 허브, 검색 등록 안내의 JSON-LD 구조화 데이터
 
 광고 배치 금지 구역:
