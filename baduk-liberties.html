@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바둑 활로 이해: 돌이 사는 조건 - 큰돌</title>
+    <meta
+      name="description"
+      content="바둑 활로의 뜻, 활로를 세는 법, 자살수와 포획의 관계를 초보자에게 맞춰 설명합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/baduk-liberties.html" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="index.html">큰돌로 돌아가기</a>
+      <p class="eyebrow">활로 이해</p>
+      <h1>활로를 알면 바둑 전투가 보입니다</h1>
+      <p class="article-lead">활로는 돌의 숨구멍입니다. 활로를 세는 습관이 생기면 단수, 포획, 사활이 한꺼번에 쉬워집니다.</p>
+
+      <section>
+        <h2>활로는 상하좌우 빈 점입니다</h2>
+        <p>돌 하나의 위, 아래, 왼쪽, 오른쪽에 있는 빈 교차점이 활로입니다. 판 중앙의 한 돌은 최대 4개의 활로를 가집니다. 변에 있으면 3개, 귀에 있으면 2개부터 시작합니다.</p>
+      </section>
+
+      <section>
+        <h2>같은 색 돌은 연결되면 한 무리입니다</h2>
+        <p>상하좌우로 붙은 같은 색 돌은 하나의 무리로 봅니다. 무리는 활로를 함께 공유합니다. 돌이 많아도 무리 전체의 활로가 0개가 되면 모두 잡힙니다.</p>
+      </section>
+
+      <section>
+        <h2>자살수는 왜 금지될까?</h2>
+        <p>내가 둔 뒤 내 돌의 활로가 0개가 되는 수는 자살수입니다. 다만 그 수로 상대 돌을 먼저 잡아서 내 돌의 활로가 생긴다면 둘 수 있습니다. 그래서 포획과 자살수는 항상 함께 확인해야 합니다.</p>
+      </section>
+
+      <section>
+        <h2>실전 체크리스트</h2>
+        <ol class="article-list">
+          <li>내가 두려는 자리에 돌을 놓았다고 상상한다.</li>
+          <li>내 돌 무리의 활로가 몇 개인지 센다.</li>
+          <li>상대 돌 중 활로가 1개 이하가 되는 무리가 있는지 본다.</li>
+          <li>상대가 다음 수에 내 돌을 잡을 수 있는지 확인한다.</li>
+        </ol>
+      </section>
+    </main>
+  </body>
+</html>
