@@ -1,0 +1,39 @@
+name: 운영/광고 점검
+description: Search Console, AdSense, 배포, 정책 문서 관련 점검을 기록합니다.
+title: "[Ops] "
+labels: ["ops"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: 점검 영역
+      options:
+        - Search Console
+        - AdSense
+        - GitHub Pages 배포
+        - sitemap/robots
+        - 개인정보/약관
+        - 성능
+        - 광고 위치
+        - 기타
+    validations:
+      required: true
+  - type: textarea
+    id: checklist
+    attributes:
+      label: 확인한 내용
+      value: |
+        - [ ] OPERATION_CHECKLIST.md 확인
+        - [ ] EXTERNAL_ACCOUNT_CHECKLIST.md 확인
+        - [ ] node scripts/check-service-readiness.cjs
+        - [ ] node scripts/check-links.cjs
+        - [ ] node scripts/check-performance-budget.cjs
+        - [ ] node scripts/check-live-site.cjs
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: 결과와 다음 조치
+    validations:
+      required: true

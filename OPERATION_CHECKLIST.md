@@ -19,6 +19,7 @@
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트
 - 모바일에서 착수 위치와 버튼 클릭 확인
+- 새 GitHub 이슈를 버그, 콘텐츠 요청, 운영 점검으로 분류
 - Search Console 색인 상태와 검색어 확인
 - 유입이 있는 글 1개를 더 자세히 보강
 - `CONTENT_PLAN.md`에서 다음 작성 후보 1개를 고르기
@@ -31,6 +32,13 @@
 - 오래된 글의 설명, 제목, 내부 링크 보강
 - 새 학습 글 또는 문제 세트 1개 이상 추가
 - 발행한 글을 `CONTENT_PLAN.md` 완료 기록에 추가
+
+## 피드백 관리
+
+- 버그 신고는 `.github/ISSUE_TEMPLATE/bug_report.yml` 양식으로 받기
+- 새 글이나 문제 요청은 `.github/ISSUE_TEMPLATE/content_request.yml` 양식으로 받기
+- Search Console, AdSense, 배포 점검은 `.github/ISSUE_TEMPLATE/operations_check.yml` 양식으로 기록하기
+- 사용자 재현 정보가 부족한 버그는 기기, 브라우저, 재현 순서부터 확인하기
 
 ## 광고 운영 원칙
 

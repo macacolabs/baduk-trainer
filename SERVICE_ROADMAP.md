@@ -43,6 +43,7 @@
 ### 매주
 
 - 실제 모바일에서 10분 사용하며 클릭 오류, 판 위치, 글자 겹침 확인
+- GitHub 이슈 템플릿으로 들어온 버그/콘텐츠/운영 요청 확인
 - `node scripts/check-live-site.cjs`로 GitHub Pages 배포 상태 확인
 - Search Console 색인/검색어 확인
 - 사용자 입장에서 새 문제 5개 이상 추가
@@ -86,6 +87,7 @@
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검
 - `scripts/check-performance-budget.cjs`: 주요 파일 크기 예산 자동 점검
 - `scripts/check-live-site.cjs`: 배포 후 live URL 자동 점검
+- `.github/ISSUE_TEMPLATE/`: 버그, 콘텐츠 요청, 운영 점검 이슈 양식
 
 ## 참고한 공식 기준
 

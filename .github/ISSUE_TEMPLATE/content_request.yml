@@ -1,0 +1,41 @@
+name: 학습 콘텐츠 요청
+description: 새 학습 글, 문제, 용어 설명, 오목/바둑 주제를 요청합니다.
+title: "[Content] "
+labels: ["content"]
+body:
+  - type: dropdown
+    id: content_type
+    attributes:
+      label: 요청 종류
+      options:
+        - 새 학습 글
+        - 새 연습 문제
+        - 용어 설명
+        - FAQ 추가
+        - 기존 글 보강
+        - 기타
+    validations:
+      required: true
+  - type: input
+    id: topic
+    attributes:
+      label: 주제
+      placeholder: 예: 바둑 단수 연습을 잘하는 법
+    validations:
+      required: true
+  - type: textarea
+    id: beginner_question
+    attributes:
+      label: 초보자가 실제로 궁금해할 질문
+      placeholder: 예: 단수 문제는 맞히는데 실전에서는 왜 놓칠까요?
+    validations:
+      required: true
+  - type: textarea
+    id: related
+    attributes:
+      label: 연결하면 좋은 기존 페이지
+      placeholder: 예: baduk-atari.html, baduk-liberties.html
+  - type: textarea
+    id: notes
+    attributes:
+      label: 추가 설명

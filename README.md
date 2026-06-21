@@ -16,6 +16,7 @@
 - 급수 진단과 추천 루틴
 - 바둑/오목 학습 글
 - 바둑/오목 FAQ
+- GitHub 이슈 템플릿 기반 피드백 관리
 - 개인정보처리방침, 이용약관, sitemap, robots
 
 ## 로컬 확인
@@ -105,6 +106,7 @@ node scripts/check-live-site.cjs
 
 - 모바일에서 10분 직접 사용
 - 깨진 링크 확인
+- 새 GitHub 이슈 확인
 - 새 문제 또는 글 보강
 - GitHub Pages 배포 상태 확인
 
