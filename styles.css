@@ -1403,6 +1403,41 @@ select {
   padding: 0 22px;
 }
 
+.ad-slot {
+  align-items: center;
+  background: rgba(255, 254, 248, 0.54);
+  border: 1px dashed rgba(43, 49, 45, 0.2);
+  border-radius: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  line-height: 1.45;
+  min-height: 96px;
+  padding: 18px;
+  text-align: center;
+}
+
+.ad-slot span {
+  color: var(--accent-2);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.ad-slot p {
+  font-size: 13px;
+  margin: 0;
+}
+
+.ad-slot-home {
+  margin: -4px auto 22px;
+  max-width: min(760px, calc(100% - 44px));
+}
+
+.ad-slot-article {
+  margin-top: 8px;
+}
+
 .site-footer a,
 .doc-back {
   color: var(--accent);
