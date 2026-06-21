@@ -28,6 +28,8 @@ jobs:
         run: node --check app.js
       - name: Check service readiness
         run: node scripts/check-service-readiness.cjs
+      - name: Check internal links
+        run: node scripts/check-links.cjs
 
   deploy:
     needs: validate
