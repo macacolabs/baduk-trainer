@@ -49,6 +49,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 2. 등록 URL은 `https://macacolabs.github.io/baduk-trainer/`입니다.
 3. HTML meta verification 태그를 받으면 `index.html`의 `<head>`에 추가합니다.
 4. sitemap 제출 주소는 `https://macacolabs.github.io/baduk-trainer/sitemap.xml`입니다.
+5. 공개 안내 페이지는 `search-console.html`입니다.
 
 ## AdSense 준비
 
@@ -99,4 +100,5 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 
 - `SERVICE_ROADMAP.md`: 서비스와 수익화 운영 계획
 - `OPERATION_CHECKLIST.md`: 배포, 검색 등록, 광고 운영 반복 체크리스트
+- `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 - `KATAGO_LOCAL_SETUP.md`: 로컬 KataGo 분석 서버 설정

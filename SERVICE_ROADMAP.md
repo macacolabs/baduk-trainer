@@ -28,6 +28,7 @@
    - `robots.txt`, `sitemap.xml`, canonical, description 메타를 유지합니다.
    - 검색 유입용 페이지 예: `바둑 입문`, `단수 연습`, `오목 기본 전략`, `바둑 용어 사전`.
    - 운영 보강 완료: `404.html`, `manifest.webmanifest`, `README.md`를 추가했습니다.
+   - 검색 등록 안내 완료: `search-console.html`을 추가했습니다.
 
 5. 성능
    - 첫 화면에서 빠르게 열려야 합니다.
@@ -73,6 +74,7 @@
 - `README.md`: 배포, Search Console, AdSense 준비 요약
 - `OPERATION_CHECKLIST.md`: 매주/매월 반복 운영 체크리스트
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지
+- `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 
 ## 참고한 공식 기준
 

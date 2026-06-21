@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Console 등록 안내 - 큰돌</title>
+    <meta
+      name="description"
+      content="큰돌 GitHub Pages 사이트를 Google Search Console에 등록하고 sitemap을 제출하는 순서입니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/search-console.html" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="index.html">큰돌로 돌아가기</a>
+      <p class="eyebrow">검색 등록</p>
+      <h1>Search Console 등록 순서</h1>
+      <p class="article-lead">검색 유입과 AdSense 신청을 준비하려면 Google Search Console에서 사이트 소유권을 확인하고 sitemap을 제출해야 합니다.</p>
+
+      <section>
+        <h2>1. 사이트 등록</h2>
+        <ol class="article-list">
+          <li>Google Search Console에 접속합니다.</li>
+          <li>속성 추가에서 URL 접두어를 선택합니다.</li>
+          <li>등록 URL에 `https://macacolabs.github.io/baduk-trainer/`를 입력합니다.</li>
+          <li>HTML 태그 방식의 verification meta 태그를 받습니다.</li>
+          <li>받은 태그를 `index.html`의 `<head>` 안에 넣고 배포합니다.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>2. sitemap 제출</h2>
+        <p>소유권 확인이 끝나면 sitemap 메뉴에서 아래 주소를 제출합니다.</p>
+        <p class="code-line">https://macacolabs.github.io/baduk-trainer/sitemap.xml</p>
+      </section>
+
+      <section>
+        <h2>3. 먼저 색인 요청할 페이지</h2>
+        <ul class="article-list checklist-list">
+          <li>메인: `https://macacolabs.github.io/baduk-trainer/`</li>
+          <li>학습 허브: `https://macacolabs.github.io/baduk-trainer/learn.html`</li>
+          <li>바둑 입문: `https://macacolabs.github.io/baduk-trainer/baduk-beginner.html`</li>
+          <li>단수 설명: `https://macacolabs.github.io/baduk-trainer/baduk-atari.html`</li>
+          <li>오목 전략: `https://macacolabs.github.io/baduk-trainer/omok-strategy.html`</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. 등록 후 관리</h2>
+        <ul class="article-list checklist-list">
+          <li>색인 생성 범위에서 제외된 페이지가 있는지 확인합니다.</li>
+          <li>검색어가 생기면 해당 글의 첫 문단과 내부 링크를 보강합니다.</li>
+          <li>새 학습 글을 추가하면 `sitemap.xml`과 학습 허브를 함께 갱신합니다.</li>
+          <li>AdSense 신청 전에는 주요 학습 글이 검색엔진에서 접근 가능한지 확인합니다.</li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>
