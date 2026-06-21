@@ -15,6 +15,7 @@ const requiredFiles = [
   "robots.txt",
   "sitemap.xml",
   "manifest.webmanifest",
+  "ADSENSE_AFTER_APPROVAL.md",
   "app.js",
   "styles.css",
 ];

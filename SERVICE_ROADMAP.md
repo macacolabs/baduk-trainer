@@ -24,6 +24,7 @@
    - 광고 라벨은 `광고` 또는 `Sponsored Links`처럼 명확해야 합니다.
    - 승인 전 준비 완료: 메인 하단과 학습 글 하단에 `ad-slot` 구조만 추가했습니다. 실제 광고 스크립트는 아직 넣지 않습니다.
    - 신청 전 점검용 `adsense-checklist.html`을 추가했습니다.
+   - 승인 후 적용 절차용 `ADSENSE_AFTER_APPROVAL.md`를 추가했습니다.
 
 4. SEO 기본
    - `robots.txt`, `sitemap.xml`, canonical, description 메타를 유지합니다.
@@ -75,6 +76,7 @@
 
 - `README.md`: 배포, Search Console, AdSense 준비 요약
 - `OPERATION_CHECKLIST.md`: 매주/매월 반복 운영 체크리스트
+- `ADSENSE_AFTER_APPROVAL.md`: AdSense 승인 후 광고 적용 절차
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
