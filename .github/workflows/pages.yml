@@ -30,6 +30,8 @@ jobs:
         run: node scripts/check-service-readiness.cjs
       - name: Check internal links
         run: node scripts/check-links.cjs
+      - name: Check performance budget
+        run: node scripts/check-performance-budget.cjs
 
   deploy:
     needs: validate

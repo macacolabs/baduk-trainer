@@ -39,6 +39,7 @@ git status --short --branch
 node --check app.js
 node scripts/check-service-readiness.cjs
 node scripts/check-links.cjs
+node scripts/check-performance-budget.cjs
 git add -A
 git commit -m "변경 내용"
 git push origin main
@@ -70,6 +71,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 - 광고 예정 영역 `ad-slot`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
+- 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 메인, 학습 허브, 검색 등록 안내의 JSON-LD 구조화 데이터
 
 광고 배치 금지 구역:
