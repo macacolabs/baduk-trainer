@@ -25,6 +25,7 @@
 4. SEO 기본
    - `robots.txt`, `sitemap.xml`, canonical, description 메타를 유지합니다.
    - 검색 유입용 페이지 예: `바둑 입문`, `단수 연습`, `오목 기본 전략`, `바둑 용어 사전`.
+   - 운영 보강 완료: `404.html`, `manifest.webmanifest`, `README.md`를 추가했습니다.
 
 5. 성능
    - 첫 화면에서 빠르게 열려야 합니다.

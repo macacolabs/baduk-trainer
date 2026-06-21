@@ -1,0 +1,13 @@
+{
+  "name": "큰돌 - 바둑과 오목 학습 트레이너",
+  "short_name": "큰돌",
+  "description": "바둑과 오목을 배우고 연습하는 웹 트레이너",
+  "start_url": "/baduk-trainer/",
+  "scope": "/baduk-trainer/",
+  "display": "standalone",
+  "background_color": "#f7f5ee",
+  "theme_color": "#e8eee7",
+  "lang": "ko",
+  "orientation": "portrait-primary",
+  "categories": ["education", "games"]
+}
