@@ -10,6 +10,7 @@
    - 바둑 입문, 단수, 활로, 사활, 오목 전략을 설명하는 읽을거리 페이지를 추가합니다.
    - 현재 앱 내부 문제는 좋지만, 검색엔진과 광고 심사자가 평가할 수 있는 설명형 콘텐츠가 더 필요합니다.
    - 1차 완료: `baduk-beginner.html`, `baduk-atari.html`, `baduk-liberties.html`, `omok-strategy.html`, `baduk-glossary.html`을 추가했습니다.
+   - 2차 완료: 글을 묶는 학습 허브 `learn.html`을 추가했습니다.
 
 2. 정책 페이지 유지
    - `privacy.html`, `terms.html`을 유지합니다.
