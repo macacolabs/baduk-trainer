@@ -67,6 +67,12 @@ for (const file of htmlFiles) {
   warn(/rel="canonical"/.test(html), `${file}: missing canonical link`);
 }
 
+for (const file of articleFiles) {
+  if (!exists(file)) continue;
+  const html = read(file);
+  check(/class="article-card-grid related-learning"/.test(html), `${file}: missing related learning links`);
+}
+
 for (const file of structuredDataFiles) {
   if (!exists(file)) continue;
   const html = read(file);
