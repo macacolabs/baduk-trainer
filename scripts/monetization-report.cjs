@@ -36,6 +36,9 @@ const externalTasks = [
   "AdSense approval review",
 ];
 
+const adsenseApproved = process.env.ADSENSE_STATUS === "approved";
+const adsenseMode = adsenseApproved ? "approved" : "pre-approval";
+
 function filePath(file) {
   return path.join(root, file);
 }
@@ -78,7 +81,8 @@ const articleStats = articleFiles.map((file) => {
   };
 });
 const articlesReady = articleStats.length >= 10 && articleStats.every((item) => item.exists && item.chars >= 650 && item.related);
-const noAdsenseScript = !/adsbygoogle|pagead2\.googlesyndication\.com|google_ad_client/.test(htmlText);
+const hasAdsenseScript = /adsbygoogle|pagead2\.googlesyndication\.com|google_ad_client/.test(htmlText);
+const noAdsenseScript = !hasAdsenseScript;
 const adSlots = (htmlText.match(/class="ad-slot/g) || []).length;
 const policyLinked = exists("index.html") && ["about.html", "privacy.html", "terms.html", "adsense-checklist.html"].every((file) => read("index.html").includes(`href="${file}"`));
 const sitemapReady = exists("sitemap.xml") && ["about.html", "learn.html", "faq.html", ...articleFiles].every((file) => read("sitemap.xml").includes(file));
@@ -91,10 +95,13 @@ const rows = [
   ["Sitemap", sitemapReady, "main pages and learning articles listed"],
   ["Robots", robotsReady, "sitemap advertised"],
   ["Ad placeholders", adSlots >= 2, `${adSlots} ad-slot placeholders found`],
-  ["No live ad script before approval", noAdsenseScript, "AdSense code should be added only after approval"],
+  adsenseApproved
+    ? ["Ad script after approval", hasAdsenseScript, hasAdsenseScript ? "live ad script detected in approved mode" : "approved mode is set, but no live ad script is installed yet"]
+    : ["No live ad script before approval", noAdsenseScript, "AdSense code should be added only after approval"],
 ];
 
 console.log("Monetization readiness report");
+console.log(`AdSense mode: ${adsenseMode}`);
 console.log("");
 console.log("| item | status | evidence |");
 console.log("| --- | --- | --- |");
@@ -119,6 +126,7 @@ console.log("");
 console.log("Useful commands:");
 console.log("- node scripts/preflight.cjs --live");
 console.log("- node scripts/content-report.cjs");
+console.log("- $env:ADSENSE_STATUS='approved'; node scripts/monetization-report.cjs");
 console.log("");
 console.log("Submission packet:");
 console.log("- SUBMISSION_PACKET.md");

@@ -88,6 +88,14 @@ node scripts/preflight.cjs
 - 통합 배포 전 점검 스크립트 `scripts/preflight.cjs`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 콘텐츠 품질 점검 스크립트 `scripts/check-content-quality.cjs`
+
+승인 후 실제 광고 코드를 넣은 상태를 점검할 때는 아래처럼 승인 후 모드로 실행합니다.
+
+```powershell
+$env:ADSENSE_STATUS='approved'
+node scripts/check-service-readiness.cjs
+node scripts/monetization-report.cjs
+```
 - 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`

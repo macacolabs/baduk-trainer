@@ -41,6 +41,8 @@ const structuredDataFiles = ["index.html", "about.html", "learn.html", "faq.html
 
 const errors = [];
 const warnings = [];
+const adsenseApproved = process.env.ADSENSE_STATUS === "approved";
+const adsenseMode = adsenseApproved ? "approved" : "pre-approval";
 
 function read(file) {
   return fs.readFileSync(path.join(root, file), "utf8");
@@ -121,10 +123,16 @@ const allText = fs
   .map((file) => read(file))
   .join("\n");
 
-check(!/adsbygoogle|pagead2\.googlesyndication\.com|google_ad_client/.test(allText), "AdSense script found before approval");
+const hasAdsenseScript = /adsbygoogle|pagead2\.googlesyndication\.com|google_ad_client/.test(allText);
+if (adsenseApproved) {
+  warn(hasAdsenseScript, "AdSense approved mode is set, but no live ad script was found");
+} else {
+  check(!hasAdsenseScript, "AdSense script found before approval");
+}
 check((allText.match(/class="ad-slot/g) || []).length >= 2, "Expected visible ad-slot placeholders");
 
 console.log("Service readiness check");
+console.log(`AdSense mode: ${adsenseMode}`);
 console.log(`Checked ${htmlFiles.length} HTML pages and ${articleFiles.length} learning articles.`);
 
 if (warnings.length) {

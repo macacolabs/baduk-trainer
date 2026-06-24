@@ -31,16 +31,17 @@
 
 ```powershell
 node --check app.js
+$env:ADSENSE_STATUS='approved'
 node scripts/check-service-readiness.cjs
+node scripts/monetization-report.cjs
 node scripts/check-links.cjs
 node scripts/check-performance-budget.cjs
 ```
 
-주의: 현재 `check-service-readiness.cjs`는 승인 전 상태를 기준으로 실제 AdSense 스크립트가 들어가면 실패하게 되어 있습니다. 승인 후 실제 광고를 적용할 때는 스크립트를 `approved` 모드로 바꾸는 작업을 별도 커밋으로 진행합니다.
+주의: 기본 검사 모드는 승인 전 상태입니다. 승인 후 실제 광고를 적용한 브랜치나 커밋을 확인할 때만 `ADSENSE_STATUS=approved`를 켭니다.
 
 ## 승인 후 별도 작업으로 바꿀 것
 
-- `scripts/check-service-readiness.cjs`의 승인 전 광고 스크립트 차단 규칙을 승인 후 규칙으로 변경
 - `ads.txt` 추가 여부 점검
 - 광고 위치가 `ad-slot` 안에만 있는지 점검
 - 개인정보처리방침의 광고 쿠키 문구 최신화
