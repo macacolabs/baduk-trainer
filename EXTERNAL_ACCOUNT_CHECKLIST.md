@@ -24,6 +24,7 @@
 
 ## AdSense 신청 전
 
+- [ ] `node scripts/monetization-report.cjs`에서 내부 blocker가 없는지 확인
 - [ ] Search Console 소유권 확인 완료
 - [ ] sitemap 제출 완료
 - [ ] 주요 학습 글 접근 확인

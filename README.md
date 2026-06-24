@@ -80,6 +80,7 @@ node scripts/preflight.cjs --live
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 콘텐츠 품질 점검 스크립트 `scripts/check-content-quality.cjs`
 - 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
+- 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
@@ -114,6 +115,7 @@ node scripts/preflight.cjs --live
 매월:
 
 - Search Console 검색어 확인
+- `node scripts/monetization-report.cjs`로 신청 준비 상태 확인
 - 유입 많은 글 보강
 - AdSense 정책 변경 확인
 - 광고가 있다면 오클릭 위험 확인
