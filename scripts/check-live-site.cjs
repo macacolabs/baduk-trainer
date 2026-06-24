@@ -6,6 +6,7 @@ const checks = [
   { path: "", expect: "큰돌" },
   { path: "learn.html", expect: "바둑과 오목" },
   { path: "faq.html", expect: "자주 묻는 질문" },
+  { path: "omok-ai-difficulty.html", expect: "오목 AI 난이도" },
   { path: "adsense-checklist.html", expect: "AdSense" },
   { path: "search-console.html", expect: "Search Console" },
   { path: "privacy.html", expect: "개인정보" },
