@@ -4,6 +4,7 @@ const baseUrl = "https://macacolabs.github.io/baduk-trainer/";
 
 const checks = [
   { path: "", expect: "큰돌" },
+  { path: "about.html", expect: "서비스 소개" },
   { path: "learn.html", expect: "바둑과 오목" },
   { path: "faq.html", expect: "자주 묻는 질문" },
   { path: "omok-ai-difficulty.html", expect: "오목 AI 난이도" },
