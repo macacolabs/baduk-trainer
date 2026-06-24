@@ -52,7 +52,8 @@
           <li>속성 추가에서 URL 접두어를 선택합니다.</li>
           <li>등록 URL에 `https://macacolabs.github.io/baduk-trainer/`를 입력합니다.</li>
           <li>HTML 태그 방식의 verification meta 태그를 받습니다.</li>
-          <li>받은 태그를 `index.html`의 `<head>` 안에 넣고 배포합니다.</li>
+          <li>받은 태그를 `SEARCH_CONSOLE_META` 값으로 넣고 `node scripts/apply-search-console-meta.cjs`를 실행합니다.</li>
+          <li>`node scripts/preflight.cjs`를 통과한 뒤 배포합니다.</li>
         </ol>
       </section>
 

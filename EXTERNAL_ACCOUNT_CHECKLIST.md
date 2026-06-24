@@ -13,7 +13,7 @@
 
 - [ ] URL 접두어 속성으로 사이트 등록
 - [ ] HTML meta verification 태그 발급
-- [ ] 발급받은 meta 태그를 `index.html`의 `<head>`에 추가
+- [ ] `SEARCH_CONSOLE_META` 값으로 `node scripts/apply-search-console-meta.cjs` 실행
 - [ ] 변경사항 배포
 - [ ] Search Console에서 소유권 확인 완료
 - [ ] `sitemap.xml` 제출

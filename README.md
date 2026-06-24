@@ -59,6 +59,14 @@ node scripts/preflight.cjs --live
 4. sitemap 제출 주소는 `https://macacolabs.github.io/baduk-trainer/sitemap.xml`입니다.
 5. 공개 안내 페이지는 `search-console.html`입니다.
 
+발급받은 meta 태그는 아래처럼 안전하게 넣을 수 있습니다.
+
+```powershell
+$env:SEARCH_CONSOLE_META='<meta name="google-site-verification" content="발급값">'
+node scripts/apply-search-console-meta.cjs
+node scripts/preflight.cjs
+```
+
 ## AdSense 준비
 
 승인 전에는 실제 광고 스크립트를 넣지 않습니다.
@@ -81,6 +89,7 @@ node scripts/preflight.cjs --live
 - 콘텐츠 품질 점검 스크립트 `scripts/check-content-quality.cjs`
 - 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
+- Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
