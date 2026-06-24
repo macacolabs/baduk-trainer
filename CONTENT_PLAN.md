@@ -18,7 +18,7 @@
 | 완료 | 바둑 단수 연습을 잘하는 법 | 단수 문제를 풀어도 실전에서 놓치는 이유 | `baduk-atari-practice.html`, `baduk-atari.html`, `baduk-liberties.html` |
 | 완료 | 바둑 사활 문제를 처음 푸는 법 | 두 눈, 급소, 가짜 눈을 구분하고 싶은 초보자 | `baduk-life-and-death-practice.html`, `baduk-life-and-death.html`, `baduk-glossary.html` |
 | 완료 | 오목에서 열린 3을 막아야 하는 이유 | 오목 초보가 자주 지는 패턴 이해 | `omok-open-three.html`, `omok-strategy.html`, `omok-threats.html` |
-| 중간 | 9줄 바둑으로 입문하는 이유 | 19줄이 너무 어려운 초보자 | `baduk-beginner.html`, `learn.html` |
+| 완료 | 9줄 바둑으로 입문하는 이유 | 19줄이 너무 어려운 초보자 | `baduk-9x9-beginner.html`, `baduk-beginner.html`, `learn.html` |
 | 중간 | 바둑 끝내기에서 큰 수를 찾는 법 | 후반에 집 차이를 줄이는 방법 | `baduk-endgame.html`, `baduk-sente-gote.html` |
 | 중간 | 바둑 포석에서 귀를 먼저 두는 이유 | 초반 큰 자리와 귀/변/중앙 이해 | `baduk-opening.html`, `baduk-beginner.html` |
 | 낮음 | 바둑 AI와 두고 복기하는 법 | 앱 사용법과 학습 루틴 이해 | `learn.html`, `faq.html` |
@@ -46,6 +46,7 @@ node scripts/content-queue.cjs
 | 날짜 | 글 | 목적 |
 | --- | --- | --- |
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
+| 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-21 | `baduk-atari.html` | 단수 개념 검색 유입 |
 | 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
 | 2026-06-21 | `baduk-liberties.html` | 활로 개념 검색 유입 |

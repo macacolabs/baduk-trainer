@@ -16,6 +16,7 @@ const requiredPublicPages = [
 
 const articleFiles = [
   "baduk-beginner.html",
+  "baduk-9x9-beginner.html",
   "baduk-atari.html",
   "baduk-atari-practice.html",
   "baduk-liberties.html",
