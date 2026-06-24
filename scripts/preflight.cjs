@@ -7,6 +7,7 @@ const checks = [
   [process.execPath, ["scripts/check-service-readiness.cjs"]],
   [process.execPath, ["scripts/check-content-quality.cjs"]],
   [process.execPath, ["scripts/check-links.cjs"]],
+  [process.execPath, ["scripts/check-submission-packet.cjs"]],
   [process.execPath, ["scripts/check-performance-budget.cjs"]],
 ];
 
