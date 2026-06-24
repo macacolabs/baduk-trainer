@@ -15,6 +15,7 @@ const articleFiles = [
   "baduk-life-and-death.html",
   "baduk-life-and-death-practice.html",
   "baduk-endgame.html",
+  "baduk-endgame-big-move.html",
   "baduk-sente-gote.html",
   "omok-strategy.html",
   "omok-threats.html",

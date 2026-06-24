@@ -19,7 +19,7 @@
 | 완료 | 바둑 사활 문제를 처음 푸는 법 | 두 눈, 급소, 가짜 눈을 구분하고 싶은 초보자 | `baduk-life-and-death-practice.html`, `baduk-life-and-death.html`, `baduk-glossary.html` |
 | 완료 | 오목에서 열린 3을 막아야 하는 이유 | 오목 초보가 자주 지는 패턴 이해 | `omok-open-three.html`, `omok-strategy.html`, `omok-threats.html` |
 | 완료 | 9줄 바둑으로 입문하는 이유 | 19줄이 너무 어려운 초보자 | `baduk-9x9-beginner.html`, `baduk-beginner.html`, `learn.html` |
-| 중간 | 바둑 끝내기에서 큰 수를 찾는 법 | 후반에 집 차이를 줄이는 방법 | `baduk-endgame.html`, `baduk-sente-gote.html` |
+| 완료 | 바둑 끝내기에서 큰 수를 찾는 법 | 후반에 집 차이를 줄이는 방법 | `baduk-endgame-big-move.html`, `baduk-endgame.html`, `baduk-sente-gote.html` |
 | 중간 | 바둑 포석에서 귀를 먼저 두는 이유 | 초반 큰 자리와 귀/변/중앙 이해 | `baduk-opening.html`, `baduk-beginner.html` |
 | 낮음 | 바둑 AI와 두고 복기하는 법 | 앱 사용법과 학습 루틴 이해 | `learn.html`, `faq.html` |
 | 완료 | 오목 AI 난이도 선택법 | 오목 AI 난이도 검색 유입과 앱 사용법 | `omok-ai-difficulty.html` |
@@ -56,6 +56,7 @@ node scripts/content-queue.cjs
 | 2026-06-21 | `baduk-life-and-death.html` | 사활 기초 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
 | 2026-06-21 | `baduk-endgame.html` | 끝내기 기초 검색 유입 |
+| 2026-06-25 | `baduk-endgame-big-move.html` | 끝내기 큰 수 검색 유입 |
 | 2026-06-21 | `baduk-sente-gote.html` | 선수/후수 개념 검색 유입 |
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
