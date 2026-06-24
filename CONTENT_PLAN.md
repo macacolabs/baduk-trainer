@@ -21,7 +21,7 @@
 | 중간 | 바둑 끝내기에서 큰 수를 찾는 법 | 후반에 집 차이를 줄이는 방법 | `baduk-endgame.html`, `baduk-sente-gote.html` |
 | 중간 | 바둑 포석에서 귀를 먼저 두는 이유 | 초반 큰 자리와 귀/변/중앙 이해 | `baduk-opening.html`, `baduk-beginner.html` |
 | 낮음 | 바둑 AI와 두고 복기하는 법 | 앱 사용법과 학습 루틴 이해 | `learn.html`, `faq.html` |
-| 낮음 | 오목 AI 난이도는 어떻게 고르면 좋을까 | 오목 AI 모드 사용법 | `omok-strategy.html`, `faq.html` |
+| 완료 | 오목 AI 난이도 선택법 | 오목 AI 난이도 검색 유입과 앱 사용법 | `omok-ai-difficulty.html` |
 
 ## 월간 운영 루틴
 
@@ -54,4 +54,5 @@ node scripts/check-performance-budget.cjs
 | 2026-06-21 | `baduk-endgame.html` | 끝내기 기초 검색 유입 |
 | 2026-06-21 | `baduk-sente-gote.html` | 선수/후수 개념 검색 유입 |
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
+| 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |

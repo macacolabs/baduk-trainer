@@ -1440,6 +1440,13 @@ const omokAiNotes = {
   k5: "5급: 4목 차단과 열린 3목 확장을 거의 놓치지 않는 상대",
 };
 
+const omokAiLabels = {
+  beginner: "쉬움",
+  k20: "보통",
+  k10: "어려움",
+  k5: "고수",
+};
+
 const omokTacticalReliability = {
   beginner: 0.35,
   k20: 0.68,
@@ -2519,12 +2526,14 @@ function ensureAiLevelControl() {
   if (state.aiLevel === "normal") state.aiLevel = "k20";
   if (state.aiLevel === "hard") state.aiLevel = "k5";
   select.value = state.aiLevel;
+  updateAiLevelControlText();
   select.addEventListener("change", (event) => {
     state.aiLevel = event.target.value;
     saveProgress();
     const style = aiStyles[state.aiLevel] || aiStyles.k20;
     const note = state.gameType === "omok" ? omokAiNotes[state.aiLevel] || omokAiNotes.k20 : style.note;
-    setStatus("AI 난이도", `${style.label} 스타일로 바꿨습니다. ${note}`);
+    const label = state.gameType === "omok" ? `${omokAiLabels[state.aiLevel] || style.label}(${style.label})` : style.label;
+    setStatus("AI 난이도", `${label} 스타일로 바꿨습니다. ${note}`);
   });
 }
 
@@ -3681,6 +3690,20 @@ function setStatus(title, text) {
   el.statusText.textContent = text;
 }
 
+function updateAiLevelControlText() {
+  const field = document.querySelector(".ai-level-field");
+  if (!field) return;
+  const label = field.querySelector("span");
+  const select = field.querySelector("#aiLevel");
+  if (label) label.textContent = state.gameType === "omok" ? "오목 AI 난이도" : "바둑 AI 난이도";
+  if (!select) return;
+  for (const option of select.options) {
+    const style = aiStyles[option.value];
+    if (!style) continue;
+    option.textContent = state.gameType === "omok" ? `${omokAiLabels[option.value] || style.label} · ${style.label}` : style.label;
+  }
+}
+
 function updateGameTypeControls(forceDefaultSize = false) {
   const config = GAME_TYPES[state.gameType] || GAME_TYPES.baduk;
   const currentSize = Number(el.boardSize.value);
@@ -3693,6 +3716,7 @@ function updateGameTypeControls(forceDefaultSize = false) {
   el.ruleText.textContent = state.gameType === "omok"
     ? "15줄 기본판에서 흑이 먼저 둡니다. 가로, 세로, 대각선으로 5개 이상 연속이면 승리합니다."
     : "착수, 활로, 포획, 자살수 금지, 단순 패 금지, 연속 패스 종국을 지원합니다.";
+  updateAiLevelControlText();
 }
 
 function setMetricLabel(labelEl, text) {
