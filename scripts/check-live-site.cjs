@@ -1,6 +1,8 @@
 const https = require("https");
 
 const baseUrl = "https://macacolabs.github.io/baduk-trainer/";
+const maxAttempts = 6;
+const retryDelayMs = 10000;
 
 const checks = [
   { path: "", expect: "큰돌" },
@@ -43,24 +45,38 @@ function fetchText(url) {
   });
 }
 
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function main() {
   const errors = [];
   console.log("Live site check");
 
   for (const check of checks) {
     const url = `${baseUrl}${check.path}`;
-    try {
-      const result = await fetchText(url);
-      console.log(`- ${url}: ${result.statusCode}`);
-      if (result.statusCode !== 200) {
-        errors.push(`${url}: expected 200, got ${result.statusCode}`);
-        continue;
+    let lastError = "";
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      try {
+        const result = await fetchText(url);
+        console.log(`- ${url}: ${result.statusCode}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);
+        if (result.statusCode === 200 && result.body.includes(check.expect)) {
+          lastError = "";
+          break;
+        }
+        lastError = result.statusCode !== 200
+          ? `expected 200, got ${result.statusCode}`
+          : `missing expected text "${check.expect}"`;
+      } catch (error) {
+        lastError = error.message;
+        console.log(`- ${url}: ${lastError}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);
       }
-      if (!result.body.includes(check.expect)) {
-        errors.push(`${url}: missing expected text "${check.expect}"`);
+      if (attempt < maxAttempts) {
+        await wait(retryDelayMs);
       }
-    } catch (error) {
-      errors.push(`${url}: ${error.message}`);
+    }
+    if (lastError) {
+      errors.push(`${url}: ${lastError}`);
     }
   }
 
