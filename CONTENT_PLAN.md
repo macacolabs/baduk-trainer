@@ -9,6 +9,7 @@
 - 앱 안에서 바로 연습할 수 있는 행동을 마지막에 제안
 - 광고보다 학습 흐름이 먼저 보이게 구성
 - 새 글은 최소 2개 이상의 관련 글로 연결
+- `node scripts/check-content-quality.cjs`에서 너무 짧은 글, h1/lead/h2, 관련 링크, 광고 자리 누락을 확인
 
 ## 1차 확장 후보
 
@@ -34,10 +35,7 @@
 7. 아래 명령으로 배포 전 점검을 실행합니다.
 
 ```powershell
-node --check app.js
-node scripts/check-service-readiness.cjs
-node scripts/check-links.cjs
-node scripts/check-performance-budget.cjs
+node scripts/preflight.cjs
 ```
 
 ## 글 발행 완료 기록

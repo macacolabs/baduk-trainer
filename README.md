@@ -78,6 +78,7 @@ node scripts/preflight.cjs --live
 - 광고 예정 영역 `ad-slot`
 - 통합 배포 전 점검 스크립트 `scripts/preflight.cjs`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
+- 콘텐츠 품질 점검 스크립트 `scripts/check-content-quality.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
