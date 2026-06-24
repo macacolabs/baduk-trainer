@@ -8,9 +8,11 @@
 - sitemap URL: `https://macacolabs.github.io/baduk-trainer/sitemap.xml`
 - Search Console 안내 페이지: `https://macacolabs.github.io/baduk-trainer/search-console.html`
 - AdSense 신청 전 체크리스트: `https://macacolabs.github.io/baduk-trainer/adsense-checklist.html`
+- 제출 패킷: `SUBMISSION_PACKET.md`
 
 ## Search Console
 
+- [ ] `SUBMISSION_PACKET.md`의 기본 정보 확인
 - [ ] URL 접두어 속성으로 사이트 등록
 - [ ] HTML meta verification 태그 발급
 - [ ] `SEARCH_CONSOLE_META` 값으로 `node scripts/apply-search-console-meta.cjs` 실행
@@ -37,6 +39,7 @@
 
 ## AdSense 신청
 
+- [ ] `SUBMISSION_PACKET.md`의 AdSense 신청 전 실행 명령 완료
 - [ ] AdSense 계정 생성 또는 로그인
 - [ ] 사이트 URL 등록
 - [ ] AdSense 심사용 코드 또는 안내 사항 확인

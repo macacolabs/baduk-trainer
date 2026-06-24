@@ -80,6 +80,7 @@
 - `OPERATION_CHECKLIST.md`: 매주/매월 반복 운영 체크리스트
 - `CONTENT_PLAN.md`: 검색 유입용 글 후보와 월간 콘텐츠 운영 계획
 - `EXTERNAL_ACCOUNT_CHECKLIST.md`: Search Console과 AdSense 외부 계정 작업 체크리스트
+- `SUBMISSION_PACKET.md`: Search Console과 AdSense 신청 때 복사할 URL과 명령 모음
 - `ADSENSE_AFTER_APPROVAL.md`: AdSense 승인 후 광고 적용 절차
 - `about.html`: 서비스 소개, 운영 원칙, 문의 경로
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지

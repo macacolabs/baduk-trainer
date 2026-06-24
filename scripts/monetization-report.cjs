@@ -119,3 +119,6 @@ console.log("");
 console.log("Useful commands:");
 console.log("- node scripts/preflight.cjs --live");
 console.log("- node scripts/content-report.cjs");
+console.log("");
+console.log("Submission packet:");
+console.log("- SUBMISSION_PACKET.md");

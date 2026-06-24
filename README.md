@@ -77,6 +77,7 @@ node scripts/preflight.cjs
 - `terms.html`
 - `ADSENSE_AFTER_APPROVAL.md`
 - `EXTERNAL_ACCOUNT_CHECKLIST.md`
+- `SUBMISSION_PACKET.md`
 - `adsense-checklist.html`
 - `robots.txt`
 - `sitemap.xml`
