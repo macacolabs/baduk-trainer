@@ -38,6 +38,7 @@
 ```powershell
 node scripts/preflight.cjs
 node scripts/content-report.cjs
+node scripts/content-queue.cjs
 ```
 
 ## 글 발행 완료 기록

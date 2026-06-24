@@ -77,3 +77,7 @@ if (next.length) {
   console.log("");
   console.log("All learning articles are above the current depth target.");
 }
+
+console.log("");
+console.log("For new article priorities, run:");
+console.log("- node scripts/content-queue.cjs");
