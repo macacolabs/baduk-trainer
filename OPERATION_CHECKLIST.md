@@ -5,17 +5,14 @@
 ## 배포 전
 
 - `git status --short --branch`로 의도하지 않은 변경이 없는지 확인
-- `node --check app.js`로 JavaScript 문법 확인
-- `node scripts/check-service-readiness.cjs`로 sitemap, 학습 글 링크, 광고 준비 상태 확인
-- `node scripts/check-links.cjs`로 내부 링크와 sitemap 대상 파일 확인
-- `node scripts/check-performance-budget.cjs`로 주요 파일 크기 예산 확인
+- `node scripts/preflight.cjs`로 문법, sitemap, 링크, 성능 예산 확인
 - 새 HTML 페이지를 추가했다면 `learn.html` 또는 관련 글에서 연결
 - 새 공개 페이지를 추가했다면 `sitemap.xml`에 URL 추가
 - 모바일 폭에서 바둑판, 오목판, 주요 버튼이 겹치지 않는지 확인
 
 ## 매주
 
-- `node scripts/check-live-site.cjs`로 GitHub Pages live URL 접속 확인
+- `node scripts/preflight.cjs --live`로 GitHub Pages live URL 접속 확인
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트
 - 모바일에서 착수 위치와 버튼 클릭 확인

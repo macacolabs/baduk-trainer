@@ -24,14 +24,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check JavaScript syntax
-        run: node --check app.js
-      - name: Check service readiness
-        run: node scripts/check-service-readiness.cjs
-      - name: Check internal links
-        run: node scripts/check-links.cjs
-      - name: Check performance budget
-        run: node scripts/check-performance-budget.cjs
+      - name: Run preflight checks
+        run: node scripts/preflight.cjs
 
   deploy:
     needs: validate

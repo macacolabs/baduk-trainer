@@ -36,7 +36,7 @@
 5. 성능
    - 첫 화면에서 빠르게 열려야 합니다.
    - `app.js`가 커지고 있으니 다음 단계에서는 학습 데이터와 게임 로직 분리를 검토합니다.
-   - 배포 전 기본 점검은 `node scripts/check-service-readiness.cjs`, `node scripts/check-links.cjs`, `node scripts/check-performance-budget.cjs`로 확인합니다.
+   - 배포 전 기본 점검은 `node scripts/preflight.cjs`로 확인합니다.
 
 ## 운영 루틴
 
@@ -44,7 +44,7 @@
 
 - 실제 모바일에서 10분 사용하며 클릭 오류, 판 위치, 글자 겹침 확인
 - GitHub 이슈 템플릿으로 들어온 버그/콘텐츠/운영 요청 확인
-- `node scripts/check-live-site.cjs`로 GitHub Pages 배포 상태 확인
+- `node scripts/preflight.cjs --live`로 GitHub Pages 배포 상태 확인
 - Search Console 색인/검색어 확인
 - 사용자 입장에서 새 문제 5개 이상 추가
 - 세부 반복 점검은 `OPERATION_CHECKLIST.md` 기준으로 확인
@@ -83,6 +83,7 @@
 - `ADSENSE_AFTER_APPROVAL.md`: AdSense 승인 후 광고 적용 절차
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
+- `scripts/preflight.cjs`: 배포 전 통합 점검
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검
 - `scripts/check-performance-budget.cjs`: 주요 파일 크기 예산 자동 점검

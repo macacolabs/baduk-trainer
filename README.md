@@ -37,10 +37,7 @@ node serve-mobile.cjs
 
 ```powershell
 git status --short --branch
-node --check app.js
-node scripts/check-service-readiness.cjs
-node scripts/check-links.cjs
-node scripts/check-performance-budget.cjs
+node scripts/preflight.cjs
 git add -A
 git commit -m "변경 내용"
 git push origin main
@@ -51,7 +48,7 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 배포 후 live URL 확인:
 
 ```powershell
-node scripts/check-live-site.cjs
+node scripts/preflight.cjs --live
 ```
 
 ## Search Console
@@ -79,6 +76,7 @@ node scripts/check-live-site.cjs
 - 질문형 검색 유입용 `faq.html`
 - 콘텐츠 확장 계획 `CONTENT_PLAN.md`
 - 광고 예정 영역 `ad-slot`
+- 통합 배포 전 점검 스크립트 `scripts/preflight.cjs`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
