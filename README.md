@@ -79,6 +79,7 @@ node scripts/preflight.cjs --live
 - 통합 배포 전 점검 스크립트 `scripts/preflight.cjs`
 - 배포 전 점검 스크립트 `scripts/check-service-readiness.cjs`
 - 콘텐츠 품질 점검 스크립트 `scripts/check-content-quality.cjs`
+- 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
@@ -105,6 +106,7 @@ node scripts/preflight.cjs --live
 
 - 모바일에서 10분 직접 사용
 - 깨진 링크 확인
+- `node scripts/content-report.cjs`로 다음 보강 글 확인
 - 새 GitHub 이슈 확인
 - 새 문제 또는 글 보강
 - GitHub Pages 배포 상태 확인

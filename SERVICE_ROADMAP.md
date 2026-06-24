@@ -87,6 +87,7 @@
 - `scripts/preflight.cjs`: 배포 전 통합 점검
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 - `scripts/check-content-quality.cjs`: 학습 글 분량, 구조, 관련 링크 자동 점검
+- `scripts/content-report.cjs`: 매주 보강할 학습 글 우선순위 리포트
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검
 - `scripts/check-performance-budget.cjs`: 주요 파일 크기 예산 자동 점검
 - `scripts/check-live-site.cjs`: 배포 후 live URL 자동 점검

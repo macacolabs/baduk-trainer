@@ -33,9 +33,11 @@
 5. 새 글을 `sitemap.xml`에 추가합니다.
 6. 새 글과 기존 글 사이에 `related-learning` 링크를 연결합니다.
 7. 아래 명령으로 배포 전 점검을 실행합니다.
+8. 아래 명령으로 다음 보강 후보를 확인합니다.
 
 ```powershell
 node scripts/preflight.cjs
+node scripts/content-report.cjs
 ```
 
 ## 글 발행 완료 기록
