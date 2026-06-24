@@ -16,6 +16,7 @@ const articleFiles = [
   "baduk-sente-gote.html",
   "omok-strategy.html",
   "omok-threats.html",
+  "omok-open-three.html",
   "omok-ai-difficulty.html",
 ];
 
