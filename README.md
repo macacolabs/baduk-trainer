@@ -112,6 +112,8 @@ node scripts/preflight.cjs
 
 자세한 반복 점검표는 `OPERATION_CHECKLIST.md`를 기준으로 관리합니다.
 
+GitHub Actions의 `Weekly Service Health` 워크플로가 매주 live 상태, 콘텐츠 보강 후보, 수익화 준비 상태를 자동 점검합니다.
+
 매주:
 
 - 모바일에서 10분 직접 사용

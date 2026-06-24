@@ -94,6 +94,7 @@
 - `scripts/check-performance-budget.cjs`: 주요 파일 크기 예산 자동 점검
 - `scripts/check-live-site.cjs`: 배포 후 live URL 자동 점검
 - `.github/ISSUE_TEMPLATE/`: 버그, 콘텐츠 요청, 운영 점검 이슈 양식
+- `.github/workflows/weekly-health.yml`: 매주 live 상태, 콘텐츠 리포트, 수익화 준비 리포트 자동 실행
 
 ## 참고한 공식 기준
 
