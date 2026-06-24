@@ -77,6 +77,8 @@ for (const file of articleFiles) {
   if (!exists(file)) continue;
   const html = read(file);
   check(/class="article-card-grid related-learning"/.test(html), `${file}: missing related learning links`);
+  check(/<script\s+type="application\/ld\+json">/.test(html), `${file}: missing JSON-LD structured data`);
+  check(/"@type":\s*"LearningResource"/.test(html), `${file}: missing LearningResource schema`);
 }
 
 for (const file of structuredDataFiles) {
