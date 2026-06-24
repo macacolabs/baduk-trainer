@@ -7,6 +7,7 @@ const siteBase = "https://macacolabs.github.io/baduk-trainer/";
 const articleFiles = [
   "baduk-beginner.html",
   "baduk-atari.html",
+  "baduk-atari-practice.html",
   "baduk-liberties.html",
   "baduk-glossary.html",
   "baduk-opening.html",

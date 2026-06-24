@@ -15,7 +15,7 @@
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 높음 | 바둑 단수 연습을 잘하는 법 | 단수 문제를 풀어도 실전에서 놓치는 이유 | `baduk-atari.html`, `baduk-liberties.html` |
+| 완료 | 바둑 단수 연습을 잘하는 법 | 단수 문제를 풀어도 실전에서 놓치는 이유 | `baduk-atari-practice.html`, `baduk-atari.html`, `baduk-liberties.html` |
 | 높음 | 바둑 사활 문제를 처음 푸는 법 | 두 눈, 급소, 가짜 눈을 구분하고 싶은 초보자 | `baduk-life-and-death.html`, `baduk-glossary.html` |
 | 높음 | 오목에서 열린 3을 막아야 하는 이유 | 오목 초보가 자주 지는 패턴 이해 | `omok-strategy.html`, `omok-threats.html` |
 | 중간 | 9줄 바둑으로 입문하는 이유 | 19줄이 너무 어려운 초보자 | `baduk-beginner.html`, `learn.html` |
@@ -47,6 +47,7 @@ node scripts/content-queue.cjs
 | --- | --- | --- |
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
 | 2026-06-21 | `baduk-atari.html` | 단수 개념 검색 유입 |
+| 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
 | 2026-06-21 | `baduk-liberties.html` | 활로 개념 검색 유입 |
 | 2026-06-21 | `omok-strategy.html` | 오목 기본 전략 검색 유입 |
 | 2026-06-21 | `baduk-glossary.html` | 용어 사전형 유입 |
