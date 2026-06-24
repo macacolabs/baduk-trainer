@@ -98,6 +98,7 @@ node scripts/monetization-report.cjs
 ```
 - 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
+- 외부 계정 진행률 리포트 스크립트 `scripts/external-account-status.cjs`
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - 학습 글 구조화 데이터 삽입 스크립트 `scripts/apply-article-schema.cjs`
 - 제출 패킷 동기화 점검 스크립트 `scripts/check-submission-packet.cjs`

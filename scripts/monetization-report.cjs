@@ -126,6 +126,7 @@ console.log("");
 console.log("Useful commands:");
 console.log("- node scripts/preflight.cjs --live");
 console.log("- node scripts/content-report.cjs");
+console.log("- node scripts/external-account-status.cjs");
 console.log("- $env:ADSENSE_STATUS='approved'; node scripts/monetization-report.cjs");
 console.log("");
 console.log("Submission packet:");

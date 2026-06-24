@@ -26,6 +26,7 @@
 ## 매월
 
 - `node scripts/monetization-report.cjs`로 내부 준비 상태와 외부 계정 작업 분리 확인
+- `node scripts/external-account-status.cjs`로 Search Console과 AdSense 진행률 확인
 - 개인정보처리방침과 이용약관이 현재 기능과 맞는지 확인
 - AdSense 정책 변경 여부 확인
 - 광고가 붙어 있다면 오클릭 위험 영역 확인
