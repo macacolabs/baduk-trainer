@@ -21,6 +21,7 @@ const articleFiles = [
   "baduk-atari-practice.html",
   "baduk-profitable-capture.html",
   "baduk-liberties.html",
+  "baduk-shape-empty-triangle.html",
   "baduk-glossary.html",
   "baduk-ko-rule.html",
   "baduk-opening.html",

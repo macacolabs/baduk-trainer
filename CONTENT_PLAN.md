@@ -45,6 +45,15 @@
 | 완료 | 바둑 초보가 자주 하는 실수 | 계속 지는 이유와 고칠 실수를 알고 싶은 초보자 | `baduk-beginner-mistakes.html`, `baduk-atari.html`, `baduk-profitable-capture.html`, `baduk-review-note.html` |
 | 완료 | 오목 4목은 왜 바로 막아야 할까? | 오목에서 상대 4목을 막는 기준을 알고 싶은 입문자 | `omok-block-four.html`, `omok-open-three.html`, `omok-attack-defense-priority.html`, `omok-ai-difficulty.html` |
 
+## 4차 확장 후보
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 완료 | 바둑 빈삼각은 왜 나쁜 모양일까 | 빈삼각, 좋은 모양, 나쁜 모양을 구분하고 싶은 초보자 | `baduk-shape-empty-triangle.html`, `baduk-liberties.html`, `baduk-profitable-capture.html`, `baduk-sente-gote.html` |
+| 중간 | 바둑 끊기와 연결은 언제 선택할까 | 연결만 하거나 무리하게 끊는 초보 실수 개선 | `baduk-liberties.html`, `baduk-atari-practice.html`, `baduk-shape-empty-triangle.html` |
+| 중간 | 오목 양방향 위협을 만드는 법 | 열린 3 이후 복합 위협을 배우고 싶은 사용자 | `omok-threats.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
+| 낮음 | 바둑 대국 후 10분 복기 루틴 | 짧은 시간에 복기하는 법을 찾는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-5k-to-1k.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -84,6 +93,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
 | 2026-06-25 | `baduk-profitable-capture.html` | 잡을 돌과 버릴 돌 판단 검색 유입 |
 | 2026-06-21 | `baduk-liberties.html` | 활로 개념 검색 유입 |
+| 2026-06-25 | `baduk-shape-empty-triangle.html` | 빈삼각과 좋은 모양 검색 유입 |
 | 2026-06-21 | `omok-strategy.html` | 오목 기본 전략 검색 유입 |
 | 2026-06-21 | `baduk-glossary.html` | 용어 사전형 유입 |
 | 2026-06-21 | `baduk-opening.html` | 포석 기초 검색 유입 |
