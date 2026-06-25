@@ -74,6 +74,18 @@ Search Console 검색어가 쌓이기 전까지는 기초 전술, 행마, 오목
 | 완료 | 오목 열린 4와 닫힌 4 차이 | 4목을 언제 반드시 막아야 하는지 헷갈리는 사용자 | `omok-open-four.html`, `omok-block-four.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 | 완료 | 오목 중앙을 먼저 잡는 이유 | 오목 첫 수와 초반 위치 선택을 검색하는 입문자 | `omok-center-opening.html`, `omok-strategy.html`, `omok-threats.html`, `omok-double-threat.html` |
 
+## 7차 확장 후보
+
+Search Console 등록 전에는 초보자가 자주 헷갈리는 개념형 검색어를 우선 작성합니다. 등록 후 실제 노출 검색어가 생기면 이 표보다 Search Console 검색어를 우선합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 중간 | 바둑 두터움과 실리는 어떻게 다를까 | 초보자가 두터움, 실리, 세력의 차이를 이해하려는 검색 | `baduk-opening.html`, `baduk-territory-scoring.html`, `baduk-attack-weak-stones.html` |
+| 중간 | 바둑 정석은 언제부터 외워야 할까 | 정석 공부를 시작해야 하는 시점과 외우는 범위를 알고 싶은 입문자 | `baduk-opening-corner.html`, `baduk-beginner-mistakes.html`, `baduk-10k-to-5k.html` |
+| 중간 | 바둑 축머리는 왜 중요할까 | 축이 성립하지 않는 이유와 축머리 개념을 알고 싶은 사용자 | `baduk-ladder.html`, `baduk-cut-connect.html`, `baduk-attack-weak-stones.html` |
+| 낮음 | 오목 3-3과 4-4는 왜 위험할까 | 자유룰과 렌주룰 차이를 더 깊게 알고 싶은 오목 입문자 | `omok-forbidden-moves.html`, `omok-open-three.html`, `omok-open-four.html` |
+| 낮음 | 오목 선공과 후공은 얼마나 차이날까 | 오목에서 흑이 유리한 이유와 자유룰 한계를 알고 싶은 사용자 | `omok-strategy.html`, `omok-center-opening.html`, `omok-forbidden-moves.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
