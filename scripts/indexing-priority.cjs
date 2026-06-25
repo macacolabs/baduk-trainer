@@ -10,6 +10,8 @@ const corePaths = new Map([
   ["learn.html", { score: 125, reason: "학습 허브: 검색 유입을 내부 글로 분배" }],
   ["faq.html", { score: 120, reason: "질문형 검색 유입" }],
   ["baduk-beginner.html", { score: 112, reason: "바둑 입문 핵심 글" }],
+  ["baduk-9x9-beginner.html", { score: 110, reason: "9줄 바둑 입문 검색 글" }],
+  ["baduk-19x19-start.html", { score: 109, reason: "19줄 바둑 시작 기준 검색 글" }],
   ["baduk-atari.html", { score: 111, reason: "단수 검색 핵심 글" }],
   ["baduk-liberties.html", { score: 110, reason: "활로 검색 핵심 글" }],
   ["baduk-ko-rule.html", { score: 109, reason: "패 규칙 검색 핵심 글" }],
