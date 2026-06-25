@@ -88,6 +88,7 @@
 - `scripts/preflight.cjs`: 배포 전 통합 점검
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 - `scripts/check-content-quality.cjs`: 학습 글 분량, 구조, 관련 링크 자동 점검
+- `scripts/check-seo-metadata.cjs`: title, description, canonical, sitemap, OG/RSS 메타 자동 점검
 - `scripts/content-report.cjs`: 매주 보강할 학습 글 우선순위 리포트
 - `scripts/monetization-report.cjs`: AdSense 신청 전 내부 준비 상태와 외부 작업 분리 리포트
 - `scripts/revenue-dashboard.cjs`: 수익화 준비 점수와 다음 작업 요약

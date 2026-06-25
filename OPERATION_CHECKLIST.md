@@ -6,6 +6,7 @@
 
 - `git status --short --branch`로 의도하지 않은 변경이 없는지 확인
 - `node scripts/preflight.cjs`로 문법, sitemap, 콘텐츠 품질, 링크, 제출 패킷, 성능 예산 확인
+- `node scripts/check-seo-metadata.cjs`로 title, description, canonical, sitemap 일치 확인
 - 새 HTML 페이지를 추가했다면 `learn.html` 또는 관련 글에서 연결
 - 새 공개 페이지를 추가했다면 `scripts/site-content.cjs`에 등록하고 `node scripts/sync-sitemap.cjs --write` 실행
 - 새 학습 글을 추가했다면 `node scripts/sync-feed.cjs --write` 실행

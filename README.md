@@ -103,6 +103,7 @@ node scripts/monetization-report.cjs
 - Search Console 검색어 CSV 분석 스크립트 `scripts/search-console-query-report.cjs`
 - Search Console 검색어 기반 콘텐츠 후보 추가 스크립트 `scripts/add-content-candidate.cjs`
 - Search Console 색인 요청 우선순위 스크립트 `scripts/indexing-priority.cjs`
+- SEO 메타데이터 점검 스크립트 `scripts/check-seo-metadata.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
