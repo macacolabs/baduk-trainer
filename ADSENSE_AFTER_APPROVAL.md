@@ -34,6 +34,7 @@ node --check app.js
 $env:ADSENSE_STATUS='approved'
 node scripts/check-service-readiness.cjs
 node scripts/monetization-report.cjs
+node scripts/check-ad-placement.cjs
 node scripts/check-links.cjs
 node scripts/check-performance-budget.cjs
 ```
@@ -46,3 +47,4 @@ node scripts/check-performance-budget.cjs
 - 광고 위치가 `ad-slot` 안에만 있는지 점검
 - 개인정보처리방침의 광고 쿠키 문구 최신화
 - AdSense 정책 위반 가능성이 있는 위치 제거
+- 승인 후에는 `ADSENSE_STATUS=approved` 상태에서 `node scripts/check-ad-placement.cjs`가 통과해야 배포

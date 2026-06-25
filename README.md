@@ -111,6 +111,7 @@ node scripts/monetization-report.cjs
 - 학습 글 구조화 데이터 삽입 스크립트 `scripts/apply-article-schema.cjs`
 - 제출 패킷 동기화 점검 스크립트 `scripts/check-submission-packet.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
+- 광고 배치 점검 스크립트 `scripts/check-ad-placement.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
 - 메인, 학습 허브, 검색 등록 안내의 JSON-LD 구조화 데이터

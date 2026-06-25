@@ -56,6 +56,7 @@
 - 수익보다 이탈률, 오클릭 위험, 학습 흐름을 먼저 확인
 - 승인 후 실제 광고 적용은 `ADSENSE_AFTER_APPROVAL.md` 순서로 진행
 - 승인 후 광고 코드가 들어간 상태는 `ADSENSE_STATUS=approved` 모드로 검사
+- 광고 적용 후 `node scripts/check-ad-placement.cjs`로 광고 단위가 `ad-slot` 안에만 있는지 확인
 
 ## Search Console 확인 순서
 
