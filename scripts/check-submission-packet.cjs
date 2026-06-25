@@ -15,15 +15,11 @@ const requiredPacketUrls = [
   `${siteBase}adsense-checklist.html`,
   `${siteBase}learn.html`,
   `${siteBase}faq.html`,
-  `${siteBase}baduk-beginner.html`,
-  `${siteBase}baduk-atari.html`,
-  `${siteBase}baduk-liberties.html`,
+  `${siteBase}baduk-9x9-beginner.html`,
+  `${siteBase}baduk-19x19-start.html`,
   `${siteBase}baduk-ko-rule.html`,
   `${siteBase}baduk-territory-scoring.html`,
-  `${siteBase}baduk-5k-to-1k.html`,
-  `${siteBase}omok-strategy.html`,
-  `${siteBase}omok-forbidden-moves.html`,
-  `${siteBase}omok-ai-difficulty.html`,
+  `${siteBase}baduk-beginner.html`,
 ];
 
 const errors = [];
@@ -46,6 +42,7 @@ for (const url of requiredPacketUrls.filter((url) => url.endsWith(".html") || ur
 check(packet.includes("node scripts/monetization-report.cjs"), "SUBMISSION_PACKET.md: missing monetization report command");
 check(packet.includes("node scripts/preflight.cjs --live"), "SUBMISSION_PACKET.md: missing live preflight command");
 check(packet.includes("node scripts/apply-search-console-meta.cjs"), "SUBMISSION_PACKET.md: missing Search Console meta helper command");
+check(packet.includes("node scripts/indexing-priority.cjs --checklist"), "SUBMISSION_PACKET.md: missing indexing checklist command");
 
 console.log("Submission packet check");
 console.log(`Checked ${requiredPacketUrls.length} required URLs.`);

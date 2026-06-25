@@ -94,16 +94,13 @@ function matchingGuidance(task) {
         siteUrl,
         `${siteUrl}learn.html`,
         `${siteUrl}faq.html`,
-        `${siteUrl}baduk-beginner.html`,
-        `${siteUrl}baduk-atari.html`,
-        `${siteUrl}baduk-liberties.html`,
+        `${siteUrl}baduk-9x9-beginner.html`,
+        `${siteUrl}baduk-19x19-start.html`,
         `${siteUrl}baduk-ko-rule.html`,
         `${siteUrl}baduk-territory-scoring.html`,
-        `${siteUrl}baduk-5k-to-1k.html`,
-        `${siteUrl}omok-strategy.html`,
-        `${siteUrl}omok-forbidden-moves.html`,
-        `${siteUrl}omok-ai-difficulty.html`,
+        `${siteUrl}baduk-beginner.html`,
       ],
+      commands: ["node scripts/indexing-priority.cjs --checklist"],
     };
   }
 

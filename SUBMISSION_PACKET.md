@@ -39,20 +39,16 @@ git push origin main
 
 ## 먼저 색인 요청할 URL
 
-아래 기본 목록을 먼저 쓰고, 최신 우선순위는 `node scripts/indexing-priority.cjs`로 확인합니다.
+아래 기본 목록을 먼저 쓰고, 최신 우선순위와 완료 기록 명령은 `node scripts/indexing-priority.cjs --checklist`로 확인합니다.
 
 1. `https://macacolabs.github.io/baduk-trainer/`
 2. `https://macacolabs.github.io/baduk-trainer/learn.html`
 3. `https://macacolabs.github.io/baduk-trainer/faq.html`
-4. `https://macacolabs.github.io/baduk-trainer/baduk-beginner.html`
-5. `https://macacolabs.github.io/baduk-trainer/baduk-atari.html`
-6. `https://macacolabs.github.io/baduk-trainer/baduk-liberties.html`
-7. `https://macacolabs.github.io/baduk-trainer/baduk-ko-rule.html`
-8. `https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html`
-9. `https://macacolabs.github.io/baduk-trainer/baduk-5k-to-1k.html`
-10. `https://macacolabs.github.io/baduk-trainer/omok-strategy.html`
-11. `https://macacolabs.github.io/baduk-trainer/omok-forbidden-moves.html`
-12. `https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html`
+4. `https://macacolabs.github.io/baduk-trainer/baduk-9x9-beginner.html`
+5. `https://macacolabs.github.io/baduk-trainer/baduk-19x19-start.html`
+6. `https://macacolabs.github.io/baduk-trainer/baduk-ko-rule.html`
+7. `https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html`
+8. `https://macacolabs.github.io/baduk-trainer/baduk-beginner.html`
 
 ## AdSense 신청 전 실행
 

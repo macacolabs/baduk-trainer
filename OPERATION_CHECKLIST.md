@@ -79,7 +79,7 @@
 1. `https://macacolabs.github.io/baduk-trainer/` URL 접두어 속성 확인
 2. 등록 전 `node scripts/prepare-search-console-registration.cjs --live`로 제출값과 live URL 확인
 3. `https://macacolabs.github.io/baduk-trainer/sitemap.xml` 제출
-4. `node scripts/indexing-priority.cjs`에서 상위 URL 확인
+4. `node scripts/indexing-priority.cjs --checklist`에서 상위 URL과 완료 기록 명령 확인
 5. `learn.html`과 주요 학습 글 색인 요청
 6. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
 7. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시

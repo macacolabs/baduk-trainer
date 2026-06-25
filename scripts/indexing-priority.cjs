@@ -4,6 +4,7 @@ const { siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const sitemapPath = path.join(root, "sitemap.xml");
+const checklistMode = process.argv.includes("--checklist");
 
 const corePaths = new Map([
   ["", { score: 130, reason: "메인 앱: 브랜드와 실제 사용 경험" }],
@@ -116,7 +117,8 @@ for (const [index, entry] of ranked.slice(0, 12).entries()) {
 
 console.log("");
 console.log("Recommended first manual indexing requests:");
-for (const entry of ranked.slice(0, 8)) {
+const recommended = ranked.slice(0, 8);
+for (const entry of recommended) {
   console.log(`- ${entry.url}`);
 }
 
@@ -125,3 +127,22 @@ console.log("After Search Console registration:");
 console.log("- Submit sitemap.xml first.");
 console.log("- Request indexing for the first 8 URLs above.");
 console.log("- Re-run this after adding or improving articles.");
+
+if (checklistMode) {
+  const learningUrls = recommended
+    .filter((entry) => /^baduk-|^omok-/.test(entry.pathname))
+    .map((entry) => entry.url);
+
+  console.log("");
+  console.log("Manual request checklist:");
+  for (const entry of recommended) {
+    console.log(`- [ ] ${entry.url} - ${entry.title || entry.reason}`);
+  }
+
+  console.log("");
+  console.log("After requesting indexing, record progress:");
+  console.log(`- node scripts/mark-external-task.cjs "Search Console" "메인 페이지 색인 요청" --note "URL 검사 색인 요청: ${siteBase}"`);
+  console.log(`- node scripts/mark-external-task.cjs "Search Console" "learn.html 색인 요청" --note "URL 검사 색인 요청: ${siteBase}learn.html"`);
+  console.log(`- node scripts/mark-external-task.cjs "Search Console" "faq.html 색인 요청" --note "URL 검사 색인 요청: ${siteBase}faq.html"`);
+  console.log(`- node scripts/mark-external-task.cjs "Search Console" "주요 학습 글 3개 이상 색인 요청" --note "URL 검사 색인 요청: ${learningUrls.slice(0, 5).join(", ")}"`);
+}

@@ -105,6 +105,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - Search Console 검색어 CSV 분석 스크립트 `scripts/search-console-query-report.cjs`
 - Search Console 검색어 기반 콘텐츠 후보 추가 스크립트 `scripts/add-content-candidate.cjs`
 - Search Console 색인 요청 우선순위 스크립트 `scripts/indexing-priority.cjs`
+- Search Console 색인 요청 체크리스트와 완료 기록 명령 출력 `scripts/indexing-priority.cjs --checklist`
 - Search Console 등록 전 제출값 점검 스크립트 `scripts/prepare-search-console-registration.cjs`
 - SEO 메타데이터 점검 스크립트 `scripts/check-seo-metadata.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
