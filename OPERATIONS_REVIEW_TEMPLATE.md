@@ -49,6 +49,10 @@
 - 오클릭 위험 위치:
 - 정책 페이지 변경 필요:
 
+## 자동 스냅샷
+
+<!-- AUTO_SNAPSHOT -->
+
 ## 실행한 점검 명령
 
 ```powershell
@@ -60,6 +64,6 @@ node scripts/search-console-query-report.cjs search-console-queries.csv
 
 ## 다음 달 작업
 
-1. 
-2. 
-3. 
+1.
+2.
+3.

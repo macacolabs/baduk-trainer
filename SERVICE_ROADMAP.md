@@ -102,6 +102,7 @@
 - `scripts/apply-search-console-meta.cjs`: Search Console verification meta 태그 삽입
 - `scripts/external-next-action.cjs`: Search Console과 AdSense에서 다음에 처리할 계정 작업 안내
 - `scripts/prepare-ads-txt.cjs`: AdSense 승인 후 ads.txt 문자열 검증과 생성
+- `scripts/create-operations-review.cjs`: 월간 운영 리뷰 파일에 수익화/콘텐츠/계정 작업 스냅샷 기록
 - `scripts/apply-article-schema.cjs`: 학습 글 LearningResource 구조화 데이터 삽입
 - `scripts/check-submission-packet.cjs`: 제출 패킷 URL과 sitemap 동기화 점검
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검

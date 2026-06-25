@@ -36,7 +36,7 @@
 
 ## 매월
 
-- `node scripts/create-operations-review.cjs`로 이번 달 운영 리뷰 파일 생성
+- `node scripts/create-operations-review.cjs`로 이번 달 운영 리뷰 파일 생성. 이때 수익화 대시보드, 다음 외부 작업, 콘텐츠 상태가 자동 기록됨
 - `node scripts/monetization-report.cjs`로 내부 준비 상태와 외부 계정 작업 분리 확인
 - `node scripts/external-account-status.cjs`로 Search Console과 AdSense 진행률 확인
 - `node scripts/external-next-action.cjs`로 다음 외부 계정 작업과 복사할 값을 확인

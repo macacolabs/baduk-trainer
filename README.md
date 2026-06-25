@@ -118,7 +118,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - 외부 계정 다음 작업 안내 스크립트 `scripts/external-next-action.cjs`
 - 외부 계정 체크리스트 완료 표시 스크립트 `scripts/mark-external-task.cjs`
 - 주간 운영 통합 점검 스크립트 `scripts/weekly-maintenance.cjs`
-- 월간 운영 리뷰 생성 스크립트 `scripts/create-operations-review.cjs`
+- 월간 운영 리뷰 생성 스크립트 `scripts/create-operations-review.cjs` (`--blank`으로 자동 스냅샷 생략 가능)
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - 학습 글 구조화 데이터 삽입 스크립트 `scripts/apply-article-schema.cjs`
 - 제출 패킷 동기화 점검 스크립트 `scripts/check-submission-packet.cjs`
@@ -180,7 +180,7 @@ node scripts/revenue-dashboard.cjs
 매월:
 
 - Search Console 검색어 확인
-- `node scripts/create-operations-review.cjs`로 운영 리뷰 작성
+- `node scripts/create-operations-review.cjs`로 대시보드, 다음 외부 작업, 콘텐츠 상태가 들어간 운영 리뷰 작성
 - `node scripts/monetization-report.cjs`로 신청 준비 상태 확인
 - 유입 많은 글 보강
 - AdSense 정책 변경 확인

@@ -32,6 +32,8 @@ const privatePathChecks = [
   "EXTERNAL_ACCOUNT_CHECKLIST.md",
   "SUBMISSION_PACKET.md",
   "CONTENT_PLAN.md",
+  "OPERATIONS_REVIEW_TEMPLATE.md",
+  "operations-reviews/",
   "local-katago-server.cjs",
   "KATAGO_LOCAL_SETUP.md",
 ];

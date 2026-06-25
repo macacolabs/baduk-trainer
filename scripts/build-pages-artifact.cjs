@@ -39,6 +39,7 @@ const denyList = [
   "ADSENSE_AFTER_APPROVAL.md",
   "CONTENT_PLAN.md",
   "OPERATIONS_REVIEW_TEMPLATE.md",
+  "operations-reviews",
 ];
 
 function fail(message) {
@@ -57,8 +58,13 @@ const uniquePublicFiles = [...new Set([...publicFiles, ...optionalPublicFiles])]
 const missing = uniquePublicFiles.filter((file) => !fs.existsSync(path.join(root, file)));
 if (missing.length) fail(`missing public file(s): ${missing.join(", ")}`);
 
-for (const file of denyList) {
-  if (uniquePublicFiles.includes(file)) fail(`private file listed for public artifact: ${file}`);
+function isDenied(file) {
+  return denyList.some((blocked) => file === blocked || file.startsWith(`${blocked}/`));
+}
+
+const deniedPublicFiles = uniquePublicFiles.filter(isDenied);
+if (deniedPublicFiles.length) {
+  fail(`private file listed for public artifact: ${deniedPublicFiles.join(", ")}`);
 }
 
 console.log(checkOnly ? "Pages artifact build check" : "Pages artifact build");
