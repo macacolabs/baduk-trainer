@@ -14,6 +14,7 @@ const corePaths = new Map([
   ["baduk-liberties.html", { score: 110, reason: "활로 검색 핵심 글" }],
   ["baduk-ko-rule.html", { score: 109, reason: "패 규칙 검색 핵심 글" }],
   ["baduk-territory-scoring.html", { score: 107, reason: "집 계산 검색 핵심 글" }],
+  ["baduk-5k-to-1k.html", { score: 106, reason: "1급 목표 학습 경로 검색 글" }],
   ["omok-strategy.html", { score: 108, reason: "오목 입문 핵심 글" }],
   ["omok-forbidden-moves.html", { score: 105, reason: "오목 금수와 자유룰 검색 글" }],
   ["omok-ai-difficulty.html", { score: 106, reason: "오목 AI 난이도 검색 글" }],

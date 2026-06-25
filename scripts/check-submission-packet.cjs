@@ -20,6 +20,7 @@ const requiredPacketUrls = [
   `${siteBase}baduk-liberties.html`,
   `${siteBase}baduk-ko-rule.html`,
   `${siteBase}baduk-territory-scoring.html`,
+  `${siteBase}baduk-5k-to-1k.html`,
   `${siteBase}omok-strategy.html`,
   `${siteBase}omok-forbidden-moves.html`,
   `${siteBase}omok-ai-difficulty.html`,
