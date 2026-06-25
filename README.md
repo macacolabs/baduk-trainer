@@ -116,6 +116,7 @@ node scripts/monetization-report.cjs
 - 학습 글 구조화 데이터 삽입 스크립트 `scripts/apply-article-schema.cjs`
 - 제출 패킷 동기화 점검 스크립트 `scripts/check-submission-packet.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`
+- 신뢰/정책 페이지 품질 점검 스크립트 `scripts/check-trust-pages.cjs`
 - 광고 배치 점검 스크립트 `scripts/check-ad-placement.cjs`
 - ads.txt 형식 점검 스크립트 `scripts/check-ads-txt.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`

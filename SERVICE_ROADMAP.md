@@ -99,6 +99,7 @@
 - `scripts/apply-article-schema.cjs`: 학습 글 LearningResource 구조화 데이터 삽입
 - `scripts/check-submission-packet.cjs`: 제출 패킷 URL과 sitemap 동기화 점검
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검
+- `scripts/check-trust-pages.cjs`: 소개, 정책, 신청 안내 페이지의 신뢰 문구 자동 점검
 - `scripts/check-performance-budget.cjs`: 주요 파일 크기 예산 자동 점검
 - `scripts/check-live-site.cjs`: 배포 후 live URL 자동 점검
 - `.github/ISSUE_TEMPLATE/`: 버그, 콘텐츠 요청, 운영 점검 이슈 양식

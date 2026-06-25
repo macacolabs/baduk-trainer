@@ -64,7 +64,7 @@
         <h2>5. 승인 전 운영 기준</h2>
         <ul class="article-list checklist-list">
           <li>검색 유입용 학습 글을 10개 이상 유지한다.</li>
-          <li>새 글은 학습 허브와 `sitemap.xml`에 함께 연결한다.</li>
+          <li>새 글은 학습 허브에 연결하고 `node scripts/sync-sitemap.cjs --write`와 `node scripts/sync-feed.cjs --write`로 공개 목록을 갱신한다.</li>
           <li>모바일에서 바둑판, 오목판, 배우기 버튼이 안정적으로 눌리는지 확인한다.</li>
           <li>광고보다 학습 문제, 복기, 용어 설명의 완성도를 먼저 높인다.</li>
         </ul>
