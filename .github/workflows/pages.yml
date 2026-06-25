@@ -14,10 +14,6 @@ concurrency:
   group: pages
   cancel-in-progress: false
 
-env:
-  ADSENSE_STATUS: ${{ vars.ADSENSE_STATUS }}
-  ADSENSE_PUBLISHER_ID: ${{ vars.ADSENSE_PUBLISHER_ID }}
-
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -47,6 +43,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Build public artifact
+        env:
+          ADSENSE_STATUS: ${{ vars.ADSENSE_STATUS }}
+          ADSENSE_PUBLISHER_ID: ${{ vars.ADSENSE_PUBLISHER_ID }}
+          ADSENSE_AD_SLOT_ID: ${{ vars.ADSENSE_AD_SLOT_ID }}
         run: node scripts/build-pages-artifact.cjs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -56,4 +56,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       - name: Wait for live deploy
+        env:
+          ADSENSE_STATUS: ${{ vars.ADSENSE_STATUS }}
+          ADSENSE_PUBLISHER_ID: ${{ vars.ADSENSE_PUBLISHER_ID }}
         run: node scripts/wait-live-deploy.cjs

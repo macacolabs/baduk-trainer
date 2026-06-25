@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { spawnSync } = require("child_process");
 const { articleFiles, publicPages } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
@@ -86,6 +87,15 @@ if (resolvedDist === root || !resolvedDist.startsWith(root + path.sep)) {
 fs.rmSync(distDir, { recursive: true, force: true });
 fs.mkdirSync(distDir, { recursive: true });
 for (const file of uniquePublicFiles) copyFile(file);
+
+if (process.env.ADSENSE_STATUS === "approved") {
+  const result = spawnSync(process.execPath, ["scripts/inject-adsense.cjs", "--dir", "dist"], {
+    cwd: root,
+    env: process.env,
+    stdio: "inherit",
+  });
+  if (result.status !== 0) fail("AdSense injection failed.");
+}
 
 const leaked = denyList.filter((file) => fs.existsSync(path.join(distDir, file)));
 if (leaked.length) fail(`private file(s) copied to dist: ${leaked.join(", ")}`);

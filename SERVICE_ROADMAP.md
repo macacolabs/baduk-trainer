@@ -26,6 +26,7 @@
    - 승인 전 준비 완료: 메인 하단과 학습 글 하단에 `ad-slot` 구조만 추가했습니다. 실제 광고 스크립트는 아직 넣지 않습니다.
    - 신청 전 점검용 `adsense-checklist.html`을 추가했습니다.
    - 승인 후 적용 절차용 `ADSENSE_AFTER_APPROVAL.md`를 추가했습니다.
+   - 승인 후 배포 안전장치 완료: `scripts/inject-adsense.cjs`가 원본 HTML이 아닌 Pages artifact `dist`에만 광고 코드를 주입합니다.
 
 4. SEO 기본
    - `robots.txt`, `sitemap.xml`, canonical, description 메타를 유지합니다.
@@ -88,6 +89,7 @@
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 - `scripts/preflight.cjs`: 배포 전 통합 점검
 - `scripts/build-pages-artifact.cjs`: 공개 사이트 파일만 `dist`로 묶는 Pages artifact 생성
+- `scripts/inject-adsense.cjs`: AdSense 승인 후 `dist`의 `ad-slot`에만 광고 코드 자동 주입
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 - `scripts/check-content-quality.cjs`: 학습 글 분량, 구조, 관련 링크 자동 점검
 - `scripts/check-seo-metadata.cjs`: title, description, canonical, sitemap, OG/RSS 메타 자동 점검

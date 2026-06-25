@@ -5,7 +5,7 @@
 ## 필요한 값
 
 - AdSense publisher ID: `ca-pub-...`
-- 광고 단위 slot ID
+- 광고 단위 slot ID: 숫자로 된 display ad slot ID
 - 필요한 경우 `ads.txt`에 넣을 Google 안내 문자열: `google.com, pub-..., DIRECT, f08c47fec0942fa0`
 
 ## 적용 순서
@@ -14,8 +14,8 @@
 2. AdSense가 안내하는 `ads.txt` 문자열이 있으면 아래 도구로 검증한 뒤 루트에 `ads.txt`를 추가합니다.
 3. `privacy.html`의 광고와 쿠키 문구가 현재 사용 방식과 맞는지 확인합니다.
 4. `terms.html`의 광고/외부 서비스 문구가 현재 사용 방식과 맞는지 확인합니다.
-5. 학습 글 하단의 `ad-slot ad-slot-article` 위치부터 광고 코드를 적용합니다.
-6. 메인 페이지는 게임판 아래 `ad-slot ad-slot-home` 위치에만 광고를 적용합니다.
+5. GitHub 저장소 Actions Variables에 승인 후 값을 설정합니다.
+6. Pages 배포가 `dist`를 만들 때 `ad-slot` 안에만 광고 코드를 자동 주입합니다.
 7. 모바일에서 바둑판, 착수 버튼, 다음/정답 보기 버튼 근처에 광고가 붙지 않는지 확인합니다.
 8. 배포 후 직접 클릭하지 말고 노출 위치만 확인합니다.
 
@@ -35,8 +35,9 @@ GitHub Pages 배포 검사도 승인 후 모드로 바꿔야 합니다. GitHub �
 
 - `ADSENSE_STATUS`: `approved`
 - `ADSENSE_PUBLISHER_ID`: `pub-1234567890123456`
+- `ADSENSE_AD_SLOT_ID`: `1234567890`
 
-이 값이 없으면 기본 배포 검사는 승인 전 모드로 동작하고, `ads.txt`가 공개되는 것을 실패로 봅니다.
+이 값이 없으면 기본 배포 검사는 승인 전 모드로 동작하고, `ads.txt`가 공개되는 것을 실패로 봅니다. 승인 후 모드에서는 원본 HTML이 아니라 GitHub Pages 공개 산출물 `dist`에만 광고 코드가 들어갑니다.
 
 ## 광고를 넣으면 안 되는 위치
 
@@ -51,28 +52,34 @@ GitHub Pages 배포 검사도 승인 후 모드로 바꿔야 합니다. GitHub �
 ```powershell
 node --check app.js
 $env:ADSENSE_STATUS='approved'
+$env:ADSENSE_PUBLISHER_ID='pub-1234567890123456'
+$env:ADSENSE_AD_SLOT_ID='1234567890'
+node scripts/build-pages-artifact.cjs
+node scripts/check-ad-placement.cjs --dir dist
 node scripts/check-service-readiness.cjs
 node scripts/monetization-report.cjs
-node scripts/check-ad-placement.cjs
 node scripts/check-ads-txt.cjs
 node scripts/check-links.cjs
 node scripts/check-performance-budget.cjs
 ```
 
-publisher ID까지 확인하려면 아래처럼 실행합니다.
+승인 후 공개 산출물에 광고가 들어갔는지는 아래처럼 확인합니다.
 
 ```powershell
 $env:ADSENSE_STATUS='approved'
 $env:ADSENSE_PUBLISHER_ID='pub-1234567890123456'
-node scripts/check-ads-txt.cjs
+$env:ADSENSE_AD_SLOT_ID='1234567890'
+node scripts/build-pages-artifact.cjs
+node scripts/check-ad-placement.cjs --dir dist
+Select-String -Path dist\index.html -Pattern "adsbygoogle|ca-pub-|data-ad-slot"
 ```
 
-주의: 기본 검사 모드는 승인 전 상태입니다. 승인 후 실제 광고를 적용한 브랜치나 커밋을 확인할 때만 `ADSENSE_STATUS=approved`를 켭니다.
+주의: 기본 검사 모드는 승인 전 상태입니다. 승인 후 광고는 `scripts/inject-adsense.cjs`가 공개 산출물에만 넣습니다. 원본 HTML에 직접 AdSense 코드를 붙이지 않습니다.
 
 ## 승인 후 별도 작업으로 바꿀 것
 
 - `ads.txt` 추가 여부 점검
-- 광고 위치가 `ad-slot` 안에만 있는지 점검
+- 광고 위치가 `ad-slot` 안에만 들어가는지 `dist`에서 점검
 - 개인정보처리방침의 광고 쿠키 문구 최신화
 - AdSense 정책 위반 가능성이 있는 위치 제거
-- 승인 후에는 `ADSENSE_STATUS=approved` 상태에서 `node scripts/check-ad-placement.cjs`가 통과해야 배포
+- 승인 후에는 `ADSENSE_STATUS=approved`, `ADSENSE_PUBLISHER_ID`, `ADSENSE_AD_SLOT_ID`가 모두 있어야 광고 산출물 빌드가 통과

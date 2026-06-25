@@ -71,8 +71,9 @@
 - 클릭을 유도하거나 보상처럼 보이는 문구 금지
 - 수익보다 이탈률, 오클릭 위험, 학습 흐름을 먼저 확인
 - 승인 후 실제 광고 적용은 `ADSENSE_AFTER_APPROVAL.md` 순서로 진행
-- 승인 후 광고 코드가 들어간 상태는 `ADSENSE_STATUS=approved` 모드로 검사
-- 광고 적용 후 `node scripts/check-ad-placement.cjs`로 광고 단위가 `ad-slot` 안에만 있는지 확인
+- 승인 후 광고 코드는 원본 HTML이 아니라 Pages artifact `dist`에만 들어가야 함
+- 승인 후 광고 배포 전 `ADSENSE_STATUS=approved`, `ADSENSE_PUBLISHER_ID`, `ADSENSE_AD_SLOT_ID`가 모두 설정됐는지 확인
+- 광고 적용 후 `dist`에서 광고 단위가 `ad-slot` 안에만 있는지 확인
 - `ads.txt`를 추가해야 한다면 `node scripts/prepare-ads-txt.cjs --check`로 Google 안내 문자열을 먼저 검증
 - `ads.txt`를 추가했다면 `node scripts/check-ads-txt.cjs`로 형식을 확인
 

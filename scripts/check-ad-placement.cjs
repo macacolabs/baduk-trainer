@@ -2,18 +2,30 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
+const dirIndex = process.argv.indexOf("--dir");
+const targetArg = dirIndex === -1 ? "." : process.argv[dirIndex + 1];
+const targetDir = path.resolve(root, targetArg || ".");
 const adsenseApproved = process.env.ADSENSE_STATUS === "approved";
-const htmlFiles = fs.readdirSync(root).filter((file) => file.endsWith(".html"));
 const adScriptPattern = /adsbygoogle|pagead2\.googlesyndication\.com|google_ad_client/;
 const adUnitPattern = /class="[^"]*\badsbygoogle\b[^"]*"/g;
 const errors = [];
 
+function htmlFilesIn(dir, recursive) {
+  const files = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const file = path.join(dir, entry.name);
+    if (entry.isDirectory() && recursive) files.push(...htmlFilesIn(file, recursive));
+    else if (entry.isFile() && entry.name.endsWith(".html")) files.push(file);
+  }
+  return files;
+}
+
 function read(file) {
-  return fs.readFileSync(path.join(root, file), "utf8");
+  return fs.readFileSync(file, "utf8");
 }
 
 function fail(file, message) {
-  errors.push(`${file}: ${message}`);
+  errors.push(`${path.relative(root, file)}: ${message}`);
 }
 
 function adUnitInsideAdSlot(html, index) {
@@ -27,6 +39,16 @@ function adUnitInsideAdSlot(html, index) {
 let adSlotCount = 0;
 let adUnitCount = 0;
 let hasAdScript = false;
+
+if (targetDir !== root && !targetDir.startsWith(root + path.sep)) {
+  errors.push(`Refusing unsafe target dir: ${targetDir}`);
+}
+
+if (!fs.existsSync(targetDir)) {
+  errors.push(`Target dir does not exist: ${path.relative(root, targetDir)}`);
+}
+
+const htmlFiles = errors.length ? [] : htmlFilesIn(targetDir, dirIndex !== -1);
 
 for (const file of htmlFiles) {
   const html = read(file);
@@ -60,6 +82,7 @@ if (adsenseApproved) {
 }
 
 console.log("Ad placement check");
+console.log(`Target: ${path.relative(root, targetDir) || "."}`);
 console.log(`AdSense mode: ${adsenseApproved ? "approved" : "pre-approval"}`);
 console.log(`HTML files: ${htmlFiles.length}`);
 console.log(`ad-slot placeholders: ${adSlotCount}`);

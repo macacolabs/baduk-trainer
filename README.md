@@ -96,11 +96,14 @@ node scripts/preflight.cjs
 
 ```powershell
 $env:ADSENSE_STATUS='approved'
+$env:ADSENSE_PUBLISHER_ID='pub-1234567890123456'
+$env:ADSENSE_AD_SLOT_ID='1234567890'
+node scripts/build-pages-artifact.cjs
 node scripts/check-service-readiness.cjs
 node scripts/monetization-report.cjs
 ```
 
-GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 Actions Variables에 `ADSENSE_STATUS=approved`, `ADSENSE_PUBLISHER_ID=pub-...`를 설정합니다.
+GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 Actions Variables에 `ADSENSE_STATUS=approved`, `ADSENSE_PUBLISHER_ID=pub-...`, `ADSENSE_AD_SLOT_ID=숫자 slot ID`를 설정합니다. 원본 HTML에는 광고 코드를 직접 넣지 않고, 배포 artifact인 `dist`에만 자동 주입합니다.
 - 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
 - 다음 콘텐츠 후보 리포트 스크립트 `scripts/content-queue.cjs`
 - Search Console 검색어 CSV 분석 스크립트 `scripts/search-console-query-report.cjs`
@@ -115,6 +118,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - AdSense 신청 직전 내부/live/외부 작업 게이트 `scripts/prepare-adsense-application.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
 - GitHub Pages 공개 artifact 생성 스크립트 `scripts/build-pages-artifact.cjs`
+- 승인 후 Pages artifact에만 광고 코드를 주입하는 스크립트 `scripts/inject-adsense.cjs`
 - sitemap 동기화/검사 스크립트 `scripts/sync-sitemap.cjs`
 - RSS feed 동기화/검사 스크립트 `scripts/sync-feed.cjs`
 - 학습 허브 ItemList 구조화 데이터 동기화 스크립트 `scripts/sync-learn-itemlist.cjs`

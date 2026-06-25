@@ -63,10 +63,12 @@ node scripts/external-account-status.cjs
 ## AdSense 승인 후
 
 - [ ] `ADSENSE_AFTER_APPROVAL.md` 순서 확인
+- [ ] 광고 단위 slot ID 확인
 - [ ] 필요한 경우 `ads.txt` 추가
+- [ ] GitHub Actions Variables에 `ADSENSE_STATUS`, `ADSENSE_PUBLISHER_ID`, `ADSENSE_AD_SLOT_ID` 설정
 - [ ] 개인정보처리방침 광고/쿠키 문구 최신화
 - [ ] 약관 광고/외부 서비스 문구 최신화
-- [ ] 학습 글 하단 `ad-slot`부터 광고 적용
+- [ ] Pages artifact `dist`의 `ad-slot`에만 광고 코드가 자동 주입되는지 확인
 - [ ] 게임판과 조작 버튼 주변에는 광고 미배치
 - [ ] 모바일에서 오클릭 위험 확인
 - [ ] 직접 광고 클릭 금지
