@@ -40,16 +40,16 @@ node scripts/external-account-status.cjs
 
 ## AdSense 신청 전
 
-- [ ] `node scripts/monetization-report.cjs`에서 내부 blocker가 없는지 확인
+- [x] `node scripts/monetization-report.cjs`에서 내부 blocker가 없는지 확인
 - [ ] Search Console 소유권 확인 완료
 - [ ] sitemap 제출 완료
-- [ ] 주요 학습 글 접근 확인
-- [ ] `privacy.html` 접근 확인
-- [ ] `terms.html` 접근 확인
-- [ ] 실제 광고 스크립트가 아직 없는지 확인
-- [ ] `node scripts/check-service-readiness.cjs` 통과
-- [ ] `node scripts/check-links.cjs` 통과
-- [ ] `node scripts/check-performance-budget.cjs` 통과
+- [x] 주요 학습 글 접근 확인
+- [x] `privacy.html` 접근 확인
+- [x] `terms.html` 접근 확인
+- [x] 실제 광고 스크립트가 아직 없는지 확인
+- [x] `node scripts/check-service-readiness.cjs` 통과
+- [x] `node scripts/check-links.cjs` 통과
+- [x] `node scripts/check-performance-budget.cjs` 통과
 
 ## AdSense 신청
 
@@ -81,3 +81,11 @@ node scripts/external-account-status.cjs
 ## 진행 로그
 
 - 2026-06-25 | Search Console | `SUBMISSION_PACKET.md`의 기본 정보 확인 | done | check-submission-packet 통과, live sitemap 35 URLs 200 확인
+- 2026-06-25 | AdSense 신청 전 | `node scripts/monetization-report.cjs`에서 내부 blocker가 없는지 확인 | done | monetization-report Internal blockers: none 확인
+- 2026-06-25 | AdSense 신청 전 | 주요 학습 글 접근 확인 | done | check-live-site sitemap 학습 글 URL 200 확인
+- 2026-06-25 | AdSense 신청 전 | `privacy.html` 접근 확인 | done | check-live-site privacy.html 200 확인
+- 2026-06-25 | AdSense 신청 전 | `terms.html` 접근 확인 | done | check-live-site terms.html 200 확인
+- 2026-06-25 | AdSense 신청 전 | 실제 광고 스크립트가 아직 없는지 확인 | done | check-ad-placement pre-approval adsbygoogle 0 통과
+- 2026-06-25 | AdSense 신청 전 | `node scripts/check-service-readiness.cjs` 통과 | done | node scripts/check-service-readiness.cjs 통과
+- 2026-06-25 | AdSense 신청 전 | `node scripts/check-links.cjs` 통과 | done | node scripts/check-links.cjs 통과
+- 2026-06-25 | AdSense 신청 전 | `node scripts/check-performance-budget.cjs` 통과 | done | node scripts/check-performance-budget.cjs 통과
