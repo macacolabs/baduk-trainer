@@ -107,6 +107,7 @@ node scripts/monetization-report.cjs
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
+- GitHub Pages 공개 artifact 생성 스크립트 `scripts/build-pages-artifact.cjs`
 - sitemap 동기화/검사 스크립트 `scripts/sync-sitemap.cjs`
 - RSS feed 동기화/검사 스크립트 `scripts/sync-feed.cjs`
 - 학습 허브 ItemList 구조화 데이터 동기화 스크립트 `scripts/sync-learn-itemlist.cjs`
@@ -169,6 +170,7 @@ node scripts/revenue-dashboard.cjs
 - 새 GitHub 이슈 확인
 - 새 문제 또는 글 보강
 - GitHub Pages 배포 상태 확인
+- GitHub Pages는 `scripts/build-pages-artifact.cjs`로 만든 `dist`만 배포
 
 매월:
 

@@ -6,6 +6,7 @@
 
 - `git status --short --branch`로 의도하지 않은 변경이 없는지 확인
 - `node scripts/preflight.cjs`로 문법, sitemap, 콘텐츠 품질, 링크, 제출 패킷, 성능 예산 확인
+- `node scripts/build-pages-artifact.cjs --check`로 공개 배포 파일 목록 확인
 - `node scripts/check-seo-metadata.cjs`로 title, description, canonical, sitemap 일치 확인
 - 새 HTML 페이지를 추가했다면 `learn.html` 또는 관련 글에서 연결
 - 새 공개 페이지를 추가했다면 `scripts/site-content.cjs`에 등록하고 `node scripts/sync-sitemap.cjs --write` 실행
@@ -17,6 +18,7 @@
 
 - `node scripts/weekly-maintenance.cjs`로 live 배포, 수익화 준비, 콘텐츠 깊이, 외부 계정 진행 상태를 한 번에 확인
 - `node scripts/preflight.cjs --live`로 GitHub Pages live URL과 sitemap 전체 페이지 접속 확인
+- GitHub Pages 배포 artifact가 `dist` 기준인지 확인
 - GitHub Actions의 `Weekly Service Health` 결과 확인
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트

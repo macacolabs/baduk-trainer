@@ -86,6 +86,7 @@
 - `adsense-checklist.html`: 공개 신청 전 점검 페이지
 - `search-console.html`: Search Console 등록과 sitemap 제출 안내 페이지
 - `scripts/preflight.cjs`: 배포 전 통합 점검
+- `scripts/build-pages-artifact.cjs`: 공개 사이트 파일만 `dist`로 묶는 Pages artifact 생성
 - `scripts/check-service-readiness.cjs`: 배포 전 sitemap, 링크, 광고 준비 상태 자동 점검
 - `scripts/check-content-quality.cjs`: 학습 글 분량, 구조, 관련 링크 자동 점검
 - `scripts/check-seo-metadata.cjs`: title, description, canonical, sitemap, OG/RSS 메타 자동 점검

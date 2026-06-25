@@ -19,6 +19,7 @@ const checks = [
   [process.execPath, ["scripts/check-ad-placement.cjs"]],
   [process.execPath, ["scripts/check-ads-txt.cjs"]],
   [process.execPath, ["scripts/check-performance-budget.cjs"]],
+  [process.execPath, ["scripts/build-pages-artifact.cjs", "--check"]],
 ];
 
 if (includeLive) {
