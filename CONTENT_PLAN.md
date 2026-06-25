@@ -95,7 +95,7 @@ Search Console 등록 전 마지막 예비 큐입니다. 등록 후에는 실제
 | 완료 | 바둑 사활 급소는 어떻게 찾을까 | 사활 문제에서 첫 수 후보를 못 찾는 입문자 | `baduk-life-death-vital-point.html`, `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-false-eye.html` |
 | 완료 | 바둑 포석에서 변은 언제 두면 좋을까 | 귀 다음 변과 중앙 선택 기준을 알고 싶은 초보자 | `baduk-side-opening.html`, `baduk-opening.html`, `baduk-opening-corner.html`, `baduk-thickness-territory.html` |
 | 완료 | 오목 첫 10수는 무엇을 봐야 할까 | 오목 초반 운영과 중앙 이후 배치를 알고 싶은 사용자 | `omok-first-10-moves.html`, `omok-center-opening.html`, `omok-first-second.html`, `omok-strategy.html` |
-| 낮음 | 오목 막기 좋은 자리는 어떻게 고를까 | 열린 3이나 4목을 어느 쪽에서 막을지 헷갈리는 사용자 | `omok-open-three.html`, `omok-open-four.html`, `omok-attack-defense-priority.html` |
+| 완료 | 오목 막기 좋은 자리는 어떻게 고를까 | 열린 3이나 4목을 어느 쪽에서 막을지 헷갈리는 사용자 | `omok-blocking-point.html`, `omok-open-three.html`, `omok-open-four.html`, `omok-attack-defense-priority.html` |
 
 ## 월간 운영 루틴
 
@@ -147,6 +147,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-center-opening.html` | 오목 첫 수와 중앙 선점 검색 유입 |
 | 2026-06-25 | `omok-first-second.html` | 오목 선공과 후공 검색 유입 |
 | 2026-06-25 | `omok-first-10-moves.html` | 오목 첫 10수 초반 운영 검색 유입 |
+| 2026-06-25 | `omok-blocking-point.html` | 오목 막기 좋은 자리 검색 유입 |
 | 2026-06-25 | `omok-double-three-four.html` | 오목 3-3과 4-4 금수 검색 유입 |
 | 2026-06-21 | `baduk-glossary.html` | 용어 사전형 유입 |
 | 2026-06-21 | `baduk-opening.html` | 포석 기초 검색 유입 |
