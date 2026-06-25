@@ -59,6 +59,7 @@ function matchingGuidance(task) {
       why: "Search Console에서 URL 접두어 속성으로 사이트를 먼저 등록해야 색인 요청과 sitemap 제출이 가능합니다.",
       links: [links.searchConsole, links.searchConsoleGuide],
       copy: [siteUrl],
+      commands: ["node scripts/prepare-search-console-registration.cjs", "node scripts/prepare-search-console-registration.cjs --live"],
     };
   }
 

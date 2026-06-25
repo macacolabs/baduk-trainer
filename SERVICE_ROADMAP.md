@@ -94,6 +94,7 @@
 - `scripts/monetization-report.cjs`: AdSense 신청 전 내부 준비 상태와 외부 작업 분리 리포트
 - `scripts/revenue-dashboard.cjs`: 수익화 준비 점수와 다음 작업 요약
 - `scripts/indexing-priority.cjs`: Search Console 색인 요청 우선순위 리포트
+- `scripts/prepare-search-console-registration.cjs`: Search Console 등록 전 제출값과 우선 색인 URL 점검
 - `scripts/site-content.cjs`: 공개 페이지와 학습 글 목록의 단일 기준
 - `scripts/sync-sitemap.cjs`: sitemap 누락/중복 검사와 자동 갱신
 - `scripts/sync-feed.cjs`: 학습 글 RSS feed 누락/동기화 검사와 자동 갱신

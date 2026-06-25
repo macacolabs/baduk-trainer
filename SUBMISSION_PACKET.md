@@ -18,6 +18,12 @@ Search Console과 AdSense 신청 때 복사해서 쓰는 정보입니다.
 - 입력 URL: `https://macacolabs.github.io/baduk-trainer/`
 - sitemap 제출값: `https://macacolabs.github.io/baduk-trainer/sitemap.xml`
 
+등록 전 한 번에 확인하려면 아래 명령을 실행합니다.
+
+```powershell
+node scripts/prepare-search-console-registration.cjs --live
+```
+
 HTML meta verification 태그를 받으면 아래 명령으로 넣습니다.
 
 ```powershell
