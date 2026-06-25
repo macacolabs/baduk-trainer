@@ -107,7 +107,7 @@ Search Console 등록이 늦어질 때도 서비스 성장을 멈추지 않기 �
 | 완료 | 바둑 1급 목표 하루 루틴 | 1급까지 가기 위한 매일 훈련 순서와 분량을 찾는 사용자 | `baduk-5k-to-1k.html`, `baduk-review-10-minute.html`, `baduk-life-death-vital-point.html`, `baduk-endgame-big-move.html` |
 | 완료 | 바둑 후보수는 몇 개를 비교해야 할까 | 한 수를 둘 때 후보수를 고르고 비교하는 법을 배우려는 사용자 | `baduk-5k-to-1k.html`, `baduk-ai-review.html`, `baduk-review-note.html`, `baduk-attack-weak-stones.html` |
 | 완료 | 오목에서 3목과 4목 중 무엇이 먼저일까 | 공격과 방어 우선순위를 더 구체적으로 알고 싶은 사용자 | `omok-attack-defense-priority.html`, `omok-open-three.html`, `omok-open-four.html`, `omok-block-four.html` |
-| 낮음 | 바둑 초반에 중앙은 언제 갈까 | 귀와 변 이후 중앙 진출 기준을 알고 싶은 초보자 | `baduk-opening.html`, `baduk-side-opening.html`, `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html` |
+| 완료 | 바둑 초반에 중앙은 언제 갈까 | 귀와 변 이후 중앙 진출 기준을 알고 싶은 초보자 | `baduk-opening.html`, `baduk-side-opening.html`, `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html` |
 | 낮음 | 오목 실수 복기는 어떻게 할까 | 진 판을 보고 다음 대국에서 고칠 점을 찾고 싶은 사용자 | `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-to-attack.html`, `omok-blocking-point.html` |
 
 ## 월간 운영 루틴
@@ -167,6 +167,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `baduk-opening.html` | 포석 기초 검색 유입 |
 | 2026-06-25 | `baduk-opening-corner.html` | 포석 귀 우선순위 검색 유입 |
 | 2026-06-25 | `baduk-side-opening.html` | 포석 변 선택 기준 검색 유입 |
+| 2026-06-25 | `baduk-center-opening.html` | 초반 중앙 진출 기준 검색 유입 |
 | 2026-06-25 | `baduk-thickness-territory.html` | 바둑 두터움과 실리 검색 유입 |
 | 2026-06-25 | `baduk-joseki-study.html` | 바둑 정석 공부 시작 시점 검색 유입 |
 | 2026-06-25 | `baduk-ai-review.html` | 바둑 AI 복기 사용법 검색 유입 |

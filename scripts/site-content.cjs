@@ -35,6 +35,7 @@ const articleFiles = [
   "baduk-opening.html",
   "baduk-opening-corner.html",
   "baduk-side-opening.html",
+  "baduk-center-opening.html",
   "baduk-thickness-territory.html",
   "baduk-joseki-study.html",
   "baduk-ai-review.html",
