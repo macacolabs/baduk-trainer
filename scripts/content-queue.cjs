@@ -36,10 +36,6 @@ const openRows = rows
   .filter((row) => row.priority !== "완료")
   .sort((a, b) => priorityOrder.get(a.priority) - priorityOrder.get(b.priority));
 
-if (!openRows.length) {
-  fail("No open content candidates found. Add at least one next article idea.");
-}
-
 const linkPattern = /`([^`]+\.html)`/g;
 for (const row of openRows) {
   const links = [...row.links.matchAll(linkPattern)].map((match) => match[1]);
@@ -55,6 +51,13 @@ for (const row of openRows) {
 
 console.log("Content queue");
 console.log("");
+
+if (!openRows.length) {
+  console.log("All planned content candidates are marked complete.");
+  console.log("Next action: review Search Console queries or add a new candidate row to CONTENT_PLAN.md.");
+  process.exit(0);
+}
+
 console.log("| priority | title | search intent | related links |");
 console.log("| --- | --- | --- | --- |");
 for (const row of openRows) {

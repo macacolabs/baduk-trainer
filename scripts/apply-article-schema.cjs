@@ -13,6 +13,7 @@ const articleFiles = [
   "baduk-glossary.html",
   "baduk-opening.html",
   "baduk-opening-corner.html",
+  "baduk-ai-review.html",
   "baduk-life-and-death.html",
   "baduk-life-and-death-practice.html",
   "baduk-endgame.html",
