@@ -3,12 +3,48 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const checklistPath = path.join(root, "EXTERNAL_ACCOUNT_CHECKLIST.md");
-const [sectionQuery, taskQuery] = process.argv.slice(2);
+const rawArgs = process.argv.slice(2);
+
+function parseArgs(args) {
+  const positional = [];
+  const options = {};
+
+  for (let index = 0; index < args.length; index += 1) {
+    const arg = args[index];
+    if (arg === "--note" || arg === "--date") {
+      options[arg.slice(2)] = args[index + 1] || "";
+      index += 1;
+      continue;
+    }
+    if (arg.startsWith("--note=") || arg.startsWith("--date=")) {
+      const [key, ...parts] = arg.slice(2).split("=");
+      options[key] = parts.join("=");
+      continue;
+    }
+    positional.push(arg);
+  }
+
+  return {
+    sectionQuery: positional[0],
+    taskQuery: positional[1],
+    note: options.note || "",
+    date: options.date || today(),
+  };
+}
+
+function today() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 function usage() {
   console.log("Usage:");
   console.log('  node scripts/mark-external-task.cjs "Search Console" "URL 접두어"');
   console.log('  node scripts/mark-external-task.cjs "AdSense 신청 전" "sitemap 제출"');
+  console.log('  node scripts/mark-external-task.cjs "Search Console" "sitemap.xml" --note "Search Console에서 제출 완료"');
 }
 
 function fail(message) {
@@ -16,6 +52,8 @@ function fail(message) {
   usage();
   process.exit(1);
 }
+
+const { sectionQuery, taskQuery, note, date } = parseArgs(rawArgs);
 
 if (!sectionQuery || !taskQuery) {
   fail("section and task search text are required.");
@@ -67,11 +105,39 @@ if (matches.length > 1) {
 const match = matches[0];
 if (match.done) {
   console.log(`Already done: [${match.section}] ${match.text}`);
+  if (note) {
+    appendLog(lines, { date, section: match.section, text: match.text, note, status: "already done" });
+    fs.writeFileSync(checklistPath, lines.join("\n"));
+    console.log("Added progress note.");
+  }
   process.exit(0);
 }
 
 lines[match.index] = lines[match.index].replace("- [ ]", "- [x]");
+if (note) {
+  appendLog(lines, { date, section: match.section, text: match.text, note, status: "done" });
+}
 fs.writeFileSync(checklistPath, lines.join("\n"));
 console.log(`Marked done: [${match.section}] ${match.text}`);
+if (note) console.log("Added progress note.");
 console.log("Next:");
 console.log("- node scripts/external-account-status.cjs");
+
+function appendLog(lines, entry) {
+  const heading = "## 진행 로그";
+  const row = `- ${entry.date} | ${entry.section} | ${entry.text.replace(/\|/g, "/")} | ${entry.status} | ${entry.note.replace(/\|/g, "/")}`;
+  const headingIndex = lines.findIndex((line) => line.trim() === heading);
+
+  if (headingIndex === -1) {
+    if (lines.at(-1)?.trim()) lines.push("");
+    lines.push(heading, "", row);
+    return;
+  }
+
+  let insertIndex = lines.findIndex((line, index) => index > headingIndex && /^##\s+/.test(line));
+  if (insertIndex === -1) insertIndex = lines.length;
+  while (insertIndex > headingIndex + 1 && lines[insertIndex - 1] === "") {
+    insertIndex -= 1;
+  }
+  lines.splice(insertIndex, 0, row);
+}

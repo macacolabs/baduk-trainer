@@ -188,5 +188,5 @@ if (guidance.commands?.length) {
 }
 
 console.log("After completing it:");
-console.log(`- node scripts/mark-external-task.cjs "${next.section}" "${completionQuery(next.text)}"`);
+console.log(`- node scripts/mark-external-task.cjs "${next.section}" "${completionQuery(next.text)}" --note "완료 근거 메모"`);
 console.log("- node scripts/external-account-status.cjs");

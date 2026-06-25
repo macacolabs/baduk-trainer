@@ -16,10 +16,12 @@
 
 ```powershell
 node scripts/mark-external-task.cjs "Search Console" "URL 접두어"
+node scripts/mark-external-task.cjs "Search Console" "sitemap.xml" --note "Search Console에서 제출 완료"
 node scripts/external-account-status.cjs
 ```
 
 섹션명과 항목 검색어가 하나의 체크 항목에만 맞을 때만 변경됩니다. 여러 항목이 맞으면 더 구체적인 검색어를 넣습니다.
+`--note`를 같이 넣으면 이 문서의 `진행 로그`에 날짜, 섹션, 항목, 메모가 남습니다.
 
 ## Search Console
 
