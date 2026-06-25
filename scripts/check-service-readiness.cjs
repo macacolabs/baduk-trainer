@@ -17,6 +17,9 @@ const requiredFiles = [
   "sitemap.xml",
   "feed.xml",
   "manifest.webmanifest",
+  "icon.svg",
+  "offline.html",
+  "sw.js",
   "ADSENSE_AFTER_APPROVAL.md",
   "CONTENT_PLAN.md",
   "EXTERNAL_ACCOUNT_CHECKLIST.md",
@@ -114,6 +117,19 @@ if (exists("index.html")) {
   for (const file of ["about.html", "learn.html", "faq.html", "adsense-checklist.html", "search-console.html", "privacy.html", "terms.html"]) {
     check(index.includes(`href="${file}"`), `index.html: missing footer/navigation link ${file}`);
   }
+  check(index.includes("navigator.serviceWorker.register(\"sw.js\")"), "index.html: missing service worker registration");
+}
+
+if (exists("manifest.webmanifest")) {
+  const manifest = read("manifest.webmanifest");
+  check(manifest.includes("\"display\": \"standalone\""), "manifest.webmanifest: missing standalone display");
+  check(manifest.includes("\"icon.svg\""), "manifest.webmanifest: missing icon.svg");
+}
+
+if (exists("sw.js")) {
+  const worker = read("sw.js");
+  check(worker.includes("offline.html"), "sw.js: missing offline fallback");
+  check(worker.includes("self.addEventListener(\"fetch\""), "sw.js: missing fetch handler");
 }
 
 if (exists("privacy.html")) {

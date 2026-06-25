@@ -18,6 +18,7 @@
 - 바둑/오목 FAQ
 - GitHub 이슈 템플릿 기반 피드백 관리
 - 개인정보처리방침, 이용약관, sitemap, robots
+- 홈 화면 추가용 manifest, 앱 아이콘, 오프라인 안내 페이지
 
 ## 로컬 확인
 
@@ -108,6 +109,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - Search Console 색인 요청 체크리스트와 완료 기록 명령 출력 `scripts/indexing-priority.cjs --checklist`
 - Search Console 등록 전 제출값 점검 스크립트 `scripts/prepare-search-console-registration.cjs`
 - SEO 메타데이터 점검 스크립트 `scripts/check-seo-metadata.cjs`
+- PWA manifest, 서비스워커, 오프라인 페이지 점검 스크립트 `scripts/check-pwa.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
 - AdSense 신청 직전 내부/live/외부 작업 게이트 `scripts/prepare-adsense-application.cjs`
@@ -168,6 +170,7 @@ node scripts/revenue-dashboard.cjs
 매주:
 
 - 모바일에서 10분 직접 사용
+- 홈 화면 추가 후 다시 열기와 오프라인 안내 화면 확인
 - 깨진 링크 확인
 - `node scripts/content-report.cjs`로 다음 보강 글 확인
 - `node scripts/indexing-priority.cjs`로 색인 요청 우선순위 확인

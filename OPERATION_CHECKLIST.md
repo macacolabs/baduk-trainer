@@ -13,6 +13,7 @@
 - 새 학습 글을 추가했다면 `node scripts/sync-feed.cjs --write` 실행
 - 새 학습 글을 추가했다면 `node scripts/sync-learn-itemlist.cjs --write` 실행
 - 모바일 폭에서 바둑판, 오목판, 주요 버튼이 겹치지 않는지 확인
+- `node scripts/check-pwa.cjs`로 manifest, 아이콘, 서비스워커, 오프라인 페이지 연결 확인
 
 ## 배포 후
 
@@ -30,6 +31,7 @@
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트
 - 모바일에서 착수 위치와 버튼 클릭 확인
+- 모바일 홈 화면 추가 후 다시 열기와 오프라인 안내 화면 확인
 - 새 GitHub 이슈를 버그, 콘텐츠 요청, 운영 점검으로 분류
 - Search Console 색인 상태와 검색어 확인
 - 색인 요청 전 `node scripts/indexing-priority.cjs`로 우선 요청 URL 확인

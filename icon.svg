@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">큰돌 앱 아이콘</title>
+  <desc id="desc">바둑과 오목 학습 앱 큰돌의 검은 돌과 흰 돌 아이콘</desc>
+  <rect width="512" height="512" rx="112" fill="#e8eee7"/>
+  <path d="M112 152h288M112 256h288M112 360h288M152 112v288M256 112v288M360 112v288" stroke="#6e746d" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="208" cy="208" r="66" fill="#1f211f"/>
+  <circle cx="304" cy="304" r="66" fill="#f8f8f3" stroke="#1f211f" stroke-width="12"/>
+</svg>

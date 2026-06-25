@@ -224,6 +224,13 @@
       <span>큰돌은 학습용 바둑/오목 트레이너입니다.</span>
     </footer>
 
+    <script>
+      if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("sw.js").catch(() => {});
+        });
+      }
+    </script>
     <script src="app.js"></script>
   </body>
 </html>
