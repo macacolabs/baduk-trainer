@@ -12,7 +12,7 @@
 
 ## 매주
 
-- `node scripts/preflight.cjs --live`로 GitHub Pages live URL 접속 확인
+- `node scripts/preflight.cjs --live`로 GitHub Pages live URL과 sitemap 전체 페이지 접속 확인
 - GitHub Actions의 `Weekly Service Health` 결과 확인
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트

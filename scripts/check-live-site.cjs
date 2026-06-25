@@ -18,6 +18,25 @@ const checks = [
   { path: "robots.txt", expect: "Sitemap:" },
 ];
 
+function pathFromUrl(url) {
+  if (!url.startsWith(baseUrl)) return null;
+  return url.slice(baseUrl.length);
+}
+
+function extractSitemapPaths(xml) {
+  const paths = [];
+  const locPattern = /<loc>\s*([^<]+)\s*<\/loc>/g;
+  let match = locPattern.exec(xml);
+
+  while (match) {
+    const nextPath = pathFromUrl(match[1].trim());
+    if (nextPath !== null) paths.push(nextPath);
+    match = locPattern.exec(xml);
+  }
+
+  return paths;
+}
+
 function fetchText(url) {
   return new Promise((resolve, reject) => {
     const request = https.get(
@@ -67,6 +86,47 @@ async function main() {
         lastError = result.statusCode !== 200
           ? `expected 200, got ${result.statusCode}`
           : `missing expected text "${check.expect}"`;
+      } catch (error) {
+        lastError = error.message;
+        console.log(`- ${url}: ${lastError}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);
+      }
+      if (attempt < maxAttempts) {
+        await wait(retryDelayMs);
+      }
+    }
+    if (lastError) {
+      errors.push(`${url}: ${lastError}`);
+    }
+  }
+
+  let sitemapPaths = [];
+  try {
+    const sitemap = await fetchText(`${baseUrl}sitemap.xml`);
+    if (sitemap.statusCode !== 200) {
+      errors.push(`${baseUrl}sitemap.xml: expected 200 before sitemap scan, got ${sitemap.statusCode}`);
+    } else {
+      sitemapPaths = extractSitemapPaths(sitemap.body);
+    }
+  } catch (error) {
+    errors.push(`${baseUrl}sitemap.xml: ${error.message}`);
+  }
+
+  const explicitlyChecked = new Set(checks.map((check) => check.path));
+  const sitemapOnlyPaths = sitemapPaths.filter((path) => !explicitlyChecked.has(path));
+  console.log(`\nSitemap URL check: ${sitemapOnlyPaths.length} additional paths`);
+
+  for (const checkPath of sitemapOnlyPaths) {
+    const url = `${baseUrl}${checkPath}`;
+    let lastError = "";
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      try {
+        const result = await fetchText(url);
+        console.log(`- ${url}: ${result.statusCode}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);
+        if (result.statusCode === 200) {
+          lastError = "";
+          break;
+        }
+        lastError = `expected 200, got ${result.statusCode}`;
       } catch (error) {
         lastError = error.message;
         console.log(`- ${url}: ${lastError}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);

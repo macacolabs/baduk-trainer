@@ -51,6 +51,8 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 node scripts/preflight.cjs --live
 ```
 
+live 점검은 핵심 페이지의 문구와 `sitemap.xml`에 등록된 모든 URL의 200 응답을 함께 확인합니다.
+
 ## Search Console
 
 1. Google Search Console에서 URL 접두어 속성으로 등록합니다.
