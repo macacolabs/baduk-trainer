@@ -10,6 +10,7 @@ const budgets = [
   { file: "learn.html", maxBytes: 20 * 1024 },
   { file: "faq.html", maxBytes: 20 * 1024 },
   { file: "sitemap.xml", maxBytes: 15 * 1024 },
+  { file: "feed.xml", maxBytes: 35 * 1024 },
 ];
 
 const errors = [];

@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://macacolabs.github.io/baduk-trainer/sitemap.xml
+Sitemap: https://macacolabs.github.io/baduk-trainer/feed.xml

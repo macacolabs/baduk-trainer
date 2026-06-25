@@ -40,8 +40,9 @@
 2. 기존 글로 답할 수 있으면 해당 글의 첫 문단과 관련 링크를 보강합니다.
 3. 기존 글로 답하기 어렵다면 위 후보 중 하나를 새 글로 만듭니다.
 4. 새 글을 `learn.html`에 추가합니다.
-5. 새 글을 `sitemap.xml`에 추가합니다.
-6. 새 글과 기존 글 사이에 `related-learning` 링크를 연결합니다.
+5. 새 글을 `scripts/site-content.cjs`에 등록합니다.
+6. `node scripts/sync-sitemap.cjs --write`와 `node scripts/sync-feed.cjs --write`를 실행합니다.
+7. 새 글과 기존 글 사이에 `related-learning` 링크를 연결합니다.
 7. 아래 명령으로 배포 전 점검을 실행합니다.
 8. 아래 명령으로 다음 보강 후보를 확인합니다.
 

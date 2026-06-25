@@ -15,6 +15,7 @@ const requiredFiles = [
   "search-console.html",
   "robots.txt",
   "sitemap.xml",
+  "feed.xml",
   "manifest.webmanifest",
   "ADSENSE_AFTER_APPROVAL.md",
   "CONTENT_PLAN.md",
@@ -87,6 +88,15 @@ if (exists("sitemap.xml")) {
 if (exists("robots.txt")) {
   const robots = read("robots.txt");
   check(/Sitemap:\s*https:\/\/macacolabs\.github\.io\/baduk-trainer\/sitemap\.xml/.test(robots), "robots.txt: missing sitemap URL");
+  check(/Sitemap:\s*https:\/\/macacolabs\.github\.io\/baduk-trainer\/feed\.xml/.test(robots), "robots.txt: missing feed URL");
+}
+
+if (exists("feed.xml")) {
+  const feed = read("feed.xml");
+  check(feed.includes("<rss version=\"2.0\">"), "feed.xml: missing RSS root");
+  for (const file of articleFiles) {
+    check(feed.includes(`${siteBase}${file}`), `feed.xml: missing article ${file}`);
+  }
 }
 
 if (exists("learn.html")) {

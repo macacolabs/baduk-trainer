@@ -17,6 +17,7 @@ const checks = [
   { path: "privacy.html", expect: "개인정보" },
   { path: "terms.html", expect: "이용약관" },
   { path: "sitemap.xml", expect: "<urlset" },
+  { path: "feed.xml", expect: "<rss" },
   { path: "robots.txt", expect: "Sitemap:" },
 ];
 
