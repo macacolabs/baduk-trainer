@@ -1,4 +1,5 @@
 const https = require("https");
+const { articleFiles, feedItemLimit } = require("./site-content.cjs");
 
 const baseUrl = "https://macacolabs.github.io/baduk-trainer/";
 const adsenseApproved = process.env.ADSENSE_STATUS === "approved";
@@ -142,6 +143,22 @@ async function main() {
     }
   } catch (error) {
     errors.push(`${baseUrl}sitemap.xml: ${error.message}`);
+  }
+
+  try {
+    const feed = await fetchText(`${baseUrl}feed.xml`);
+    if (feed.statusCode !== 200) {
+      errors.push(`${baseUrl}feed.xml: expected 200 before feed scan, got ${feed.statusCode}`);
+    } else {
+      const feedItems = feed.body.match(/<item>/g) || [];
+      const expectedFeedItems = Math.min(feedItemLimit, articleFiles.length);
+      console.log(`\nLive feed item check: ${feedItems.length}/${expectedFeedItems}`);
+      if (feedItems.length !== expectedFeedItems) {
+        errors.push(`${baseUrl}feed.xml: expected ${expectedFeedItems} items, found ${feedItems.length}`);
+      }
+    }
+  } catch (error) {
+    errors.push(`${baseUrl}feed.xml: ${error.message}`);
   }
 
   const explicitlyChecked = new Set(checks.map((check) => check.path));
