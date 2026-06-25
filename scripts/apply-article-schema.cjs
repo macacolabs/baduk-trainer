@@ -9,6 +9,7 @@ const articleFiles = [
   "baduk-9x9-beginner.html",
   "baduk-atari.html",
   "baduk-atari-practice.html",
+  "baduk-profitable-capture.html",
   "baduk-liberties.html",
   "baduk-glossary.html",
   "baduk-opening.html",
