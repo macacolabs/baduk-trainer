@@ -51,7 +51,7 @@
 | --- | --- | --- | --- |
 | 완료 | 바둑 빈삼각은 왜 나쁜 모양일까 | 빈삼각, 좋은 모양, 나쁜 모양을 구분하고 싶은 초보자 | `baduk-shape-empty-triangle.html`, `baduk-liberties.html`, `baduk-profitable-capture.html`, `baduk-sente-gote.html` |
 | 완료 | 바둑 끊기와 연결은 언제 선택할까 | 연결만 하거나 무리하게 끊는 초보 실수 개선 | `baduk-cut-connect.html`, `baduk-liberties.html`, `baduk-atari-practice.html`, `baduk-shape-empty-triangle.html` |
-| 중간 | 오목 양방향 위협을 만드는 법 | 열린 3 이후 복합 위협을 배우고 싶은 사용자 | `omok-threats.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
+| 완료 | 오목 양방향 위협을 만드는 법 | 열린 3 이후 복합 위협을 배우고 싶은 사용자 | `omok-double-threat.html`, `omok-threats.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 | 낮음 | 바둑 대국 후 10분 복기 루틴 | 짧은 시간에 복기하는 법을 찾는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-5k-to-1k.html` |
 
 ## 월간 운영 루틴
@@ -109,6 +109,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-endgame-big-move.html` | 끝내기 큰 수 검색 유입 |
 | 2026-06-21 | `baduk-sente-gote.html` | 선수/후수 개념 검색 유입 |
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
+| 2026-06-25 | `omok-double-threat.html` | 오목 양방향 위협 검색 유입 |
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
 | 2026-06-25 | `omok-block-four.html` | 오목 4목 막기 검색 유입 |
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
