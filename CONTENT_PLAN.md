@@ -36,6 +36,12 @@
 | 완료 | 바둑 복기 노트 쓰는 법 | AI 대국 후 실수를 기록하고 반복 학습하려는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-glossary.html`, `learn.html` |
 | 완료 | 오목 금수와 자유룰 차이 | 자유룰, 렌주룰, 33/44 금수를 구분하고 싶은 초보자 | `omok-forbidden-moves.html`, `omok-strategy.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 
+## 3차 확장 후보
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 완료 | 19줄 바둑은 언제 시작하면 좋을까? | 9줄 바둑에서 19줄 바둑으로 넘어가는 기준을 알고 싶은 입문자 | `baduk-19x19-start.html`, `baduk-9x9-beginner.html`, `baduk-opening-corner.html`, `baduk-review-note.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -68,6 +74,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | --- | --- | --- |
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
+| 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
 | 2026-06-21 | `baduk-atari.html` | 단수 개념 검색 유입 |
 | 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
 | 2026-06-25 | `baduk-profitable-capture.html` | 잡을 돌과 버릴 돌 판단 검색 유입 |
