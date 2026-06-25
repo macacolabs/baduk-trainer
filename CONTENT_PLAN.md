@@ -128,7 +128,7 @@ Search Console 등록 전까지 운영이 멈추지 않도록, 초보자가 자�
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
 | 완료 | 바둑 산 돌과 죽은 돌은 어떻게 구분할까 | 계가 전 내 돌과 상대 돌이 살아 있는지 죽었는지 헷갈리는 사용자 | `baduk-life-and-death.html`, `baduk-false-eye.html`, `baduk-territory-scoring.html`, `baduk-large-group-death.html` |
-| 중간 | 바둑 덤은 왜 6.5집일까 | 바둑 덤과 반집 승부의 의미를 알고 싶은 초보자 | `baduk-territory-scoring.html`, `baduk-beginner.html`, `baduk-rank-roadmap.html`, `baduk-endgame.html` |
+| 완료 | 바둑 덤은 왜 6.5집일까 | 바둑 덤과 반집 승부의 의미를 알고 싶은 초보자 | `baduk-territory-scoring.html`, `baduk-beginner.html`, `baduk-rank-roadmap.html`, `baduk-endgame.html` |
 | 중간 | 바둑 패싸움은 언제 시작해야 할까 | 패 규칙은 알지만 실전 패싸움 시작 기준을 모르는 사용자 | `baduk-ko-rule.html`, `baduk-sente-gote.html`, `baduk-candidate-moves.html`, `baduk-review-note.html` |
 | 낮음 | 바둑 잡힌 돌은 버려야 할까 살려야 할까 | 작은 돌을 무리하게 살리다 손해 보는 이유를 알고 싶은 사용자 | `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html`, `baduk-large-group-death.html` |
 | 낮음 | 오목 금수는 실전에서 언제 문제가 될까 | 자유룰과 렌주룰 차이를 실전 장면으로 이해하려는 사용자 | `omok-forbidden-moves.html`, `omok-double-three-four.html`, `omok-first-second.html`, `omok-strategy.html` |
@@ -199,6 +199,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `baduk-life-and-death.html` | 사활 기초 검색 유입 |
 | 2026-06-25 | `baduk-large-group-death.html` | 대마 생사와 약한 돌 관리 검색 유입 |
 | 2026-06-25 | `baduk-alive-dead-stones.html` | 산 돌과 죽은 돌 구분 검색 유입 |
+| 2026-06-25 | `baduk-komi-6-5.html` | 바둑 덤과 반집 승부 검색 유입 |
 | 2026-06-25 | `omok-defend-double-threat.html` | 오목 양방향 공격 방어 검색 유입 |
 | 2026-06-25 | `omok-hard-ai-losses.html` | 오목 고수 난이도 패배 원인 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
