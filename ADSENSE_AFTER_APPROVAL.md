@@ -11,13 +11,32 @@
 ## 적용 순서
 
 1. AdSense에서 사이트 승인을 확인합니다.
-2. AdSense가 안내하는 `ads.txt` 문자열이 있으면 루트에 `ads.txt`를 추가합니다.
+2. AdSense가 안내하는 `ads.txt` 문자열이 있으면 아래 도구로 검증한 뒤 루트에 `ads.txt`를 추가합니다.
 3. `privacy.html`의 광고와 쿠키 문구가 현재 사용 방식과 맞는지 확인합니다.
 4. `terms.html`의 광고/외부 서비스 문구가 현재 사용 방식과 맞는지 확인합니다.
 5. 학습 글 하단의 `ad-slot ad-slot-article` 위치부터 광고 코드를 적용합니다.
 6. 메인 페이지는 게임판 아래 `ad-slot ad-slot-home` 위치에만 광고를 적용합니다.
 7. 모바일에서 바둑판, 착수 버튼, 다음/정답 보기 버튼 근처에 광고가 붙지 않는지 확인합니다.
 8. 배포 후 직접 클릭하지 말고 노출 위치만 확인합니다.
+
+## ads.txt 준비 명령
+
+Google이 안내한 한 줄을 그대로 넣습니다. 승인 전에는 실행하지 않습니다.
+
+```powershell
+$env:ADS_TXT_LINE='google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0'
+node scripts/prepare-ads-txt.cjs --check
+node scripts/prepare-ads-txt.cjs --write
+```
+
+이미 `ads.txt`가 있고 Google 안내값과 다르면 먼저 파일을 확인합니다. 정말 교체해야 할 때만 `--force`를 붙입니다.
+
+GitHub Pages 배포 검사도 승인 후 모드로 바꿔야 합니다. GitHub 저장소의 Settings > Secrets and variables > Actions > Variables에 아래 값을 추가합니다.
+
+- `ADSENSE_STATUS`: `approved`
+- `ADSENSE_PUBLISHER_ID`: `pub-1234567890123456`
+
+이 값이 없으면 기본 배포 검사는 승인 전 모드로 동작하고, `ads.txt`가 공개되는 것을 실패로 봅니다.
 
 ## 광고를 넣으면 안 되는 위치
 

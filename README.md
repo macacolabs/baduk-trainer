@@ -98,6 +98,8 @@ $env:ADSENSE_STATUS='approved'
 node scripts/check-service-readiness.cjs
 node scripts/monetization-report.cjs
 ```
+
+GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 Actions Variables에 `ADSENSE_STATUS=approved`, `ADSENSE_PUBLISHER_ID=pub-...`를 설정합니다.
 - 콘텐츠 운영 리포트 스크립트 `scripts/content-report.cjs`
 - 다음 콘텐츠 후보 리포트 스크립트 `scripts/content-queue.cjs`
 - Search Console 검색어 CSV 분석 스크립트 `scripts/search-console-query-report.cjs`
@@ -123,6 +125,7 @@ node scripts/monetization-report.cjs
 - 신뢰/정책 페이지 품질 점검 스크립트 `scripts/check-trust-pages.cjs`
 - 광고 배치 점검 스크립트 `scripts/check-ad-placement.cjs`
 - ads.txt 형식 점검 스크립트 `scripts/check-ads-txt.cjs`
+- 승인 후 ads.txt 생성 도우미 `scripts/prepare-ads-txt.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
 - 메인, 학습 허브, 검색 등록 안내의 JSON-LD 구조화 데이터

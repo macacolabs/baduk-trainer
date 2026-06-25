@@ -1,6 +1,7 @@
 const https = require("https");
 
 const baseUrl = "https://macacolabs.github.io/baduk-trainer/";
+const adsenseApproved = process.env.ADSENSE_STATUS === "approved";
 const fastMode = process.argv.includes("--fast");
 const maxAttempts = fastMode ? 2 : 6;
 const retryDelayMs = fastMode ? 2000 : 10000;
@@ -34,6 +35,12 @@ const privatePathChecks = [
   "local-katago-server.cjs",
   "KATAGO_LOCAL_SETUP.md",
 ];
+
+if (adsenseApproved) {
+  checks.push({ path: "ads.txt", expect: "google.com" });
+} else {
+  privatePathChecks.push("ads.txt");
+}
 
 function pathFromUrl(url) {
   if (!url.startsWith(baseUrl)) return null;
@@ -88,6 +95,7 @@ function wait(ms) {
 async function main() {
   const errors = [];
   console.log("Live site check");
+  console.log(`AdSense mode: ${adsenseApproved ? "approved" : "pre-approval"}`);
 
   for (const check of checks) {
     const url = `${baseUrl}${check.path}`;

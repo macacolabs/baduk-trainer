@@ -19,6 +19,10 @@ const publicFiles = [
   "feed.xml",
 ];
 
+const optionalPublicFiles = [
+  "ads.txt",
+].filter((file) => fs.existsSync(path.join(root, file)));
+
 const denyList = [
   ".git",
   ".github",
@@ -49,7 +53,7 @@ function copyFile(file) {
   fs.copyFileSync(from, to);
 }
 
-const uniquePublicFiles = [...new Set(publicFiles)];
+const uniquePublicFiles = [...new Set([...publicFiles, ...optionalPublicFiles])];
 const missing = uniquePublicFiles.filter((file) => !fs.existsSync(path.join(root, file)));
 if (missing.length) fail(`missing public file(s): ${missing.join(", ")}`);
 
