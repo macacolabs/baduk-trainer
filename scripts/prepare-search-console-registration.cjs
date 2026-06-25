@@ -82,6 +82,20 @@ console.log("");
 console.log("Open:");
 console.log("- https://search.google.com/search-console");
 console.log(`- ${siteUrl}search-console.html`);
+console.log("");
+console.log("Manual steps:");
+console.log("1. Search Console > Add property > URL prefix.");
+console.log(`2. Paste: ${siteUrl}`);
+console.log('3. Choose "HTML tag" verification method.');
+console.log('4. Copy the full tag: <meta name="google-site-verification" content="...">');
+console.log("5. Run:");
+console.log("$env:SEARCH_CONSOLE_META='<meta name=\"google-site-verification\" content=\"발급값\">'");
+console.log("node scripts/apply-search-console-meta.cjs");
+console.log("node scripts/preflight.cjs");
+console.log("git add -A");
+console.log('git commit -m "Add Search Console verification"');
+console.log("git push origin main");
+console.log("6. Wait for Pages deploy, then click Verify in Search Console.");
 
 async function main() {
   if (includeLive) {

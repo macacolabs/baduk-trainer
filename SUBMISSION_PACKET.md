@@ -17,6 +17,8 @@ Search Console과 AdSense 신청 때 복사해서 쓰는 정보입니다.
 - 속성 유형: URL 접두어
 - 입력 URL: `https://macacolabs.github.io/baduk-trainer/`
 - sitemap 제출값: `https://macacolabs.github.io/baduk-trainer/sitemap.xml`
+- 소유권 확인 방식: HTML 태그
+- 복사할 태그 형태: `<meta name="google-site-verification" content="...">`
 
 등록 전 한 번에 확인하려면 아래 명령을 실행합니다.
 

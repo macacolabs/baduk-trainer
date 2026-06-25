@@ -38,6 +38,26 @@ node scripts/external-account-status.cjs
 - [ ] `faq.html` 색인 요청
 - [ ] 주요 학습 글 3개 이상 색인 요청
 
+Search Console에서 처음 선택할 값은 아래와 같습니다.
+
+```text
+속성 유형: URL 접두어
+사이트 URL: https://macacolabs.github.io/baduk-trainer/
+검증 방식: HTML 태그
+sitemap URL: https://macacolabs.github.io/baduk-trainer/sitemap.xml
+```
+
+HTML 태그를 발급받은 뒤에는 아래 흐름을 사용합니다.
+
+```powershell
+$env:SEARCH_CONSOLE_META='<meta name="google-site-verification" content="발급값">'
+node scripts/apply-search-console-meta.cjs
+node scripts/preflight.cjs
+git add -A
+git commit -m "Add Search Console verification"
+git push origin main
+```
+
 ## AdSense 신청 전
 
 - [x] `node scripts/monetization-report.cjs`에서 내부 blocker가 없는지 확인

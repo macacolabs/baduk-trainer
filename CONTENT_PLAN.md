@@ -86,6 +86,17 @@ Search Console 등록 전에는 초보자가 자주 헷갈리는 개념형 검�
 | 완료 | 오목 3-3과 4-4는 왜 위험할까 | 자유룰과 렌주룰 차이를 더 깊게 알고 싶은 오목 입문자 | `omok-double-three-four.html`, `omok-forbidden-moves.html`, `omok-open-three.html`, `omok-open-four.html` |
 | 완료 | 오목 선공과 후공은 얼마나 차이날까 | 오목에서 흑이 유리한 이유와 자유룰 한계를 알고 싶은 사용자 | `omok-first-second.html`, `omok-strategy.html`, `omok-center-opening.html`, `omok-forbidden-moves.html` |
 
+## 8차 확장 후보
+
+Search Console 등록 전 마지막 예비 큐입니다. 등록 후에는 실제 노출 검색어를 우선하고, 검색어가 아직 없으면 아래 순서로 작성합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 중간 | 바둑 사활 급소는 어떻게 찾을까 | 사활 문제에서 첫 수 후보를 못 찾는 입문자 | `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-false-eye.html` |
+| 중간 | 바둑 포석에서 변은 언제 두면 좋을까 | 귀 다음 변과 중앙 선택 기준을 알고 싶은 초보자 | `baduk-opening.html`, `baduk-opening-corner.html`, `baduk-thickness-territory.html` |
+| 낮음 | 오목 첫 10수는 무엇을 봐야 할까 | 오목 초반 운영과 중앙 이후 배치를 알고 싶은 사용자 | `omok-center-opening.html`, `omok-first-second.html`, `omok-strategy.html` |
+| 낮음 | 오목 막기 좋은 자리는 어떻게 고를까 | 열린 3이나 4목을 어느 쪽에서 막을지 헷갈리는 사용자 | `omok-open-three.html`, `omok-open-four.html`, `omok-attack-defense-priority.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
