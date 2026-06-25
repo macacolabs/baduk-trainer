@@ -80,7 +80,7 @@ Search Console 등록 전에는 초보자가 자주 헷갈리는 개념형 검�
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 중간 | 바둑 두터움과 실리는 어떻게 다를까 | 초보자가 두터움, 실리, 세력의 차이를 이해하려는 검색 | `baduk-opening.html`, `baduk-territory-scoring.html`, `baduk-attack-weak-stones.html` |
+| 완료 | 바둑 두터움과 실리는 어떻게 다를까 | 초보자가 두터움, 실리, 세력의 차이를 이해하려는 검색 | `baduk-thickness-territory.html`, `baduk-opening.html`, `baduk-territory-scoring.html`, `baduk-attack-weak-stones.html` |
 | 중간 | 바둑 정석은 언제부터 외워야 할까 | 정석 공부를 시작해야 하는 시점과 외우는 범위를 알고 싶은 입문자 | `baduk-opening-corner.html`, `baduk-beginner-mistakes.html`, `baduk-10k-to-5k.html` |
 | 중간 | 바둑 축머리는 왜 중요할까 | 축이 성립하지 않는 이유와 축머리 개념을 알고 싶은 사용자 | `baduk-ladder.html`, `baduk-cut-connect.html`, `baduk-attack-weak-stones.html` |
 | 낮음 | 오목 3-3과 4-4는 왜 위험할까 | 자유룰과 렌주룰 차이를 더 깊게 알고 싶은 오목 입문자 | `omok-forbidden-moves.html`, `omok-open-three.html`, `omok-open-four.html` |
@@ -136,6 +136,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `baduk-glossary.html` | 용어 사전형 유입 |
 | 2026-06-21 | `baduk-opening.html` | 포석 기초 검색 유입 |
 | 2026-06-25 | `baduk-opening-corner.html` | 포석 귀 우선순위 검색 유입 |
+| 2026-06-25 | `baduk-thickness-territory.html` | 바둑 두터움과 실리 검색 유입 |
 | 2026-06-25 | `baduk-ai-review.html` | 바둑 AI 복기 사용법 검색 유입 |
 | 2026-06-25 | `baduk-review-note.html` | 바둑 복기 노트 검색 유입 |
 | 2026-06-25 | `baduk-review-10-minute.html` | 짧은 복기 루틴 검색 유입 |
