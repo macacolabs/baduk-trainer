@@ -26,7 +26,7 @@ node scripts/external-account-status.cjs
 
 ## Search Console
 
-- [ ] `SUBMISSION_PACKET.md`의 기본 정보 확인
+- [x] `SUBMISSION_PACKET.md`의 기본 정보 확인
 - [ ] URL 접두어 속성으로 사이트 등록
 - [ ] HTML meta verification 태그 발급
 - [ ] `SEARCH_CONSOLE_META` 값으로 `node scripts/apply-search-console-meta.cjs` 실행
@@ -77,3 +77,7 @@ node scripts/external-account-status.cjs
 - [ ] 색인 제외 페이지 확인
 - [ ] 유입 있는 글 1개 보강
 - [ ] `CONTENT_PLAN.md`에서 다음 글 후보 확인
+
+## 진행 로그
+
+- 2026-06-25 | Search Console | `SUBMISSION_PACKET.md`의 기본 정보 확인 | done | check-submission-packet 통과, live sitemap 35 URLs 200 확인
