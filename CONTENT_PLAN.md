@@ -103,7 +103,7 @@ Search Console 등록이 늦어질 때도 서비스 성장을 멈추지 않기 �
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 높음 | 오목 난이도는 어떻게 고르면 좋을까 | 오목 AI 난이도 선택과 본인 실력에 맞는 연습법을 알고 싶은 사용자 | `omok-ai-difficulty.html`, `omok-practice-routine.html`, `omok-strategy.html`, `omok-first-10-moves.html` |
+| 완료 | 오목 난이도는 어떻게 고르면 좋을까 | 오목 AI 난이도 선택과 본인 실력에 맞는 연습법을 알고 싶은 사용자 | `omok-ai-difficulty.html`, `omok-practice-routine.html`, `omok-strategy.html`, `omok-first-10-moves.html` |
 | 높음 | 바둑 1급 목표 하루 루틴 | 1급까지 가기 위한 매일 훈련 순서와 분량을 찾는 사용자 | `baduk-5k-to-1k.html`, `baduk-review-10-minute.html`, `baduk-life-death-vital-point.html`, `baduk-endgame-big-move.html` |
 | 중간 | 바둑 후보수는 몇 개를 비교해야 할까 | 한 수를 둘 때 후보수를 고르고 비교하는 법을 배우려는 사용자 | `baduk-5k-to-1k.html`, `baduk-ai-review.html`, `baduk-review-note.html`, `baduk-attack-weak-stones.html` |
 | 중간 | 오목에서 3목과 4목 중 무엇이 먼저일까 | 공격과 방어 우선순위를 더 구체적으로 알고 싶은 사용자 | `omok-attack-defense-priority.html`, `omok-open-three.html`, `omok-open-four.html`, `omok-block-four.html` |

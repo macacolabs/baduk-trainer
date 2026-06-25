@@ -65,6 +65,7 @@ const articleFiles = [
   "omok-open-four.html",
   "omok-open-three.html",
   "omok-ai-difficulty.html",
+  "omok-difficulty-choice.html",
   "omok-practice-routine.html",
 ];
 
