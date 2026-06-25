@@ -98,7 +98,9 @@ function matchingGuidance(task) {
         `${siteUrl}baduk-liberties.html`,
         `${siteUrl}baduk-ko-rule.html`,
         `${siteUrl}baduk-territory-scoring.html`,
+        `${siteUrl}baduk-5k-to-1k.html`,
         `${siteUrl}omok-strategy.html`,
+        `${siteUrl}omok-forbidden-moves.html`,
         `${siteUrl}omok-ai-difficulty.html`,
       ],
     };
@@ -148,6 +150,41 @@ function completionQuery(text) {
   return withoutCode || text.replace(/`/g, "").trim();
 }
 
+function noteExamples(task) {
+  const text = task.text;
+  if (/SUBMISSION_PACKET/.test(text)) {
+    return ["SUBMISSION_PACKET.md URL과 live sitemap 확인"];
+  }
+  if (/URL 접두어|사이트 등록/.test(text)) {
+    return ["Search Console URL 접두어 속성에 사이트 URL 등록"];
+  }
+  if (/HTML meta verification/.test(text)) {
+    return ["HTML 태그 방식 선택, verification meta 태그 발급"];
+  }
+  if (/SEARCH_CONSOLE_META|apply-search-console-meta/.test(text)) {
+    return ["Search Console meta 태그 적용 후 preflight 통과"];
+  }
+  if (/변경사항 배포/.test(text)) {
+    return ["verification meta 커밋/푸시 후 GitHub Pages 배포 완료"];
+  }
+  if (/소유권 확인/.test(text)) {
+    return ["Search Console에서 소유권 확인 성공"];
+  }
+  if (/sitemap/.test(text)) {
+    return ["Search Console sitemap 메뉴에서 sitemap.xml 제출 완료"];
+  }
+  if (/색인 요청|주요 학습 글/.test(text)) {
+    return ["URL 검사에서 색인 요청 버튼 실행", "요청한 URL 3개 이상 메모"];
+  }
+  if (/monetization-report|내부 blocker/.test(text)) {
+    return ["monetization-report 내부 blocker 없음 확인"];
+  }
+  if (/광고|ads.txt|오클릭|직접 광고 클릭/.test(text)) {
+    return ["광고 위치/ads.txt 확인 완료, 직접 클릭 없음"];
+  }
+  return ["외부 계정 화면에서 완료 확인"];
+}
+
 if (!fs.existsSync(checklistPath)) fail("EXTERNAL_ACCOUNT_CHECKLIST.md is missing.");
 
 const sections = parseChecklist(fs.readFileSync(checklistPath, "utf8"));
@@ -188,6 +225,13 @@ if (guidance.commands?.length) {
   console.log("");
 }
 
+const examples = noteExamples(next);
+if (examples.length) {
+  console.log("Completion note examples:");
+  for (const example of examples) console.log(`- ${example}`);
+  console.log("");
+}
+
 console.log("After completing it:");
-console.log(`- node scripts/mark-external-task.cjs "${next.section}" "${completionQuery(next.text)}" --note "완료 근거 메모"`);
+console.log(`- node scripts/mark-external-task.cjs "${next.section}" "${completionQuery(next.text)}" --note "${examples[0] || "완료 근거 메모"}"`);
 console.log("- node scripts/external-account-status.cjs");

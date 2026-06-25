@@ -76,7 +76,7 @@
 4. `learn.html`과 주요 학습 글 색인 요청
 5. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
 6. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
-7. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어"`로 체크
+7. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어" --note "완료 근거"`로 체크
 8. 다음에 할 계정 작업이 헷갈리면 `node scripts/external-next-action.cjs`를 실행
 
 ## 운영 명령 빠른 실행
