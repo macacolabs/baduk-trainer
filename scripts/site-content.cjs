@@ -46,6 +46,7 @@ const articleFiles = [
   "baduk-false-eye.html",
   "baduk-10k-to-5k.html",
   "baduk-5k-to-1k.html",
+  "baduk-1k-daily-routine.html",
   "baduk-territory-scoring.html",
   "baduk-endgame.html",
   "baduk-endgame-big-move.html",
