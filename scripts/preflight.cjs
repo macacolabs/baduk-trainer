@@ -10,6 +10,7 @@ const checks = [
   [process.execPath, ["scripts/content-queue.cjs"]],
   [process.execPath, ["scripts/sync-sitemap.cjs"]],
   [process.execPath, ["scripts/sync-feed.cjs"]],
+  [process.execPath, ["scripts/sync-learn-itemlist.cjs"]],
   [process.execPath, ["scripts/check-links.cjs"]],
   [process.execPath, ["scripts/check-trust-pages.cjs"]],
   [process.execPath, ["scripts/check-submission-packet.cjs"]],

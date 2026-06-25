@@ -103,7 +103,10 @@ if (exists("learn.html")) {
   const learn = read("learn.html");
   for (const file of articleFiles) {
     check(learn.includes(`href="${file}"`), `learn.html: missing article link ${file}`);
+    check(learn.includes(`${siteBase}${file}`), `learn.html: missing ItemList schema URL ${file}`);
   }
+  check(/"@type":\s*"ItemList"/.test(learn), "learn.html: missing ItemList schema");
+  check(new RegExp(`"numberOfItems"\\s*:\\s*${articleFiles.length}`).test(learn), "learn.html: ItemList article count is out of sync");
 }
 
 if (exists("index.html")) {
