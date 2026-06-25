@@ -41,6 +41,7 @@ for (const url of requiredPacketUrls.filter((url) => url.endsWith(".html") || ur
 
 check(packet.includes("node scripts/monetization-report.cjs"), "SUBMISSION_PACKET.md: missing monetization report command");
 check(packet.includes("node scripts/preflight.cjs --live"), "SUBMISSION_PACKET.md: missing live preflight command");
+check(packet.includes("node scripts/prepare-adsense-application.cjs --live"), "SUBMISSION_PACKET.md: missing AdSense application prep command");
 check(packet.includes("node scripts/apply-search-console-meta.cjs"), "SUBMISSION_PACKET.md: missing Search Console meta helper command");
 check(packet.includes("node scripts/indexing-priority.cjs --checklist"), "SUBMISSION_PACKET.md: missing indexing checklist command");
 

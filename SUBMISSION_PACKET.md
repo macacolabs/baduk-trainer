@@ -53,10 +53,12 @@ git push origin main
 ## AdSense 신청 전 실행
 
 ```powershell
+node scripts/prepare-adsense-application.cjs --live
 node scripts/monetization-report.cjs
 node scripts/preflight.cjs --live
 ```
 
+`prepare-adsense-application`이 통과하면 내부 준비, live 배포, Search Console 선행 작업이 AdSense 신청 가능한 상태입니다.
 `monetization-report`에서 `Internal blockers: none`이면 코드와 공개 페이지 기준의 내부 준비는 완료된 상태입니다.
 
 ## AdSense 신청 시 확인할 것

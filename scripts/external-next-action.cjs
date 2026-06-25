@@ -46,6 +46,14 @@ function parseChecklist(markdown) {
 function matchingGuidance(task) {
   const text = task.text;
 
+  if (/AdSense 신청 전 실행/.test(text)) {
+    return {
+      why: "AdSense 신청 직전에는 내부 준비, live 배포, Search Console 선행 작업 완료 여부를 한 번에 막아야 합니다.",
+      links: [links.adsenseChecklist, links.submissionPacket],
+      commands: ["node scripts/prepare-adsense-application.cjs --live"],
+    };
+  }
+
   if (/SUBMISSION_PACKET/.test(text)) {
     return {
       why: "제출 전에 사이트 URL, sitemap, 정책 페이지 URL을 한 번에 확인합니다.",
@@ -108,7 +116,7 @@ function matchingGuidance(task) {
     return {
       why: "AdSense 신청 전에는 내부 준비 상태와 외부 계정 작업을 분리해서 확인합니다.",
       links: [links.adsenseChecklist],
-      commands: ["node scripts/monetization-report.cjs", "node scripts/preflight.cjs --live"],
+      commands: ["node scripts/monetization-report.cjs", "node scripts/prepare-adsense-application.cjs --live"],
     };
   }
 
@@ -150,6 +158,9 @@ function completionQuery(text) {
 
 function noteExamples(task) {
   const text = task.text;
+  if (/AdSense 신청 전 실행/.test(text)) {
+    return ["prepare-adsense-application --live 통과"];
+  }
   if (/SUBMISSION_PACKET/.test(text)) {
     return ["SUBMISSION_PACKET.md URL과 live sitemap 확인"];
   }

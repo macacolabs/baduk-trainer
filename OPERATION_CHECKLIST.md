@@ -96,6 +96,7 @@ node scripts/weekly-maintenance.cjs
 
 ## AdSense 신청 전 최종 확인
 
+- `node scripts/prepare-adsense-application.cjs --live` 통과
 - 검색 유입용 학습 글 10개 이상
 - `privacy.html`, `terms.html`, `adsense-checklist.html` 연결
 - 실제 광고 스크립트 미삽입

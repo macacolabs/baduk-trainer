@@ -110,6 +110,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - SEO 메타데이터 점검 스크립트 `scripts/check-seo-metadata.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
+- AdSense 신청 직전 내부/live/외부 작업 게이트 `scripts/prepare-adsense-application.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
 - GitHub Pages 공개 artifact 생성 스크립트 `scripts/build-pages-artifact.cjs`
 - sitemap 동기화/검사 스크립트 `scripts/sync-sitemap.cjs`
@@ -185,6 +186,7 @@ node scripts/revenue-dashboard.cjs
 - Search Console 검색어 확인
 - `node scripts/create-operations-review.cjs`로 대시보드, 다음 외부 작업, 콘텐츠 상태가 들어간 운영 리뷰 작성
 - `node scripts/monetization-report.cjs`로 신청 준비 상태 확인
+- `node scripts/prepare-adsense-application.cjs --live`로 AdSense 신청 가능 상태 확인
 - 유입 많은 글 보강
 - AdSense 정책 변경 확인
 - 광고가 있다면 오클릭 위험 확인
