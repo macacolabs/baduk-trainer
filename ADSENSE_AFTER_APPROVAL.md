@@ -6,7 +6,7 @@
 
 - AdSense publisher ID: `ca-pub-...`
 - 광고 단위 slot ID
-- 필요한 경우 `ads.txt`에 넣을 Google 안내 문자열
+- 필요한 경우 `ads.txt`에 넣을 Google 안내 문자열: `google.com, pub-..., DIRECT, f08c47fec0942fa0`
 
 ## 적용 순서
 
@@ -35,8 +35,17 @@ $env:ADSENSE_STATUS='approved'
 node scripts/check-service-readiness.cjs
 node scripts/monetization-report.cjs
 node scripts/check-ad-placement.cjs
+node scripts/check-ads-txt.cjs
 node scripts/check-links.cjs
 node scripts/check-performance-budget.cjs
+```
+
+publisher ID까지 확인하려면 아래처럼 실행합니다.
+
+```powershell
+$env:ADSENSE_STATUS='approved'
+$env:ADSENSE_PUBLISHER_ID='pub-1234567890123456'
+node scripts/check-ads-txt.cjs
 ```
 
 주의: 기본 검사 모드는 승인 전 상태입니다. 승인 후 실제 광고를 적용한 브랜치나 커밋을 확인할 때만 `ADSENSE_STATUS=approved`를 켭니다.
