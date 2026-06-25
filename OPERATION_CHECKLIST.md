@@ -24,6 +24,7 @@
 ## 매주
 
 - `node scripts/weekly-maintenance.cjs`로 live 배포, 수익화 준비, 콘텐츠 깊이, 외부 계정 진행 상태를 한 번에 확인
+- `node scripts/service-next-action.cjs`로 외부 계정 작업과 다음 콘텐츠 작업 중 오늘 우선순위를 확인
 - `node scripts/preflight.cjs --live`로 GitHub Pages live URL과 sitemap 전체 페이지 접속 확인
 - GitHub Pages 배포 artifact가 `dist` 기준인지 확인
 - `scripts`, `.github`, 운영 문서 URL이 live에서 404인지 확인
@@ -97,6 +98,12 @@ node scripts/weekly-maintenance.cjs
 ```
 
 이 명령은 live 페이지, sitemap URL, 내부 링크, 성능 예산, 콘텐츠 깊이, 수익화 준비 상태, 외부 계정 진행률을 한 번에 확인합니다. 실패가 나오면 먼저 해당 항목을 고치고, 통과하면 Search Console과 AdSense 계정 화면에서 남은 작업을 진행합니다.
+
+오늘의 다음 행동만 빠르게 고를 때는 아래 명령을 사용합니다.
+
+```powershell
+node scripts/service-next-action.cjs
+```
 
 ## AdSense 신청 전 최종 확인
 

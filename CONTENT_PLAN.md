@@ -97,6 +97,19 @@ Search Console 등록 전 마지막 예비 큐입니다. 등록 후에는 실제
 | 완료 | 오목 첫 10수는 무엇을 봐야 할까 | 오목 초반 운영과 중앙 이후 배치를 알고 싶은 사용자 | `omok-first-10-moves.html`, `omok-center-opening.html`, `omok-first-second.html`, `omok-strategy.html` |
 | 완료 | 오목 막기 좋은 자리는 어떻게 고를까 | 열린 3이나 4목을 어느 쪽에서 막을지 헷갈리는 사용자 | `omok-blocking-point.html`, `omok-open-three.html`, `omok-open-four.html`, `omok-attack-defense-priority.html` |
 
+## 9차 확장 후보
+
+Search Console 등록이 늦어질 때도 서비스 성장을 멈추지 않기 위한 예비 큐입니다. 실제 검색어가 생기면 이 표보다 검색어 기반 보강을 우선합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 높음 | 오목 난이도는 어떻게 고르면 좋을까 | 오목 AI 난이도 선택과 본인 실력에 맞는 연습법을 알고 싶은 사용자 | `omok-ai-difficulty.html`, `omok-practice-routine.html`, `omok-strategy.html`, `omok-first-10-moves.html` |
+| 높음 | 바둑 1급 목표 하루 루틴 | 1급까지 가기 위한 매일 훈련 순서와 분량을 찾는 사용자 | `baduk-5k-to-1k.html`, `baduk-review-10-minute.html`, `baduk-life-death-vital-point.html`, `baduk-endgame-big-move.html` |
+| 중간 | 바둑 후보수는 몇 개를 비교해야 할까 | 한 수를 둘 때 후보수를 고르고 비교하는 법을 배우려는 사용자 | `baduk-5k-to-1k.html`, `baduk-ai-review.html`, `baduk-review-note.html`, `baduk-attack-weak-stones.html` |
+| 중간 | 오목에서 3목과 4목 중 무엇이 먼저일까 | 공격과 방어 우선순위를 더 구체적으로 알고 싶은 사용자 | `omok-attack-defense-priority.html`, `omok-open-three.html`, `omok-open-four.html`, `omok-block-four.html` |
+| 낮음 | 바둑 초반에 중앙은 언제 갈까 | 귀와 변 이후 중앙 진출 기준을 알고 싶은 초보자 | `baduk-opening.html`, `baduk-side-opening.html`, `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html` |
+| 낮음 | 오목 실수 복기는 어떻게 할까 | 진 판을 보고 다음 대국에서 고칠 점을 찾고 싶은 사용자 | `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-to-attack.html`, `omok-blocking-point.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -113,6 +126,7 @@ Search Console 등록 전 마지막 예비 큐입니다. 등록 후에는 실제
 node scripts/preflight.cjs
 node scripts/content-report.cjs
 node scripts/content-queue.cjs
+node scripts/service-next-action.cjs
 ```
 
 Search Console에서 새 검색어를 발견했지만 아직 후보 표에 없다면 아래 명령으로 후보를 추가합니다.

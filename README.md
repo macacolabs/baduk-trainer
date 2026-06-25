@@ -115,6 +115,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - PWA manifest, 서비스워커, 오프라인 페이지 점검 스크립트 `scripts/check-pwa.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
+- 서비스 다음 행동 요약 스크립트 `scripts/service-next-action.cjs`
 - AdSense 신청 직전 내부/live/외부 작업 게이트 `scripts/prepare-adsense-application.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
 - GitHub Pages 공개 artifact 생성 스크립트 `scripts/build-pages-artifact.cjs`
@@ -169,6 +170,12 @@ node scripts/weekly-maintenance.cjs
 
 ```powershell
 node scripts/revenue-dashboard.cjs
+```
+
+오늘 무엇을 먼저 할지 보고 싶을 때:
+
+```powershell
+node scripts/service-next-action.cjs
 ```
 
 매주:
