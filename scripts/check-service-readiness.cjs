@@ -8,6 +8,8 @@ const requiredFiles = [
   "index.html",
   "about.html",
   "learn.html",
+  "baduk-learn.html",
+  "omok-learn.html",
   "faq.html",
   "privacy.html",
   "terms.html",
@@ -27,7 +29,7 @@ const requiredFiles = [
   "styles.css",
 ];
 
-const structuredDataFiles = ["index.html", "about.html", "learn.html", "faq.html", "search-console.html"];
+const structuredDataFiles = ["index.html", "about.html", "learn.html", "baduk-learn.html", "omok-learn.html", "faq.html", "search-console.html"];
 
 const errors = [];
 const warnings = [];
@@ -104,17 +106,23 @@ if (exists("feed.xml")) {
 
 if (exists("learn.html")) {
   const learn = read("learn.html");
+  const learningHubText = ["learn.html", "baduk-learn.html", "omok-learn.html"]
+    .filter(exists)
+    .map(read)
+    .join("\n");
   for (const file of articleFiles) {
-    check(learn.includes(`href="${file}"`), `learn.html: missing article link ${file}`);
+    check(learningHubText.includes(`href="${file}"`), `learning hubs: missing article link ${file}`);
     check(learn.includes(`${siteBase}${file}`), `learn.html: missing ItemList schema URL ${file}`);
   }
+  check(learn.includes('href="baduk-learn.html"'), "learn.html: missing baduk learning hub link");
+  check(learn.includes('href="omok-learn.html"'), "learn.html: missing omok learning hub link");
   check(/"@type":\s*"ItemList"/.test(learn), "learn.html: missing ItemList schema");
   check(new RegExp(`"numberOfItems"\\s*:\\s*${articleFiles.length}`).test(learn), "learn.html: ItemList article count is out of sync");
 }
 
 if (exists("index.html")) {
   const index = read("index.html");
-  for (const file of ["about.html", "learn.html", "faq.html", "adsense-checklist.html", "search-console.html", "privacy.html", "terms.html"]) {
+  for (const file of ["about.html", "learn.html", "baduk-learn.html", "omok-learn.html", "faq.html", "adsense-checklist.html", "search-console.html", "privacy.html", "terms.html"]) {
     check(index.includes(`href="${file}"`), `index.html: missing footer/navigation link ${file}`);
   }
   check(index.includes("navigator.serviceWorker.register(\"sw.js\")"), "index.html: missing service worker registration");

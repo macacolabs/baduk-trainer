@@ -8,6 +8,8 @@ const budgets = [
   { file: "styles.css", maxBytes: 70 * 1024 },
   { file: "index.html", maxBytes: 30 * 1024 },
   { file: "learn.html", maxBytes: 20 * 1024 },
+  { file: "baduk-learn.html", maxBytes: 24 * 1024 },
+  { file: "omok-learn.html", maxBytes: 16 * 1024 },
   { file: "faq.html", maxBytes: 20 * 1024 },
   { file: "sitemap.xml", maxBytes: 15 * 1024 },
   { file: "feed.xml", maxBytes: 35 * 1024 },
