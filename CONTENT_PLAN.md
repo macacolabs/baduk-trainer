@@ -62,6 +62,18 @@
 | 완료 | 바둑 사활에서 가짜 눈을 구분하는 법 | 두 눈과 가짜 눈을 헷갈리는 초보자 | `baduk-false-eye.html`, `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-glossary.html` |
 | 완료 | 오목 수비만 하다 지는 이유 | 막기만 하는 오목 초보가 공격 전환을 배우려는 검색 | `omok-defense-to-attack.html`, `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-practice-routine.html` |
 
+## 6차 확장 후보
+
+Search Console 검색어가 쌓이기 전까지는 기초 전술, 행마, 오목 위협 구분처럼 검색 의도가 분명한 주제를 우선 작성합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 높음 | 바둑 축은 어떻게 읽을까 | 단수 이후 축으로 돌을 잡는 원리를 알고 싶은 초보자 | `baduk-atari-practice.html`, `baduk-cut-connect.html`, `baduk-attack-weak-stones.html` |
+| 중간 | 바둑 장문은 언제 성립할까 | 축이 안 될 때 장문으로 잡는 모양을 배우려는 사용자 | `baduk-atari.html`, `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html` |
+| 중간 | 바둑 날일자와 한칸뜀은 어떻게 다를까 | 초보 행마와 좋은 모양을 구분하고 싶은 사용자 | `baduk-shape-empty-triangle.html`, `baduk-liberties.html`, `baduk-cut-connect.html` |
+| 중간 | 오목 열린 4와 닫힌 4 차이 | 4목을 언제 반드시 막아야 하는지 헷갈리는 사용자 | `omok-block-four.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
+| 낮음 | 오목 중앙을 먼저 잡는 이유 | 오목 첫 수와 초반 위치 선택을 검색하는 입문자 | `omok-strategy.html`, `omok-threats.html`, `omok-double-threat.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.

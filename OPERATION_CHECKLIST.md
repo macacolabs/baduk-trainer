@@ -38,6 +38,7 @@
 - Search Console 검색어 CSV가 있으면 `node scripts/search-console-query-report.cjs search-console-queries.csv`로 보강 후보 확인
 - `node scripts/content-report.cjs`로 짧거나 내부 링크가 약한 글 확인
 - `node scripts/content-queue.cjs`로 다음 작성 후보 확인
+- 콘텐츠 후보가 모두 완료 상태라면 Search Console 검색어 또는 `CONTENT_PLAN.md`의 다음 확장 후보를 3개 이상 채워둠
 - 새 검색어가 후보 표에 없다면 `node scripts/add-content-candidate.cjs --title "제목" --intent "검색 의도" --links file1.html,file2.html --priority 중간`으로 추가
 - 유입이 있는 글 1개를 더 자세히 보강
 - `CONTENT_PLAN.md`에서 다음 작성 후보 1개를 고르기

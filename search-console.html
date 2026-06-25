@@ -88,6 +88,18 @@
           <li>AdSense 신청 전에는 주요 학습 글이 검색엔진에서 접근 가능한지 확인합니다.</li>
         </ul>
       </section>
+
+      <section>
+        <h2>5. 첫 7일 운영 루틴</h2>
+        <p>등록 직후에는 수치를 크게 기대하기보다, Google이 사이트 구조를 정확히 읽는지 확인하는 것이 먼저입니다. 하루에 한 번만 아래 순서로 보면 충분합니다.</p>
+        <ol class="article-list">
+          <li>sitemap 제출 상태가 성공인지 확인합니다.</li>
+          <li>상위 색인 요청 URL이 가져올 수 있음 상태인지 확인합니다.</li>
+          <li>검색어가 아직 없어도 `node scripts/indexing-priority.cjs`로 다음 색인 요청 대상을 유지합니다.</li>
+          <li>노출 검색어가 생기면 `CONTENT_PLAN.md`에 후보를 추가하거나 기존 글 첫 문단을 보강합니다.</li>
+          <li>7일 뒤 `node scripts/prepare-adsense-application.cjs --live`를 실행해 AdSense 신청 준비 상태를 다시 확인합니다.</li>
+        </ol>
+      </section>
     </main>
   </body>
 </html>
