@@ -27,6 +27,7 @@
 
 ## 매월
 
+- `node scripts/create-operations-review.cjs`로 이번 달 운영 리뷰 파일 생성
 - `node scripts/monetization-report.cjs`로 내부 준비 상태와 외부 계정 작업 분리 확인
 - `node scripts/external-account-status.cjs`로 Search Console과 AdSense 진행률 확인
 - 개인정보처리방침과 이용약관이 현재 기능과 맞는지 확인
@@ -35,6 +36,7 @@
 - 오래된 글의 설명, 제목, 내부 링크 보강
 - 새 학습 글 또는 문제 세트 1개 이상 추가
 - 발행한 글을 `CONTENT_PLAN.md` 완료 기록에 추가
+- 월간 리뷰에 Search Console 검색어, 보강한 글, 다음 달 작업 3개 기록
 
 ## 피드백 관리
 
