@@ -63,6 +63,13 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 집 계산법은 빈 곳을 세는 것부터 시작합니다</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html</guid>
+      <description>바둑 초보자를 위한 집 계산법입니다. 집, 잡은 돌, 덤, 계가, 끝내기 후 형세판단을 어떤 순서로 보면 되는지 쉽게 설명합니다.</description>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>오목 공격과 수비 우선순위</title>
       <link>https://macacolabs.github.io/baduk-trainer/omok-attack-defense-priority.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-attack-defense-priority.html</guid>

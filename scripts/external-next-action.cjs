@@ -97,6 +97,7 @@ function matchingGuidance(task) {
         `${siteUrl}baduk-atari.html`,
         `${siteUrl}baduk-liberties.html`,
         `${siteUrl}baduk-ko-rule.html`,
+        `${siteUrl}baduk-territory-scoring.html`,
         `${siteUrl}omok-strategy.html`,
         `${siteUrl}omok-ai-difficulty.html`,
       ],
