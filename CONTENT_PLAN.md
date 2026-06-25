@@ -33,6 +33,7 @@
 | 완료 | 바둑에서 잡아도 손해인 돌을 구분하는 법 | 초보가 모든 돌을 잡으려다 손해 보는 상황 이해 | `baduk-profitable-capture.html`, `baduk-atari-practice.html`, `baduk-sente-gote.html`, `baduk-opening-corner.html` |
 | 완료 | 오목에서 공격과 수비 우선순위 정하기 | 4목 차단, 열린 3, 내 공격 중 무엇이 먼저인지 검색 | `omok-attack-defense-priority.html`, `omok-strategy.html`, `omok-open-three.html`, `omok-threats.html` |
 | 완료 | 바둑 복기 노트 쓰는 법 | AI 대국 후 실수를 기록하고 반복 학습하려는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-glossary.html`, `learn.html` |
+| 완료 | 오목 금수와 자유룰 차이 | 자유룰, 렌주룰, 33/44 금수를 구분하고 싶은 초보자 | `omok-forbidden-moves.html`, `omok-strategy.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 
 ## 월간 운영 루틴
 
@@ -87,6 +88,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
 | 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |
+| 2026-06-25 | `omok-forbidden-moves.html` | 오목 금수와 자유룰 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |
 
 ## 2026-06-25 추가 발행 메모

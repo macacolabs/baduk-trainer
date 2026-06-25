@@ -21,6 +21,7 @@ const requiredPacketUrls = [
   `${siteBase}baduk-ko-rule.html`,
   `${siteBase}baduk-territory-scoring.html`,
   `${siteBase}omok-strategy.html`,
+  `${siteBase}omok-forbidden-moves.html`,
   `${siteBase}omok-ai-difficulty.html`,
 ];
 

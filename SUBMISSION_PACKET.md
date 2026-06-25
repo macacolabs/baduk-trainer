@@ -42,7 +42,8 @@ git push origin main
 7. `https://macacolabs.github.io/baduk-trainer/baduk-ko-rule.html`
 8. `https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html`
 9. `https://macacolabs.github.io/baduk-trainer/omok-strategy.html`
-10. `https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html`
+10. `https://macacolabs.github.io/baduk-trainer/omok-forbidden-moves.html`
+11. `https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html`
 
 ## AdSense 신청 전 실행
 
