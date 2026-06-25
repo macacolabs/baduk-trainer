@@ -41,6 +41,9 @@
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
 | 완료 | 19줄 바둑은 언제 시작하면 좋을까? | 9줄 바둑에서 19줄 바둑으로 넘어가는 기준을 알고 싶은 입문자 | `baduk-19x19-start.html`, `baduk-9x9-beginner.html`, `baduk-opening-corner.html`, `baduk-review-note.html` |
+| 완료 | 바둑 급수표와 공부 순서 | 급수별로 무엇을 공부해야 하는지 알고 싶은 입문자 | `baduk-rank-roadmap.html`, `baduk-beginner.html`, `baduk-10k-to-5k.html`, `baduk-5k-to-1k.html` |
+| 완료 | 바둑 초보가 자주 하는 실수 | 계속 지는 이유와 고칠 실수를 알고 싶은 초보자 | `baduk-beginner-mistakes.html`, `baduk-atari.html`, `baduk-profitable-capture.html`, `baduk-review-note.html` |
+| 완료 | 오목 4목은 왜 바로 막아야 할까? | 오목에서 상대 4목을 막는 기준을 알고 싶은 입문자 | `omok-block-four.html`, `omok-open-three.html`, `omok-attack-defense-priority.html`, `omok-ai-difficulty.html` |
 
 ## 월간 운영 루틴
 
@@ -75,6 +78,8 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
+| 2026-06-25 | `baduk-rank-roadmap.html` | 바둑 급수표와 공부 순서 검색 유입 |
+| 2026-06-25 | `baduk-beginner-mistakes.html` | 바둑 초보 실수 검색 유입 |
 | 2026-06-21 | `baduk-atari.html` | 단수 개념 검색 유입 |
 | 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
 | 2026-06-25 | `baduk-profitable-capture.html` | 잡을 돌과 버릴 돌 판단 검색 유입 |
@@ -94,6 +99,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `baduk-sente-gote.html` | 선수/후수 개념 검색 유입 |
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
+| 2026-06-25 | `omok-block-four.html` | 오목 4목 막기 검색 유입 |
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
 | 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |

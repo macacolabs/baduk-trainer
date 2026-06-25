@@ -105,8 +105,8 @@ function matchingGuidance(task) {
         `${siteUrl}baduk-9x9-beginner.html`,
         `${siteUrl}baduk-19x19-start.html`,
         `${siteUrl}baduk-ko-rule.html`,
-        `${siteUrl}baduk-territory-scoring.html`,
-        `${siteUrl}baduk-beginner.html`,
+        `${siteUrl}baduk-rank-roadmap.html`,
+        `${siteUrl}baduk-beginner-mistakes.html`,
       ],
       commands: ["node scripts/indexing-priority.cjs --checklist"],
     };

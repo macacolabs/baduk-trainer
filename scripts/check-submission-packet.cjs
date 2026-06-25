@@ -18,8 +18,8 @@ const requiredPacketUrls = [
   `${siteBase}baduk-9x9-beginner.html`,
   `${siteBase}baduk-19x19-start.html`,
   `${siteBase}baduk-ko-rule.html`,
-  `${siteBase}baduk-territory-scoring.html`,
-  `${siteBase}baduk-beginner.html`,
+  `${siteBase}baduk-rank-roadmap.html`,
+  `${siteBase}baduk-beginner-mistakes.html`,
 ];
 
 const errors = [];
