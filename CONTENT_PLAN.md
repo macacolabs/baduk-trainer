@@ -71,7 +71,7 @@ Search Console 검색어가 쌓이기 전까지는 기초 전술, 행마, 오목
 | 완료 | 바둑 축은 어떻게 읽을까 | 단수 이후 축으로 돌을 잡는 원리를 알고 싶은 초보자 | `baduk-ladder.html`, `baduk-atari-practice.html`, `baduk-cut-connect.html`, `baduk-attack-weak-stones.html` |
 | 완료 | 바둑 장문은 언제 성립할까 | 축이 안 될 때 장문으로 잡는 모양을 배우려는 사용자 | `baduk-net.html`, `baduk-atari.html`, `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html` |
 | 완료 | 바둑 날일자와 한칸뜀은 어떻게 다를까 | 초보 행마와 좋은 모양을 구분하고 싶은 사용자 | `baduk-knight-move.html`, `baduk-shape-empty-triangle.html`, `baduk-liberties.html`, `baduk-cut-connect.html` |
-| 중간 | 오목 열린 4와 닫힌 4 차이 | 4목을 언제 반드시 막아야 하는지 헷갈리는 사용자 | `omok-block-four.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
+| 완료 | 오목 열린 4와 닫힌 4 차이 | 4목을 언제 반드시 막아야 하는지 헷갈리는 사용자 | `omok-open-four.html`, `omok-block-four.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 | 낮음 | 오목 중앙을 먼저 잡는 이유 | 오목 첫 수와 초반 위치 선택을 검색하는 입문자 | `omok-strategy.html`, `omok-threats.html`, `omok-double-threat.html` |
 
 ## 월간 운영 루틴
@@ -139,6 +139,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
 | 2026-06-25 | `omok-defense-to-attack.html` | 오목 수비 후 공격 전환 검색 유입 |
 | 2026-06-25 | `omok-block-four.html` | 오목 4목 막기 검색 유입 |
+| 2026-06-25 | `omok-open-four.html` | 오목 열린 4와 닫힌 4 검색 유입 |
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
 | 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |
