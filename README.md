@@ -48,10 +48,10 @@ GitHub Pages 반영까지는 잠시 시간이 걸릴 수 있습니다.
 배포 후 live URL 확인:
 
 ```powershell
-node scripts/preflight.cjs --live
+node scripts/wait-live-deploy.cjs --fast
 ```
 
-live 점검은 핵심 페이지의 문구와 `sitemap.xml`에 등록된 모든 URL의 200 응답을 함께 확인합니다.
+live 배포 대기 점검은 로컬 `sitemap.xml`과 live `sitemap.xml`이 같아질 때까지 확인한 뒤, 핵심 페이지 문구와 sitemap URL의 200 응답을 함께 확인합니다.
 
 ## Search Console
 
@@ -129,6 +129,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - 승인 후 ads.txt 생성 도우미 `scripts/prepare-ads-txt.cjs`
 - 성능 예산 점검 스크립트 `scripts/check-performance-budget.cjs`
 - 배포 후 live URL 점검 스크립트 `scripts/check-live-site.cjs`
+- 로컬 sitemap과 live sitemap이 같아질 때까지 기다리는 배포 반영 점검 스크립트 `scripts/wait-live-deploy.cjs`
 - 메인, 학습 허브, 검색 등록 안내의 JSON-LD 구조화 데이터
 
 광고 배치 금지 구역:
@@ -176,6 +177,7 @@ node scripts/revenue-dashboard.cjs
 - GitHub Pages 배포 상태 확인
 - GitHub Pages는 `scripts/build-pages-artifact.cjs`로 만든 `dist`만 배포
 - `node scripts/check-live-site.cjs --fast`로 공개 URL 200과 내부 운영 파일 404 확인
+- 새 글을 push한 직후에는 `node scripts/wait-live-deploy.cjs --fast`로 live sitemap 반영까지 확인
 
 매월:
 

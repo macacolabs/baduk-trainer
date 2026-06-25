@@ -14,6 +14,12 @@
 - 새 학습 글을 추가했다면 `node scripts/sync-learn-itemlist.cjs --write` 실행
 - 모바일 폭에서 바둑판, 오목판, 주요 버튼이 겹치지 않는지 확인
 
+## 배포 후
+
+- 새 글이나 sitemap 변경을 push했다면 `node scripts/wait-live-deploy.cjs --fast`로 live sitemap이 로컬 sitemap과 같아졌는지 확인
+- GitHub Actions의 `Deploy GitHub Pages` 마지막 단계가 `Wait for live deploy`로 통과했는지 확인
+- live 반영이 늦으면 같은 명령을 다시 실행하고, 계속 실패하면 GitHub Pages 배포 상태를 먼저 확인
+
 ## 매주
 
 - `node scripts/weekly-maintenance.cjs`로 live 배포, 수익화 준비, 콘텐츠 깊이, 외부 계정 진행 상태를 한 번에 확인
