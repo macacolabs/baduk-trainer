@@ -40,9 +40,11 @@ const articleFiles = [
 const requiredPublicPages = publicPages;
 
 const sitemapPages = [
-  "about.html",
+  "privacy.html",
+  "terms.html",
   "learn.html",
   "faq.html",
+  "about.html",
   "adsense-checklist.html",
   "search-console.html",
   ...articleFiles,

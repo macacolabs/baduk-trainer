@@ -105,6 +105,7 @@ node scripts/monetization-report.cjs
 - Search Console 색인 요청 우선순위 스크립트 `scripts/indexing-priority.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
+- sitemap 동기화/검사 스크립트 `scripts/sync-sitemap.cjs`
 - 외부 계정 진행률 리포트 스크립트 `scripts/external-account-status.cjs`
 - 외부 계정 다음 작업 안내 스크립트 `scripts/external-next-action.cjs`
 - 외부 계정 체크리스트 완료 표시 스크립트 `scripts/mark-external-task.cjs`
@@ -150,6 +151,7 @@ node scripts/weekly-maintenance.cjs
 - 깨진 링크 확인
 - `node scripts/content-report.cjs`로 다음 보강 글 확인
 - `node scripts/indexing-priority.cjs`로 색인 요청 우선순위 확인
+- 새 공개 페이지를 추가했다면 `node scripts/sync-sitemap.cjs --write`로 sitemap 갱신
 - 새 GitHub 이슈 확인
 - 새 문제 또는 글 보강
 - GitHub Pages 배포 상태 확인
