@@ -32,7 +32,7 @@
 | 완료 | 바둑 10급에서 5급으로 가는 공부 순서 | 기초 이후 중급으로 올라가는 학습 경로 검색 | `baduk-10k-to-5k.html`, `baduk-life-and-death-practice.html`, `baduk-endgame-big-move.html`, `baduk-ai-review.html` |
 | 완료 | 바둑에서 잡아도 손해인 돌을 구분하는 법 | 초보가 모든 돌을 잡으려다 손해 보는 상황 이해 | `baduk-profitable-capture.html`, `baduk-atari-practice.html`, `baduk-sente-gote.html`, `baduk-opening-corner.html` |
 | 완료 | 오목에서 공격과 수비 우선순위 정하기 | 4목 차단, 열린 3, 내 공격 중 무엇이 먼저인지 검색 | `omok-attack-defense-priority.html`, `omok-strategy.html`, `omok-open-three.html`, `omok-threats.html` |
-| 낮음 | 바둑 복기 노트 쓰는 법 | AI 대국 후 실수를 기록하고 반복 학습하려는 사용자 | `baduk-ai-review.html`, `baduk-glossary.html`, `learn.html` |
+| 완료 | 바둑 복기 노트 쓰는 법 | AI 대국 후 실수를 기록하고 반복 학습하려는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-glossary.html`, `learn.html` |
 
 ## 월간 운영 루틴
 
@@ -66,6 +66,7 @@ node scripts/content-queue.cjs
 | 2026-06-21 | `baduk-opening.html` | 포석 기초 검색 유입 |
 | 2026-06-25 | `baduk-opening-corner.html` | 포석 귀 우선순위 검색 유입 |
 | 2026-06-25 | `baduk-ai-review.html` | 바둑 AI 복기 사용법 검색 유입 |
+| 2026-06-25 | `baduk-review-note.html` | 바둑 복기 노트 검색 유입 |
 | 2026-06-21 | `baduk-life-and-death.html` | 사활 기초 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
