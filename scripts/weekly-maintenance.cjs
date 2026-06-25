@@ -26,6 +26,11 @@ const checks = [
     command: process.execPath,
     args: ["scripts/external-account-status.cjs"],
   },
+  {
+    title: "External account next action",
+    command: process.execPath,
+    args: ["scripts/external-next-action.cjs"],
+  },
 ];
 
 console.log("Weekly maintenance check");
@@ -53,5 +58,6 @@ console.log("- Check Search Console queries and indexing status.");
 console.log("- Improve one article that has impressions, clicks, or weak engagement.");
 console.log("- Test one Baduk AI game and one Omok AI game on mobile.");
 console.log("- Record Search Console or AdSense account progress in EXTERNAL_ACCOUNT_CHECKLIST.md.");
+console.log("- Use scripts/external-next-action.cjs when the next account task is unclear.");
 console.log("");
 console.log("OK: weekly maintenance checks passed.");

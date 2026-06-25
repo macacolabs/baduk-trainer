@@ -104,6 +104,7 @@ node scripts/monetization-report.cjs
 - Search Console 검색어 기반 콘텐츠 후보 추가 스크립트 `scripts/add-content-candidate.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 외부 계정 진행률 리포트 스크립트 `scripts/external-account-status.cjs`
+- 외부 계정 다음 작업 안내 스크립트 `scripts/external-next-action.cjs`
 - 외부 계정 체크리스트 완료 표시 스크립트 `scripts/mark-external-task.cjs`
 - 주간 운영 통합 점검 스크립트 `scripts/weekly-maintenance.cjs`
 - 월간 운영 리뷰 생성 스크립트 `scripts/create-operations-review.cjs`

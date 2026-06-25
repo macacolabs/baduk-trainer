@@ -32,6 +32,7 @@
 - `node scripts/create-operations-review.cjs`로 이번 달 운영 리뷰 파일 생성
 - `node scripts/monetization-report.cjs`로 내부 준비 상태와 외부 계정 작업 분리 확인
 - `node scripts/external-account-status.cjs`로 Search Console과 AdSense 진행률 확인
+- `node scripts/external-next-action.cjs`로 다음 외부 계정 작업과 복사할 값을 확인
 - 개인정보처리방침과 이용약관이 현재 기능과 맞는지 확인
 - AdSense 정책 변경 여부 확인
 - 광고가 붙어 있다면 오클릭 위험 영역 확인
@@ -66,6 +67,7 @@
 4. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
 5. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
 6. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어"`로 체크
+7. 다음에 할 계정 작업이 헷갈리면 `node scripts/external-next-action.cjs`를 실행
 
 ## 운영 명령 빠른 실행
 

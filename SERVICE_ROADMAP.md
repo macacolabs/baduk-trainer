@@ -91,6 +91,7 @@
 - `scripts/content-report.cjs`: 매주 보강할 학습 글 우선순위 리포트
 - `scripts/monetization-report.cjs`: AdSense 신청 전 내부 준비 상태와 외부 작업 분리 리포트
 - `scripts/apply-search-console-meta.cjs`: Search Console verification meta 태그 삽입
+- `scripts/external-next-action.cjs`: Search Console과 AdSense에서 다음에 처리할 계정 작업 안내
 - `scripts/apply-article-schema.cjs`: 학습 글 LearningResource 구조화 데이터 삽입
 - `scripts/check-submission-packet.cjs`: 제출 패킷 URL과 sitemap 동기화 점검
 - `scripts/check-links.cjs`: 내부 링크와 sitemap 대상 파일 자동 점검
