@@ -116,7 +116,7 @@ Search Console 등록 전까지 큐가 비지 않도록 유지하는 예비 후�
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 낮음 | 바둑 끝내기 실수는 어떻게 줄일까 | 후반에 이기던 판을 뒤집히는 이유와 끝내기 복기 기준을 알고 싶은 사용자 | `baduk-endgame.html`, `baduk-endgame-big-move.html`, `baduk-sente-gote.html`, `baduk-review-10-minute.html` |
+| 완료 | 바둑 끝내기 실수는 어떻게 줄일까 | 후반에 이기던 판을 뒤집히는 이유와 끝내기 복기 기준을 알고 싶은 사용자 | `baduk-endgame.html`, `baduk-endgame-big-move.html`, `baduk-sente-gote.html`, `baduk-review-10-minute.html` |
 | 낮음 | 바둑 대마는 왜 죽을까 | 큰 돌이 갑자기 죽는 이유와 약한 돌 관리법을 배우려는 사용자 | `baduk-life-and-death.html`, `baduk-attack-weak-stones.html`, `baduk-false-eye.html`, `baduk-candidate-moves.html` |
 | 낮음 | 오목 양방향 공격은 어떻게 막을까 | 상대가 두 곳을 동시에 위협할 때 막는 기준을 알고 싶은 사용자 | `omok-double-threat.html`, `omok-blocking-point.html`, `omok-attack-defense-priority.html`, `omok-open-three.html` |
 | 낮음 | 오목 고수 난이도에서 계속 지는 이유 | 고수 AI 난이도에서 패배 원인을 찾고 낮출 기준을 알고 싶은 사용자 | `omok-difficulty-choice.html`, `omok-review-mistakes.html`, `omok-attack-defense-priority.html`, `omok-first-10-moves.html` |
@@ -192,6 +192,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-5k-to-1k.html` | 바둑 5급에서 1급 학습 순서 검색 유입 |
 | 2026-06-21 | `baduk-endgame.html` | 끝내기 기초 검색 유입 |
 | 2026-06-25 | `baduk-endgame-big-move.html` | 끝내기 큰 수 검색 유입 |
+| 2026-06-25 | `baduk-endgame-mistakes.html` | 끝내기 실수 복기 검색 유입 |
 | 2026-06-21 | `baduk-sente-gote.html` | 선수/후수 개념 검색 유입 |
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
 | 2026-06-25 | `omok-double-threat.html` | 오목 양방향 위협 검색 유입 |
