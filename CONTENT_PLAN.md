@@ -60,7 +60,7 @@
 | --- | --- | --- | --- |
 | 완료 | 바둑 약한 돌을 공격하는 법 | 무리하게 잡으려 하지 않고 상대 약한 돌을 몰아가는 법 | `baduk-attack-weak-stones.html`, `baduk-cut-connect.html`, `baduk-profitable-capture.html`, `baduk-shape-empty-triangle.html` |
 | 완료 | 바둑 사활에서 가짜 눈을 구분하는 법 | 두 눈과 가짜 눈을 헷갈리는 초보자 | `baduk-false-eye.html`, `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-glossary.html` |
-| 낮음 | 오목 수비만 하다 지는 이유 | 막기만 하는 오목 초보가 공격 전환을 배우려는 검색 | `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-practice-routine.html` |
+| 완료 | 오목 수비만 하다 지는 이유 | 막기만 하는 오목 초보가 공격 전환을 배우려는 검색 | `omok-defense-to-attack.html`, `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-practice-routine.html` |
 
 ## 월간 운영 루틴
 
@@ -122,6 +122,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
 | 2026-06-25 | `omok-double-threat.html` | 오목 양방향 위협 검색 유입 |
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
+| 2026-06-25 | `omok-defense-to-attack.html` | 오목 수비 후 공격 전환 검색 유입 |
 | 2026-06-25 | `omok-block-four.html` | 오목 4목 막기 검색 유입 |
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |

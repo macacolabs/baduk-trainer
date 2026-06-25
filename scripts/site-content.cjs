@@ -45,6 +45,7 @@ const articleFiles = [
   "omok-threats.html",
   "omok-double-threat.html",
   "omok-attack-defense-priority.html",
+  "omok-defense-to-attack.html",
   "omok-block-four.html",
   "omok-open-three.html",
   "omok-ai-difficulty.html",
