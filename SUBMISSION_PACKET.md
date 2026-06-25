@@ -31,6 +31,8 @@ git push origin main
 
 ## 먼저 색인 요청할 URL
 
+아래 기본 목록을 먼저 쓰고, 최신 우선순위는 `node scripts/indexing-priority.cjs`로 확인합니다.
+
 1. `https://macacolabs.github.io/baduk-trainer/`
 2. `https://macacolabs.github.io/baduk-trainer/learn.html`
 3. `https://macacolabs.github.io/baduk-trainer/faq.html`

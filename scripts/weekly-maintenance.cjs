@@ -22,6 +22,11 @@ const checks = [
     args: ["scripts/content-report.cjs"],
   },
   {
+    title: "Indexing priority",
+    command: process.execPath,
+    args: ["scripts/indexing-priority.cjs"],
+  },
+  {
     title: "External account progress",
     command: process.execPath,
     args: ["scripts/external-account-status.cjs"],
@@ -55,6 +60,7 @@ for (const check of checks) {
 console.log("");
 console.log("Weekly operator actions:");
 console.log("- Check Search Console queries and indexing status.");
+console.log("- Use scripts/indexing-priority.cjs before manual indexing requests.");
 console.log("- Improve one article that has impressions, clicks, or weak engagement.");
 console.log("- Test one Baduk AI game and one Omok AI game on mobile.");
 console.log("- Record Search Console or AdSense account progress in EXTERNAL_ACCOUNT_CHECKLIST.md.");

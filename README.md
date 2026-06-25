@@ -102,6 +102,7 @@ node scripts/monetization-report.cjs
 - 다음 콘텐츠 후보 리포트 스크립트 `scripts/content-queue.cjs`
 - Search Console 검색어 CSV 분석 스크립트 `scripts/search-console-query-report.cjs`
 - Search Console 검색어 기반 콘텐츠 후보 추가 스크립트 `scripts/add-content-candidate.cjs`
+- Search Console 색인 요청 우선순위 스크립트 `scripts/indexing-priority.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 외부 계정 진행률 리포트 스크립트 `scripts/external-account-status.cjs`
 - 외부 계정 다음 작업 안내 스크립트 `scripts/external-next-action.cjs`
@@ -147,6 +148,7 @@ node scripts/weekly-maintenance.cjs
 - 모바일에서 10분 직접 사용
 - 깨진 링크 확인
 - `node scripts/content-report.cjs`로 다음 보강 글 확인
+- `node scripts/indexing-priority.cjs`로 색인 요청 우선순위 확인
 - 새 GitHub 이슈 확인
 - 새 문제 또는 글 보강
 - GitHub Pages 배포 상태 확인

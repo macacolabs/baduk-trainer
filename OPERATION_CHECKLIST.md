@@ -20,6 +20,7 @@
 - 모바일에서 착수 위치와 버튼 클릭 확인
 - 새 GitHub 이슈를 버그, 콘텐츠 요청, 운영 점검으로 분류
 - Search Console 색인 상태와 검색어 확인
+- 색인 요청 전 `node scripts/indexing-priority.cjs`로 우선 요청 URL 확인
 - Search Console 검색어 CSV가 있으면 `node scripts/search-console-query-report.cjs search-console-queries.csv`로 보강 후보 확인
 - `node scripts/content-report.cjs`로 짧거나 내부 링크가 약한 글 확인
 - `node scripts/content-queue.cjs`로 다음 작성 후보 확인
@@ -63,11 +64,12 @@
 
 1. `https://macacolabs.github.io/baduk-trainer/` URL 접두어 속성 확인
 2. `https://macacolabs.github.io/baduk-trainer/sitemap.xml` 제출
-3. `learn.html`과 주요 학습 글 색인 요청
-4. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
-5. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
-6. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어"`로 체크
-7. 다음에 할 계정 작업이 헷갈리면 `node scripts/external-next-action.cjs`를 실행
+3. `node scripts/indexing-priority.cjs`에서 상위 URL 확인
+4. `learn.html`과 주요 학습 글 색인 요청
+5. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
+6. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
+7. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어"`로 체크
+8. 다음에 할 계정 작업이 헷갈리면 `node scripts/external-next-action.cjs`를 실행
 
 ## 운영 명령 빠른 실행
 
