@@ -32,6 +32,7 @@ const articleFiles = [
   "baduk-knight-move.html",
   "baduk-glossary.html",
   "baduk-ko-rule.html",
+  "baduk-ko-fight-timing.html",
   "baduk-opening.html",
   "baduk-opening-corner.html",
   "baduk-side-opening.html",
