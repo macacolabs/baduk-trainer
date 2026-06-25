@@ -50,7 +50,7 @@
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
 | 완료 | 바둑 빈삼각은 왜 나쁜 모양일까 | 빈삼각, 좋은 모양, 나쁜 모양을 구분하고 싶은 초보자 | `baduk-shape-empty-triangle.html`, `baduk-liberties.html`, `baduk-profitable-capture.html`, `baduk-sente-gote.html` |
-| 중간 | 바둑 끊기와 연결은 언제 선택할까 | 연결만 하거나 무리하게 끊는 초보 실수 개선 | `baduk-liberties.html`, `baduk-atari-practice.html`, `baduk-shape-empty-triangle.html` |
+| 완료 | 바둑 끊기와 연결은 언제 선택할까 | 연결만 하거나 무리하게 끊는 초보 실수 개선 | `baduk-cut-connect.html`, `baduk-liberties.html`, `baduk-atari-practice.html`, `baduk-shape-empty-triangle.html` |
 | 중간 | 오목 양방향 위협을 만드는 법 | 열린 3 이후 복합 위협을 배우고 싶은 사용자 | `omok-threats.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 | 낮음 | 바둑 대국 후 10분 복기 루틴 | 짧은 시간에 복기하는 법을 찾는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-5k-to-1k.html` |
 
@@ -91,6 +91,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-beginner-mistakes.html` | 바둑 초보 실수 검색 유입 |
 | 2026-06-21 | `baduk-atari.html` | 단수 개념 검색 유입 |
 | 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
+| 2026-06-25 | `baduk-cut-connect.html` | 끊기와 연결 판단 검색 유입 |
 | 2026-06-25 | `baduk-profitable-capture.html` | 잡을 돌과 버릴 돌 판단 검색 유입 |
 | 2026-06-21 | `baduk-liberties.html` | 활로 개념 검색 유입 |
 | 2026-06-25 | `baduk-shape-empty-triangle.html` | 빈삼각과 좋은 모양 검색 유입 |

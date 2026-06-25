@@ -49,6 +49,13 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 끊기와 연결은 언제 선택할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-cut-connect.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-cut-connect.html</guid>
+      <description>바둑 초보자가 연결만 하거나 무리하게 끊는 실수를 줄이기 위한 글입니다. 끊어야 할 때, 이어야 할 때, 버려도 되는 돌을 쉽게 구분합니다.</description>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 끝내기에서 큰 수를 찾는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-endgame-big-move.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-endgame-big-move.html</guid>
