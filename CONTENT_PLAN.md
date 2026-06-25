@@ -52,7 +52,15 @@
 | 완료 | 바둑 빈삼각은 왜 나쁜 모양일까 | 빈삼각, 좋은 모양, 나쁜 모양을 구분하고 싶은 초보자 | `baduk-shape-empty-triangle.html`, `baduk-liberties.html`, `baduk-profitable-capture.html`, `baduk-sente-gote.html` |
 | 완료 | 바둑 끊기와 연결은 언제 선택할까 | 연결만 하거나 무리하게 끊는 초보 실수 개선 | `baduk-cut-connect.html`, `baduk-liberties.html`, `baduk-atari-practice.html`, `baduk-shape-empty-triangle.html` |
 | 완료 | 오목 양방향 위협을 만드는 법 | 열린 3 이후 복합 위협을 배우고 싶은 사용자 | `omok-double-threat.html`, `omok-threats.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
-| 낮음 | 바둑 대국 후 10분 복기 루틴 | 짧은 시간에 복기하는 법을 찾는 사용자 | `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-5k-to-1k.html` |
+| 완료 | 바둑 대국 후 10분 복기 루틴 | 짧은 시간에 복기하는 법을 찾는 사용자 | `baduk-review-10-minute.html`, `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-5k-to-1k.html` |
+
+## 5차 확장 후보
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 중간 | 바둑 약한 돌을 공격하는 법 | 무리하게 잡으려 하지 않고 상대 약한 돌을 몰아가는 법 | `baduk-cut-connect.html`, `baduk-profitable-capture.html`, `baduk-shape-empty-triangle.html` |
+| 중간 | 바둑 사활에서 가짜 눈을 구분하는 법 | 두 눈과 가짜 눈을 헷갈리는 초보자 | `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-glossary.html` |
+| 낮음 | 오목 수비만 하다 지는 이유 | 막기만 하는 오목 초보가 공격 전환을 배우려는 검색 | `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-practice-routine.html` |
 
 ## 월간 운영 루틴
 
@@ -101,6 +109,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-opening-corner.html` | 포석 귀 우선순위 검색 유입 |
 | 2026-06-25 | `baduk-ai-review.html` | 바둑 AI 복기 사용법 검색 유입 |
 | 2026-06-25 | `baduk-review-note.html` | 바둑 복기 노트 검색 유입 |
+| 2026-06-25 | `baduk-review-10-minute.html` | 짧은 복기 루틴 검색 유입 |
 | 2026-06-21 | `baduk-life-and-death.html` | 사활 기초 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
