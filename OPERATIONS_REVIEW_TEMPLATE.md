@@ -55,6 +55,7 @@
 node scripts/weekly-maintenance.cjs
 node scripts/monetization-report.cjs
 node scripts/external-account-status.cjs
+node scripts/search-console-query-report.cjs search-console-queries.csv
 ```
 
 ## 다음 달 작업

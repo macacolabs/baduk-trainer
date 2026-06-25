@@ -20,6 +20,7 @@
 - 모바일에서 착수 위치와 버튼 클릭 확인
 - 새 GitHub 이슈를 버그, 콘텐츠 요청, 운영 점검으로 분류
 - Search Console 색인 상태와 검색어 확인
+- Search Console 검색어 CSV가 있으면 `node scripts/search-console-query-report.cjs search-console-queries.csv`로 보강 후보 확인
 - `node scripts/content-report.cjs`로 짧거나 내부 링크가 약한 글 확인
 - `node scripts/content-queue.cjs`로 다음 작성 후보 확인
 - 새 검색어가 후보 표에 없다면 `node scripts/add-content-candidate.cjs --title "제목" --intent "검색 의도" --links file1.html,file2.html --priority 중간`으로 추가
