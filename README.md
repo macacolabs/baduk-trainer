@@ -104,6 +104,7 @@ node scripts/monetization-report.cjs
 - Search Console 검색어 기반 콘텐츠 후보 추가 스크립트 `scripts/add-content-candidate.cjs`
 - Search Console 색인 요청 우선순위 스크립트 `scripts/indexing-priority.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
+- 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
 - 사이트 공개 페이지/학습 글 목록 정의 `scripts/site-content.cjs`
 - sitemap 동기화/검사 스크립트 `scripts/sync-sitemap.cjs`
 - RSS feed 동기화/검사 스크립트 `scripts/sync-feed.cjs`
@@ -146,6 +147,12 @@ GitHub Actions의 `Weekly Service Health` 워크플로가 매주 live 상태, �
 
 ```powershell
 node scripts/weekly-maintenance.cjs
+```
+
+짧은 상태만 보고 싶을 때:
+
+```powershell
+node scripts/revenue-dashboard.cjs
 ```
 
 매주:

@@ -17,6 +17,11 @@ const checks = [
     args: ["scripts/monetization-report.cjs"],
   },
   {
+    title: "Revenue dashboard",
+    command: process.execPath,
+    args: ["scripts/revenue-dashboard.cjs"],
+  },
+  {
     title: "Content depth report",
     command: process.execPath,
     args: ["scripts/content-report.cjs"],
