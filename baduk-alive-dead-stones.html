@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바둑 산 돌과 죽은 돌은 어떻게 구분할까 - 큰돌</title>
+    <meta
+      name="description"
+      content="바둑에서 산 돌과 죽은 돌을 구분하는 초보 기준입니다. 두 눈, 가짜 눈, 연결, 탈출, 계가 전 죽은 돌 처리 순서를 설명합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/baduk-alive-dead-stones.html" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "바둑 산 돌과 죽은 돌은 어떻게 구분할까",
+        "url": "https://macacolabs.github.io/baduk-trainer/baduk-alive-dead-stones.html",
+        "inLanguage": "ko",
+        "learningResourceType": "Article",
+        "educationalLevel": "Beginner",
+        "teaches": "바둑",
+        "description": "바둑에서 산 돌과 죽은 돌을 구분하는 초보 기준입니다. 두 눈, 가짜 눈, 연결, 탈출, 계가 전 죽은 돌 처리 순서를 설명합니다.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "큰돌",
+          "url": "https://macacolabs.github.io/baduk-trainer/"
+        }
+      }
+    </script>
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="index.html">큰돌로 돌아가기</a>
+      <p class="eyebrow">사활과 계가</p>
+      <h1>바둑 산 돌과 죽은 돌은 어떻게 구분할까</h1>
+      <p class="article-lead">산 돌은 상대가 더 공격해도 잡기 어려운 돌이고, 죽은 돌은 더 도망가도 살기 어려운 돌입니다. 초보자는 두 눈, 연결, 탈출 가능성만 순서대로 봐도 많이 구분할 수 있습니다.</p>
+
+      <section>
+        <h2>산 돌은 두 눈이 있거나 연결되어 있습니다</h2>
+        <p>바둑에서 가장 쉬운 생존 기준은 두 눈입니다. 서로 분리된 진짜 눈 두 개가 있으면 상대가 한 수로 모두 없앨 수 없어서 보통 살아 있습니다. 두 눈이 없어도 이미 살아 있는 내 돌과 단단히 연결되어 있으면 같이 살아 있는 돌로 봅니다.</p>
+      </section>
+
+      <section>
+        <h2>죽은 돌은 눈도 연결도 탈출도 없습니다</h2>
+        <p>죽은 돌은 단순히 활로가 적은 돌이 아닙니다. 눈을 만들 공간이 없고, 살아 있는 내 돌과 연결할 길이 없고, 중앙이나 넓은 쪽으로 빠져나갈 수 없으면 죽은 돌에 가깝습니다. 돌이 많아도 이 세 가지가 모두 막히면 대마도 죽습니다.</p>
+      </section>
+
+      <section>
+        <h2>가짜 눈은 산 돌처럼 착각하게 만듭니다</h2>
+        <p>눈처럼 보이는 빈 점이 있어도 주변 돌이 끊겨 있거나 단수에 몰려 있으면 가짜 눈일 수 있습니다. 산 돌인지 볼 때는 빈 점 개수만 세지 말고, 상대가 그 눈을 무너뜨릴 급소가 있는지 확인해야 합니다.</p>
+        <p>눈 하나와 가짜 눈 하나는 두 눈이 아닙니다. 계가할 때도 이런 돌은 살아 있다고 착각하기 쉽습니다.</p>
+      </section>
+
+      <section>
+        <h2>계가 전에는 애매한 돌을 바로 집으로 넣지 않습니다</h2>
+        <p>대국이 끝날 때 죽은 돌은 보통 따낸 돌처럼 처리되어 상대 집에 영향을 줍니다. 하지만 초보자끼리 둘 때는 어떤 돌이 죽었는지 합의가 안 되는 경우가 많습니다. 그럴 때는 애매한 돌을 내 집으로 넣지 말고, 먼저 한두 수 더 둬서 살 수 있는지 확인하는 편이 좋습니다.</p>
+      </section>
+
+      <section>
+        <h2>산 돌과 죽은 돌 확인 순서</h2>
+        <ol class="article-list">
+          <li>진짜 눈 두 개가 있는지 봅니다.</li>
+          <li>눈이 부족하면 살아 있는 내 돌과 연결되는지 봅니다.</li>
+          <li>연결도 어렵다면 중앙이나 넓은 쪽으로 탈출할 수 있는지 봅니다.</li>
+          <li>눈처럼 보이는 곳이 가짜 눈인지 확인합니다.</li>
+          <li>세 가지가 모두 없으면 죽은 돌로 보고 계가에서 빼야 합니다.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>살릴 가치가 없는 돌도 있습니다</h2>
+        <p>죽은 돌처럼 보이는 돌을 무조건 살리려 하면 더 큰 손해가 날 수 있습니다. 작은 돌 몇 개를 살리려고 큰 곳을 놓치거나, 살아 있는 돌까지 공격받으면 나쁜 교환입니다. 산 돌과 죽은 돌을 구분하는 이유는 살릴 돌과 버릴 돌을 고르기 위해서입니다.</p>
+      </section>
+
+      <section>
+        <h2>복기할 때 보는 질문</h2>
+        <ol class="article-list">
+          <li>죽은 돌에 진짜 눈 후보가 있었는가?</li>
+          <li>연결할 아군 돌이 가까이 있었는가?</li>
+          <li>탈출로가 몇 수 전에 막혔는가?</li>
+          <li>가짜 눈을 진짜 눈으로 착각했는가?</li>
+          <li>살리려다 더 큰 곳을 놓쳤는가?</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>큰돌에서 연습하는 법</h2>
+        <p>AI 대국을 끝낸 뒤 죽은 돌처럼 보이는 내 돌 하나를 고릅니다. 그 돌을 두 눈, 연결, 탈출 기준으로 다시 판단하세요. 셋 중 하나라도 가능했는데 놓쳤다면 사활 문제로 돌아가고, 셋 다 없었다면 다음 판에서는 더 빨리 버리는 연습을 합니다.</p>
+      </section>
+
+      <section>
+        <h2>한 문장으로 기억하기</h2>
+        <p>산 돌은 두 눈, 연결, 탈출 중 하나가 있고, 죽은 돌은 셋 다 없습니다. 계가할 때 헷갈리면 빈 집을 세기 전에 그 돌이 정말 살아 있는지부터 확인하세요.</p>
+      </section>
+
+      <section class="article-card-grid related-learning" aria-label="다음에 볼 글">
+        <a href="baduk-life-and-death.html">
+          <span>사활</span>
+          <strong>사활 기초</strong>
+          <p>두 눈과 급소로 돌이 사는 조건을 봅니다.</p>
+        </a>
+        <a href="baduk-false-eye.html">
+          <span>눈</span>
+          <strong>가짜 눈 구분</strong>
+          <p>산 돌처럼 보이는 죽은 돌을 구분합니다.</p>
+        </a>
+        <a href="baduk-territory-scoring.html">
+          <span>계가</span>
+          <strong>집 계산법</strong>
+          <p>죽은 돌을 빼고 집을 세는 흐름을 봅니다.</p>
+        </a>
+        <a href="baduk-large-group-death.html">
+          <span>대마</span>
+          <strong>대마가 죽는 이유</strong>
+          <p>큰 돌도 왜 죽을 수 있는지 확인합니다.</p>
+        </a>
+        <a href="baduk-profitable-capture.html">
+          <span>판단</span>
+          <strong>잡아도 손해인 돌</strong>
+          <p>살릴 돌과 버릴 돌을 같이 판단합니다.</p>
+        </a>
+      </section>
+
+      <aside class="ad-slot ad-slot-article" aria-label="광고 영역">
+        <span>광고</span>
+        <p>승인 후 학습 글 하단에만 광고를 배치합니다.</p>
+      </aside>
+    </main>
+  </body>
+</html>
