@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { articleFiles, siteBase, sitemapPages } = require("./site-content.cjs");
+const { articleFiles, feedItemLimit, siteBase, sitemapPages } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 
@@ -98,10 +98,11 @@ if (exists("robots.txt")) {
 
 if (exists("feed.xml")) {
   const feed = read("feed.xml");
+  const feedItems = feed.match(/<item>/g) || [];
+  const expectedFeedItems = Math.min(feedItemLimit, articleFiles.length);
   check(feed.includes("<rss version=\"2.0\">"), "feed.xml: missing RSS root");
-  for (const file of articleFiles) {
-    check(feed.includes(`${siteBase}${file}`), `feed.xml: missing article ${file}`);
-  }
+  check(feed.includes("<item>"), "feed.xml: missing RSS items");
+  check(feedItems.length === expectedFeedItems, `feed.xml: expected ${expectedFeedItems} latest items, found ${feedItems.length}`);
 }
 
 if (exists("learn.html")) {

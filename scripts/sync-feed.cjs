@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { articleFiles, siteBase } = require("./site-content.cjs");
+const { articleFiles, feedItemLimit, siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const feedPath = path.join(root, "feed.xml");
@@ -79,17 +79,18 @@ const sitemapDates = parseSitemapDates();
 const items = articleFiles
   .map((file) => articleItem(file, sitemapDates))
   .sort((a, b) => b.lastmod.localeCompare(a.lastmod) || a.file.localeCompare(b.file));
-const nextFeed = renderFeed(items);
+const feedItems = items.slice(0, feedItemLimit);
+const nextFeed = renderFeed(feedItems);
 
 if (writeMode) {
   fs.writeFileSync(feedPath, nextFeed);
   console.log("Feed sync");
-  console.log(`Wrote ${items.length} article items to feed.xml.`);
+  console.log(`Wrote ${feedItems.length} latest article items to feed.xml (${items.length} total articles).`);
   process.exit(0);
 }
 
 console.log("Feed sync check");
-console.log(`Expected items: ${items.length}`);
+console.log(`Expected items: ${feedItems.length} latest articles (${items.length} total articles).`);
 
 if (!fs.existsSync(feedPath)) {
   fail("feed.xml is missing. Run: node scripts/sync-feed.cjs --write");
@@ -104,4 +105,4 @@ if (current !== nextFeed) {
   process.exit(1);
 }
 
-console.log("\nOK: feed.xml matches current learning articles.");
+console.log("\nOK: feed.xml matches current latest learning articles.");

@@ -140,7 +140,7 @@ Search Console 등록 전까지 운영이 멈추지 않도록, 초보자가 자�
 3. 기존 글로 답하기 어렵다면 위 후보 중 하나를 새 글로 만듭니다.
 4. 새 글을 `learn.html`에 추가합니다.
 5. 새 글을 `scripts/site-content.cjs`에 등록합니다.
-6. `node scripts/sync-sitemap.cjs --write`와 `node scripts/sync-feed.cjs --write`를 실행합니다.
+6. `node scripts/sync-sitemap.cjs --write`와 `node scripts/sync-feed.cjs --write`를 실행합니다. `sitemap.xml`은 모든 공개 URL을 담고, `feed.xml`은 성능 예산을 위해 최신 50개 글만 담습니다.
 7. 새 글과 기존 글 사이에 `related-learning` 링크를 연결합니다.
 7. 아래 명령으로 배포 전 점검을 실행합니다.
 8. 아래 명령으로 다음 보강 후보를 확인합니다.

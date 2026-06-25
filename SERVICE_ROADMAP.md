@@ -103,7 +103,7 @@
 - `scripts/prepare-search-console-registration.cjs`: Search Console 등록 전 제출값과 우선 색인 URL 점검
 - `scripts/site-content.cjs`: 공개 페이지와 학습 글 목록의 단일 기준
 - `scripts/sync-sitemap.cjs`: sitemap 누락/중복 검사와 자동 갱신
-- `scripts/sync-feed.cjs`: 학습 글 RSS feed 누락/동기화 검사와 자동 갱신
+- `scripts/sync-feed.cjs`: 최신 50개 학습 글 RSS feed 동기화 검사와 자동 갱신
 - `scripts/sync-learn-itemlist.cjs`: 학습 허브 ItemList 구조화 데이터 동기화와 검사
 - `scripts/apply-search-console-meta.cjs`: Search Console verification meta 태그 삽입
 - `scripts/external-next-action.cjs`: Search Console과 AdSense에서 다음에 처리할 계정 작업 안내

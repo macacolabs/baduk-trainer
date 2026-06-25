@@ -1,4 +1,5 @@
 const siteBase = "https://macacolabs.github.io/baduk-trainer/";
+const feedItemLimit = 50;
 
 const publicPages = [
   "index.html",
@@ -98,6 +99,7 @@ const sitemapPages = [
 
 module.exports = {
   articleFiles,
+  feedItemLimit,
   publicPages,
   requiredPublicPages,
   siteBase,

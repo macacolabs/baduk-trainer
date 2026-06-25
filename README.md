@@ -121,7 +121,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - GitHub Pages 공개 artifact 생성 스크립트 `scripts/build-pages-artifact.cjs`
 - 승인 후 Pages artifact에만 광고 코드를 주입하는 스크립트 `scripts/inject-adsense.cjs`
 - sitemap 동기화/검사 스크립트 `scripts/sync-sitemap.cjs`
-- RSS feed 동기화/검사 스크립트 `scripts/sync-feed.cjs`
+- RSS feed 동기화/검사 스크립트 `scripts/sync-feed.cjs` (성능 예산을 위해 최신 50개 글만 유지)
 - 학습 허브 ItemList 구조화 데이터 동기화 스크립트 `scripts/sync-learn-itemlist.cjs`
 - 외부 계정 진행률 리포트 스크립트 `scripts/external-account-status.cjs`
 - 외부 계정 다음 작업 안내 스크립트 `scripts/external-next-action.cjs`
@@ -186,7 +186,7 @@ node scripts/service-next-action.cjs
 - `node scripts/content-report.cjs`로 다음 보강 글 확인
 - `node scripts/indexing-priority.cjs`로 색인 요청 우선순위 확인
 - 새 공개 페이지를 추가했다면 `node scripts/sync-sitemap.cjs --write`로 sitemap 갱신
-- 새 학습 글을 추가했다면 `node scripts/sync-feed.cjs --write`로 feed 갱신
+- 새 학습 글을 추가했다면 `node scripts/sync-feed.cjs --write`로 최신 글 feed 갱신
 - 새 학습 글을 추가했다면 `node scripts/sync-learn-itemlist.cjs --write`로 학습 허브 구조화 데이터 갱신
 - 새 GitHub 이슈 확인
 - 새 문제 또는 글 보강
