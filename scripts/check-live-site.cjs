@@ -21,6 +21,20 @@ const checks = [
   { path: "robots.txt", expect: "Sitemap:" },
 ];
 
+const privatePathChecks = [
+  "scripts/preflight.cjs",
+  "scripts/build-pages-artifact.cjs",
+  ".github/workflows/pages.yml",
+  "README.md",
+  "SERVICE_ROADMAP.md",
+  "OPERATION_CHECKLIST.md",
+  "EXTERNAL_ACCOUNT_CHECKLIST.md",
+  "SUBMISSION_PACKET.md",
+  "CONTENT_PLAN.md",
+  "local-katago-server.cjs",
+  "KATAGO_LOCAL_SETUP.md",
+];
+
 function pathFromUrl(url) {
   if (!url.startsWith(baseUrl)) return null;
   return url.slice(baseUrl.length);
@@ -130,6 +144,32 @@ async function main() {
           break;
         }
         lastError = `expected 200, got ${result.statusCode}`;
+      } catch (error) {
+        lastError = error.message;
+        console.log(`- ${url}: ${lastError}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);
+      }
+      if (attempt < maxAttempts) {
+        await wait(retryDelayMs);
+      }
+    }
+    if (lastError) {
+      errors.push(`${url}: ${lastError}`);
+    }
+  }
+
+  console.log(`\nPrivate path check: ${privatePathChecks.length} paths`);
+  for (const checkPath of privatePathChecks) {
+    const url = `${baseUrl}${checkPath}`;
+    let lastError = "";
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      try {
+        const result = await fetchText(url);
+        console.log(`- ${url}: ${result.statusCode}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);
+        if (result.statusCode === 404) {
+          lastError = "";
+          break;
+        }
+        lastError = `expected 404, got ${result.statusCode}`;
       } catch (error) {
         lastError = error.message;
         console.log(`- ${url}: ${lastError}${attempt > 1 ? ` (attempt ${attempt})` : ""}`);

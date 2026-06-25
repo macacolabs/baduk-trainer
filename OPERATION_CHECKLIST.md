@@ -19,6 +19,7 @@
 - `node scripts/weekly-maintenance.cjs`로 live 배포, 수익화 준비, 콘텐츠 깊이, 외부 계정 진행 상태를 한 번에 확인
 - `node scripts/preflight.cjs --live`로 GitHub Pages live URL과 sitemap 전체 페이지 접속 확인
 - GitHub Pages 배포 artifact가 `dist` 기준인지 확인
+- `scripts`, `.github`, 운영 문서 URL이 live에서 404인지 확인
 - GitHub Actions의 `Weekly Service Health` 결과 확인
 - 배우기 문제 5개 이상 직접 풀이
 - 바둑 AI 대국 1판, 오목 AI 대국 1판 테스트

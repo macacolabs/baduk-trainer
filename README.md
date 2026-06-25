@@ -171,6 +171,7 @@ node scripts/revenue-dashboard.cjs
 - 새 문제 또는 글 보강
 - GitHub Pages 배포 상태 확인
 - GitHub Pages는 `scripts/build-pages-artifact.cjs`로 만든 `dist`만 배포
+- `node scripts/check-live-site.cjs --fast`로 공개 URL 200과 내부 운영 파일 404 확인
 
 매월:
 
