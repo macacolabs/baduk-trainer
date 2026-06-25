@@ -71,6 +71,7 @@ const articleFiles = [
   "omok-ai-difficulty.html",
   "omok-difficulty-choice.html",
   "omok-practice-routine.html",
+  "omok-review-mistakes.html",
 ];
 
 const requiredPublicPages = publicPages;

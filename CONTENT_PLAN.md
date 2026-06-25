@@ -108,7 +108,18 @@ Search Console 등록이 늦어질 때도 서비스 성장을 멈추지 않기 �
 | 완료 | 바둑 후보수는 몇 개를 비교해야 할까 | 한 수를 둘 때 후보수를 고르고 비교하는 법을 배우려는 사용자 | `baduk-5k-to-1k.html`, `baduk-ai-review.html`, `baduk-review-note.html`, `baduk-attack-weak-stones.html` |
 | 완료 | 오목에서 3목과 4목 중 무엇이 먼저일까 | 공격과 방어 우선순위를 더 구체적으로 알고 싶은 사용자 | `omok-attack-defense-priority.html`, `omok-open-three.html`, `omok-open-four.html`, `omok-block-four.html` |
 | 완료 | 바둑 초반에 중앙은 언제 갈까 | 귀와 변 이후 중앙 진출 기준을 알고 싶은 초보자 | `baduk-opening.html`, `baduk-side-opening.html`, `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html` |
-| 낮음 | 오목 실수 복기는 어떻게 할까 | 진 판을 보고 다음 대국에서 고칠 점을 찾고 싶은 사용자 | `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-to-attack.html`, `omok-blocking-point.html` |
+| 완료 | 오목 실수 복기는 어떻게 할까 | 진 판을 보고 다음 대국에서 고칠 점을 찾고 싶은 사용자 | `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-to-attack.html`, `omok-blocking-point.html` |
+
+## 10차 확장 후보
+
+Search Console 등록 전까지 큐가 비지 않도록 유지하는 예비 후보입니다. 등록 후에는 실제 검색어를 우선합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 낮음 | 바둑 끝내기 실수는 어떻게 줄일까 | 후반에 이기던 판을 뒤집히는 이유와 끝내기 복기 기준을 알고 싶은 사용자 | `baduk-endgame.html`, `baduk-endgame-big-move.html`, `baduk-sente-gote.html`, `baduk-review-10-minute.html` |
+| 낮음 | 바둑 대마는 왜 죽을까 | 큰 돌이 갑자기 죽는 이유와 약한 돌 관리법을 배우려는 사용자 | `baduk-life-and-death.html`, `baduk-attack-weak-stones.html`, `baduk-false-eye.html`, `baduk-candidate-moves.html` |
+| 낮음 | 오목 양방향 공격은 어떻게 막을까 | 상대가 두 곳을 동시에 위협할 때 막는 기준을 알고 싶은 사용자 | `omok-double-threat.html`, `omok-blocking-point.html`, `omok-attack-defense-priority.html`, `omok-open-three.html` |
+| 낮음 | 오목 고수 난이도에서 계속 지는 이유 | 고수 AI 난이도에서 패배 원인을 찾고 낮출 기준을 알고 싶은 사용자 | `omok-difficulty-choice.html`, `omok-review-mistakes.html`, `omok-attack-defense-priority.html`, `omok-first-10-moves.html` |
 
 ## 월간 운영 루틴
 
@@ -191,6 +202,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
 | 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |
+| 2026-06-25 | `omok-review-mistakes.html` | 오목 실수 복기 검색 유입 |
 | 2026-06-25 | `omok-forbidden-moves.html` | 오목 금수와 자유룰 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |
 
