@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const { siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const packetPath = path.join(root, "SUBMISSION_PACKET.md");
 const sitemapPath = path.join(root, "sitemap.xml");
-const siteBase = "https://macacolabs.github.io/baduk-trainer/";
 
 const requiredPacketUrls = [
   siteBase,

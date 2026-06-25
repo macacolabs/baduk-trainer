@@ -3,6 +3,7 @@ const { spawnSync } = require("child_process");
 const includeLive = process.argv.includes("--live");
 
 const checks = [
+  [process.execPath, ["--check", "scripts/site-content.cjs"]],
   [process.execPath, ["--check", "app.js"]],
   [process.execPath, ["scripts/check-service-readiness.cjs"]],
   [process.execPath, ["scripts/check-content-quality.cjs"]],

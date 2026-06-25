@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const { siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
-const siteBase = "https://macacolabs.github.io/baduk-trainer/";
 const errors = [];
 
 function read(file) {

@@ -1,34 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const { articleFiles, siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
-const siteBase = "https://macacolabs.github.io/baduk-trainer/";
-
-const articleFiles = [
-  "baduk-beginner.html",
-  "baduk-9x9-beginner.html",
-  "baduk-atari.html",
-  "baduk-atari-practice.html",
-  "baduk-profitable-capture.html",
-  "baduk-liberties.html",
-  "baduk-glossary.html",
-  "baduk-opening.html",
-  "baduk-opening-corner.html",
-  "baduk-ai-review.html",
-  "baduk-review-note.html",
-  "baduk-life-and-death.html",
-  "baduk-life-and-death-practice.html",
-  "baduk-10k-to-5k.html",
-  "baduk-endgame.html",
-  "baduk-endgame-big-move.html",
-  "baduk-sente-gote.html",
-  "omok-strategy.html",
-  "omok-threats.html",
-  "omok-attack-defense-priority.html",
-  "omok-open-three.html",
-  "omok-ai-difficulty.html",
-  "omok-practice-routine.html",
-];
 
 function extract(html, pattern, file, label) {
   const match = html.match(pattern);

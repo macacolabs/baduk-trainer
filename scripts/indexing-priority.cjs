@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const sitemapPath = path.join(root, "sitemap.xml");
-const siteBase = "https://macacolabs.github.io/baduk-trainer/";
 
 const corePaths = new Map([
   ["", { score: 130, reason: "메인 앱: 브랜드와 실제 사용 경험" }],

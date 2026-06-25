@@ -91,6 +91,7 @@
 - `scripts/content-report.cjs`: 매주 보강할 학습 글 우선순위 리포트
 - `scripts/monetization-report.cjs`: AdSense 신청 전 내부 준비 상태와 외부 작업 분리 리포트
 - `scripts/indexing-priority.cjs`: Search Console 색인 요청 우선순위 리포트
+- `scripts/site-content.cjs`: 공개 페이지와 학습 글 목록의 단일 기준
 - `scripts/apply-search-console-meta.cjs`: Search Console verification meta 태그 삽입
 - `scripts/external-next-action.cjs`: Search Console과 AdSense에서 다음에 처리할 계정 작업 안내
 - `scripts/apply-article-schema.cjs`: 학습 글 LearningResource 구조화 데이터 삽입
