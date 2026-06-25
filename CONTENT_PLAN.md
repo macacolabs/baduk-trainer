@@ -51,6 +51,14 @@ node scripts/content-report.cjs
 node scripts/content-queue.cjs
 ```
 
+Search Console에서 새 검색어를 발견했지만 아직 후보 표에 없다면 아래 명령으로 후보를 추가합니다.
+
+```powershell
+node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제목" --intent "검색 의도" --links baduk-beginner.html,baduk-atari.html --priority 중간
+```
+
+관련 글은 최소 2개 이상이어야 하며, 실제 존재하는 `.html` 파일만 넣습니다.
+
 ## 글 발행 완료 기록
 
 | 날짜 | 글 | 목적 |

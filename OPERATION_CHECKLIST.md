@@ -22,6 +22,7 @@
 - Search Console 색인 상태와 검색어 확인
 - `node scripts/content-report.cjs`로 짧거나 내부 링크가 약한 글 확인
 - `node scripts/content-queue.cjs`로 다음 작성 후보 확인
+- 새 검색어가 후보 표에 없다면 `node scripts/add-content-candidate.cjs --title "제목" --intent "검색 의도" --links file1.html,file2.html --priority 중간`으로 추가
 - 유입이 있는 글 1개를 더 자세히 보강
 - `CONTENT_PLAN.md`에서 다음 작성 후보 1개를 고르기
 
