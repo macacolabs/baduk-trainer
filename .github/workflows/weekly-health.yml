@@ -18,9 +18,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check live service
-        run: node scripts/preflight.cjs --live
-      - name: Report content priorities
-        run: node scripts/content-report.cjs
-      - name: Report monetization readiness
-        run: node scripts/monetization-report.cjs
+      - name: Run weekly maintenance
+        run: node scripts/weekly-maintenance.cjs
