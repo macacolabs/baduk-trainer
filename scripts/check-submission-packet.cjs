@@ -18,6 +18,7 @@ const requiredPacketUrls = [
   `${siteBase}baduk-beginner.html`,
   `${siteBase}baduk-atari.html`,
   `${siteBase}baduk-liberties.html`,
+  `${siteBase}baduk-ko-rule.html`,
   `${siteBase}omok-strategy.html`,
   `${siteBase}omok-ai-difficulty.html`,
 ];

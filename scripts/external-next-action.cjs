@@ -50,7 +50,7 @@ function matchingGuidance(task) {
     return {
       why: "제출 전에 사이트 URL, sitemap, 정책 페이지 URL을 한 번에 확인합니다.",
       links: [links.submissionPacket, links.searchConsoleGuide],
-      commands: ["node scripts/external-account-status.cjs"],
+      commands: ["node scripts/check-submission-packet.cjs", "node scripts/indexing-priority.cjs", "node scripts/external-account-status.cjs"],
     };
   }
 
@@ -95,7 +95,10 @@ function matchingGuidance(task) {
         `${siteUrl}faq.html`,
         `${siteUrl}baduk-beginner.html`,
         `${siteUrl}baduk-atari.html`,
+        `${siteUrl}baduk-liberties.html`,
+        `${siteUrl}baduk-ko-rule.html`,
         `${siteUrl}omok-strategy.html`,
+        `${siteUrl}omok-ai-difficulty.html`,
       ],
     };
   }

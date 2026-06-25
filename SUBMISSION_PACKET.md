@@ -39,8 +39,9 @@ git push origin main
 4. `https://macacolabs.github.io/baduk-trainer/baduk-beginner.html`
 5. `https://macacolabs.github.io/baduk-trainer/baduk-atari.html`
 6. `https://macacolabs.github.io/baduk-trainer/baduk-liberties.html`
-7. `https://macacolabs.github.io/baduk-trainer/omok-strategy.html`
-8. `https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html`
+7. `https://macacolabs.github.io/baduk-trainer/baduk-ko-rule.html`
+8. `https://macacolabs.github.io/baduk-trainer/omok-strategy.html`
+9. `https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html`
 
 ## AdSense 신청 전 실행
 

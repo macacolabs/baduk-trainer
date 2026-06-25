@@ -12,6 +12,7 @@ const corePaths = new Map([
   ["baduk-beginner.html", { score: 112, reason: "바둑 입문 핵심 글" }],
   ["baduk-atari.html", { score: 111, reason: "단수 검색 핵심 글" }],
   ["baduk-liberties.html", { score: 110, reason: "활로 검색 핵심 글" }],
+  ["baduk-ko-rule.html", { score: 109, reason: "패 규칙 검색 핵심 글" }],
   ["omok-strategy.html", { score: 108, reason: "오목 입문 핵심 글" }],
   ["omok-ai-difficulty.html", { score: 106, reason: "오목 AI 난이도 검색 글" }],
 ]);
