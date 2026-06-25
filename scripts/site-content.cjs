@@ -73,6 +73,7 @@ const articleFiles = [
   "omok-three-vs-four.html",
   "omok-ai-difficulty.html",
   "omok-difficulty-choice.html",
+  "omok-hard-ai-losses.html",
   "omok-practice-routine.html",
   "omok-review-mistakes.html",
 ];
