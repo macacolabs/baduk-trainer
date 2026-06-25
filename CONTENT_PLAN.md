@@ -88,3 +88,9 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
 | 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |
+
+## 2026-06-25 추가 발행 메모
+
+- `baduk-ko-rule.html`: 바둑 초보자가 자주 검색하는 패 규칙, 패감, 패싸움 기초를 설명합니다.
+- 연결 글: `baduk-glossary.html`, `baduk-atari.html`, `baduk-liberties.html`, `baduk-ai-review.html`
+- 목적: 규칙 이해형 검색 유입을 늘리고, 앱에서 패 상황을 만났을 때 읽을 수 있는 보조 설명을 제공합니다.
