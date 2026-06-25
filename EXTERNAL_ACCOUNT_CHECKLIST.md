@@ -10,6 +10,17 @@
 - AdSense 신청 전 체크리스트: `https://macacolabs.github.io/baduk-trainer/adsense-checklist.html`
 - 제출 패킷: `SUBMISSION_PACKET.md`
 
+## 진행 기록 방법
+
+외부 계정 화면에서 작업을 끝낸 뒤 아래 명령으로 해당 항목을 완료 표시합니다.
+
+```powershell
+node scripts/mark-external-task.cjs "Search Console" "URL 접두어"
+node scripts/external-account-status.cjs
+```
+
+섹션명과 항목 검색어가 하나의 체크 항목에만 맞을 때만 변경됩니다. 여러 항목이 맞으면 더 구체적인 검색어를 넣습니다.
+
 ## Search Console
 
 - [ ] `SUBMISSION_PACKET.md`의 기본 정보 확인
