@@ -63,6 +63,13 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 후보수는 몇 개를 비교해야 할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-candidate-moves.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-candidate-moves.html</guid>
+      <description>바둑에서 한 수를 두기 전 후보수를 몇 개 비교하면 좋은지 설명합니다. 3개 후보수, 공격/수비/큰 곳 비교, AI 복기 연결법을 정리합니다.</description>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 끊기와 연결은 언제 선택할까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-cut-connect.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-cut-connect.html</guid>
