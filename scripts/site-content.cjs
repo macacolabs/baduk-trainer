@@ -20,6 +20,7 @@ const articleFiles = [
   "baduk-atari.html",
   "baduk-atari-practice.html",
   "baduk-cut-connect.html",
+  "baduk-attack-weak-stones.html",
   "baduk-profitable-capture.html",
   "baduk-liberties.html",
   "baduk-shape-empty-triangle.html",
