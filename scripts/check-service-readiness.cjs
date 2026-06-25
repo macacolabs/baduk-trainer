@@ -42,6 +42,7 @@ const articleFiles = [
   "omok-threats.html",
   "omok-open-three.html",
   "omok-ai-difficulty.html",
+  "omok-practice-routine.html",
 ];
 
 const structuredDataFiles = ["index.html", "about.html", "learn.html", "faq.html", "search-console.html"];

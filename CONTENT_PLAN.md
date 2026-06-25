@@ -28,7 +28,7 @@
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 높음 | 오목 난이도별 연습 루틴 | 오목 AI 난이도를 고른 뒤 어떻게 연습할지 알고 싶은 사용자 | `omok-ai-difficulty.html`, `omok-open-three.html`, `omok-threats.html` |
+| 완료 | 오목 난이도별 연습 루틴 | 오목 AI 난이도를 고른 뒤 어떻게 연습할지 알고 싶은 사용자 | `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-open-three.html`, `omok-threats.html` |
 | 높음 | 바둑 10급에서 5급으로 가는 공부 순서 | 기초 이후 중급으로 올라가는 학습 경로 검색 | `baduk-life-and-death-practice.html`, `baduk-endgame-big-move.html`, `baduk-ai-review.html` |
 | 중간 | 바둑에서 잡아도 손해인 돌을 구분하는 법 | 초보가 모든 돌을 잡으려다 손해 보는 상황 이해 | `baduk-atari-practice.html`, `baduk-sente-gote.html`, `baduk-opening-corner.html` |
 | 중간 | 오목에서 공격과 수비 우선순위 정하기 | 4목 차단, 열린 3, 내 공격 중 무엇이 먼저인지 검색 | `omok-strategy.html`, `omok-open-three.html`, `omok-threats.html` |
@@ -73,4 +73,5 @@ node scripts/content-queue.cjs
 | 2026-06-21 | `omok-threats.html` | 오목 위협 검색 유입 |
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
+| 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |

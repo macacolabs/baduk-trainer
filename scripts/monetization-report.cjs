@@ -33,6 +33,7 @@ const articleFiles = [
   "omok-threats.html",
   "omok-open-three.html",
   "omok-ai-difficulty.html",
+  "omok-practice-routine.html",
 ];
 
 const externalTasks = [
