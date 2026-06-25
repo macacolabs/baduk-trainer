@@ -217,6 +217,13 @@
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 잡힌 돌은 버려야 할까 살려야 할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-save-or-sacrifice.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-save-or-sacrifice.html</guid>
+      <description>바둑에서 잡힐 것 같은 돌을 살릴지 버릴지 판단하는 기준입니다. 작은 돌, 큰 돌, 대마, 선수와 후수, 후보수 비교를 초보자 눈높이로 정리합니다.</description>
+      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 빈삼각은 왜 나쁜 모양일까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-shape-empty-triangle.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-shape-empty-triangle.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/omok-open-three.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-open-three.html</guid>
       <description>오목 초보자가 자주 지는 열린 3 패턴을 설명합니다. 열린 3과 닫힌 3의 차이, 막아야 하는 타이밍, AI 연습법을 정리합니다.</description>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>오목 난이도별 연습 루틴</title>
-      <link>https://macacolabs.github.io/baduk-trainer/omok-practice-routine.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/omok-practice-routine.html</guid>
-      <description>큰돌 오목 AI 난이도별 연습 루틴입니다. 입문, 20급, 10급, 5급에서 무엇을 보고 어떤 기준으로 다음 단계로 넘어갈지 정리합니다.</description>
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

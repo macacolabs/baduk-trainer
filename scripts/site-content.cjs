@@ -28,6 +28,7 @@ const articleFiles = [
   "baduk-cut-connect.html",
   "baduk-attack-weak-stones.html",
   "baduk-profitable-capture.html",
+  "baduk-save-or-sacrifice.html",
   "baduk-liberties.html",
   "baduk-shape-empty-triangle.html",
   "baduk-knight-move.html",
