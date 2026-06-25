@@ -102,6 +102,7 @@ node scripts/monetization-report.cjs
 - 다음 콘텐츠 후보 리포트 스크립트 `scripts/content-queue.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 외부 계정 진행률 리포트 스크립트 `scripts/external-account-status.cjs`
+- 주간 운영 통합 점검 스크립트 `scripts/weekly-maintenance.cjs`
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - 학습 글 구조화 데이터 삽입 스크립트 `scripts/apply-article-schema.cjs`
 - 제출 패킷 동기화 점검 스크립트 `scripts/check-submission-packet.cjs`
@@ -128,6 +129,12 @@ node scripts/monetization-report.cjs
 자세한 반복 점검표는 `OPERATION_CHECKLIST.md`를 기준으로 관리합니다.
 
 GitHub Actions의 `Weekly Service Health` 워크플로가 매주 live 상태, 콘텐츠 보강 후보, 수익화 준비 상태를 자동 점검합니다.
+
+로컬에서 같은 흐름을 직접 확인할 때:
+
+```powershell
+node scripts/weekly-maintenance.cjs
+```
 
 매주:
 

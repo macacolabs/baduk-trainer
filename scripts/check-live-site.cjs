@@ -1,8 +1,10 @@
 const https = require("https");
 
 const baseUrl = "https://macacolabs.github.io/baduk-trainer/";
-const maxAttempts = 6;
-const retryDelayMs = 10000;
+const fastMode = process.argv.includes("--fast");
+const maxAttempts = fastMode ? 2 : 6;
+const retryDelayMs = fastMode ? 2000 : 10000;
+const requestTimeoutMs = fastMode ? 7000 : 15000;
 
 const checks = [
   { path: "", expect: "큰돌" },
@@ -57,7 +59,7 @@ function fetchText(url) {
         });
       },
     );
-    request.setTimeout(15000, () => {
+    request.setTimeout(requestTimeoutMs, () => {
       request.destroy(new Error(`Timeout fetching ${url}`));
     });
     request.on("error", reject);

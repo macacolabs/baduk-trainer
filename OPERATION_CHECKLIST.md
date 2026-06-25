@@ -12,6 +12,7 @@
 
 ## 매주
 
+- `node scripts/weekly-maintenance.cjs`로 live 배포, 수익화 준비, 콘텐츠 깊이, 외부 계정 진행 상태를 한 번에 확인
 - `node scripts/preflight.cjs --live`로 GitHub Pages live URL과 sitemap 전체 페이지 접속 확인
 - GitHub Actions의 `Weekly Service Health` 결과 확인
 - 배우기 문제 5개 이상 직접 풀이
@@ -59,6 +60,14 @@
 3. `learn.html`과 주요 학습 글 색인 요청
 4. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
 5. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
+
+## 운영 명령 빠른 실행
+
+```powershell
+node scripts/weekly-maintenance.cjs
+```
+
+이 명령은 live 페이지, sitemap URL, 내부 링크, 성능 예산, 콘텐츠 깊이, 수익화 준비 상태, 외부 계정 진행률을 한 번에 확인합니다. 실패가 나오면 먼저 해당 항목을 고치고, 통과하면 Search Console과 AdSense 계정 화면에서 남은 작업을 진행합니다.
 
 ## AdSense 신청 전 최종 확인
 
