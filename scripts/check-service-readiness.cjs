@@ -129,6 +129,20 @@ if (exists("index.html")) {
   }
 }
 
+if (exists("privacy.html")) {
+  const privacy = read("privacy.html");
+  check(privacy.includes("localStorage"), "privacy.html: missing localStorage explanation");
+  check(privacy.includes("Google AdSense"), "privacy.html: missing AdSense disclosure");
+  check(privacy.includes("GitHub"), "privacy.html: missing contact or external service disclosure");
+}
+
+if (exists("terms.html")) {
+  const terms = read("terms.html");
+  check(terms.includes("학습용"), "terms.html: missing learning-purpose limitation");
+  check(terms.includes("광고"), "terms.html: missing ad policy language");
+  check(terms.includes("localStorage"), "terms.html: missing stored-data language");
+}
+
 const allText = fs
   .readdirSync(root)
   .filter((file) => file.endsWith(".html") || file.endsWith(".js"))
