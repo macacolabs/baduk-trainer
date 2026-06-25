@@ -29,6 +29,8 @@ git commit -m "Add Search Console verification"
 git push origin main
 ```
 
+이 스크립트는 실행 뒤 Search Console 진행 체크리스트에 남길 기록 명령도 함께 출력합니다.
+
 ## 먼저 색인 요청할 URL
 
 아래 기본 목록을 먼저 쓰고, 최신 우선순위는 `node scripts/indexing-priority.cjs`로 확인합니다.
