@@ -59,7 +59,7 @@
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
 | 완료 | 바둑 약한 돌을 공격하는 법 | 무리하게 잡으려 하지 않고 상대 약한 돌을 몰아가는 법 | `baduk-attack-weak-stones.html`, `baduk-cut-connect.html`, `baduk-profitable-capture.html`, `baduk-shape-empty-triangle.html` |
-| 중간 | 바둑 사활에서 가짜 눈을 구분하는 법 | 두 눈과 가짜 눈을 헷갈리는 초보자 | `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-glossary.html` |
+| 완료 | 바둑 사활에서 가짜 눈을 구분하는 법 | 두 눈과 가짜 눈을 헷갈리는 초보자 | `baduk-false-eye.html`, `baduk-life-and-death.html`, `baduk-life-and-death-practice.html`, `baduk-glossary.html` |
 | 낮음 | 오목 수비만 하다 지는 이유 | 막기만 하는 오목 초보가 공격 전환을 배우려는 검색 | `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-practice-routine.html` |
 
 ## 월간 운영 루틴
@@ -113,6 +113,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-review-10-minute.html` | 짧은 복기 루틴 검색 유입 |
 | 2026-06-21 | `baduk-life-and-death.html` | 사활 기초 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
+| 2026-06-25 | `baduk-false-eye.html` | 가짜 눈 구분 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
 | 2026-06-25 | `baduk-5k-to-1k.html` | 바둑 5급에서 1급 학습 순서 검색 유입 |
 | 2026-06-21 | `baduk-endgame.html` | 끝내기 기초 검색 유입 |
