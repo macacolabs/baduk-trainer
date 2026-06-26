@@ -210,6 +210,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 패감은 어떻게 찾을까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-ko-threats.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-ko-threats.html</guid>
+      <description>바둑 패싸움에서 패감을 찾는 기준입니다. 좋은 패감과 나쁜 패감, 선수 패감, 패감 순서, 실전 복기 질문을 초보자 눈높이로 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 덤은 왜 6.5집일까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-komi-6-5.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-komi-6-5.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-start.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-start.html</guid>
       <description>바둑 계가를 언제부터 연습하면 좋은지 설명합니다. 집 계산, 끝내기, 덤, 복기 루틴을 초보자 단계에 맞게 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>좋은 수는 크기뿐 아니라 차례도 봅니다</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-sente-gote.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-sente-gote.html</guid>
-      <description>바둑에서 선수와 후수의 뜻을 설명합니다. 상대가 받아야 하는 수와 차례를 잃는 수의 차이를 초보자에게 맞춰 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
