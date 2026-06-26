@@ -164,7 +164,7 @@ Search Console 등록 전까지도 학습 허브가 멈추지 않도록, 1급 �
 | 완료 | 바둑 손빼기는 언제 해도 될까 | 상대 수에 바로 받지 않고 큰 곳으로 가도 되는 기준을 알고 싶은 검색 | `baduk-tenuki-timing.html`, `baduk-sente-gote.html`, `baduk-candidate-moves.html`, `baduk-opening-corner.html`, `baduk-endgame-big-move.html` |
 | 완료 | 바둑 침입과 삭감은 어떻게 다를까 | 상대 집 안으로 들어갈지 바깥에서 줄일지 헷갈리는 중급자 검색 | `baduk-invasion-reduction.html`, `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html`, `baduk-opening.html` |
 | 완료 | 오목 수읽기는 몇 수까지 해야 할까 | 열린 3, 4목, 양방향 위협을 몇 수 앞까지 봐야 하는지 찾는 검색 | `omok-reading-depth.html`, `omok-threats.html`, `omok-double-threat.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
-| 중간 | 오목에서 공격을 포기하고 막아야 하는 순간 | 내 공격보다 상대 위협을 먼저 막아야 하는 기준을 찾는 검색 | `omok-attack-defense-priority.html`, `omok-block-four.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
+| 완료 | 오목에서 공격을 포기하고 막아야 하는 순간 | 내 공격보다 상대 위협을 먼저 막아야 하는 기준을 찾는 검색 | `omok-when-to-defend.html`, `omok-attack-defense-priority.html`, `omok-block-four.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
 
 ## 월간 운영 루틴
 
@@ -263,6 +263,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `omok-reading-depth.html` | 오목 수읽기 깊이 검색 유입 |
 | 2026-06-25 | `omok-double-threat.html` | 오목 양방향 위협 검색 유입 |
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
+| 2026-06-26 | `omok-when-to-defend.html` | 오목 공격 포기와 수비 전환 판단 검색 유입 |
 | 2026-06-25 | `omok-defense-to-attack.html` | 오목 수비 후 공격 전환 검색 유입 |
 | 2026-06-25 | `omok-block-four.html` | 오목 4목 막기 검색 유입 |
 | 2026-06-26 | `omok-block-four-checklist.html` | 오목 4목 차단 실수 검색 유입 |
