@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { articleFiles, siteBase } = require("./site-content.cjs");
+const { articleFiles, learnItemListFiles, siteBase } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 const learnPath = path.join(root, "learn.html");
@@ -28,11 +28,11 @@ function renderSchemaBlock() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "큰돌 학습 글 목록",
+    name: "큰돌 대표 학습 글 목록",
     url: `${siteBase}learn.html`,
     inLanguage: "ko",
-    numberOfItems: articleFiles.length,
-    itemListElement: articleFiles.map((file, index) => ({
+    numberOfItems: learnItemListFiles.length,
+    itemListElement: learnItemListFiles.map((file, index) => ({
       "@type": "ListItem",
       position: index + 1,
       url: `${siteBase}${file}`,
@@ -71,12 +71,15 @@ if (!fs.existsSync(learnPath)) fail("learn.html is missing.");
 for (const file of articleFiles) {
   if (!fs.existsSync(path.join(root, file))) fail(`article file is missing: ${file}`);
 }
+for (const file of learnItemListFiles) {
+  if (!articleFiles.includes(file)) fail(`ItemList file is not registered as an article: ${file}`);
+}
 
 const current = fs.readFileSync(learnPath, "utf8");
 const expected = replaceOrInsert(current, renderSchemaBlock());
 
 console.log(writeMode ? "Learning item list sync" : "Learning item list sync check");
-console.log(`Expected items: ${articleFiles.length}`);
+console.log(`Expected representative items: ${learnItemListFiles.length} of ${articleFiles.length} articles`);
 
 if (writeMode) {
   fs.writeFileSync(learnPath, expected);
@@ -92,4 +95,4 @@ if (current !== expected) {
   process.exit(1);
 }
 
-console.log("\nOK: learn.html ItemList JSON-LD matches current learning articles.");
+console.log("\nOK: learn.html ItemList JSON-LD matches current representative learning articles.");

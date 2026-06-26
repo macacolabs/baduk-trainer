@@ -86,6 +86,15 @@ const articleFiles = [
   "omok-review-mistakes.html",
 ];
 
+const badukArticleFiles = articleFiles.filter((file) => file.startsWith("baduk-"));
+const omokArticleFiles = articleFiles.filter((file) => file.startsWith("omok-"));
+const learnItemListFiles = Array.from(new Set([
+  ...badukArticleFiles.slice(0, 20),
+  ...badukArticleFiles.slice(-8),
+  ...omokArticleFiles.slice(0, 12),
+  ...omokArticleFiles.slice(-6),
+]));
+
 const requiredPublicPages = publicPages;
 
 const sitemapPages = [
@@ -104,6 +113,7 @@ const sitemapPages = [
 module.exports = {
   articleFiles,
   feedItemLimit,
+  learnItemListFiles,
   publicPages,
   requiredPublicPages,
   siteBase,

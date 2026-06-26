@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { articleFiles, feedItemLimit, siteBase, sitemapPages } = require("./site-content.cjs");
+const { articleFiles, feedItemLimit, learnItemListFiles, siteBase, sitemapPages } = require("./site-content.cjs");
 
 const root = path.resolve(__dirname, "..");
 
@@ -113,12 +113,14 @@ if (exists("learn.html")) {
     .join("\n");
   for (const file of articleFiles) {
     check(learningHubText.includes(`href="${file}"`), `learning hubs: missing article link ${file}`);
+  }
+  for (const file of learnItemListFiles) {
     check(learn.includes(`${siteBase}${file}`), `learn.html: missing ItemList schema URL ${file}`);
   }
   check(learn.includes('href="baduk-learn.html"'), "learn.html: missing baduk learning hub link");
   check(learn.includes('href="omok-learn.html"'), "learn.html: missing omok learning hub link");
   check(/"@type":\s*"ItemList"/.test(learn), "learn.html: missing ItemList schema");
-  check(new RegExp(`"numberOfItems"\\s*:\\s*${articleFiles.length}`).test(learn), "learn.html: ItemList article count is out of sync");
+  check(new RegExp(`"numberOfItems"\\s*:\\s*${learnItemListFiles.length}`).test(learn), "learn.html: ItemList article count is out of sync");
 }
 
 if (exists("index.html")) {
