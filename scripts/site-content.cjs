@@ -80,6 +80,7 @@ const articleFiles = [
   "omok-renju-black-disadvantage.html",
   "omok-six-in-a-row.html",
   "omok-threats.html",
+  "omok-reading-depth.html",
   "omok-double-threat.html",
   "omok-defend-double-threat.html",
   "omok-attack-defense-priority.html",
