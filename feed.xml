@@ -147,6 +147,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 끝내기 선수는 어떻게 계산할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-endgame-sente.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-endgame-sente.html</guid>
+      <description>바둑 끝내기에서 선수와 후수를 계산하는 법입니다. 양쪽 집 차이, 상대 응수 강제, 작은 선수와 큰 후수 비교, 마지막 20수 복기법을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>끝내기는 집 경계를 확정하는 단계입니다</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-endgame.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-endgame.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-guide.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-guide.html</guid>
       <description>바둑 집 계산 연습을 처음 시작하는 사람을 위한 10분 루틴입니다. 확정 집, 미정 지역, 죽은 돌, 덤을 어떤 순서로 보면 되는지 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 계가는 끝까지 둔 판이 생기면 바로 연습해도 됩니다</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-start.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-start.html</guid>
-      <description>바둑 계가를 언제부터 연습하면 좋은지 설명합니다. 집 계산, 끝내기, 덤, 복기 루틴을 초보자 단계에 맞게 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
