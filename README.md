@@ -193,6 +193,7 @@ node scripts/service-next-action.cjs
 - `node scripts/content-report.cjs`로 다음 보강 글 확인
 - `node scripts/indexing-priority.cjs`로 색인 요청 우선순위 확인
 - 새 공개 페이지를 추가했다면 `node scripts/sync-sitemap.cjs --write`로 sitemap 갱신
+- 공개 페이지 내용을 수정했다면 `node scripts/sync-sitemap.cjs --write --touch-changed`로 sitemap `lastmod` 갱신
 - 새 학습 글을 추가했다면 `node scripts/sync-feed.cjs --write`로 최신 글 feed 갱신
 - 새 학습 글을 추가했다면 `node scripts/sync-learn-itemlist.cjs --write`로 학습 허브 구조화 데이터 갱신
 - 새 GitHub 이슈 확인
