@@ -5,10 +5,15 @@ const root = path.resolve(__dirname, "..");
 const indexPath = path.join(root, "index.html");
 const start = "    <!-- SEARCH_CONSOLE_VERIFICATION_START -->";
 const end = "    <!-- SEARCH_CONSOLE_VERIFICATION_END -->";
-const meta = process.env.SEARCH_CONSOLE_META || process.argv.slice(2).join(" ");
+const rawInput = process.env.SEARCH_CONSOLE_TOKEN || process.env.SEARCH_CONSOLE_META || process.argv.slice(2).join(" ");
+const metaPattern = /<meta\s+[^>]*name=["']google-site-verification["'][^>]*content=["']([^"']+)["'][^>]*\/?>/i;
 
 function usage() {
   console.log("Usage:");
+  console.log("$env:SEARCH_CONSOLE_TOKEN='발급값'");
+  console.log("node scripts/apply-search-console-meta.cjs");
+  console.log("");
+  console.log("Or:");
   console.log("$env:SEARCH_CONSOLE_META='<meta name=\"google-site-verification\" content=\"발급값\">'");
   console.log("node scripts/apply-search-console-meta.cjs");
 }
@@ -19,12 +24,24 @@ function fail(message) {
   process.exit(1);
 }
 
-if (!meta.trim()) {
-  fail("Provide the Search Console meta tag as SEARCH_CONSOLE_META or as an argument.");
+function tokenFromInput(input) {
+  const trimmed = input.trim();
+  if (!trimmed) return "";
+  const metaMatch = trimmed.match(metaPattern);
+  if (metaMatch) return metaMatch[1].trim();
+  return trimmed;
 }
 
-if (!/^<meta\s+name="google-site-verification"\s+content="[^"]+"\s*\/?>$/.test(meta.trim())) {
-  fail('Expected a tag like: <meta name="google-site-verification" content="...">');
+function metaFromToken(token) {
+  if (!/^[A-Za-z0-9_-]{8,}$/.test(token)) {
+    fail("Expected a Search Console verification token, or a full google-site-verification meta tag.");
+  }
+  return `<meta name="google-site-verification" content="${token}">`;
+}
+
+const token = tokenFromInput(rawInput);
+if (!token) {
+  fail("Provide the Search Console token as SEARCH_CONSOLE_TOKEN, or the full tag as SEARCH_CONSOLE_META.");
 }
 
 const html = fs.readFileSync(indexPath, "utf8");
@@ -37,7 +54,7 @@ if (startIndex === -1 || endIndex === -1 || endIndex < startIndex) {
 
 const before = html.slice(0, startIndex + start.length);
 const after = html.slice(endIndex);
-const next = `${before}\n    ${meta.trim()}\n${after}`;
+const next = `${before}\n    ${metaFromToken(token)}\n${after}`;
 
 fs.writeFileSync(indexPath, next);
 console.log("Updated index.html with Search Console verification meta tag.");

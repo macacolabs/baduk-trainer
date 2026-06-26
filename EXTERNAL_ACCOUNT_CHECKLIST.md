@@ -50,6 +50,13 @@ sitemap URL: https://macacolabs.github.io/baduk-trainer/sitemap.xml
 HTML 태그를 발급받은 뒤에는 아래 흐름을 사용합니다.
 
 ```powershell
+$env:SEARCH_CONSOLE_TOKEN='발급값'
+node scripts/apply-search-console-meta.cjs
+```
+
+태그 전체를 복사했다면 아래 방식도 가능합니다.
+
+```powershell
 $env:SEARCH_CONSOLE_META='<meta name="google-site-verification" content="발급값">'
 node scripts/apply-search-console-meta.cjs
 node scripts/check-search-console-meta.cjs

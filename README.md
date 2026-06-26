@@ -65,6 +65,14 @@ live 배포 대기 점검은 로컬 `sitemap.xml`과 live `sitemap.xml`이 같�
 발급받은 meta 태그는 아래처럼 안전하게 넣을 수 있습니다.
 
 ```powershell
+$env:SEARCH_CONSOLE_TOKEN='발급값'
+node scripts/apply-search-console-meta.cjs
+node scripts/preflight.cjs
+```
+
+태그 전체를 복사했다면 아래 방식도 가능합니다.
+
+```powershell
 $env:SEARCH_CONSOLE_META='<meta name="google-site-verification" content="발급값">'
 node scripts/apply-search-console-meta.cjs
 node scripts/preflight.cjs
