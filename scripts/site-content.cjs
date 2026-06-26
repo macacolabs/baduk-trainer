@@ -93,6 +93,7 @@ const articleFiles = [
   "baduk-endgame-sente.html",
   "baduk-endgame-mistakes.html",
   "baduk-sente-gote.html",
+  "baduk-beginner-tenuki.html",
   "baduk-tenuki-timing.html",
   "omok-strategy.html",
   "omok-beginner-losing-patterns.html",
