@@ -38,6 +38,7 @@
 - 색인 요청 전 `node scripts/indexing-priority.cjs`로 우선 요청 URL 확인
 - Search Console 검색어 CSV가 있으면 `node scripts/search-console-query-report.cjs search-console-queries.csv`로 보강 후보 확인
 - Search Console 검색어 CSV에서 후보를 바로 만들려면 `node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write` 실행
+- Search Console 데이터가 아직 없고 후보가 비어 있으면 `node scripts/seed-evergreen-candidates.cjs --write` 실행
 - `node scripts/content-report.cjs`로 짧거나 내부 링크가 약한 글 확인
 - `node scripts/content-queue.cjs`로 다음 작성 후보 확인
 - 콘텐츠 후보가 모두 완료 상태라면 Search Console 검색어 또는 `CONTENT_PLAN.md`의 다음 확장 후보를 3개 이상 채워둠

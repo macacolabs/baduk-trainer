@@ -76,6 +76,7 @@ console.log("");
 console.log("Weekly operator actions:");
 console.log("- Check Search Console queries and indexing status.");
 console.log("- Export Search Console queries CSV, then run scripts/seed-search-console-candidates.cjs search-console-queries.csv --write.");
+console.log("- If Search Console data is not ready and content queue is empty, run scripts/seed-evergreen-candidates.cjs --write.");
 console.log("- Use scripts/indexing-priority.cjs before manual indexing requests.");
 console.log("- Improve one article that has impressions, clicks, or weak engagement.");
 console.log("- Test one Baduk AI game and one Omok AI game on mobile.");

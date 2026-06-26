@@ -142,6 +142,18 @@ Search Console 등록 전에도 검색 의도가 큰 무료 학습/필승법 키
 | 완료 | 바둑 무료로 배우는 순서 | 무료로 바둑을 시작하려는 입문자가 돈을 쓰기 전 학습 순서를 알고 싶은 검색 | `baduk-free-learn.html`, `baduk-9x9-beginner.html`, `baduk-atari.html`, `baduk-ai-review.html` |
 | 완료 | 오목 필승법보다 먼저 알아야 할 것 | 오목 필승법을 찾는 사용자가 실제로는 4목 차단과 열린 3, 양방향 위협을 배우려는 검색 | `omok-winning-strategy.html`, `omok-strategy.html`, `omok-open-three.html`, `omok-double-threat.html` |
 
+## Search Console 전 예비 후보
+
+Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후보로 콘텐츠 큐를 유지합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 높음 | 바둑 규칙 쉽게 배우는 순서 | 바둑 규칙을 처음 검색한 사용자가 착수, 활로, 단수, 패를 순서대로 알고 싶은 검색 | `baduk-beginner.html`, `baduk-liberties.html`, `baduk-atari.html`, `baduk-ko-rule.html` |
+| 높음 | 오목 4목을 놓치지 않는 체크리스트 | 오목에서 바로 지는 4목 차단 실수를 줄이고 싶은 초보자 검색 | `omok-block-four.html`, `omok-blocking-point.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
+| 중간 | 오목 AI와 연습할 때 난이도 올리는 기준 | 오목 AI 난이도를 언제 올려야 하는지 알고 싶은 사용자 검색 | `omok-ai-difficulty.html`, `omok-difficulty-choice.html`, `omok-hard-ai-losses.html`, `omok-practice-routine.html` |
+| 중간 | 바둑 집 계산 연습을 처음 시작하는 법 | 바둑 계가와 집 계산을 실전 전에 작게 연습하고 싶은 입문자 검색 | `baduk-territory-scoring.html`, `baduk-scoring-practice-start.html`, `baduk-komi-6-5.html`, `baduk-endgame.html` |
+| 중간 | 바둑 1급 목표자가 매주 확인할 복기 질문 | 5급 이후 1급을 목표로 대국 복기를 어떻게 해야 하는지 찾는 검색 | `baduk-5k-to-1k.html`, `baduk-1k-daily-routine.html`, `baduk-candidate-moves.html`, `baduk-review-note.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.

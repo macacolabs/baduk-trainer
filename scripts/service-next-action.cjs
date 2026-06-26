@@ -78,7 +78,8 @@ if (openContent.length) {
 } else {
   console.log("Internal growth task:");
   console.log("- No open content candidates. Seed Search Console query ideas into CONTENT_PLAN.md.");
-  console.log("- Run: node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write");
+  console.log("- If CSV exists: node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write");
+  console.log("- Before Search Console data: node scripts/seed-evergreen-candidates.cjs --write");
 }
 
 console.log("");
