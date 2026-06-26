@@ -10,7 +10,7 @@ const requestTimeoutMs = fastMode ? 7000 : 15000;
 
 const checks = [
   { path: "", expect: "큰돌" },
-  { path: "about.html", expect: "서비스 소개" },
+  { path: "about.html", expect: "콘텐츠 검수 기준" },
   { path: "learn.html", expect: "바둑과 오목" },
   { path: "baduk-learn.html", expect: "바둑은 활로" },
   { path: "omok-learn.html", expect: "오목은 5목" },

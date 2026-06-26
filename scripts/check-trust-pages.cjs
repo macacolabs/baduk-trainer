@@ -6,7 +6,7 @@ const errors = [];
 const warnings = [];
 
 const required = {
-  "about.html": ["서비스 목적", "운영 원칙", "문의", "GitHub"],
+  "about.html": ["서비스 목적", "운영 원칙", "운영자 정보", "콘텐츠 검수 기준", "macacolabs", "문의", "GitHub"],
   "privacy.html": ["시행일", "localStorage", "Google AdSense", "쿠키", "GitHub", "정보 삭제", "변경 고지"],
   "terms.html": ["시행일", "서비스 목적", "학습용", "광고", "부정 클릭", "localStorage", "문의"],
   "adsense-checklist.html": ["개인정보처리방침", "이용약관", "광고 배치", "승인 전", "Search Console"],
