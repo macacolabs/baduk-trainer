@@ -210,6 +210,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 끝내기에서 몇 집짜리부터 커 보일까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-endgame-point-size.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-endgame-point-size.html</guid>
+      <description>바둑 끝내기에서 몇 집짜리 수를 먼저 봐야 하는지 설명합니다. 1집, 2집, 5집, 10집 끝내기 감각과 초보용 비교 순서를 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 끝내기 선수는 어떻게 계산할까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-endgame-sente.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-endgame-sente.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-life-death-10-minute-routine.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-death-10-minute-routine.html</guid>
       <description>바둑 사활 문제를 매일 10분씩 푸는 루틴입니다. 첫 수 후보, 급소, 가짜 눈, 오답 기록, 10급에서 5급으로 가는 반복법을 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 사활 문제를 풀어도 실전에서 죽는 이유</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-life-death-real-game.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-death-real-game.html</guid>
-      <description>바둑 사활 문제는 푸는데 실전 대국에서 큰 돌이 죽는 이유를 설명합니다. 문제 풀이와 실전 생사 판단의 차이, 복기 기준, 훈련 루틴을 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

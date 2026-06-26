@@ -39,6 +39,36 @@ const candidates = [
     links: ["omok-defense-to-attack.html", "omok-counterattack-after-block.html", "omok-attack-timing.html", "omok-blocking-point.html"],
   },
   {
+    priority: "중간",
+    title: "바둑 끝내기에서 몇 집짜리부터 커 보일까",
+    intent: "끝내기에서 어느 수가 큰지 감이 안 오는 초보자가 집 차이 기준을 찾는 검색",
+    links: ["baduk-endgame-big-move.html", "baduk-endgame-sente.html", "baduk-territory-scoring.html", "baduk-scoring-order.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 정석은 언제부터 외워야 할까",
+    intent: "바둑 정석을 초보 때부터 외워야 하는지, 언제 의미를 봐야 하는지 찾는 검색",
+    links: ["baduk-joseki-study.html", "baduk-opening-corner.html", "baduk-opening.html", "baduk-10k-to-5k.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 단수쳐도 손해인 돌은 어떻게 구분할까",
+    intent: "단수와 포획은 보이지만 잡아도 손해인 작은 돌을 구분하고 싶은 초보 검색",
+    links: ["baduk-profitable-capture.html", "baduk-atari.html", "baduk-save-or-sacrifice.html", "baduk-sacrifice-moments.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 4목을 막았는데도 지는 이유",
+    intent: "오목에서 4목을 막았는데 다음 위협을 놓쳐 지는 사용자가 수비 후 확인 순서를 찾는 검색",
+    links: ["omok-block-four.html", "omok-blocking-point.html", "omok-counterattack-after-block.html", "omok-review-mistakes.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 한쪽만 막으면 왜 늦을까",
+    intent: "오목 양방향 위협에서 한쪽만 막고도 지는 이유를 알고 싶은 검색",
+    links: ["omok-defend-double-threat.html", "omok-double-threat.html", "omok-attack-defense-priority.html", "omok-blocking-point.html"],
+  },
+  {
     priority: "높음",
     title: "바둑 규칙 쉽게 배우는 순서",
     intent: "바둑 규칙을 처음 검색한 사용자가 착수, 활로, 단수, 패를 순서대로 알고 싶은 검색",
