@@ -113,6 +113,7 @@ const articleFiles = [
   "omok-blocking-point.html",
   "omok-open-four.html",
   "omok-open-three.html",
+  "omok-open-three-losing.html",
   "omok-closed-three.html",
   "omok-three-vs-four.html",
   "omok-ai-difficulty.html",
