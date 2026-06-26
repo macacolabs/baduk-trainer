@@ -166,7 +166,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 AI 난이도는 어떻게 고르면 좋을까 | 바둑 AI 대국을 시작할 때 9줄, 13줄, 19줄과 난이도를 어떻게 고를지 알고 싶은 입문자 검색 | `baduk-ai-difficulty.html`, `baduk-ai-review.html`, `baduk-9x9-beginner.html`, `baduk-19x19-start.html`, `baduk-rank-roadmap.html`, `baduk-review-note.html` |
 | 완료 | 바둑 첫 50수는 무엇을 봐야 할까 | 19줄 바둑 초반 50수에서 귀, 변, 중앙, 약한 돌을 어떤 순서로 봐야 하는지 찾는 검색 | `baduk-first-50-moves.html`, `baduk-opening.html`, `baduk-opening-corner.html`, `baduk-side-opening.html`, `baduk-center-opening.html`, `baduk-beginner-mistakes.html` |
 | 완료 | 바둑 초보가 돌을 버려도 되는 순간 | 잡힐 돌을 무리하게 살리다가 손해 보는 초보가 버릴 돌 기준을 알고 싶은 검색 | `baduk-sacrifice-moments.html`, `baduk-save-or-sacrifice.html`, `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html` |
-| 중간 | 오목 상대가 중앙을 먼저 잡으면 어떻게 할까 | 오목 후공이 상대 중앙 첫 수에 어떻게 대응하고 반격할지 알고 싶은 검색 | `omok-first-second.html`, `omok-center-opening.html`, `omok-second-player-counterattack.html`, `omok-defense-to-attack.html`, `omok-after-first-move.html` |
+| 완료 | 오목 상대가 중앙을 먼저 잡으면 어떻게 할까 | 오목 후공이 상대 중앙 첫 수에 어떻게 대응하고 반격할지 알고 싶은 검색 | `omok-respond-center.html`, `omok-first-second.html`, `omok-center-opening.html`, `omok-second-player-counterattack.html`, `omok-defense-to-attack.html`, `omok-after-first-move.html` |
 | 낮음 | 바둑 9줄 AI에게 계속 지는 이유 | 9줄 바둑 AI에게 계속 지는 입문자가 반복 실수와 복기 기준을 찾는 검색 | `baduk-9x9-beginner.html`, `baduk-9x9-first-move.html`, `baduk-atari-practice.html`, `baduk-liberties.html`, `baduk-ai-review.html` |
 
 ## Search Console 전 13차 예비 후보
@@ -327,6 +327,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-review-mistakes.html` | 오목 실수 복기 검색 유입 |
 | 2026-06-26 | `omok-beginner-losing-patterns.html` | 오목 초보 패배 패턴 검색 유입 |
 | 2026-06-26 | `omok-after-first-move.html` | 오목 선공 첫 수 이후 배치 검색 유입 |
+| 2026-06-26 | `omok-respond-center.html` | 오목 상대 중앙 첫 수 대응 검색 유입 |
 | 2026-06-25 | `omok-forbidden-moves.html` | 오목 금수와 자유룰 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |
 

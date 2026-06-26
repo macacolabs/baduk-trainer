@@ -88,6 +88,7 @@ const articleFiles = [
   "omok-center-opening.html",
   "omok-after-first-move.html",
   "omok-first-second.html",
+  "omok-respond-center.html",
   "omok-second-player-counterattack.html",
   "omok-first-10-moves.html",
   "omok-two-stones.html",
