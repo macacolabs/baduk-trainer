@@ -80,6 +80,7 @@ const articleFiles = [
   "baduk-1k-daily-routine.html",
   "baduk-1k-weekly-review.html",
   "baduk-territory-scoring.html",
+  "baduk-scoring-order.html",
   "baduk-dead-stones-scoring.html",
   "baduk-neutral-points.html",
   "baduk-scoring-practice-start.html",
