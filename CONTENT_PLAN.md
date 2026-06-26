@@ -176,7 +176,7 @@ Search Console 검색어가 아직 없을 때도 운영 큐가 비지 않도록,
 | 완료 | 바둑 패감은 어떻게 찾을까 | 패싸움은 알지만 어떤 수가 패감인지 모르는 사용자 검색 | `baduk-ko-threats.html`, `baduk-ko-rule.html`, `baduk-ko-fight-timing.html`, `baduk-sente-gote.html`, `baduk-candidate-moves.html` |
 | 완료 | 바둑 끝내기 선수는 어떻게 계산할까 | 끝내기에서 먼저 둬야 하는 수와 후수를 구분하려는 검색 | `baduk-endgame-sente.html`, `baduk-endgame.html`, `baduk-endgame-big-move.html`, `baduk-sente-gote.html`, `baduk-endgame-mistakes.html` |
 | 완료 | 오목 2목은 언제 의미가 있을까 | 초반 2목이 공격 준비인지 빈 수인지 헷갈리는 입문자 검색 | `omok-two-stones.html`, `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-threats.html`, `omok-reading-depth.html` |
-| 중간 | 오목 막은 뒤 반격은 어디에 둘까 | 수비 후 다시 공격으로 넘어가는 구체적 후보를 찾는 검색 | `omok-defense-to-attack.html`, `omok-when-to-defend.html`, `omok-double-threat.html`, `omok-blocking-point.html` |
+| 완료 | 오목 막은 뒤 반격은 어디에 둘까 | 수비 후 다시 공격으로 넘어가는 구체적 후보를 찾는 검색 | `omok-counterattack-after-block.html`, `omok-defense-to-attack.html`, `omok-when-to-defend.html`, `omok-double-threat.html`, `omok-blocking-point.html` |
 
 ## 월간 운영 루틴
 
@@ -281,6 +281,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
 | 2026-06-26 | `omok-when-to-defend.html` | 오목 공격 포기와 수비 전환 판단 검색 유입 |
 | 2026-06-25 | `omok-defense-to-attack.html` | 오목 수비 후 공격 전환 검색 유입 |
+| 2026-06-26 | `omok-counterattack-after-block.html` | 오목 막은 뒤 반격 후보 검색 유입 |
 | 2026-06-25 | `omok-block-four.html` | 오목 4목 막기 검색 유입 |
 | 2026-06-26 | `omok-block-four-checklist.html` | 오목 4목 차단 실수 검색 유입 |
 | 2026-06-25 | `omok-open-four.html` | 오목 열린 4와 닫힌 4 검색 유입 |
