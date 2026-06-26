@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오목 방어 연습은 어떻게 해야 할까 - 큰돌</title>
+    <meta
+      name="description"
+      content="오목에서 공격만 하다 4목을 놓치는 초보자를 위해 방어 연습 순서를 설명합니다. 4목 차단, 열린 3 예방, 막는 방향, AI 복기 루틴을 정리합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/omok-defense-practice.html" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "오목 방어 연습은 어떻게 해야 할까",
+        "url": "https://macacolabs.github.io/baduk-trainer/omok-defense-practice.html",
+        "inLanguage": "ko",
+        "learningResourceType": "Article",
+        "educationalLevel": "Beginner",
+        "teaches": "오목",
+        "description": "오목에서 공격만 하다 4목을 놓치는 초보자를 위해 방어 연습 순서를 설명합니다. 4목 차단, 열린 3 예방, 막는 방향, AI 복기 루틴을 정리합니다.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "큰돌",
+          "url": "https://macacolabs.github.io/baduk-trainer/"
+        }
+      }
+    </script>
+    <!-- BREADCRUMB_SCHEMA_START -->
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"큰돌","item":"https://macacolabs.github.io/baduk-trainer/"},{"@type":"ListItem","position":2,"name":"오목 배우기","item":"https://macacolabs.github.io/baduk-trainer/omok-learn.html"},{"@type":"ListItem","position":3,"name":"오목 방어 연습은 어떻게 해야 할까","item":"https://macacolabs.github.io/baduk-trainer/omok-defense-practice.html"}]}
+    </script>
+    <!-- BREADCRUMB_SCHEMA_END -->
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="omok-learn.html">오목 배우기로 돌아가기</a>
+      <p class="eyebrow">오목 방어 루틴</p>
+      <h1>오목 방어 연습은 어떻게 해야 할까</h1>
+      <p class="article-lead">오목 방어 연습은 막기만 반복하는 훈련이 아닙니다. 상대가 바로 이기는 수를 지우고, 열린 3을 미리 줄이고, 막은 돌을 다음 반격 씨앗으로 쓰는 연습입니다.</p>
+
+      <section>
+        <h2>처음 목표는 4목을 0번 놓치는 것입니다</h2>
+        <p>초보자는 내 공격 모양이 좋아 보이면 상대 4목을 못 보고 한 수 만에 지는 경우가 많습니다. 방어 연습의 첫 목표는 이기는 것이 아니라, 한 판에서 상대 4목을 0번 놓치는 것입니다. 내가 바로 5목을 만들 수 없다면 상대가 다음 수에 5목을 만드는지 먼저 확인하세요.</p>
+      </section>
+
+      <section>
+        <h2>4목 다음에는 열린 3을 봅니다</h2>
+        <p>4목을 막기 시작하면 다음 실수는 열린 3을 늦게 보는 것입니다. 열린 3을 방치하면 다음 수에 4목이 되고, 그다음에는 계속 막기만 하게 됩니다. 상대 열린 3이 중앙으로 뻗거나 다른 돌과 연결되면 한 수 빨리 견제하는 편이 안전합니다.</p>
+      </section>
+
+      <section>
+        <h2>막는 방향을 말로 설명합니다</h2>
+        <p>같은 수비라도 어느 쪽을 막느냐가 중요합니다. 막은 뒤 상대가 중앙으로 뻗는지, 다른 돌과 연결되는지, 반대쪽에 새 4목이 남는지를 말로 설명해 보세요. “그냥 막았다”가 아니라 “중앙 연결을 끊었다”라고 말할 수 있어야 방어가 실전 판단으로 바뀝니다.</p>
+      </section>
+
+      <section>
+        <h2>좋은 수비는 반격을 남깁니다</h2>
+        <p>계속 막기만 하면 결국 다시 공격을 당합니다. 좋은 수비는 상대 승리를 막으면서 내 돌도 이어 주는 수입니다. 상대 열린 3의 한쪽을 막는 자리가 내 3목이나 4목 준비와 연결된다면, 그 수는 방어이면서 공격 준비입니다.</p>
+      </section>
+
+      <section>
+        <h2>공격을 멈춰야 하는 순간을 정합니다</h2>
+        <p>내 공격이 한 방향뿐이고 상대 위협이 두 방향이면 공격을 멈추는 편이 좋습니다. 내가 바로 이기지 못하는데 상대가 다음 수에 5목을 만들거나 열린 4를 만들 수 있다면 방어가 먼저입니다. 오목은 좋은 공격보다 지금 지지 않는 수가 먼저일 때가 많습니다.</p>
+      </section>
+
+      <section>
+        <h2>15분 방어 연습 루틴</h2>
+        <ol class="article-list">
+          <li>오목 AI 쉬움이나 보통 난이도에서 한 판을 둡니다.</li>
+          <li>매 수마다 “내 5목, 상대 5목, 상대 열린 3” 순서로 봅니다.</li>
+          <li>상대 4목을 놓친 장면이 있으면 그 판은 방어 실패로 표시합니다.</li>
+          <li>막은 수 3개를 골라 왜 그 방향을 막았는지 적습니다.</li>
+          <li>마지막 5수에서 공격했어야 했는지, 막았어야 했는지 다시 봅니다.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>난이도 올리는 기준</h2>
+        <p>쉬움에서 4목 차단 실수가 3판 연속 0번이면 보통으로 올립니다. 보통에서 열린 3을 4목이 되기 전에 막는 판이 늘면 어려움으로 갑니다. 어려움에서는 수비 후 반격 후보를 말할 수 있는지가 기준입니다. 고수 난이도는 이긴 판보다 진 판 복기를 위해 쓰는 편이 좋습니다.</p>
+      </section>
+
+      <section>
+        <h2>복기할 때 볼 질문</h2>
+        <p>진 판을 볼 때는 “내가 공격한 수가 정말 급했나?”를 먼저 물어보세요. 그다음 상대 4목, 열린 3, 양방향 위협을 놓친 장면을 찾습니다. 같은 태그가 두 판 연속 나오면 다음 연습은 그 태그 하나만 줄이는 목표로 두면 됩니다.</p>
+      </section>
+
+      <section class="article-card-grid related-learning" aria-label="다음에 볼 글">
+        <a href="omok-block-four-checklist.html">
+          <span>4목</span>
+          <strong>4목 체크리스트</strong>
+          <p>상대 4목을 놓치지 않는 순서를 먼저 봅니다.</p>
+        </a>
+        <a href="omok-blocking-point.html">
+          <span>막는 방향</span>
+          <strong>막기 좋은 자리</strong>
+          <p>어느 쪽을 막아야 다음 위협이 줄어드는지 봅니다.</p>
+        </a>
+        <a href="omok-when-to-defend.html">
+          <span>판단</span>
+          <strong>공격을 멈출 순간</strong>
+          <p>내 공격보다 수비가 먼저인 장면을 고릅니다.</p>
+        </a>
+        <a href="omok-practice-routine.html">
+          <span>루틴</span>
+          <strong>난이도별 연습 루틴</strong>
+          <p>AI 난이도를 올리는 기준과 복기 흐름을 봅니다.</p>
+        </a>
+        <a href="omok-defense-to-attack.html">
+          <span>반격</span>
+          <strong>수비에서 공격으로</strong>
+          <p>막은 뒤 다시 공격권을 가져오는 법을 봅니다.</p>
+        </a>
+      </section>
+      <aside class="ad-slot ad-slot-article" aria-label="광고 영역">
+        <span>광고</span>
+        <p>승인 후 학습 글 하단에만 광고를 배치합니다.</p>
+      </aside>
+    </main>
+  </body>
+</html>
