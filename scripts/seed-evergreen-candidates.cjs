@@ -98,6 +98,36 @@ const candidates = [
     intent: "오목에서 중앙 첫 수 다음 배치를 어떻게 이어가야 하는지 찾는 입문자 검색",
     links: ["omok-center-opening.html", "omok-first-10-moves.html", "omok-two-stones.html", "omok-threats.html"],
   },
+  {
+    priority: "높음",
+    title: "바둑 AI 난이도는 어떻게 고르면 좋을까",
+    intent: "바둑 AI 대국을 시작할 때 9줄, 13줄, 19줄과 난이도를 어떻게 고를지 알고 싶은 입문자 검색",
+    links: ["baduk-ai-review.html", "baduk-9x9-beginner.html", "baduk-19x19-start.html", "baduk-rank-roadmap.html", "baduk-review-note.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 첫 50수는 무엇을 봐야 할까",
+    intent: "19줄 바둑 초반 50수에서 귀, 변, 중앙, 약한 돌을 어떤 순서로 봐야 하는지 찾는 검색",
+    links: ["baduk-opening.html", "baduk-opening-corner.html", "baduk-side-opening.html", "baduk-center-opening.html", "baduk-beginner-mistakes.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 초보가 돌을 버려도 되는 순간",
+    intent: "잡힐 돌을 무리하게 살리다가 손해 보는 초보가 버릴 돌 기준을 알고 싶은 검색",
+    links: ["baduk-save-or-sacrifice.html", "baduk-profitable-capture.html", "baduk-attack-weak-stones.html", "baduk-candidate-moves.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 상대가 중앙을 먼저 잡으면 어떻게 할까",
+    intent: "오목 후공이 상대 중앙 첫 수에 어떻게 대응하고 반격할지 알고 싶은 검색",
+    links: ["omok-first-second.html", "omok-center-opening.html", "omok-second-player-counterattack.html", "omok-defense-to-attack.html", "omok-after-first-move.html"],
+  },
+  {
+    priority: "낮음",
+    title: "바둑 9줄 AI에게 계속 지는 이유",
+    intent: "9줄 바둑 AI에게 계속 지는 입문자가 반복 실수와 복기 기준을 찾는 검색",
+    links: ["baduk-9x9-beginner.html", "baduk-9x9-first-move.html", "baduk-atari-practice.html", "baduk-liberties.html", "baduk-ai-review.html"],
+  },
 ];
 
 function usage() {

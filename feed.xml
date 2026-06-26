@@ -77,6 +77,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 AI 난이도는 어떻게 고르면 좋을까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-ai-difficulty.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-ai-difficulty.html</guid>
+      <description>바둑 AI 대국을 시작할 때 9줄, 13줄, 19줄과 AI 난이도를 고르는 기준입니다. 입문자, 20급, 10급, 5급 목표별 연습법을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 AI와 두고 복기하는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-ai-review.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-ai-review.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-profitable-capture.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-profitable-capture.html</guid>
       <description>바둑 초보자가 모든 돌을 잡으려다 손해 보는 이유를 설명합니다. 잡을 돌, 버릴 돌, 선수와 후수, 큰 자리 비교를 쉽게 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 급수표와 공부 순서</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-rank-roadmap.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-rank-roadmap.html</guid>
-      <description>바둑 급수표를 입문자 눈높이로 설명합니다. 30급, 20급, 10급, 5급, 1급까지 무엇을 배우고 어떤 기준으로 다음 단계로 넘어갈지 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

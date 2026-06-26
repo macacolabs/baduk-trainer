@@ -50,6 +50,7 @@ const articleFiles = [
   "baduk-position-judgment-start.html",
   "baduk-joseki-study.html",
   "baduk-ai-review.html",
+  "baduk-ai-difficulty.html",
   "baduk-candidate-moves.html",
   "baduk-which-game-to-review.html",
   "baduk-review-note.html",
