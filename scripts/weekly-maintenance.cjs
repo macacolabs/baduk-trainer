@@ -46,6 +46,11 @@ const checks = [
     command: process.execPath,
     args: ["scripts/service-next-action.cjs"],
   },
+  {
+    title: "Weekly summary",
+    command: process.execPath,
+    args: ["scripts/weekly-summary.cjs"],
+  },
 ];
 
 console.log("Weekly maintenance check");

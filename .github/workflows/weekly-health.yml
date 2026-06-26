@@ -20,3 +20,6 @@ jobs:
           node-version: 22
       - name: Run weekly maintenance
         run: node scripts/weekly-maintenance.cjs
+      - name: Write weekly summary
+        if: always()
+        run: node scripts/weekly-summary.cjs >> "$GITHUB_STEP_SUMMARY"

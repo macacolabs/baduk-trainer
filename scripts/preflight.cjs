@@ -4,6 +4,7 @@ const includeLive = process.argv.includes("--live");
 
 const checks = [
   [process.execPath, ["--check", "scripts/site-content.cjs"]],
+  [process.execPath, ["--check", "scripts/weekly-summary.cjs"]],
   [process.execPath, ["--check", "app.js"]],
   [process.execPath, ["--check", "scripts/seed-search-console-candidates.cjs"]],
   [process.execPath, ["scripts/check-search-console-meta.cjs"]],

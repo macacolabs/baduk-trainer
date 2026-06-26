@@ -129,6 +129,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - 외부 계정 다음 작업 안내 스크립트 `scripts/external-next-action.cjs`
 - 외부 계정 체크리스트 완료 표시 스크립트 `scripts/mark-external-task.cjs`
 - 주간 운영 통합 점검 스크립트 `scripts/weekly-maintenance.cjs`
+- GitHub Actions 주간 요약 출력 스크립트 `scripts/weekly-summary.cjs`
 - 월간 운영 리뷰 생성 스크립트 `scripts/create-operations-review.cjs` (`--blank`으로 자동 스냅샷 생략 가능)
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - Search Console meta 태그 로컬/live 검증 스크립트 `scripts/check-search-console-meta.cjs`
@@ -162,6 +163,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 자세한 반복 점검표는 `OPERATION_CHECKLIST.md`를 기준으로 관리합니다.
 
 GitHub Actions의 `Weekly Service Health` 워크플로가 매주 live 상태, 콘텐츠 보강 후보, 수익화 준비 상태를 자동 점검합니다.
+성공/실패와 별개로 Actions Summary에는 수익 준비도, 다음 외부 액션, 색인 요청 후보가 남습니다.
 
 로컬에서 같은 흐름을 직접 확인할 때:
 
