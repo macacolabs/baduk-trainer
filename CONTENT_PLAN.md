@@ -206,6 +206,18 @@ Search Console 검색어가 아직 없을 때도 9줄 입문처럼 반복 검색
 | --- | --- | --- | --- |
 | 완료 | 9줄 바둑 첫 수는 어디에 둘까 | 9줄 바둑을 처음 둘 때 중앙, 귀, 변 중 어디에 첫 수를 둘지 알고 싶은 입문자 검색 | `baduk-9x9-first-move.html`, `baduk-9x9-beginner.html`, `baduk-beginner.html`, `baduk-opening-corner.html`, `baduk-9x9-to-19x19.html` |
 
+## Search Console 전 16차 예비 후보
+
+Search Console 등록 전에도 문제 풀이, 정답률, 방어 연습처럼 앱 안에서 바로 체류로 이어지는 검색 의도를 보강합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 완료 | 바둑 문제는 어떤 순서로 풀면 좋을까 | 바둑 문제를 많이 풀어도 실전에 이어지지 않는 초보자가 단수, 연결, 사활, 끝내기 순서를 찾는 검색 | `baduk-problem-solving-order.html`, `baduk-atari-practice.html`, `baduk-life-and-death-practice.html`, `baduk-10k-to-5k.html`, `baduk-rank-roadmap.html` |
+| 높음 | 바둑 초보 정답률은 몇 퍼센트면 좋을까 | 문제 정답률이 낮거나 너무 쉬운 문제만 푸는 초보자가 다음 난이도 기준을 찾는 검색 | `baduk-problem-solving-order.html`, `baduk-rank-roadmap.html`, `baduk-30k-to-20k.html`, `baduk-10k-to-5k.html` |
+| 중간 | 오목 방어 연습은 어떻게 해야 할까 | 오목에서 공격만 하다 4목을 놓치는 사용자가 방어 훈련 순서를 찾는 검색 | `omok-block-four-checklist.html`, `omok-blocking-point.html`, `omok-when-to-defend.html`, `omok-practice-routine.html` |
+| 중간 | 바둑 같은 실수를 반복하지 않으려면 어떻게 할까 | 대국마다 같은 실수를 하는 사용자가 오답과 복기 노트를 연결하는 법을 찾는 검색 | `baduk-review-note.html`, `baduk-problem-solving-order.html`, `baduk-1k-weekly-review.html`, `baduk-ai-review.html` |
+| 중간 | 오목 공격 타이밍은 어떻게 잡을까 | 막기와 공격 사이에서 언제 열린 3이나 4목을 만들지 알고 싶은 검색 | `omok-attack-defense-priority.html`, `omok-defense-to-attack.html`, `omok-open-three.html`, `omok-double-threat.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -248,6 +260,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-beginner-mistakes.html` | 바둑 초보 실수 검색 유입 |
 | 2026-06-21 | `baduk-atari.html` | 단수 개념 검색 유입 |
 | 2026-06-24 | `baduk-atari-practice.html` | 단수 연습법 검색 유입 |
+| 2026-06-26 | `baduk-problem-solving-order.html` | 바둑 문제 풀이 순서 검색 유입 |
 | 2026-06-25 | `baduk-ladder.html` | 축 읽기와 축머리 검색 유입 |
 | 2026-06-25 | `baduk-ladder-breaker.html` | 축머리와 축 깨짐 검색 유입 |
 | 2026-06-25 | `baduk-net.html` | 장문 성립 조건 검색 유입 |

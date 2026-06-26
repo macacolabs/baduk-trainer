@@ -28,6 +28,7 @@ const articleFiles = [
   "baduk-beginner-mistakes.html",
   "baduk-atari.html",
   "baduk-atari-practice.html",
+  "baduk-problem-solving-order.html",
   "baduk-ladder.html",
   "baduk-ladder-breaker.html",
   "baduk-net.html",
