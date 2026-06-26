@@ -166,6 +166,18 @@ Search Console 등록 전까지도 학습 허브가 멈추지 않도록, 1급 �
 | 완료 | 오목 수읽기는 몇 수까지 해야 할까 | 열린 3, 4목, 양방향 위협을 몇 수 앞까지 봐야 하는지 찾는 검색 | `omok-reading-depth.html`, `omok-threats.html`, `omok-double-threat.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
 | 완료 | 오목에서 공격을 포기하고 막아야 하는 순간 | 내 공격보다 상대 위협을 먼저 막아야 하는 기준을 찾는 검색 | `omok-when-to-defend.html`, `omok-attack-defense-priority.html`, `omok-block-four.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
 
+## Search Console 전 14차 예비 후보
+
+Search Console 검색어가 아직 없을 때도 운영 큐가 비지 않도록, 계가/패감/끝내기/오목 초반처럼 반복 검색 가능한 주제를 보강합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 중간 | 바둑 계가에서 죽은 돌은 어떻게 처리할까 | 집 계산 중 죽은 돌을 빼야 하는지 헷갈리는 입문자 검색 | `baduk-territory-scoring.html`, `baduk-alive-dead-stones.html`, `baduk-scoring-practice-guide.html`, `baduk-life-and-death.html` |
+| 중간 | 바둑 패감은 어떻게 찾을까 | 패싸움은 알지만 어떤 수가 패감인지 모르는 사용자 검색 | `baduk-ko-rule.html`, `baduk-ko-fight-timing.html`, `baduk-sente-gote.html`, `baduk-candidate-moves.html` |
+| 중간 | 바둑 끝내기 선수는 어떻게 계산할까 | 끝내기에서 먼저 둬야 하는 수와 후수를 구분하려는 검색 | `baduk-endgame.html`, `baduk-endgame-big-move.html`, `baduk-sente-gote.html`, `baduk-endgame-mistakes.html` |
+| 중간 | 오목 2목은 언제 의미가 있을까 | 초반 2목이 공격 준비인지 빈 수인지 헷갈리는 입문자 검색 | `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-threats.html`, `omok-reading-depth.html` |
+| 중간 | 오목 막은 뒤 반격은 어디에 둘까 | 수비 후 다시 공격으로 넘어가는 구체적 후보를 찾는 검색 | `omok-defense-to-attack.html`, `omok-when-to-defend.html`, `omok-double-threat.html`, `omok-blocking-point.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
