@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바둑 13줄 초반은 어디부터 둘까 - 큰돌</title>
+    <meta
+      name="description"
+      content="13줄 바둑을 시작한 입문자를 위해 초반에 귀, 변, 중앙을 어떤 순서로 보면 좋은지 설명합니다. 첫 20수 판단과 복기 루틴을 정리합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/baduk-13x13-opening.html" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "바둑 13줄 초반은 어디부터 둘까",
+        "url": "https://macacolabs.github.io/baduk-trainer/baduk-13x13-opening.html",
+        "inLanguage": "ko",
+        "learningResourceType": "Article",
+        "educationalLevel": "Beginner",
+        "teaches": "바둑",
+        "description": "13줄 바둑을 시작한 입문자를 위해 초반에 귀, 변, 중앙을 어떤 순서로 보면 좋은지 설명합니다. 첫 20수 판단과 복기 루틴을 정리합니다.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "큰돌",
+          "url": "https://macacolabs.github.io/baduk-trainer/"
+        }
+      }
+    </script>
+    <!-- BREADCRUMB_SCHEMA_START -->
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"큰돌","item":"https://macacolabs.github.io/baduk-trainer/"},{"@type":"ListItem","position":2,"name":"바둑 배우기","item":"https://macacolabs.github.io/baduk-trainer/baduk-learn.html"},{"@type":"ListItem","position":3,"name":"바둑 13줄 초반은 어디부터 둘까","item":"https://macacolabs.github.io/baduk-trainer/baduk-13x13-opening.html"}]}
+    </script>
+    <!-- BREADCRUMB_SCHEMA_END -->
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="baduk-learn.html">바둑 배우기로 돌아가기</a>
+      <p class="eyebrow">13줄 포석</p>
+      <h1>바둑 13줄 초반은 어디부터 둘까</h1>
+      <p class="article-lead">13줄 바둑 초반은 귀를 먼저 보고, 그 다음 변으로 넓히고, 중앙은 싸움과 약한 돌이 생겼을 때 봅니다. 19줄보다 좁지만 9줄보다 넓기 때문에 “큰 자리”와 “약한 돌”을 같이 보는 연습에 좋습니다.</p>
+
+      <section>
+        <h2>첫 수는 중앙보다 귀가 쉽습니다</h2>
+        <p>9줄에서는 중앙이 강하게 느껴질 수 있지만 13줄부터는 귀의 가치가 커집니다. 귀는 판 끝 두 방향을 이용하므로 적은 돌로 안정되기 쉽습니다. 처음에는 빈 귀를 먼저 차지하고, 상대가 가까이 오면 무리하게 잡기보다 내 돌이 끊기지 않는 모양을 만드세요.</p>
+      </section>
+
+      <section>
+        <h2>귀를 잡은 뒤에는 변으로 벌립니다</h2>
+        <p>귀 하나만 차지하고 멈추면 집이 작습니다. 귀에 돌이 생겼다면 그 돌이 어느 변으로 넓어질 수 있는지 봅니다. 내 귀 돌에서 너무 멀리 벌리면 끊기기 쉽고, 너무 가까이 붙으면 효율이 떨어집니다. 13줄에서는 “귀에서 변으로 한 번 넓힌다”는 감각만 있어도 초반이 훨씬 편해집니다.</p>
+      </section>
+
+      <section>
+        <h2>중앙은 목적이 있을 때 둡니다</h2>
+        <p>중앙은 바로 집이 되기 어렵습니다. 대신 약한 돌을 도와주거나 상대 돌을 공격할 때 힘이 됩니다. 초반에 중앙으로 나가고 싶다면 먼저 질문하세요. 이 수가 내 약한 돌을 살리는가, 상대 약한 돌을 몰아가는가, 아니면 그냥 넓어 보여서 두는가. 마지막이라면 아직 이른 수일 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>첫 20수는 네 가지로 표시합니다</h2>
+        <p>13줄을 잘 배우려면 첫 20수를 복기할 때 모든 수를 설명하려고 하지 않아도 됩니다. 각 수를 귀, 변, 중앙, 작은 싸움 중 하나로만 표시해 보세요. 작은 싸움 표시가 너무 많다면 큰 자리를 놓치고 있을 가능성이 큽니다. 중앙 표시가 많은데 집이 없다면 목적 없는 중앙 수가 많았을 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>상대가 먼저 귀를 잡으면 변을 봅니다</h2>
+        <p>빈 귀를 모두 상대가 가져갔다고 바로 진 것은 아닙니다. 그 다음에는 상대가 넓히려는 변을 막거나, 내 돌이 안정될 수 있는 반대쪽 변을 봅니다. 13줄에서는 귀 네 곳이 빨리 찹니다. 그래서 귀를 놓친 뒤에도 변의 넓이와 약한 돌의 위치를 보면 충분히 따라갈 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>초반에 피할 실수</h2>
+        <ol class="article-list">
+          <li>빈 귀가 남아 있는데 작은 단수만 계속 쫓아간다.</li>
+          <li>내 귀 돌 바로 옆에만 붙어서 변으로 넓히지 못한다.</li>
+          <li>중앙이 좋아 보여서 목적 없이 가운데만 둔다.</li>
+          <li>상대가 큰 변을 만들고 있는데 내 돌 하나 잡는 데만 집중한다.</li>
+          <li>약한 돌이 끊겨 있는데 새 큰 자리만 찾는다.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>큰돌에서 연습하는 법</h2>
+        <p>AI 대국에서 13줄을 선택하고 보통 난이도로 한 판 둡니다. 대국이 끝나면 첫 20수만 다시 보며 내 수 옆에 “귀”, “변”, “중앙”, “싸움”을 붙입니다. 그 뒤 놓친 빈 귀 하나, 너무 좁게 둔 변 하나, 목적이 약한 중앙 수 하나를 찾으면 충분합니다.</p>
+      </section>
+
+      <section>
+        <h2>19줄로 이어지는 감각</h2>
+        <p>13줄에서 귀와 변의 순서가 보이기 시작하면 19줄도 덜 막막해집니다. 19줄은 더 넓을 뿐 같은 질문을 던집니다. 빈 귀가 있는가, 내 변이 넓어질 수 있는가, 중앙 수가 실제 싸움에 도움이 되는가. 13줄 초반 훈련은 이 질문을 작게 반복하는 단계입니다.</p>
+      </section>
+
+      <section class="article-card-grid related-learning" aria-label="다음에 볼 글">
+        <a href="baduk-13x13-start.html">
+          <span>전환</span>
+          <strong>13줄 시작 기준</strong>
+          <p>13줄을 언제 시작하면 좋은지 먼저 확인합니다.</p>
+        </a>
+        <a href="baduk-9x9-to-19x19.html">
+          <span>전환</span>
+          <strong>9줄에서 19줄로</strong>
+          <p>판 크기를 넓히는 전체 순서를 봅니다.</p>
+        </a>
+        <a href="baduk-opening.html">
+          <span>포석</span>
+          <strong>포석 기초</strong>
+          <p>귀, 변, 중앙의 기본 우선순위를 정리합니다.</p>
+        </a>
+        <a href="baduk-opening-corner.html">
+          <span>귀</span>
+          <strong>귀를 먼저 두는 이유</strong>
+          <p>첫 수와 초반 큰 자리의 이유를 봅니다.</p>
+        </a>
+        <a href="baduk-side-opening.html">
+          <span>변</span>
+          <strong>변을 두는 시점</strong>
+          <p>귀 다음 변으로 넓히는 기준을 배웁니다.</p>
+        </a>
+        <a href="baduk-center-opening.html">
+          <span>중앙</span>
+          <strong>중앙으로 가는 기준</strong>
+          <p>중앙 수가 필요한 순간을 구분합니다.</p>
+        </a>
+      </section>
+
+      <aside class="ad-slot ad-slot-article" aria-label="광고 영역">
+        <span>광고</span>
+        <p>승인 후 학습 글 하단에만 광고를 배치합니다.</p>
+      </aside>
+    </main>
+  </body>
+</html>

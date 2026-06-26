@@ -21,6 +21,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 13줄 초반은 어디부터 둘까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-13x13-opening.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-13x13-opening.html</guid>
+      <description>13줄 바둑을 시작한 입문자를 위해 초반에 귀, 변, 중앙을 어떤 순서로 보면 좋은지 설명합니다. 첫 20수 판단과 복기 루틴을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 13줄은 언제 시작하면 좋을까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-13x13-start.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-13x13-start.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-large-group-death.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-large-group-death.html</guid>
       <description>바둑에서 큰 돌이 갑자기 죽는 이유를 설명합니다. 두 눈, 탈출로, 연결, 가짜 눈, 후보수 비교를 기준으로 대마를 관리하는 법을 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>활로를 알면 바둑 전투가 보입니다</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-liberties.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-liberties.html</guid>
-      <description>바둑 활로의 뜻, 활로를 세는 법, 자살수와 포획의 관계를 초보자에게 맞춰 설명합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

@@ -23,6 +23,7 @@ const articleFiles = [
   "baduk-9x9-ai-losses.html",
   "baduk-9x9-to-19x19.html",
   "baduk-13x13-start.html",
+  "baduk-13x13-opening.html",
   "baduk-19x19-start.html",
   "baduk-rank-roadmap.html",
   "baduk-30k-to-20k.html",
