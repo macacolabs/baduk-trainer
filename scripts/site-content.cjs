@@ -145,6 +145,7 @@ const articleFiles = [
   "omok-difficulty-choice.html",
   "omok-level-up-timing.html",
   "omok-hard-ai-losses.html",
+  "omok-self-practice.html",
   "omok-practice-routine.html",
   "omok-review-mistakes.html",
 ];
