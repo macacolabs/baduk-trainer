@@ -157,7 +157,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 빅은 어떻게 구분할까 | 사활에서 서로 잡을 수 없는 빅 모양을 죽은 돌과 구분하려는 검색 | `baduk-seki.html`, `baduk-life-and-death.html`, `baduk-alive-dead-stones.html`, `baduk-false-eye.html`, `baduk-territory-scoring.html` |
 | 완료 | 오목 닫힌 3은 언제 막아야 할까 | 열린 3과 닫힌 3의 위험도를 구분하고 막을지 공격할지 고르려는 검색 | `omok-closed-three.html`, `omok-open-three.html`, `omok-three-vs-four.html`, `omok-attack-defense-priority.html`, `omok-when-to-defend.html` |
 | 완료 | 오목 후공은 어떻게 반격할까 | 후공으로 계속 막기만 하다 지는 사용자가 반격 흐름을 찾는 검색 | `omok-second-player-counterattack.html`, `omok-first-second.html`, `omok-defense-to-attack.html`, `omok-counterattack-after-block.html`, `omok-blocking-point.html` |
-| 낮음 | 바둑 9줄에서 19줄로 넘어가는 기준 | 9줄 연습 후 언제 19줄 바둑을 시작할지 알고 싶은 입문자 검색 | `baduk-9x9-beginner.html`, `baduk-19x19-start.html`, `baduk-rank-roadmap.html`, `baduk-ai-review.html` |
+| 완료 | 바둑 9줄에서 19줄로 넘어가는 기준 | 9줄 연습 후 언제 19줄 바둑을 시작할지 알고 싶은 입문자 검색 | `baduk-9x9-to-19x19.html`, `baduk-9x9-beginner.html`, `baduk-19x19-start.html`, `baduk-rank-roadmap.html`, `baduk-ai-review.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -218,6 +218,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-rules-order.html` | 바둑 규칙 순서 검색 유입 |
 | 2026-06-26 | `baduk-free-learn.html` | 바둑 무료 학습 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
+| 2026-06-26 | `baduk-9x9-to-19x19.html` | 바둑 9줄에서 19줄 전환 기준 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
 | 2026-06-25 | `baduk-rank-roadmap.html` | 바둑 급수표와 공부 순서 검색 유입 |
 | 2026-06-25 | `baduk-beginner-mistakes.html` | 바둑 초보 실수 검색 유입 |

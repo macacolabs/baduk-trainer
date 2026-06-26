@@ -56,6 +56,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 9줄에서 19줄로 넘어가는 기준</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-9x9-to-19x19.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-9x9-to-19x19.html</guid>
+      <description>9줄 바둑을 어느 정도 연습한 뒤 19줄 바둑으로 넘어가도 되는 기준을 설명합니다. 단수, 활로, 복기, 첫 10판 루틴을 체크합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 AI와 두고 복기하는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-ai-review.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-ai-review.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-rules-order.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-rules-order.html</guid>
       <description>바둑 규칙을 처음 배우는 사람을 위한 순서입니다. 착수, 차례, 활로, 단수, 포획, 패 규칙을 어떤 순서로 익히면 쉬운지 설명합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 잡힌 돌은 버려야 할까 살려야 할까</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-save-or-sacrifice.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-save-or-sacrifice.html</guid>
-      <description>바둑에서 잡힐 것 같은 돌을 살릴지 버릴지 판단하는 기준입니다. 작은 돌, 큰 돌, 대마, 선수와 후수, 후보수 비교를 초보자 눈높이로 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
