@@ -234,6 +234,18 @@ Search Console 등록 전에도 문제 풀이, 정답률, 방어 연습처럼 �
 | 완료 | 바둑 같은 실수를 반복하지 않으려면 어떻게 할까 | 대국마다 같은 실수를 하는 사용자가 오답과 복기 노트를 연결하는 법을 찾는 검색 | `baduk-repeat-mistakes.html`, `baduk-review-note.html`, `baduk-problem-solving-order.html`, `baduk-1k-weekly-review.html`, `baduk-ai-review.html` |
 | 완료 | 오목 공격 타이밍은 어떻게 잡을까 | 막기와 공격 사이에서 언제 열린 3이나 4목을 만들지 알고 싶은 검색 | `omok-attack-timing.html`, `omok-attack-defense-priority.html`, `omok-defense-to-attack.html`, `omok-open-three.html`, `omok-double-threat.html` |
 
+## Search Console 전 17차 예비 후보
+
+Search Console 등록 전에도 독학, AI 대국 반복, 하루 공부량처럼 검색 의도가 큰 운영형 키워드를 보강합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 완료 | 바둑 독학은 어떤 순서로 하면 좋을까 | 혼자 바둑을 공부하는 입문자가 9줄 대국, 문제 풀이, AI 복기 순서를 알고 싶은 검색 | `baduk-self-study.html`, `baduk-free-learn.html`, `baduk-rank-roadmap.html`, `baduk-problem-solving-order.html`, `baduk-ai-review.html`, `baduk-review-note.html` |
+| 중간 | 바둑 AI 대국만 해도 늘까 | AI와 많이 두지만 실력이 늘지 않는 사용자가 복기와 문제 풀이 연결법을 찾는 검색 | `baduk-ai-review.html`, `baduk-which-game-to-review.html`, `baduk-repeat-mistakes.html`, `baduk-problem-solving-order.html`, `baduk-review-note.html` |
+| 중간 | 바둑 하루 공부량은 어느 정도가 좋을까 | 매일 바둑을 얼마나 두고 문제를 몇 개 풀어야 하는지 찾는 입문자 검색 | `baduk-1k-daily-routine.html`, `baduk-problem-solving-order.html`, `baduk-review-10-minute.html`, `baduk-life-death-10-minute-routine.html`, `baduk-rank-roadmap.html` |
+| 중간 | 오목 혼자 연습은 어떻게 하면 좋을까 | 혼자 오목을 연습하는 사용자가 AI 대국, 방어 문제, 복기 순서를 찾는 검색 | `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-practice.html`, `omok-review-mistakes.html`, `omok-before-three.html` |
+| 중간 | 오목 AI 대국만 반복하면 왜 늘지 않을까 | 오목 AI와 많이 두지만 반복 패배하는 사용자가 복기와 약점 훈련을 찾는 검색 | `omok-ai-losing-reasons.html`, `omok-review-mistakes.html`, `omok-practice-routine.html`, `omok-defense-practice.html`, `omok-attack-defense-priority.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -268,6 +280,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
 | 2026-06-26 | `baduk-rules-order.html` | 바둑 규칙 순서 검색 유입 |
 | 2026-06-26 | `baduk-free-learn.html` | 바둑 무료 학습 검색 유입 |
+| 2026-06-26 | `baduk-self-study.html` | 바둑 독학 순서 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-26 | `baduk-9x9-to-19x19.html` | 바둑 9줄에서 19줄 전환 기준 검색 유입 |
 | 2026-06-26 | `baduk-13x13-start.html` | 바둑 13줄 시작 기준 검색 유입 |

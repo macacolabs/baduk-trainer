@@ -18,6 +18,7 @@ const articleFiles = [
   "baduk-beginner.html",
   "baduk-rules-order.html",
   "baduk-free-learn.html",
+  "baduk-self-study.html",
   "baduk-9x9-beginner.html",
   "baduk-9x9-first-move.html",
   "baduk-9x9-ai-losses.html",
