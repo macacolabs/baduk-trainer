@@ -126,6 +126,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 계가에서 죽은 돌은 어떻게 처리할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-dead-stones-scoring.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-dead-stones-scoring.html</guid>
+      <description>바둑 계가에서 죽은 돌을 어떻게 처리하는지 설명합니다. 산 돌과 죽은 돌 구분, 애매한 돌 확인, 집 계산에 반영하는 순서를 초보자 눈높이로 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 끝내기에서 큰 수를 찾는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-endgame-big-move.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-endgame-big-move.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-sente-gote.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-sente-gote.html</guid>
       <description>바둑에서 선수와 후수의 뜻을 설명합니다. 상대가 받아야 하는 수와 차례를 잃는 수의 차이를 초보자에게 맞춰 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 빈삼각은 왜 나쁜 모양일까</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-shape-empty-triangle.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-shape-empty-triangle.html</guid>
-      <description>바둑 초보자가 자주 만드는 빈삼각이 왜 나쁜 모양인지 설명합니다. 활로, 무거운 돌, 좋은 모양으로 고치는 기준을 쉽게 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

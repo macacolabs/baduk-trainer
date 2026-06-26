@@ -172,7 +172,7 @@ Search Console 검색어가 아직 없을 때도 운영 큐가 비지 않도록,
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 중간 | 바둑 계가에서 죽은 돌은 어떻게 처리할까 | 집 계산 중 죽은 돌을 빼야 하는지 헷갈리는 입문자 검색 | `baduk-territory-scoring.html`, `baduk-alive-dead-stones.html`, `baduk-scoring-practice-guide.html`, `baduk-life-and-death.html` |
+| 완료 | 바둑 계가에서 죽은 돌은 어떻게 처리할까 | 집 계산 중 죽은 돌을 빼야 하는지 헷갈리는 입문자 검색 | `baduk-dead-stones-scoring.html`, `baduk-territory-scoring.html`, `baduk-alive-dead-stones.html`, `baduk-scoring-practice-guide.html`, `baduk-life-and-death.html` |
 | 중간 | 바둑 패감은 어떻게 찾을까 | 패싸움은 알지만 어떤 수가 패감인지 모르는 사용자 검색 | `baduk-ko-rule.html`, `baduk-ko-fight-timing.html`, `baduk-sente-gote.html`, `baduk-candidate-moves.html` |
 | 중간 | 바둑 끝내기 선수는 어떻게 계산할까 | 끝내기에서 먼저 둬야 하는 수와 후수를 구분하려는 검색 | `baduk-endgame.html`, `baduk-endgame-big-move.html`, `baduk-sente-gote.html`, `baduk-endgame-mistakes.html` |
 | 중간 | 오목 2목은 언제 의미가 있을까 | 초반 2목이 공격 준비인지 빈 수인지 헷갈리는 입문자 검색 | `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-threats.html`, `omok-reading-depth.html` |
@@ -253,6 +253,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-komi-6-5.html` | 바둑 덤과 반집 승부 검색 유입 |
 | 2026-06-25 | `baduk-ko-fight-timing.html` | 바둑 패싸움 시작 기준 검색 유입 |
 | 2026-06-26 | `baduk-save-or-sacrifice.html` | 바둑 살릴 돌과 버릴 돌 판단 검색 유입 |
+| 2026-06-26 | `baduk-dead-stones-scoring.html` | 바둑 계가 죽은 돌 처리 검색 유입 |
 | 2026-06-26 | `baduk-scoring-practice-start.html` | 바둑 계가 연습 시작 시점 검색 유입 |
 | 2026-06-26 | `baduk-scoring-practice-guide.html` | 바둑 집 계산 실전 연습 검색 유입 |
 | 2026-06-26 | `baduk-10k-losing-reasons.html` | 바둑 10급 정체 원인 검색 유입 |
