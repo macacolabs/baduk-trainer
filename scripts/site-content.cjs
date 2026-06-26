@@ -22,6 +22,7 @@ const articleFiles = [
   "baduk-9x9-to-19x19.html",
   "baduk-19x19-start.html",
   "baduk-rank-roadmap.html",
+  "baduk-30k-to-20k.html",
   "baduk-beginner-mistakes.html",
   "baduk-atari.html",
   "baduk-atari-practice.html",
