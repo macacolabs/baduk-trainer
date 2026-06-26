@@ -1447,6 +1447,29 @@ const omokAiLabels = {
   k5: "고수",
 };
 
+const omokAiCards = {
+  beginner: {
+    title: "처음",
+    focus: "3목과 4목을 보는 눈 만들기",
+    description: "AI가 열린 3과 4목을 자주 놓쳐서 초보자가 공격 자리를 찾기 좋습니다.",
+  },
+  k20: {
+    title: "연습",
+    focus: "즉시 승리와 기본 방어",
+    description: "AI가 이길 수는 보지만 막는 수를 가끔 놓쳐서 방어 습관을 만들기 좋습니다.",
+  },
+  k10: {
+    title: "승부",
+    focus: "공격과 방어를 동시에 확인",
+    description: "AI가 대부분의 4목과 열린 3목을 확인해서 실전 감각을 올리기 좋습니다.",
+  },
+  k5: {
+    title: "고수",
+    focus: "실수 줄이기와 복기용 대국",
+    description: "AI가 전술 실수를 거의 하지 않아 한 판 뒤 복기하면서 약점을 찾기 좋습니다.",
+  },
+};
+
 const omokTacticalReliability = {
   beginner: 0.35,
   k20: 0.68,
@@ -2509,16 +2532,26 @@ function startPracticalMission() {
 
 function ensureAiLevelControl() {
   if (document.querySelector("#aiLevel")) return;
-  const field = document.createElement("label");
+  const field = document.createElement("div");
   field.className = "field ai-level-field";
   const options = Object.entries(aiStyles)
     .map(([value, style]) => `<option value="${value}">${style.label}</option>`)
     .join("");
   field.innerHTML = `
-    <span>AI 난이도</span>
-    <select id="aiLevel">
+    <span id="aiLevelLabel">AI 난이도</span>
+    <select id="aiLevel" aria-labelledby="aiLevelLabel">
       ${options}
     </select>
+    <div class="omok-ai-cards" role="radiogroup" aria-label="오목 AI 난이도">
+      ${Object.entries(omokAiCards).map(([value, card]) => `
+        <button type="button" class="omok-ai-card" role="radio" data-ai-level="${value}" aria-checked="false">
+          <b>${card.title}</b>
+          <strong>${omokAiLabels[value]}</strong>
+          <span>${card.focus}</span>
+          <small>${card.description}</small>
+        </button>
+      `).join("")}
+    </div>
   `;
   el.boardSize.closest(".field").after(field);
   const select = field.querySelector("#aiLevel");
@@ -2528,13 +2561,26 @@ function ensureAiLevelControl() {
   select.value = state.aiLevel;
   updateAiLevelControlText();
   select.addEventListener("change", (event) => {
-    state.aiLevel = event.target.value;
-    saveProgress();
-    const style = aiStyles[state.aiLevel] || aiStyles.k20;
-    const note = state.gameType === "omok" ? omokAiNotes[state.aiLevel] || omokAiNotes.k20 : style.note;
-    const label = state.gameType === "omok" ? `${omokAiLabels[state.aiLevel] || style.label}(${style.label})` : style.label;
-    setStatus("AI 난이도", `${label} 스타일로 바꿨습니다. ${note}`);
+    setAiLevel(event.target.value);
   });
+  field.querySelector(".omok-ai-cards").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-ai-level]");
+    if (!button) return;
+    setAiLevel(button.dataset.aiLevel);
+  });
+}
+
+function setAiLevel(level, announce = true) {
+  state.aiLevel = aiStyles[level] ? level : "k20";
+  saveProgress();
+  const select = document.querySelector("#aiLevel");
+  if (select) select.value = state.aiLevel;
+  updateAiLevelControlText();
+  if (!announce) return;
+  const style = aiStyles[state.aiLevel] || aiStyles.k20;
+  const note = state.gameType === "omok" ? omokAiNotes[state.aiLevel] || omokAiNotes.k20 : style.note;
+  const label = state.gameType === "omok" ? `${omokAiLabels[state.aiLevel] || style.label} · ${style.label}` : style.label;
+  setStatus("AI 난이도", `${label} 스타일로 바꿨습니다. ${note}`);
 }
 
 function startRankCourse() {
@@ -3695,13 +3741,23 @@ function updateAiLevelControlText() {
   if (!field) return;
   const label = field.querySelector("span");
   const select = field.querySelector("#aiLevel");
+  const isOmok = state.gameType === "omok";
+  field.classList.toggle("omok-level-mode", isOmok);
   if (label) label.textContent = state.gameType === "omok" ? "오목 AI 난이도" : "바둑 AI 난이도";
-  if (!select) return;
-  for (const option of select.options) {
-    const style = aiStyles[option.value];
-    if (!style) continue;
-    option.textContent = state.gameType === "omok" ? `${omokAiLabels[option.value] || style.label} · ${style.label}` : style.label;
+  if (select) {
+    select.hidden = isOmok;
+    select.value = state.aiLevel;
+    for (const option of select.options) {
+      const style = aiStyles[option.value];
+      if (!style) continue;
+      option.textContent = state.gameType === "omok" ? `${omokAiLabels[option.value] || style.label} · ${style.label}` : style.label;
+    }
   }
+  field.querySelectorAll("[data-ai-level]").forEach((button) => {
+    const active = button.dataset.aiLevel === state.aiLevel;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-checked", active ? "true" : "false");
+  });
 }
 
 function updateGameTypeControls(forceDefaultSize = false) {
@@ -3976,8 +4032,9 @@ function startGame(mode) {
   el.topPlayerName.textContent = mode === "ai" ? `AI 백` : "백";
   const aiStyle = aiStyles[state.aiLevel] || aiStyles.k20;
   const omokAiNote = omokAiNotes[state.aiLevel] || omokAiNotes.k20;
+  const omokAiLabel = omokAiLabels[state.aiLevel] || aiStyle.label;
   el.topPlayerMeta.textContent = state.gameType === "omok"
-    ? mode === "ai" ? `${aiStyle.label} 오목 AI` : "상대 · 5목 승부"
+    ? mode === "ai" ? `${omokAiLabel} 오목 AI` : "상대 · 5목 승부"
     : mode === "ai" ? `${aiStyle.label} 스타일 · 6.5 덤` : "상대 · 6.5 덤";
   el.topTimer.textContent = "10:00";
   el.bottomPlayerName.textContent = mode === "ai" ? "플레이어 흑" : "흑";
