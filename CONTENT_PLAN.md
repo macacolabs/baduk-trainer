@@ -181,7 +181,9 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 끝내기에서 몇 집짜리부터 커 보일까 | 끝내기에서 어느 수가 큰지 감이 안 오는 초보자가 집 차이 기준을 찾는 검색 | `baduk-endgame-point-size.html`, `baduk-endgame-big-move.html`, `baduk-endgame-sente.html`, `baduk-territory-scoring.html`, `baduk-scoring-order.html` |
 | 완료 | 바둑 단수쳐도 손해인 돌은 어떻게 구분할까 | 단수와 포획은 보이지만 잡아도 손해인 작은 돌을 구분하고 싶은 초보 검색 | `baduk-atari-loss.html`, `baduk-profitable-capture.html`, `baduk-atari.html`, `baduk-save-or-sacrifice.html`, `baduk-sacrifice-moments.html` |
 | 완료 | 오목 4목을 막았는데도 지는 이유 | 오목에서 4목을 막았는데 다음 위협을 놓쳐 지는 사용자가 수비 후 확인 순서를 찾는 검색 | `omok-after-block-four-loss.html`, `omok-block-four.html`, `omok-blocking-point.html`, `omok-counterattack-after-block.html`, `omok-review-mistakes.html` |
-| 중간 | 오목 한쪽만 막으면 왜 늦을까 | 오목 양방향 위협에서 한쪽만 막고도 지는 이유를 알고 싶은 검색 | `omok-defend-double-threat.html`, `omok-double-threat.html`, `omok-attack-defense-priority.html`, `omok-blocking-point.html` |
+| 완료 | 오목 한쪽만 막으면 왜 늦을까 | 오목 양방향 위협에서 한쪽만 막고도 지는 이유를 알고 싶은 검색 | `omok-one-side-block-late.html`, `omok-defend-double-threat.html`, `omok-double-threat.html`, `omok-attack-defense-priority.html`, `omok-blocking-point.html` |
+| 중간 | 바둑 초보는 언제 손빼도 될까 | 상대가 둔 곳에 꼭 받아야 하는지, 큰 곳으로 손빼도 되는지 알고 싶은 입문자 검색 | `baduk-tenuki-timing.html`, `baduk-sente-gote.html`, `baduk-opening.html`, `baduk-candidate-moves.html` |
+| 중간 | 오목 열린 3을 막았는데도 지는 이유 | 오목에서 열린 3을 막았는데 남은 4목이나 양방향 위협으로 지는 이유를 찾는 검색 | `omok-open-three.html`, `omok-open-three-losing.html`, `omok-after-block-four-loss.html`, `omok-review-mistakes.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -269,6 +271,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-endgame-point-size.html` | 바둑 끝내기 크기 판단 검색 유입 |
 | 2026-06-26 | `baduk-atari-loss.html` | 바둑 단수 후 포획 손익 판단 검색 유입 |
 | 2026-06-26 | `omok-after-block-four-loss.html` | 오목 4목 차단 후 후속 위협 검색 유입 |
+| 2026-06-26 | `omok-one-side-block-late.html` | 오목 양방향 위협 수비 검색 유입 |
 | 2026-06-26 | `omok-first-player-win.html` | 오목 선공 필승과 자유룰 검색 유입 |
 | 2026-06-26 | `omok-defense-to-attack.html` | 오목 막기만 하다 공격권 상실 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |

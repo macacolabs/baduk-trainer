@@ -218,6 +218,24 @@ const candidates = [
     intent: "1급을 목표로 하는 사용자가 AI 복기를 오래 하지 않고 후보수와 약점만 고르는 법을 찾는 검색",
     links: ["baduk-5k-to-1k.html", "baduk-1k-weekly-review.html", "baduk-ai-review.html", "baduk-candidate-moves.html"],
   },
+  {
+    priority: "중간",
+    title: "바둑 침입과 삭감은 어떻게 다를까",
+    intent: "상대 집이 커 보일 때 들어가야 할지 줄여야 할지 구분하고 싶은 초보 검색",
+    links: ["baduk-invasion-reduction.html", "baduk-territory-scoring.html", "baduk-thickness-territory.html", "baduk-position-judgment-start.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 초보는 언제 손빼도 될까",
+    intent: "상대가 둔 곳에 꼭 받아야 하는지, 큰 곳으로 손빼도 되는지 알고 싶은 입문자 검색",
+    links: ["baduk-tenuki-timing.html", "baduk-sente-gote.html", "baduk-opening.html", "baduk-candidate-moves.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 열린 3을 막았는데도 지는 이유",
+    intent: "오목에서 열린 3을 막았는데 남은 4목이나 양방향 위협으로 지는 이유를 찾는 검색",
+    links: ["omok-open-three.html", "omok-open-three-losing.html", "omok-after-block-four-loss.html", "omok-review-mistakes.html"],
+  },
 ];
 
 function usage() {
