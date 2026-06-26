@@ -177,7 +177,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 초보는 몇 수까지 읽어야 할까 | 바둑 초보가 단수, 사활, 전투에서 몇 수 앞까지 읽어야 하는지 알고 싶은 검색 | `baduk-reading-depth.html`, `baduk-candidate-moves.html`, `baduk-atari.html`, `baduk-life-death-vital-point.html`, `baduk-10k-to-5k.html` |
 | 완료 | 오목 선공은 정말 필승일까 | 오목에서 선공이 얼마나 유리한지, 자유룰과 렌주룰 차이를 알고 싶은 검색 | `omok-first-player-win.html`, `omok-first-second.html`, `omok-center-opening.html`, `omok-forbidden-moves.html`, `omok-second-player-counterattack.html` |
 | 완료 | 바둑 계가가 헷갈릴 때 어디부터 세야 할까 | 바둑 계가에서 집, 죽은 돌, 공배를 어떤 순서로 세야 하는지 찾는 검색 | `baduk-scoring-order.html`, `baduk-territory-scoring.html`, `baduk-scoring-practice-guide.html`, `baduk-dead-stones-scoring.html`, `baduk-neutral-points.html` |
-| 중간 | 오목 막기만 하다 공격권을 잃는 이유 | 오목에서 계속 막기만 하다가 공격 기회를 놓치는 사용자가 전환 기준을 찾는 검색 | `omok-defense-to-attack.html`, `omok-counterattack-after-block.html`, `omok-attack-timing.html`, `omok-blocking-point.html` |
+| 완료 | 오목 막기만 하다 공격권을 잃는 이유 | 오목에서 계속 막기만 하다가 공격 기회를 놓치는 사용자가 전환 기준을 찾는 검색 | `omok-defense-to-attack.html`, `omok-counterattack-after-block.html`, `omok-attack-timing.html`, `omok-blocking-point.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -263,6 +263,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-reading-depth.html` | 바둑 초보 수읽기 깊이 검색 유입 |
 | 2026-06-26 | `baduk-scoring-order.html` | 바둑 계가 순서 검색 유입 |
 | 2026-06-26 | `omok-first-player-win.html` | 오목 선공 필승과 자유룰 검색 유입 |
+| 2026-06-26 | `omok-defense-to-attack.html` | 오목 막기만 하다 공격권 상실 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
 | 2026-06-25 | `baduk-rank-roadmap.html` | 바둑 급수표와 공부 순서 검색 유입 |
 | 2026-06-26 | `baduk-30k-to-20k.html` | 바둑 30급에서 20급 학습 순서 검색 유입 |
