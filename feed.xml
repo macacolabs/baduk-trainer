@@ -126,6 +126,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 단수쳐도 손해인 돌은 어떻게 구분할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-atari-loss.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-atari-loss.html</guid>
+      <description>바둑에서 단수가 보여도 바로 잡으면 손해가 나는 장면을 설명합니다. 작은 돌, 후수 포획, 큰 곳, 버릴 돌을 초보자 기준으로 구분합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 단수 연습을 잘하는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-atari-practice.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-atari-practice.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-life-and-death.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-and-death.html</guid>
       <description>바둑 사활의 기본인 두 눈, 가짜 눈, 급소를 초보자에게 맞춰 설명합니다. 돌이 사는 조건을 배웁니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 사활 10분 루틴은 어떻게 만들까</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-life-death-10-minute-routine.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-death-10-minute-routine.html</guid>
-      <description>바둑 사활 문제를 매일 10분씩 푸는 루틴입니다. 첫 수 후보, 급소, 가짜 눈, 오답 기록, 10급에서 5급으로 가는 반복법을 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

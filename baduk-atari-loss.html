@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바둑 단수쳐도 손해인 돌은 어떻게 구분할까 - 큰돌</title>
+    <meta
+      name="description"
+      content="바둑에서 단수가 보여도 바로 잡으면 손해가 나는 장면을 설명합니다. 작은 돌, 후수 포획, 큰 곳, 버릴 돌을 초보자 기준으로 구분합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/baduk-atari-loss.html" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "바둑 단수쳐도 손해인 돌은 어떻게 구분할까",
+        "url": "https://macacolabs.github.io/baduk-trainer/baduk-atari-loss.html",
+        "inLanguage": "ko",
+        "learningResourceType": "Article",
+        "educationalLevel": "Beginner",
+        "teaches": "바둑",
+        "description": "바둑에서 단수가 보여도 바로 잡으면 손해가 나는 장면을 설명합니다. 작은 돌, 후수 포획, 큰 곳, 버릴 돌을 초보자 기준으로 구분합니다.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "큰돌",
+          "url": "https://macacolabs.github.io/baduk-trainer/"
+        }
+      }
+    </script>
+    <!-- BREADCRUMB_SCHEMA_START -->
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"큰돌","item":"https://macacolabs.github.io/baduk-trainer/"},{"@type":"ListItem","position":2,"name":"바둑 배우기","item":"https://macacolabs.github.io/baduk-trainer/baduk-learn.html"},{"@type":"ListItem","position":3,"name":"바둑 단수쳐도 손해인 돌은 어떻게 구분할까","item":"https://macacolabs.github.io/baduk-trainer/baduk-atari-loss.html"}]}
+    </script>
+    <!-- BREADCRUMB_SCHEMA_END -->
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="index.html">큰돌로 돌아가기</a>
+      <p class="eyebrow">단수 판단</p>
+      <h1>바둑 단수쳐도 손해인 돌은 어떻게 구분할까</h1>
+      <p class="article-lead">단수는 좋은 신호지만, 단수가 보인다고 전부 잡으면 안 됩니다. 잡는 수가 작고 후수라면 상대에게 더 큰 자리를 넘겨 손해가 날 수 있습니다.</p>
+
+      <section>
+        <h2>단수는 시작 신호이지 자동 정답은 아닙니다</h2>
+        <p>처음에는 단수를 찾고 잡는 훈련이 중요합니다. 하지만 조금 지나면 “잡을 수 있다”와 “잡아야 한다”를 나눠야 합니다. 상대 돌 하나가 단수여도 그 돌이 작고 이미 역할을 끝냈다면, 잡는 동안 더 큰 곳을 놓칠 수 있습니다.</p>
+        <p>그래서 단수를 봤을 때 바로 손이 나가기보다, 잡은 뒤 누가 다음 큰 곳을 두는지 먼저 봐야 합니다.</p>
+      </section>
+
+      <section>
+        <h2>잡으면 좋은 단수</h2>
+        <p>잡는 수가 좋은 때는 잡은 뒤 판 전체가 좋아지는 때입니다. 상대 돌을 잡아서 내 약한 돌이 살아나거나, 상대 집이 크게 깨지거나, 상대가 반드시 응수해야 한다면 잡을 가치가 큽니다.</p>
+        <ol class="article-list">
+          <li>잡으면 내 돌의 활로가 늘거나 연결되는가?</li>
+          <li>잡으면 상대 집이 확실히 줄어드는가?</li>
+          <li>잡은 뒤에도 내가 선수를 잡거나 큰 곳으로 갈 수 있는가?</li>
+          <li>상대가 그 돌을 살리려고 여러 수를 써야 하는가?</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>잡아도 손해인 단수</h2>
+        <p>잡아도 손해인 단수는 보통 작은 돌, 버린 돌, 후수로 잡는 돌입니다. 상대가 일부러 버린 돌을 잡으면 겉으로는 내가 포획했지만, 실제로는 상대가 다른 곳에서 큰 이득을 얻습니다.</p>
+        <p>특히 상대 진영 깊은 곳의 작은 돌 하나를 잡으려고 두세 수를 쓰면 위험합니다. 나는 돌을 잡았지만 상대는 바깥을 두텁게 만들고, 다음 큰 자리까지 먼저 차지할 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>후수로 잡는지 확인합니다</h2>
+        <p>단수친 뒤 상대가 받지 않아도 되는 돌이면 조심해야 합니다. 내가 끝까지 잡는 동안 상대가 손을 빼고 큰 곳을 두면, 그 포획은 후수가 됩니다. 후수 포획은 돌 몇 개를 얻어도 차례를 잃기 쉽습니다.</p>
+        <p>반대로 상대가 반드시 연결하거나 도망가야 한다면 내 단수는 더 강합니다. 상대가 받아야 하는 단수인지, 무시할 수 있는 단수인지가 첫 번째 기준입니다.</p>
+      </section>
+
+      <section>
+        <h2>큰 곳과 비교합니다</h2>
+        <p>단수가 보이면 같은 순간의 다른 후보도 하나만 같이 봅니다. 빈 귀, 큰 변, 내 약한 돌 연결, 상대 약한 돌 공격 중 더 큰 수가 있다면 작은 단수를 미뤄도 됩니다. 바둑은 잡은 돌 개수보다 집과 안전이 더 중요합니다.</p>
+        <ol class="article-list">
+          <li>이 돌을 잡으면 몇 집 정도 이득인가?</li>
+          <li>잡는 데 몇 수가 드는가?</li>
+          <li>그동안 상대가 둘 큰 곳은 어디인가?</li>
+          <li>잡지 않고 손빼면 내 돌이 바로 위험해지는가?</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>초보용 5초 체크</h2>
+        <p>실전에서는 길게 계산하기 어렵습니다. 단수를 봤다면 아래 네 문장만 빠르게 확인하세요. 두 개 이상 애매하면 바로 잡지 말고 큰 곳 후보를 같이 봅니다.</p>
+        <ol class="article-list">
+          <li>잡으면 내 돌이 안전해진다.</li>
+          <li>잡으면 상대 집이 크게 줄어든다.</li>
+          <li>상대가 이 돌을 버리기 어렵다.</li>
+          <li>잡은 뒤 내가 다음 큰 곳을 둘 수 있다.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>복기할 때 보는 질문</h2>
+        <p>대국 뒤 내가 단수친 장면을 세 개만 고르세요. 그중 실제로 잡은 돌이 내 집, 연결, 안전에 도움이 됐는지 봅니다. “잡았다”가 아니라 “잡은 뒤 판이 좋아졌나”를 적으면 작은 단수에 끌려가는 습관이 줄어듭니다.</p>
+      </section>
+
+      <section>
+        <h2>큰돌에서 연습하는 법</h2>
+        <p>먼저 단수 문제로 마지막 활로를 정확히 찾습니다. 그다음 9줄 AI 대국에서 단수가 보일 때마다 속으로 “잡기, 손빼기, 반격” 세 후보를 말해 보세요. 복기에서는 잡은 돌을 “이득”, “후수”, “작은 돌 집착”으로 나눠 기록하면 됩니다.</p>
+      </section>
+
+      <section class="article-card-grid related-learning" aria-label="다음에 볼 글">
+        <a href="baduk-atari.html">
+          <span>단수</span>
+          <strong>단수란?</strong>
+          <p>단수의 뜻과 마지막 활로를 먼저 정확히 익힙니다.</p>
+        </a>
+        <a href="baduk-profitable-capture.html">
+          <span>포획</span>
+          <strong>잡아도 손해인 돌</strong>
+          <p>포획이 실제 이득인지 판 전체로 비교합니다.</p>
+        </a>
+        <a href="baduk-save-or-sacrifice.html">
+          <span>판단</span>
+          <strong>살릴 돌과 버릴 돌</strong>
+          <p>내 돌이 단수일 때도 비용을 계산합니다.</p>
+        </a>
+        <a href="baduk-sacrifice-moments.html">
+          <span>버림</span>
+          <strong>버려도 되는 순간</strong>
+          <p>상대가 잡아도 내가 더 큰 곳을 두는 장면을 봅니다.</p>
+        </a>
+        <a href="baduk-sente-gote.html">
+          <span>차례</span>
+          <strong>선수와 후수</strong>
+          <p>잡은 뒤 차례를 잃는지 확인합니다.</p>
+        </a>
+        <a href="baduk-candidate-moves.html">
+          <span>후보수</span>
+          <strong>후보수 비교</strong>
+          <p>잡기, 손빼기, 반격을 함께 놓고 봅니다.</p>
+        </a>
+      </section>
+
+      <aside class="ad-slot ad-slot-article" aria-label="광고 영역">
+        <span>광고</span>
+        <p>승인 후 학습 글 하단에만 광고를 배치합니다.</p>
+      </aside>
+    </main>
+  </body>
+</html>
