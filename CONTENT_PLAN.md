@@ -244,7 +244,7 @@ Search Console 등록 전에도 독학, AI 대국 반복, 하루 공부량처럼
 | 완료 | 바둑 AI 대국만 해도 늘까 | AI와 많이 두지만 실력이 늘지 않는 사용자가 복기와 문제 풀이 연결법을 찾는 검색 | `baduk-ai-games-only.html`, `baduk-ai-review.html`, `baduk-which-game-to-review.html`, `baduk-repeat-mistakes.html`, `baduk-problem-solving-order.html`, `baduk-review-note.html` |
 | 완료 | 바둑 하루 공부량은 어느 정도가 좋을까 | 매일 바둑을 얼마나 두고 문제를 몇 개 풀어야 하는지 찾는 입문자 검색 | `baduk-daily-study-time.html`, `baduk-1k-daily-routine.html`, `baduk-problem-solving-order.html`, `baduk-review-10-minute.html`, `baduk-life-death-10-minute-routine.html`, `baduk-rank-roadmap.html` |
 | 완료 | 오목 혼자 연습은 어떻게 하면 좋을까 | 혼자 오목을 연습하는 사용자가 AI 대국, 방어 문제, 복기 순서를 찾는 검색 | `omok-self-practice.html`, `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-practice.html`, `omok-review-mistakes.html`, `omok-before-three.html` |
-| 중간 | 오목 AI 대국만 반복하면 왜 늘지 않을까 | 오목 AI와 많이 두지만 반복 패배하는 사용자가 복기와 약점 훈련을 찾는 검색 | `omok-ai-losing-reasons.html`, `omok-review-mistakes.html`, `omok-practice-routine.html`, `omok-defense-practice.html`, `omok-attack-defense-priority.html` |
+| 완료 | 오목 AI 대국만 반복하면 왜 늘지 않을까 | 오목 AI와 많이 두지만 반복 패배하는 사용자가 복기와 약점 훈련을 찾는 검색 | `omok-ai-games-only.html`, `omok-ai-losing-reasons.html`, `omok-review-mistakes.html`, `omok-practice-routine.html`, `omok-defense-practice.html`, `omok-attack-defense-priority.html` |
 
 ## 월간 운영 루틴
 
@@ -284,6 +284,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-ai-games-only.html` | 바둑 AI 대국 반복 검색 유입 |
 | 2026-06-26 | `baduk-daily-study-time.html` | 바둑 하루 공부량 검색 유입 |
 | 2026-06-26 | `omok-self-practice.html` | 오목 혼자 연습 순서 검색 유입 |
+| 2026-06-26 | `omok-ai-games-only.html` | 오목 AI 반복 대국 정체 원인 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-26 | `baduk-9x9-to-19x19.html` | 바둑 9줄에서 19줄 전환 기준 검색 유입 |
 | 2026-06-26 | `baduk-13x13-start.html` | 바둑 13줄 시작 기준 검색 유입 |
