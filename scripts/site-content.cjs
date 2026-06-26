@@ -45,6 +45,7 @@ const articleFiles = [
   "baduk-ko-threats.html",
   "baduk-opening.html",
   "baduk-first-50-moves.html",
+  "baduk-19x19-early-fight.html",
   "baduk-opening-corner.html",
   "baduk-side-opening.html",
   "baduk-center-opening.html",
