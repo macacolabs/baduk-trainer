@@ -25,6 +25,7 @@ const checks = [
   { path: "robots.txt", expect: "Sitemap:" },
   { path: "manifest.webmanifest", expect: "\"short_name\": \"큰돌\"" },
   { path: "icon.svg", expect: "<svg" },
+  { path: "social-card.svg", expect: "<svg" },
   { path: "offline.html", expect: "오프라인" },
   { path: "sw.js", expect: "CACHE_NAME" },
 ];

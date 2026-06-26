@@ -133,6 +133,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - 월간 운영 리뷰 생성 스크립트 `scripts/create-operations-review.cjs` (`--blank`으로 자동 스냅샷 생략 가능)
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - Search Console meta 태그 로컬/live 검증 스크립트 `scripts/check-search-console-meta.cjs`
+- 핵심 진입 페이지 공유 미리보기 점검 스크립트 `scripts/check-social-metadata.cjs`
 - 학습 글 구조화 데이터 삽입 스크립트 `scripts/apply-article-schema.cjs`
 - 제출 패킷 동기화 점검 스크립트 `scripts/check-submission-packet.cjs`
 - 내부 링크 점검 스크립트 `scripts/check-links.cjs`

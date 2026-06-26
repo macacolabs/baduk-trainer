@@ -11,6 +11,7 @@ const checks = [
   [process.execPath, ["scripts/check-service-readiness.cjs"]],
   [process.execPath, ["scripts/check-content-quality.cjs"]],
   [process.execPath, ["scripts/check-seo-metadata.cjs"]],
+  [process.execPath, ["scripts/check-social-metadata.cjs"]],
   [process.execPath, ["scripts/content-queue.cjs"]],
   [process.execPath, ["scripts/sync-sitemap.cjs"]],
   [process.execPath, ["scripts/sync-feed.cjs"]],

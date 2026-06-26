@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">큰돌 - 바둑과 오목 학습 트레이너</title>
+  <desc id="desc">바둑판과 오목 돌을 모티프로 한 큰돌 공유 미리보기 이미지</desc>
+  <rect width="1200" height="630" fill="#e8eee7"/>
+  <rect x="72" y="72" width="1056" height="486" rx="42" fill="#f7f6f0"/>
+  <g stroke="#2f342f" stroke-width="3" opacity=".38">
+    <path d="M148 148H546M148 204H546M148 260H546M148 316H546M148 372H546M148 428H546M148 484H546"/>
+    <path d="M148 148V484M204 148V484M260 148V484M316 148V484M372 148V484M428 148V484M484 148V484M546 148V484"/>
+  </g>
+  <circle cx="260" cy="260" r="24" fill="#171917"/>
+  <circle cx="372" cy="260" r="24" fill="#fffdf8" stroke="#c9c6bc" stroke-width="3"/>
+  <circle cx="316" cy="316" r="24" fill="#171917"/>
+  <circle cx="428" cy="372" r="24" fill="#fffdf8" stroke="#c9c6bc" stroke-width="3"/>
+  <circle cx="484" cy="428" r="24" fill="#171917"/>
+  <text x="626" y="240" fill="#171917" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="88" font-weight="700">큰돌</text>
+  <text x="626" y="318" fill="#2f342f" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="34" font-weight="700">바둑과 오목 학습 트레이너</text>
+  <text x="626" y="382" fill="#566056" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="28">문제, 대국, 복기로 실전 감각을 쌓습니다</text>
+  <text x="626" y="454" fill="#171917" font-family="Arial, 'Noto Sans KR', sans-serif" font-size="24">macacolabs.github.io/baduk-trainer</text>
+</svg>

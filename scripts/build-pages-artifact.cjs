@@ -16,6 +16,7 @@ const publicFiles = [
   "styles.css",
   "manifest.webmanifest",
   "icon.svg",
+  "social-card.svg",
   "offline.html",
   "sw.js",
   "robots.txt",
