@@ -52,10 +52,13 @@ HTML 태그를 발급받은 뒤에는 아래 흐름을 사용합니다.
 ```powershell
 $env:SEARCH_CONSOLE_META='<meta name="google-site-verification" content="발급값">'
 node scripts/apply-search-console-meta.cjs
+node scripts/check-search-console-meta.cjs
 node scripts/preflight.cjs
 git add -A
 git commit -m "Add Search Console verification"
 git push origin main
+node scripts/wait-live-deploy.cjs
+node scripts/check-search-console-meta.cjs --live
 ```
 
 ## AdSense 신청 전

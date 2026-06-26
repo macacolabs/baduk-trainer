@@ -6,6 +6,7 @@ const checks = [
   [process.execPath, ["--check", "scripts/site-content.cjs"]],
   [process.execPath, ["--check", "app.js"]],
   [process.execPath, ["--check", "scripts/seed-search-console-candidates.cjs"]],
+  [process.execPath, ["scripts/check-search-console-meta.cjs"]],
   [process.execPath, ["scripts/check-service-readiness.cjs"]],
   [process.execPath, ["scripts/check-content-quality.cjs"]],
   [process.execPath, ["scripts/check-seo-metadata.cjs"]],

@@ -17,7 +17,7 @@ const checks = [
   { path: "faq.html", expect: "자주 묻는 질문" },
   { path: "omok-ai-difficulty.html", expect: "오목 AI 난이도" },
   { path: "adsense-checklist.html", expect: "AdSense" },
-  { path: "search-console.html", expect: "Search Console" },
+  { path: "search-console.html", expect: "check-search-console-meta.cjs" },
   { path: "privacy.html", expect: "개인정보" },
   { path: "terms.html", expect: "이용약관" },
   { path: "sitemap.xml", expect: "<urlset" },

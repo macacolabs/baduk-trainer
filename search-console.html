@@ -74,10 +74,13 @@
         <p>아래 명령에서 `발급값` 부분을 Search Console에서 받은 태그 전체로 바꿉니다.</p>
         <p class="code-line">$env:SEARCH_CONSOLE_META='&lt;meta name="google-site-verification" content="발급값"&gt;'</p>
         <p class="code-line">node scripts/apply-search-console-meta.cjs</p>
+        <p class="code-line">node scripts/check-search-console-meta.cjs</p>
         <p class="code-line">node scripts/preflight.cjs</p>
         <p class="code-line">git add -A</p>
         <p class="code-line">git commit -m "Add Search Console verification"</p>
         <p class="code-line">git push origin main</p>
+        <p class="code-line">node scripts/wait-live-deploy.cjs</p>
+        <p class="code-line">node scripts/check-search-console-meta.cjs --live</p>
       </section>
 
       <section>

@@ -78,10 +78,13 @@ function matchingGuidance(task) {
       commands: [
         "$env:SEARCH_CONSOLE_META='<meta name=\"google-site-verification\" content=\"발급값\">'",
         "node scripts/apply-search-console-meta.cjs",
+        "node scripts/check-search-console-meta.cjs",
         "node scripts/preflight.cjs",
         "git add -A",
         "git commit -m \"Add Search Console verification\"",
         "git push origin main",
+        "node scripts/wait-live-deploy.cjs",
+        "node scripts/check-search-console-meta.cjs --live",
       ],
     };
   }
@@ -171,10 +174,10 @@ function noteExamples(task) {
     return ["HTML 태그 방식 선택, verification meta 태그 발급"];
   }
   if (/SEARCH_CONSOLE_META|apply-search-console-meta/.test(text)) {
-    return ["Search Console meta 태그 적용 후 preflight 통과"];
+    return ["Search Console meta 태그 적용 후 check-search-console-meta와 preflight 통과"];
   }
   if (/변경사항 배포/.test(text)) {
-    return ["verification meta 커밋/푸시 후 GitHub Pages 배포 완료"];
+    return ["verification meta 커밋/푸시 후 live meta 확인 완료"];
   }
   if (/소유권 확인/.test(text)) {
     return ["Search Console에서 소유권 확인 성공"];

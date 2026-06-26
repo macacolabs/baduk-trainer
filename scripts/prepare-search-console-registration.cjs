@@ -91,11 +91,14 @@ console.log('4. Copy the full tag: <meta name="google-site-verification" content
 console.log("5. Run:");
 console.log("$env:SEARCH_CONSOLE_META='<meta name=\"google-site-verification\" content=\"발급값\">'");
 console.log("node scripts/apply-search-console-meta.cjs");
+console.log("node scripts/check-search-console-meta.cjs");
 console.log("node scripts/preflight.cjs");
 console.log("git add -A");
 console.log('git commit -m "Add Search Console verification"');
 console.log("git push origin main");
-console.log("6. Wait for Pages deploy, then click Verify in Search Console.");
+console.log("node scripts/wait-live-deploy.cjs");
+console.log("node scripts/check-search-console-meta.cjs --live");
+console.log("6. Click Verify in Search Console after the live meta check passes.");
 
 async function main() {
   if (includeLive) {
