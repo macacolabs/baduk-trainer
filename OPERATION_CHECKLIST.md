@@ -37,6 +37,7 @@
 - Search Console 색인 상태와 검색어 확인
 - 색인 요청 전 `node scripts/indexing-priority.cjs`로 우선 요청 URL 확인
 - Search Console 검색어 CSV가 있으면 `node scripts/search-console-query-report.cjs search-console-queries.csv`로 보강 후보 확인
+- Search Console 검색어 CSV에서 후보를 바로 만들려면 `node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write` 실행
 - `node scripts/content-report.cjs`로 짧거나 내부 링크가 약한 글 확인
 - `node scripts/content-queue.cjs`로 다음 작성 후보 확인
 - 콘텐츠 후보가 모두 완료 상태라면 Search Console 검색어 또는 `CONTENT_PLAN.md`의 다음 확장 후보를 3개 이상 채워둠
@@ -87,9 +88,10 @@
 4. `node scripts/indexing-priority.cjs --checklist`에서 상위 URL과 완료 기록 명령 확인
 5. `learn.html`과 주요 학습 글 색인 요청
 6. 검색어가 생기면 해당 글의 제목, 첫 문단, 내부 링크 보강
-7. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
-8. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어" --note "완료 근거"`로 체크
-9. 다음에 할 계정 작업이 헷갈리면 `node scripts/external-next-action.cjs`를 실행
+7. 검색어 CSV를 내려받아 `node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write`로 후보를 추가
+8. 외부 계정 진행 상태는 `EXTERNAL_ACCOUNT_CHECKLIST.md`에 표시
+9. 완료한 외부 계정 항목은 `node scripts/mark-external-task.cjs "섹션명" "항목 검색어" --note "완료 근거"`로 체크
+10. 다음에 할 계정 작업이 헷갈리면 `node scripts/external-next-action.cjs`를 실행
 
 ## 운영 명령 빠른 실행
 

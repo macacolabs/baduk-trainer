@@ -77,8 +77,8 @@ if (openContent.length) {
   console.log("- Run: node scripts/content-queue.cjs");
 } else {
   console.log("Internal growth task:");
-  console.log("- No open content candidates. Add Search Console query ideas to CONTENT_PLAN.md.");
-  console.log("- Run: node scripts/content-queue.cjs");
+  console.log("- No open content candidates. Seed Search Console query ideas into CONTENT_PLAN.md.");
+  console.log("- Run: node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write");
 }
 
 console.log("");
