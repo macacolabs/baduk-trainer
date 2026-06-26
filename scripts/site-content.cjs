@@ -117,6 +117,7 @@ const articleFiles = [
   "omok-closed-three.html",
   "omok-three-vs-four.html",
   "omok-ai-difficulty.html",
+  "omok-ai-losing-reasons.html",
   "omok-difficulty-choice.html",
   "omok-level-up-timing.html",
   "omok-hard-ai-losses.html",

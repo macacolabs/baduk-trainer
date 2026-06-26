@@ -171,7 +171,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 19줄에서 초반에 너무 빨리 싸우는 이유 | 19줄 바둑 초반에 작은 전투를 시작했다가 큰 자리를 놓치는 초보자가 원인을 찾는 검색 | `baduk-19x19-early-fight.html`, `baduk-first-50-moves.html`, `baduk-opening.html`, `baduk-attack-weak-stones.html`, `baduk-beginner-mistakes.html` |
 | 완료 | 바둑 사활 문제를 풀어도 실전에서 죽는 이유 | 사활 문제는 푸는데 실제 대국에서 큰 돌이 죽는 이유와 복기 기준을 찾는 검색 | `baduk-life-death-real-game.html`, `baduk-life-and-death-practice.html`, `baduk-life-death-vital-point.html`, `baduk-false-eye.html`, `baduk-large-group-death.html` |
 | 완료 | 오목 열린 3을 만들었는데 왜 지는 걸까 | 오목에서 열린 3을 만들고도 상대 4목이나 양방향 위협을 놓쳐 지는 이유를 찾는 검색 | `omok-open-three-losing.html`, `omok-open-three.html`, `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-review-mistakes.html` |
-| 중간 | 오목 AI에게 계속 지는 이유 | 오목 AI 대국에서 반복 패배하는 사용자가 난이도, 복기, 위협 확인 기준을 찾는 검색 | `omok-ai-difficulty.html`, `omok-hard-ai-losses.html`, `omok-review-mistakes.html`, `omok-practice-routine.html` |
+| 완료 | 오목 AI에게 계속 지는 이유 | 오목 AI 대국에서 반복 패배하는 사용자가 난이도, 복기, 위협 확인 기준을 찾는 검색 | `omok-ai-losing-reasons.html`, `omok-ai-difficulty.html`, `omok-hard-ai-losses.html`, `omok-review-mistakes.html`, `omok-practice-routine.html` |
 | 낮음 | 바둑 1급 목표자는 AI 복기를 얼마나 해야 할까 | 1급을 목표로 하는 사용자가 AI 복기를 오래 하지 않고 후보수와 약점만 고르는 법을 찾는 검색 | `baduk-5k-to-1k.html`, `baduk-1k-weekly-review.html`, `baduk-ai-review.html`, `baduk-candidate-moves.html` |
 
 ## Search Console 전 13차 예비 후보
@@ -331,6 +331,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-open-three.html` | 오목 열린 3 수비 검색 유입 |
 | 2026-06-26 | `omok-open-three-losing.html` | 오목 열린 3 공격 후 패배 원인 검색 유입 |
 | 2026-06-24 | `omok-ai-difficulty.html` | 오목 AI 난이도 검색 유입 |
+| 2026-06-26 | `omok-ai-losing-reasons.html` | 오목 AI 반복 패배 원인 검색 유입 |
 | 2026-06-25 | `omok-practice-routine.html` | 오목 난이도별 연습 루틴 검색 유입 |
 | 2026-06-26 | `omok-level-up-timing.html` | 오목 AI 난이도 상승 기준 검색 유입 |
 | 2026-06-25 | `omok-review-mistakes.html` | 오목 실수 복기 검색 유입 |
