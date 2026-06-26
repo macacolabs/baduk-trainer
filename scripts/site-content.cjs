@@ -56,6 +56,7 @@ const articleFiles = [
   "baduk-life-and-death-practice.html",
   "baduk-life-death-vital-point.html",
   "baduk-false-eye.html",
+  "baduk-seki.html",
   "baduk-10k-losing-reasons.html",
   "baduk-10k-to-5k.html",
   "baduk-5k-to-1k.html",
