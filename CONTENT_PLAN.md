@@ -167,7 +167,12 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 첫 50수는 무엇을 봐야 할까 | 19줄 바둑 초반 50수에서 귀, 변, 중앙, 약한 돌을 어떤 순서로 봐야 하는지 찾는 검색 | `baduk-first-50-moves.html`, `baduk-opening.html`, `baduk-opening-corner.html`, `baduk-side-opening.html`, `baduk-center-opening.html`, `baduk-beginner-mistakes.html` |
 | 완료 | 바둑 초보가 돌을 버려도 되는 순간 | 잡힐 돌을 무리하게 살리다가 손해 보는 초보가 버릴 돌 기준을 알고 싶은 검색 | `baduk-sacrifice-moments.html`, `baduk-save-or-sacrifice.html`, `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html` |
 | 완료 | 오목 상대가 중앙을 먼저 잡으면 어떻게 할까 | 오목 후공이 상대 중앙 첫 수에 어떻게 대응하고 반격할지 알고 싶은 검색 | `omok-respond-center.html`, `omok-first-second.html`, `omok-center-opening.html`, `omok-second-player-counterattack.html`, `omok-defense-to-attack.html`, `omok-after-first-move.html` |
-| 낮음 | 바둑 9줄 AI에게 계속 지는 이유 | 9줄 바둑 AI에게 계속 지는 입문자가 반복 실수와 복기 기준을 찾는 검색 | `baduk-9x9-beginner.html`, `baduk-9x9-first-move.html`, `baduk-atari-practice.html`, `baduk-liberties.html`, `baduk-ai-review.html` |
+| 완료 | 바둑 9줄 AI에게 계속 지는 이유 | 9줄 바둑 AI에게 계속 지는 입문자가 반복 실수와 복기 기준을 찾는 검색 | `baduk-9x9-ai-losses.html`, `baduk-9x9-beginner.html`, `baduk-9x9-first-move.html`, `baduk-atari-practice.html`, `baduk-liberties.html`, `baduk-ai-review.html` |
+| 중간 | 바둑 19줄에서 초반에 너무 빨리 싸우는 이유 | 19줄 바둑 초반에 작은 전투를 시작했다가 큰 자리를 놓치는 초보자가 원인을 찾는 검색 | `baduk-first-50-moves.html`, `baduk-opening.html`, `baduk-attack-weak-stones.html`, `baduk-beginner-mistakes.html` |
+| 중간 | 바둑 사활 문제를 풀어도 실전에서 죽는 이유 | 사활 문제는 푸는데 실제 대국에서 큰 돌이 죽는 이유와 복기 기준을 찾는 검색 | `baduk-life-and-death-practice.html`, `baduk-life-death-vital-point.html`, `baduk-false-eye.html`, `baduk-large-group-death.html` |
+| 중간 | 오목 열린 3을 만들었는데 왜 지는 걸까 | 오목에서 열린 3을 만들고도 상대 4목이나 양방향 위협을 놓쳐 지는 이유를 찾는 검색 | `omok-open-three.html`, `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-review-mistakes.html` |
+| 중간 | 오목 AI에게 계속 지는 이유 | 오목 AI 대국에서 반복 패배하는 사용자가 난이도, 복기, 위협 확인 기준을 찾는 검색 | `omok-ai-difficulty.html`, `omok-hard-ai-losses.html`, `omok-review-mistakes.html`, `omok-practice-routine.html` |
+| 낮음 | 바둑 1급 목표자는 AI 복기를 얼마나 해야 할까 | 1급을 목표로 하는 사용자가 AI 복기를 오래 하지 않고 후보수와 약점만 고르는 법을 찾는 검색 | `baduk-5k-to-1k.html`, `baduk-1k-weekly-review.html`, `baduk-ai-review.html`, `baduk-candidate-moves.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -299,6 +304,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-life-death-10-minute-routine.html` | 바둑 사활 10분 루틴 검색 유입 |
 | 2026-06-25 | `baduk-life-death-vital-point.html` | 바둑 사활 급소 검색 유입 |
 | 2026-06-26 | `baduk-9x9-first-move.html` | 9줄 바둑 첫 수 위치 검색 유입 |
+| 2026-06-26 | `baduk-9x9-ai-losses.html` | 바둑 9줄 AI 패배 원인 검색 유입 |
 | 2026-06-25 | `baduk-false-eye.html` | 가짜 눈 구분 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
 | 2026-06-25 | `baduk-5k-to-1k.html` | 바둑 5급에서 1급 학습 순서 검색 유입 |

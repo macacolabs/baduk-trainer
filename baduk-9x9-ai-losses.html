@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바둑 9줄 AI에게 계속 지는 이유 - 큰돌</title>
+    <meta
+      name="description"
+      content="9줄 바둑 AI에게 계속 지는 입문자를 위해 반복 패배 원인을 정리합니다. 활로, 단수, 무리한 포획, 작은 돌 집착, 복기 루틴을 초보자 기준으로 설명합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/baduk-9x9-ai-losses.html" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "바둑 9줄 AI에게 계속 지는 이유",
+        "url": "https://macacolabs.github.io/baduk-trainer/baduk-9x9-ai-losses.html",
+        "inLanguage": "ko",
+        "learningResourceType": "Article",
+        "educationalLevel": "Beginner",
+        "teaches": "바둑",
+        "description": "9줄 바둑 AI에게 계속 지는 입문자를 위해 반복 패배 원인을 정리합니다. 활로, 단수, 무리한 포획, 작은 돌 집착, 복기 루틴을 초보자 기준으로 설명합니다.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "큰돌",
+          "url": "https://macacolabs.github.io/baduk-trainer/"
+        }
+      }
+    </script>
+    <!-- BREADCRUMB_SCHEMA_START -->
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"큰돌","item":"https://macacolabs.github.io/baduk-trainer/"},{"@type":"ListItem","position":2,"name":"바둑 배우기","item":"https://macacolabs.github.io/baduk-trainer/baduk-learn.html"},{"@type":"ListItem","position":3,"name":"바둑 9줄 AI에게 계속 지는 이유","item":"https://macacolabs.github.io/baduk-trainer/baduk-9x9-ai-losses.html"}]}
+    </script>
+    <!-- BREADCRUMB_SCHEMA_END -->
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="index.html">큰돌로 돌아가기</a>
+      <p class="eyebrow">9줄 AI 복기</p>
+      <h1>바둑 9줄 AI에게 계속 지는 이유</h1>
+      <p class="article-lead">9줄 AI에게 계속 지는 이유는 AI가 너무 강해서만은 아닙니다. 대부분은 활로를 늦게 세고, 단수를 놓치고, 작은 돌을 살리려다 판 전체가 무너지는 패턴입니다.</p>
+
+      <section>
+        <h2>첫째, 활로를 결과로만 봅니다</h2>
+        <p>초보자는 돌이 잡힌 뒤에야 활로가 없었다는 것을 압니다. 9줄은 판이 작아서 활로가 줄어드는 속도가 빠릅니다. 상대가 내 돌 옆에 붙는 순간, 내 무리의 활로와 상대 무리의 활로를 바로 세어야 합니다.</p>
+        <p>활로를 세지 않고 “어딘가 살겠지”라고 두면 AI는 바로 단수와 포획으로 압박합니다.</p>
+      </section>
+
+      <section>
+        <h2>둘째, 단수를 당하면 무조건 도망갑니다</h2>
+        <p>내 돌이 단수라고 해서 항상 도망이 정답은 아닙니다. 맞단수로 상대 큰 돌을 잡을 수 있거나, 작은 돌을 버리고 더 큰 곳을 둘 수 있습니다. 계속 도망만 가면 내 돌은 무거워지고 AI는 바깥에서 좋은 모양을 만듭니다.</p>
+      </section>
+
+      <section>
+        <h2>셋째, 잡을 수 있는 돌을 모두 잡으려 합니다</h2>
+        <p>9줄에서는 돌 몇 개를 잡는 장면이 자주 보입니다. 하지만 작은 돌을 오래 쫓는 동안 내 큰 돌이 약해지거나, 상대가 중앙을 차지하면 손해입니다. 잡는 수는 내 돌을 살리거나 상대 집을 크게 줄일 때 가치가 큽니다.</p>
+      </section>
+
+      <section>
+        <h2>넷째, 첫 수 이후 돌이 서로 돕지 못합니다</h2>
+        <p>9줄은 판이 작아서 첫 수와 두 번째 수가 금방 연결되어야 합니다. 너무 멀리 흩어지면 각 돌이 따로 살아야 하고, 너무 붙이면 활로가 줄어듭니다. 첫 10수에서는 내 돌끼리 서로 도울 수 있는 거리인지 확인하세요.</p>
+      </section>
+
+      <section>
+        <h2>다섯째, 진 판을 전부 보려다 복기를 포기합니다</h2>
+        <p>계속 지는 사람일수록 복기를 크게 하려다 금방 지칩니다. 처음에는 한 판 전체를 보지 않아도 됩니다. 잡힌 돌 하나, 놓친 단수 하나, 무리하게 살린 돌 하나만 보면 충분합니다. 이 세 장면만 고쳐도 다음 판의 패배 원인이 줄어듭니다.</p>
+      </section>
+
+      <section>
+        <h2>9줄 AI 패배 체크리스트</h2>
+        <ol class="article-list">
+          <li>상대가 붙었을 때 활로를 바로 세었는가?</li>
+          <li>단수를 당했을 때 도망, 맞단수, 버리기를 비교했는가?</li>
+          <li>작은 돌을 잡으러 가다 내 큰 돌이 약해지지 않았는가?</li>
+          <li>첫 10수 안에 내 돌끼리 서로 도울 수 있었는가?</li>
+          <li>진 판에서 실수 3개만 골라 다음 훈련으로 연결했는가?</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>난이도를 낮춰도 됩니다</h2>
+        <p>9줄 AI에게 계속 진다면 난이도를 낮추는 것이 실패가 아닙니다. 같은 실수를 보이게 만드는 난이도가 좋은 난이도입니다. 4판 연속으로 왜 잡혔는지 설명하지 못하면 쉬운 난이도로 돌아가 활로와 단수를 다시 보세요.</p>
+      </section>
+
+      <section>
+        <h2>큰돌에서 바로 하는 15분 루틴</h2>
+        <ol class="article-list">
+          <li>배우기에서 활로 또는 단수 문제를 5개 풉니다.</li>
+          <li>9줄 AI 대국을 쉬움 또는 보통으로 한 판 둡니다.</li>
+          <li>잡힌 내 돌이 처음 위험해진 수를 찾습니다.</li>
+          <li>그 장면에서 도망, 맞단수, 버리기 후보를 하나씩 적습니다.</li>
+          <li>같은 주제로 문제 5개를 더 풀고 다음 판으로 갑니다.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>이길 때보다 덜 나쁘게 지는 것이 먼저입니다</h2>
+        <p>초보 단계의 목표는 AI를 바로 이기는 것이 아닙니다. 잡힌 이유를 설명하고, 같은 단수 실수를 줄이고, 작은 돌을 버릴 수 있게 되는 것이 먼저입니다. 9줄에서 덜 무너지게 되면 13줄과 19줄로 넓힐 준비가 됩니다.</p>
+      </section>
+
+      <section class="article-card-grid related-learning" aria-label="다음에 볼 글">
+        <a href="baduk-9x9-beginner.html">
+          <span>입문</span>
+          <strong>9줄 바둑으로 입문</strong>
+          <p>작은 판에서 전투와 복기를 반복하는 이유를 봅니다.</p>
+        </a>
+        <a href="baduk-9x9-first-move.html">
+          <span>첫 수</span>
+          <strong>9줄 첫 수</strong>
+          <p>첫 10수 안에 돌이 서로 돕는지 확인합니다.</p>
+        </a>
+        <a href="baduk-atari-practice.html">
+          <span>단수</span>
+          <strong>단수 연습법</strong>
+          <p>문제에서 보이는 단수를 실전으로 옮깁니다.</p>
+        </a>
+        <a href="baduk-liberties.html">
+          <span>활로</span>
+          <strong>활로 이해</strong>
+          <p>잡히기 전에 내 돌의 숨구멍을 셉니다.</p>
+        </a>
+        <a href="baduk-ai-review.html">
+          <span>복기</span>
+          <strong>바둑 AI 복기</strong>
+          <p>AI 대국 뒤 실수 3개만 골라 다음 훈련으로 연결합니다.</p>
+        </a>
+      </section>
+
+      <aside class="ad-slot ad-slot-article" aria-label="광고 영역">
+        <span>광고</span>
+        <p>승인 후 학습 글 하단에만 광고를 배치합니다.</p>
+      </aside>
+    </main>
+  </body>
+</html>

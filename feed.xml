@@ -56,6 +56,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 9줄 AI에게 계속 지는 이유</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-9x9-ai-losses.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-9x9-ai-losses.html</guid>
+      <description>9줄 바둑 AI에게 계속 지는 입문자를 위해 반복 패배 원인을 정리합니다. 활로, 단수, 무리한 포획, 작은 돌 집착, 복기 루틴을 초보자 기준으로 설명합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>9줄 바둑으로 입문하는 이유</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-9x9-beginner.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-9x9-beginner.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-opening.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-opening.html</guid>
       <description>바둑 초반 포석의 기본을 설명합니다. 귀, 변, 중앙의 가치와 초보자가 어디부터 두면 좋은지 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 형세판단은 집 차이와 약한 돌을 같이 볼 때 시작합니다</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-position-judgment-start.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-position-judgment-start.html</guid>
-      <description>바둑 형세판단을 언제부터 연습하면 좋은지 설명합니다. 집 차이, 약한 돌, 두터움, 후보수 비교를 중급자 눈높이로 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
