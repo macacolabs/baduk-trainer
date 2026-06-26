@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>바둑 집 계산 연습을 처음 시작하는 법 - 큰돌</title>
+    <meta
+      name="description"
+      content="바둑 집 계산 연습을 처음 시작하는 사람을 위한 10분 루틴입니다. 확정 집, 미정 지역, 죽은 돌, 덤을 어떤 순서로 보면 되는지 정리합니다."
+    />
+    <link rel="canonical" href="https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-guide.html" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "바둑 집 계산 연습을 처음 시작하는 법",
+        "url": "https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-guide.html",
+        "inLanguage": "ko",
+        "learningResourceType": "Article",
+        "educationalLevel": "Beginner",
+        "teaches": "바둑",
+        "description": "바둑 집 계산 연습을 처음 시작하는 사람을 위한 10분 루틴입니다. 확정 집, 미정 지역, 죽은 돌, 덤을 어떤 순서로 보면 되는지 정리합니다.",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "큰돌",
+          "url": "https://macacolabs.github.io/baduk-trainer/"
+        }
+      }
+    </script>
+    <!-- BREADCRUMB_SCHEMA_START -->
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"큰돌","item":"https://macacolabs.github.io/baduk-trainer/"},{"@type":"ListItem","position":2,"name":"바둑 배우기","item":"https://macacolabs.github.io/baduk-trainer/baduk-learn.html"},{"@type":"ListItem","position":3,"name":"바둑 집 계산 연습은 세 줄 기록으로 시작합니다","item":"https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-guide.html"}]}
+    </script>
+    <!-- BREADCRUMB_SCHEMA_END -->
+  </head>
+  <body class="doc-page">
+    <main class="doc-shell article-shell">
+      <a class="doc-back" href="index.html">큰돌로 돌아가기</a>
+      <p class="eyebrow">계가 훈련</p>
+      <h1>바둑 집 계산 연습은 세 줄 기록으로 시작합니다</h1>
+      <p class="article-lead">처음부터 정확한 집 수를 맞히려고 하면 어렵습니다. 확정 집, 미정 지역, 덤 포함 결과를 세 줄로 나누어 적으면 계가와 끝내기 감각을 같이 키울 수 있습니다.</p>
+
+      <section>
+        <h2>처음 목표는 정답이 아니라 구분입니다</h2>
+        <p>집 계산을 처음 배울 때 가장 흔한 실수는 애매한 곳까지 모두 내 집으로 넣는 것입니다. 초보 단계의 목표는 몇 집 차이인지 완벽하게 맞히는 것이 아니라, 확실히 닫힌 곳과 아직 싸울 수 있는 곳을 구분하는 것입니다.</p>
+        <p>그래서 첫 연습에서는 계산기처럼 세지 말고 판을 세 구역으로 나눕니다. 내 확정 집, 상대 확정 집, 미정 지역입니다. 이 세 구역을 구분할 수 있으면 끝내기에서 어디가 큰지도 더 빨리 보입니다.</p>
+      </section>
+
+      <section>
+        <h2>연습은 끝까지 둔 9줄 판이 가장 좋습니다</h2>
+        <p>19줄은 미정 지역이 많아서 처음부터 세기 어렵습니다. 9줄은 전투가 빨리 끝나고 경계가 작게 생기기 때문에 집 계산 연습에 좋습니다. AI와 9줄 한 판을 끝까지 두고, 결과를 보기 전에 직접 세어보세요.</p>
+      </section>
+
+      <section>
+        <h2>10분 집 계산 루틴</h2>
+        <ol class="article-list">
+          <li>내 돌이 완전히 둘러싼 빈 곳만 먼저 셉니다.</li>
+          <li>상대 돌이 완전히 둘러싼 빈 곳도 같은 방식으로 셉니다.</li>
+          <li>열린 경계, 끊길 수 있는 곳, 아직 들어올 수 있는 곳은 미정으로 표시합니다.</li>
+          <li>죽은 돌처럼 보이는 곳은 바로 점수에 넣지 말고 “생사 확인”으로 적습니다.</li>
+          <li>마지막에 백 점수에 덤을 더하고 대략 몇 집 차이인지 봅니다.</li>
+        </ol>
+        <p>이 루틴은 한 판에 10분을 넘기지 않는 것이 좋습니다. 길게 계산하다가 지치는 것보다, 매 판 같은 순서로 짧게 반복하는 쪽이 더 빨리 늡니다.</p>
+      </section>
+
+      <section>
+        <h2>세 줄 기록 예시</h2>
+        <ul class="article-list">
+          <li>흑 확정 집: 왼쪽 아래 8집, 오른쪽 위 5집</li>
+          <li>백 확정 집: 왼쪽 위 7집, 아래쪽 6집, 덤 6.5집</li>
+          <li>미정 지역: 오른쪽 변 4칸, 가운데 끊김 하나</li>
+        </ul>
+        <p>이렇게 적으면 틀려도 배울 수 있습니다. 결과가 다르면 “집 수를 잘못 셌는가”, “죽은 돌을 착각했는가”, “미정 지역을 내 집으로 넣었는가”를 바로 확인할 수 있습니다.</p>
+      </section>
+
+      <section>
+        <h2>끝내기와 같이 봐야 늘어납니다</h2>
+        <p>집 계산이 흔들리는 가장 큰 이유는 끝내기가 덜 끝났기 때문입니다. 경계가 열린 곳은 상대 수 한 번에 줄어들 수 있고, 내가 닫으면 확정 집이 됩니다. 후반 수를 볼 때는 “이 수가 내 집을 늘렸는지, 상대 집을 줄였는지, 미정 지역을 닫았는지”를 같이 적으세요.</p>
+      </section>
+
+      <section>
+        <h2>틀린 계산을 복기 질문으로 바꿉니다</h2>
+        <p>계가 결과가 예상과 다르면 숫자 전체를 다시 세기보다 한 가지 질문만 남기면 됩니다. “왜 이 지역을 내 집이라고 착각했지?”, “이 돌은 왜 죽은 돌이었지?”, “덤을 넣으면 왜 승패가 바뀌지?” 같은 질문입니다.</p>
+        <p>이 질문이 다음 판의 학습 목표가 됩니다. 집 계산은 따로 외우는 공부가 아니라, 끝내기와 복기를 연결하는 습관입니다.</p>
+      </section>
+
+      <section>
+        <h2>한 문장으로 기억하기</h2>
+        <p>집 계산 연습은 확정 집과 미정 지역을 나누는 훈련입니다. 끝까지 둔 9줄 판이 생기면 세 줄 기록으로 바로 시작하세요.</p>
+      </section>
+
+      <section class="article-card-grid related-learning" aria-label="다음에 볼 글">
+        <a href="baduk-territory-scoring.html">
+          <span>계가</span>
+          <strong>집 계산법</strong>
+          <p>집, 잡은 돌, 덤을 어떤 순서로 보는지 익힙니다.</p>
+        </a>
+        <a href="baduk-scoring-practice-start.html">
+          <span>계가</span>
+          <strong>계가 연습 시작</strong>
+          <p>언제부터 계가를 붙이면 좋은지 봅니다.</p>
+        </a>
+        <a href="baduk-komi-6-5.html">
+          <span>계가</span>
+          <strong>덤 6.5집</strong>
+          <p>백 점수에 덤을 더하는 이유를 봅니다.</p>
+        </a>
+        <a href="baduk-endgame.html">
+          <span>끝내기</span>
+          <strong>끝내기 기초</strong>
+          <p>경계가 닫히는 후반 수순을 봅니다.</p>
+        </a>
+        <a href="baduk-alive-dead-stones.html">
+          <span>계가</span>
+          <strong>산 돌과 죽은 돌</strong>
+          <p>계가 전에 생사를 구분합니다.</p>
+        </a>
+        <a href="baduk-review-10-minute.html">
+          <span>복기</span>
+          <strong>10분 복기 루틴</strong>
+          <p>틀린 계산을 다음 판 목표로 바꿉니다.</p>
+        </a>
+      </section>
+
+      <aside class="ad-slot ad-slot-article" aria-label="광고 영역">
+        <span>광고</span>
+        <p>승인 후 학습 글 하단에만 광고를 배치합니다.</p>
+      </aside>
+    </main>
+  </body>
+</html>
