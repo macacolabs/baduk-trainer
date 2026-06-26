@@ -120,6 +120,7 @@ const articleFiles = [
   "omok-defense-to-attack.html",
   "omok-counterattack-after-block.html",
   "omok-block-four.html",
+  "omok-after-block-four-loss.html",
   "omok-block-four-checklist.html",
   "omok-defense-practice.html",
   "omok-blocking-point.html",
