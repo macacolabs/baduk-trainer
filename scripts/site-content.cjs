@@ -83,6 +83,7 @@ const articleFiles = [
   "baduk-10k-losing-reasons.html",
   "baduk-10k-to-5k.html",
   "baduk-5k-to-1k.html",
+  "baduk-daily-study-time.html",
   "baduk-1k-daily-routine.html",
   "baduk-1k-weekly-review.html",
   "baduk-territory-scoring.html",
