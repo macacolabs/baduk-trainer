@@ -160,7 +160,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 9줄에서 19줄로 넘어가는 기준 | 9줄 연습 후 언제 19줄 바둑을 시작할지 알고 싶은 입문자 검색 | `baduk-9x9-to-19x19.html`, `baduk-9x9-beginner.html`, `baduk-19x19-start.html`, `baduk-rank-roadmap.html`, `baduk-ai-review.html` |
 | 완료 | 바둑 30급에서 20급으로 가는 공부 순서 | 바둑 입문자가 단수와 활로를 익힌 뒤 20급 수준까지 무엇을 반복해야 하는지 찾는 검색 | `baduk-30k-to-20k.html`, `baduk-beginner.html`, `baduk-liberties.html`, `baduk-atari.html`, `baduk-cut-connect.html`, `baduk-rank-roadmap.html` |
 | 완료 | 바둑 초보는 어떤 판부터 복기해야 할까 | 초보자가 9줄과 19줄 대국 중 어떤 판을 먼저 복기해야 하는지 알고 싶은 검색 | `baduk-which-game-to-review.html`, `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-9x9-beginner.html`, `baduk-19x19-start.html` |
-| 중간 | 바둑 사활 10분 루틴은 어떻게 만들까 | 사활 문제를 매일 짧게 풀며 실전 감각을 올리고 싶은 사용자 검색 | `baduk-life-and-death-practice.html`, `baduk-life-death-vital-point.html`, `baduk-false-eye.html`, `baduk-10k-to-5k.html` |
+| 완료 | 바둑 사활 10분 루틴은 어떻게 만들까 | 사활 문제를 매일 짧게 풀며 실전 감각을 올리고 싶은 사용자 검색 | `baduk-life-death-10-minute-routine.html`, `baduk-life-and-death-practice.html`, `baduk-life-death-vital-point.html`, `baduk-false-eye.html`, `baduk-10k-to-5k.html` |
 | 중간 | 오목 초보가 자주 지는 패턴 | 오목 초보가 반복해서 지는 열린 3, 4목, 수비 지연 실수를 알고 싶은 검색 | `omok-strategy.html`, `omok-block-four.html`, `omok-open-three.html`, `omok-review-mistakes.html` |
 | 낮음 | 오목 선공 첫 수 이후 어디에 둘까 | 오목에서 중앙 첫 수 다음 배치를 어떻게 이어가야 하는지 찾는 입문자 검색 | `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-two-stones.html`, `omok-threats.html` |
 
@@ -280,6 +280,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-defend-double-threat.html` | 오목 양방향 공격 방어 검색 유입 |
 | 2026-06-25 | `omok-hard-ai-losses.html` | 오목 고수 난이도 패배 원인 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
+| 2026-06-26 | `baduk-life-death-10-minute-routine.html` | 바둑 사활 10분 루틴 검색 유입 |
 | 2026-06-25 | `baduk-life-death-vital-point.html` | 바둑 사활 급소 검색 유입 |
 | 2026-06-25 | `baduk-false-eye.html` | 가짜 눈 구분 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
