@@ -188,6 +188,14 @@ Search Console 검색어가 아직 없을 때도 운영 큐가 비지 않도록,
 | 완료 | 오목 2목은 언제 의미가 있을까 | 초반 2목이 공격 준비인지 빈 수인지 헷갈리는 입문자 검색 | `omok-two-stones.html`, `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-threats.html`, `omok-reading-depth.html` |
 | 완료 | 오목 막은 뒤 반격은 어디에 둘까 | 수비 후 다시 공격으로 넘어가는 구체적 후보를 찾는 검색 | `omok-counterattack-after-block.html`, `omok-defense-to-attack.html`, `omok-when-to-defend.html`, `omok-double-threat.html`, `omok-blocking-point.html` |
 
+## Search Console 전 15차 예비 후보
+
+Search Console 검색어가 아직 없을 때도 9줄 입문처럼 반복 검색 가능한 기초 주제를 보강합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 완료 | 9줄 바둑 첫 수는 어디에 둘까 | 9줄 바둑을 처음 둘 때 중앙, 귀, 변 중 어디에 첫 수를 둘지 알고 싶은 입문자 검색 | `baduk-9x9-first-move.html`, `baduk-9x9-beginner.html`, `baduk-beginner.html`, `baduk-opening-corner.html`, `baduk-9x9-to-19x19.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -282,6 +290,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
 | 2026-06-26 | `baduk-life-death-10-minute-routine.html` | 바둑 사활 10분 루틴 검색 유입 |
 | 2026-06-25 | `baduk-life-death-vital-point.html` | 바둑 사활 급소 검색 유입 |
+| 2026-06-26 | `baduk-9x9-first-move.html` | 9줄 바둑 첫 수 위치 검색 유입 |
 | 2026-06-25 | `baduk-false-eye.html` | 가짜 눈 구분 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
 | 2026-06-25 | `baduk-5k-to-1k.html` | 바둑 5급에서 1급 학습 순서 검색 유입 |
