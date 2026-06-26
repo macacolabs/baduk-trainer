@@ -1,3 +1,4 @@
 baduk-trainer-deploy.zip
 analysis_logs/
 dist/
+.gstack/

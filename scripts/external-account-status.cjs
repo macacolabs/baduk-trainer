@@ -74,9 +74,9 @@ console.log("");
 console.log(`Total progress: ${totalDone}/${totalTasks}`);
 
 if (nextTask) {
-  console.log(`Next action: [${nextTask.section}] ${nextTask.text}`);
+  console.log(`Later external action: [${nextTask.section}] ${nextTask.text}`);
 } else {
-  console.log("Next action: all external account checklist items are marked done.");
+  console.log("Later external action: all external account checklist items are marked done.");
 }
 
 console.log("");

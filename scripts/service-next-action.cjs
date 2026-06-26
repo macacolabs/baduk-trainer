@@ -57,16 +57,15 @@ const externalNext = parseExternalNext(readRequired(externalChecklistPath, "EXTE
 console.log("Service next action");
 console.log("");
 
-if (externalNext) {
-  console.log("Revenue blocker:");
-  console.log(`- [${externalNext.section}] ${externalNext.text}`);
-  console.log("- Run: node scripts/external-next-action.cjs");
-  console.log("");
-} else {
-  console.log("Revenue blocker:");
-  console.log("- External account checklist complete.");
-  console.log("");
-}
+console.log("Functionality gate:");
+console.log("- Run: node scripts/check-functional-smoke.cjs");
+console.log("- Covers: learning flow, Baduk local/AI play, Omok AI play, mobile board layout, console errors.");
+console.log("");
+
+console.log("Quality gate:");
+console.log("- Run: node scripts/preflight.cjs");
+console.log("- Covers: syntax, links, sitemap/feed sync, metadata, PWA, content quality, performance budgets.");
+console.log("");
 
 if (openContent.length) {
   const next = openContent[0];
@@ -80,6 +79,16 @@ if (openContent.length) {
   console.log("- No open content candidates. Seed Search Console query ideas into CONTENT_PLAN.md.");
   console.log("- If CSV exists: node scripts/seed-search-console-candidates.cjs search-console-queries.csv --write");
   console.log("- Before Search Console data: node scripts/seed-evergreen-candidates.cjs --write");
+}
+
+console.log("");
+if (externalNext) {
+  console.log("Later external task:");
+  console.log(`- [${externalNext.section}] ${externalNext.text}`);
+  console.log("- Run after core flows stay green: node scripts/external-next-action.cjs");
+} else {
+  console.log("Later external task:");
+  console.log("- External account checklist complete.");
 }
 
 console.log("");
