@@ -119,6 +119,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 AI 대국만 해도 늘까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-ai-games-only.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-ai-games-only.html</guid>
+      <description>바둑 AI와 대국만 반복해도 실력이 느는지 궁금한 초보자를 위해 AI 대국, 복기, 문제 풀이, 약점 기록을 연결하는 방법을 설명합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 AI와 두고 복기하는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-ai-review.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-ai-review.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-ladder.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-ladder.html</guid>
       <description>바둑 축을 처음 배우는 초보자를 위한 설명입니다. 단수로 몰아가는 방향, 축머리, 축이 되는 경우와 안 되는 경우를 쉽게 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 대마는 왜 죽을까</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-large-group-death.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-large-group-death.html</guid>
-      <description>바둑에서 큰 돌이 갑자기 죽는 이유를 설명합니다. 두 눈, 탈출로, 연결, 가짜 눈, 후보수 비교를 기준으로 대마를 관리하는 법을 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
