@@ -140,6 +140,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 초보 정답률은 몇 퍼센트면 좋을까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-beginner-accuracy-rate.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-beginner-accuracy-rate.html</guid>
+      <description>바둑 초보가 문제 정답률을 어떻게 봐야 하는지 설명합니다. 70%, 85%, 오답 반복 기준으로 다음 난이도와 복기 루틴을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 초보가 자주 하는 실수 7가지</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-beginner-mistakes.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-beginner-mistakes.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-life-death-vital-point.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-death-vital-point.html</guid>
       <description>바둑 사활 문제에서 급소를 찾는 순서를 설명합니다. 살리는 문제와 죽이는 문제, 눈 후보, 가짜 눈, 첫 수 후보를 초보자 눈높이로 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 장문은 언제 성립할까</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-net.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-net.html</guid>
-      <description>바둑 장문을 처음 배우는 초보자를 위한 설명입니다. 축이 안 될 때 상대 돌의 도망길을 막아 잡는 원리와 성립 조건을 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
