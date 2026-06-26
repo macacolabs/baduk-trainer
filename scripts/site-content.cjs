@@ -16,6 +16,7 @@ const publicPages = [
 
 const articleFiles = [
   "baduk-beginner.html",
+  "baduk-rules-order.html",
   "baduk-free-learn.html",
   "baduk-9x9-beginner.html",
   "baduk-19x19-start.html",

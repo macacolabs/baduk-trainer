@@ -294,6 +294,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 규칙 쉽게 배우는 순서</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-rules-order.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-rules-order.html</guid>
+      <description>바둑 규칙을 처음 배우는 사람을 위한 순서입니다. 착수, 차례, 활로, 단수, 포획, 패 규칙을 어떤 순서로 익히면 쉬운지 설명합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 잡힌 돌은 버려야 할까 살려야 할까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-save-or-sacrifice.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-save-or-sacrifice.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-ai-difficulty.html</guid>
       <description>큰돌 오목 AI 난이도를 고르는 방법입니다. 입문, 20급, 10급, 5급 난이도의 차이와 초보자가 어떤 순서로 연습하면 좋은지 설명합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>오목 공격과 수비 우선순위</title>
-      <link>https://macacolabs.github.io/baduk-trainer/omok-attack-defense-priority.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/omok-attack-defense-priority.html</guid>
-      <description>오목에서 내 공격이 먼저인지 상대 수비가 먼저인지 판단하는 순서입니다. 5목, 4목 차단, 열린 3, 양방향 위협의 우선순위를 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

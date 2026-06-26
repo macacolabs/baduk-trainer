@@ -148,7 +148,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 높음 | 바둑 규칙 쉽게 배우는 순서 | 바둑 규칙을 처음 검색한 사용자가 착수, 활로, 단수, 패를 순서대로 알고 싶은 검색 | `baduk-beginner.html`, `baduk-liberties.html`, `baduk-atari.html`, `baduk-ko-rule.html` |
+| 완료 | 바둑 규칙 쉽게 배우는 순서 | 바둑 규칙을 처음 검색한 사용자가 착수, 활로, 단수, 패를 순서대로 알고 싶은 검색 | `baduk-rules-order.html`, `baduk-beginner.html`, `baduk-liberties.html`, `baduk-atari.html`, `baduk-ko-rule.html` |
 | 높음 | 오목 4목을 놓치지 않는 체크리스트 | 오목에서 바로 지는 4목 차단 실수를 줄이고 싶은 초보자 검색 | `omok-block-four.html`, `omok-blocking-point.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
 | 중간 | 오목 AI와 연습할 때 난이도 올리는 기준 | 오목 AI 난이도를 언제 올려야 하는지 알고 싶은 사용자 검색 | `omok-ai-difficulty.html`, `omok-difficulty-choice.html`, `omok-hard-ai-losses.html`, `omok-practice-routine.html` |
 | 중간 | 바둑 집 계산 연습을 처음 시작하는 법 | 바둑 계가와 집 계산을 실전 전에 작게 연습하고 싶은 입문자 검색 | `baduk-territory-scoring.html`, `baduk-scoring-practice-start.html`, `baduk-komi-6-5.html`, `baduk-endgame.html` |
@@ -186,6 +186,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 날짜 | 글 | 목적 |
 | --- | --- | --- |
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
+| 2026-06-26 | `baduk-rules-order.html` | 바둑 규칙 순서 검색 유입 |
 | 2026-06-26 | `baduk-free-learn.html` | 바둑 무료 학습 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
