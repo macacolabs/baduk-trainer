@@ -14,6 +14,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>오목 6목은 규칙에 따라 승리일 수도, 금수일 수도 있습니다</title>
+      <link>https://macacolabs.github.io/baduk-trainer/omok-six-in-a-row.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/omok-six-in-a-row.html</guid>
+      <description>오목에서 6개 이상을 이으면 이기는지, 장목 금수인지 헷갈리는 초보자를 위해 자유룰과 렌주룰 차이를 설명합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 10급에서 5급으로 가는 공부 순서</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-10k-to-5k.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-10k-to-5k.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/omok-hard-ai-losses.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-hard-ai-losses.html</guid>
       <description>오목 고수 AI 난이도에서 계속 지는 이유를 설명합니다. 4목 차단, 열린 3, 한 방향 공격, 반격 없는 수비, 첫 10수 복기 기준을 정리합니다.</description>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>오목 열린 4와 닫힌 4 차이</title>
-      <link>https://macacolabs.github.io/baduk-trainer/omok-open-four.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/omok-open-four.html</guid>
-      <description>오목에서 열린 4와 닫힌 4의 차이를 설명합니다. 한 수로 막을 수 있는 4목, 이미 늦은 4목, 열린 3 단계에서 막아야 하는 이유를 정리합니다.</description>
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
