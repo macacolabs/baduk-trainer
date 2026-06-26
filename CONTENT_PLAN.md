@@ -246,6 +246,18 @@ Search Console 등록 전에도 독학, AI 대국 반복, 하루 공부량처럼
 | 완료 | 오목 혼자 연습은 어떻게 하면 좋을까 | 혼자 오목을 연습하는 사용자가 AI 대국, 방어 문제, 복기 순서를 찾는 검색 | `omok-self-practice.html`, `omok-practice-routine.html`, `omok-ai-difficulty.html`, `omok-defense-practice.html`, `omok-review-mistakes.html`, `omok-before-three.html` |
 | 완료 | 오목 AI 대국만 반복하면 왜 늘지 않을까 | 오목 AI와 많이 두지만 반복 패배하는 사용자가 복기와 약점 훈련을 찾는 검색 | `omok-ai-games-only.html`, `omok-ai-losing-reasons.html`, `omok-review-mistakes.html`, `omok-practice-routine.html`, `omok-defense-practice.html`, `omok-attack-defense-priority.html` |
 
+## Search Console 전 18차 예비 후보
+
+Search Console 등록 전에도 규칙, 금수, 끝내기처럼 검색 의도가 오래 유지되는 질문을 보강합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 높음 | 바둑 착수금지는 어떤 수일까 | 바둑에서 둘 수 없는 자리, 자살수, 패 규칙을 처음 구분하려는 입문자 검색 | `baduk-rules-order.html`, `baduk-liberties.html`, `baduk-self-atari.html`, `baduk-ko-rule.html`, `baduk-beginner.html` |
+| 중간 | 바둑 패는 왜 바로 다시 따낼 수 없을까 | 패 규칙에서 바로 되따내기가 왜 금지되는지 이유와 예시를 찾는 검색 | `baduk-ko-rule.html`, `baduk-ko-threats.html`, `baduk-ko-fight-timing.html`, `baduk-rules-order.html`, `baduk-beginner-mistakes.html` |
+| 중간 | 오목 삼삼과 사사는 왜 금수일까 | 렌주룰에서 33과 44가 왜 금수인지 자유룰과 비교하려는 검색 | `omok-double-three-four.html`, `omok-forbidden-moves.html`, `omok-renju-black-disadvantage.html`, `omok-first-second.html`, `omok-forbidden-real-game.html` |
+| 중간 | 오목 육목은 이긴 걸까 반칙일까 | 오목에서 6개 이상 연결했을 때 자유룰과 렌주룰 판정을 알고 싶은 검색 | `omok-six-in-a-row.html`, `omok-forbidden-moves.html`, `omok-double-three-four.html`, `omok-first-second.html`, `omok-strategy.html` |
+| 중간 | 바둑 끝내기에서 손해 보는 수는 어떻게 찾을까 | 끝내기에서 큰 수와 작은 수를 착각해 손해 보는 사용자가 계산 기준을 찾는 검색 | `baduk-endgame-mistakes.html`, `baduk-endgame-big-move.html`, `baduk-endgame-sente.html`, `baduk-endgame-point-size.html`, `baduk-territory-scoring.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
