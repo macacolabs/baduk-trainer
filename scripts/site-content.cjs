@@ -57,6 +57,7 @@ const articleFiles = [
   "baduk-10k-to-5k.html",
   "baduk-5k-to-1k.html",
   "baduk-1k-daily-routine.html",
+  "baduk-1k-weekly-review.html",
   "baduk-territory-scoring.html",
   "baduk-scoring-practice-start.html",
   "baduk-scoring-practice-guide.html",

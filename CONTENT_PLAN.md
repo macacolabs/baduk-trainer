@@ -152,7 +152,19 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 오목 4목을 놓치지 않는 체크리스트 | 오목에서 바로 지는 4목 차단 실수를 줄이고 싶은 초보자 검색 | `omok-block-four-checklist.html`, `omok-block-four.html`, `omok-blocking-point.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
 | 완료 | 오목 AI와 연습할 때 난이도 올리는 기준 | 오목 AI 난이도를 언제 올려야 하는지 알고 싶은 사용자 검색 | `omok-level-up-timing.html`, `omok-ai-difficulty.html`, `omok-difficulty-choice.html`, `omok-hard-ai-losses.html`, `omok-practice-routine.html` |
 | 완료 | 바둑 집 계산 연습을 처음 시작하는 법 | 바둑 계가와 집 계산을 실전 전에 작게 연습하고 싶은 입문자 검색 | `baduk-scoring-practice-guide.html`, `baduk-territory-scoring.html`, `baduk-scoring-practice-start.html`, `baduk-komi-6-5.html`, `baduk-endgame.html` |
-| 중간 | 바둑 1급 목표자가 매주 확인할 복기 질문 | 5급 이후 1급을 목표로 대국 복기를 어떻게 해야 하는지 찾는 검색 | `baduk-5k-to-1k.html`, `baduk-1k-daily-routine.html`, `baduk-candidate-moves.html`, `baduk-review-note.html` |
+| 완료 | 바둑 1급 목표자가 매주 확인할 복기 질문 | 5급 이후 1급을 목표로 대국 복기를 어떻게 해야 하는지 찾는 검색 | `baduk-1k-weekly-review.html`, `baduk-5k-to-1k.html`, `baduk-1k-daily-routine.html`, `baduk-candidate-moves.html`, `baduk-review-note.html` |
+
+## Search Console 전 13차 예비 후보
+
+Search Console 등록 전까지도 학습 허브가 멈추지 않도록, 1급 목표와 실전 판단형 검색어를 이어서 보강합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 중간 | 바둑 형세판단은 언제부터 연습해야 할까 | 중급자가 집 차이와 공격 판단을 어느 시점부터 봐야 하는지 찾는 검색 | `baduk-territory-scoring.html`, `baduk-thickness-territory.html`, `baduk-candidate-moves.html`, `baduk-5k-to-1k.html` |
+| 중간 | 바둑 손빼기는 언제 해도 될까 | 상대 수에 바로 받지 않고 큰 곳으로 가도 되는 기준을 알고 싶은 검색 | `baduk-sente-gote.html`, `baduk-candidate-moves.html`, `baduk-opening-corner.html`, `baduk-endgame-big-move.html` |
+| 중간 | 바둑 침입과 삭감은 어떻게 다를까 | 상대 집 안으로 들어갈지 바깥에서 줄일지 헷갈리는 중급자 검색 | `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html`, `baduk-opening.html` |
+| 중간 | 오목 수읽기는 몇 수까지 해야 할까 | 열린 3, 4목, 양방향 위협을 몇 수 앞까지 봐야 하는지 찾는 검색 | `omok-threats.html`, `omok-double-threat.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
+| 중간 | 오목에서 공격을 포기하고 막아야 하는 순간 | 내 공격보다 상대 위협을 먼저 막아야 하는 기준을 찾는 검색 | `omok-attack-defense-priority.html`, `omok-block-four.html`, `omok-open-four.html`, `omok-defense-to-attack.html` |
 
 ## 월간 운영 루틴
 
@@ -239,6 +251,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-false-eye.html` | 가짜 눈 구분 검색 유입 |
 | 2026-06-25 | `baduk-10k-to-5k.html` | 바둑 10급에서 5급 학습 순서 검색 유입 |
 | 2026-06-25 | `baduk-5k-to-1k.html` | 바둑 5급에서 1급 학습 순서 검색 유입 |
+| 2026-06-26 | `baduk-1k-weekly-review.html` | 바둑 1급 목표 주간 복기 검색 유입 |
 | 2026-06-21 | `baduk-endgame.html` | 끝내기 기초 검색 유입 |
 | 2026-06-25 | `baduk-endgame-big-move.html` | 끝내기 큰 수 검색 유입 |
 | 2026-06-25 | `baduk-endgame-mistakes.html` | 끝내기 실수 복기 검색 유입 |
