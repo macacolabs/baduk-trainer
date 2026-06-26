@@ -162,7 +162,7 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 바둑 초보는 어떤 판부터 복기해야 할까 | 초보자가 9줄과 19줄 대국 중 어떤 판을 먼저 복기해야 하는지 알고 싶은 검색 | `baduk-which-game-to-review.html`, `baduk-review-note.html`, `baduk-ai-review.html`, `baduk-9x9-beginner.html`, `baduk-19x19-start.html` |
 | 완료 | 바둑 사활 10분 루틴은 어떻게 만들까 | 사활 문제를 매일 짧게 풀며 실전 감각을 올리고 싶은 사용자 검색 | `baduk-life-death-10-minute-routine.html`, `baduk-life-and-death-practice.html`, `baduk-life-death-vital-point.html`, `baduk-false-eye.html`, `baduk-10k-to-5k.html` |
 | 완료 | 오목 초보가 자주 지는 패턴 | 오목 초보가 반복해서 지는 열린 3, 4목, 수비 지연 실수를 알고 싶은 검색 | `omok-beginner-losing-patterns.html`, `omok-strategy.html`, `omok-block-four.html`, `omok-open-three.html`, `omok-review-mistakes.html` |
-| 낮음 | 오목 선공 첫 수 이후 어디에 둘까 | 오목에서 중앙 첫 수 다음 배치를 어떻게 이어가야 하는지 찾는 입문자 검색 | `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-two-stones.html`, `omok-threats.html` |
+| 완료 | 오목 선공 첫 수 이후 어디에 둘까 | 오목에서 중앙 첫 수 다음 배치를 어떻게 이어가야 하는지 찾는 입문자 검색 | `omok-after-first-move.html`, `omok-center-opening.html`, `omok-first-10-moves.html`, `omok-two-stones.html`, `omok-threats.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -309,6 +309,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `omok-level-up-timing.html` | 오목 AI 난이도 상승 기준 검색 유입 |
 | 2026-06-25 | `omok-review-mistakes.html` | 오목 실수 복기 검색 유입 |
 | 2026-06-26 | `omok-beginner-losing-patterns.html` | 오목 초보 패배 패턴 검색 유입 |
+| 2026-06-26 | `omok-after-first-move.html` | 오목 선공 첫 수 이후 배치 검색 유입 |
 | 2026-06-25 | `omok-forbidden-moves.html` | 오목 금수와 자유룰 검색 유입 |
 | 2026-06-21 | `faq.html` | 질문형 검색 유입 |
 
