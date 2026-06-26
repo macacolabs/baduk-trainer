@@ -63,6 +63,7 @@ const articleFiles = [
   "baduk-1k-weekly-review.html",
   "baduk-territory-scoring.html",
   "baduk-dead-stones-scoring.html",
+  "baduk-neutral-points.html",
   "baduk-scoring-practice-start.html",
   "baduk-scoring-practice-guide.html",
   "baduk-komi-6-5.html",

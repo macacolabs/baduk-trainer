@@ -38,6 +38,36 @@ const candidates = [
     intent: "5급 이후 1급을 목표로 대국 복기를 어떻게 해야 하는지 찾는 검색",
     links: ["baduk-5k-to-1k.html", "baduk-1k-daily-routine.html", "baduk-candidate-moves.html", "baduk-review-note.html"],
   },
+  {
+    priority: "중간",
+    title: "바둑 공배는 언제 메워야 할까",
+    intent: "끝내기와 계가 직전에 공배를 메워야 하는지 헷갈리는 입문자 검색",
+    links: ["baduk-territory-scoring.html", "baduk-scoring-practice-guide.html", "baduk-endgame.html", "baduk-dead-stones-scoring.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 빅은 어떻게 구분할까",
+    intent: "사활에서 서로 잡을 수 없는 빅 모양을 죽은 돌과 구분하려는 검색",
+    links: ["baduk-life-and-death.html", "baduk-alive-dead-stones.html", "baduk-false-eye.html", "baduk-territory-scoring.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 닫힌 3은 언제 막아야 할까",
+    intent: "열린 3과 닫힌 3의 위험도를 구분하고 막을지 공격할지 고르려는 검색",
+    links: ["omok-open-three.html", "omok-three-vs-four.html", "omok-attack-defense-priority.html", "omok-when-to-defend.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 후공은 어떻게 반격할까",
+    intent: "후공으로 계속 막기만 하다 지는 사용자가 반격 흐름을 찾는 검색",
+    links: ["omok-first-second.html", "omok-defense-to-attack.html", "omok-counterattack-after-block.html", "omok-blocking-point.html"],
+  },
+  {
+    priority: "낮음",
+    title: "바둑 9줄에서 19줄로 넘어가는 기준",
+    intent: "9줄 연습 후 언제 19줄 바둑을 시작할지 알고 싶은 입문자 검색",
+    links: ["baduk-9x9-beginner.html", "baduk-19x19-start.html", "baduk-rank-roadmap.html", "baduk-ai-review.html"],
+  },
 ];
 
 function usage() {
