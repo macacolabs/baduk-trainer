@@ -61,6 +61,7 @@ const articleFiles = [
   "baduk-candidate-moves.html",
   "baduk-which-game-to-review.html",
   "baduk-review-note.html",
+  "baduk-repeat-mistakes.html",
   "baduk-review-10-minute.html",
   "baduk-life-and-death.html",
   "baduk-large-group-death.html",
