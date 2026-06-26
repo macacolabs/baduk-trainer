@@ -34,6 +34,7 @@ const articleFiles = [
   "baduk-attack-weak-stones.html",
   "baduk-profitable-capture.html",
   "baduk-save-or-sacrifice.html",
+  "baduk-sacrifice-moments.html",
   "baduk-liberties.html",
   "baduk-shape-empty-triangle.html",
   "baduk-knight-move.html",
