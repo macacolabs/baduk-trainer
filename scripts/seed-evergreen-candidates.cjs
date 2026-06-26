@@ -9,6 +9,36 @@ const limit = numberArg("--limit", 5);
 
 const candidates = [
   {
+    priority: "중간",
+    title: "바둑 13줄은 언제 시작하면 좋을까",
+    intent: "9줄 바둑은 익숙하지만 19줄은 부담스러운 입문자가 13줄 시작 기준을 찾는 검색",
+    links: ["baduk-9x9-to-19x19.html", "baduk-19x19-start.html", "baduk-ai-difficulty.html", "baduk-rank-roadmap.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 초보는 몇 수까지 읽어야 할까",
+    intent: "바둑 초보가 단수, 사활, 전투에서 몇 수 앞까지 읽어야 하는지 알고 싶은 검색",
+    links: ["baduk-candidate-moves.html", "baduk-atari.html", "baduk-life-death-vital-point.html", "baduk-10k-to-5k.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 선공은 정말 필승일까",
+    intent: "오목에서 선공이 얼마나 유리한지, 자유룰과 렌주룰 차이를 알고 싶은 검색",
+    links: ["omok-first-second.html", "omok-center-opening.html", "omok-forbidden-moves.html", "omok-second-player-counterattack.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 계가가 헷갈릴 때 어디부터 세야 할까",
+    intent: "바둑 계가에서 집, 죽은 돌, 공배를 어떤 순서로 세야 하는지 찾는 검색",
+    links: ["baduk-territory-scoring.html", "baduk-scoring-practice-guide.html", "baduk-dead-stones-scoring.html", "baduk-neutral-points.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 막기만 하다 공격권을 잃는 이유",
+    intent: "오목에서 계속 막기만 하다가 공격 기회를 놓치는 사용자가 전환 기준을 찾는 검색",
+    links: ["omok-defense-to-attack.html", "omok-counterattack-after-block.html", "omok-attack-timing.html", "omok-blocking-point.html"],
+  },
+  {
     priority: "높음",
     title: "바둑 규칙 쉽게 배우는 순서",
     intent: "바둑 규칙을 처음 검색한 사용자가 착수, 활로, 단수, 패를 순서대로 알고 싶은 검색",

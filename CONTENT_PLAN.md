@@ -173,6 +173,9 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 오목 열린 3을 만들었는데 왜 지는 걸까 | 오목에서 열린 3을 만들고도 상대 4목이나 양방향 위협을 놓쳐 지는 이유를 찾는 검색 | `omok-open-three-losing.html`, `omok-open-three.html`, `omok-attack-defense-priority.html`, `omok-double-threat.html`, `omok-review-mistakes.html` |
 | 완료 | 오목 AI에게 계속 지는 이유 | 오목 AI 대국에서 반복 패배하는 사용자가 난이도, 복기, 위협 확인 기준을 찾는 검색 | `omok-ai-losing-reasons.html`, `omok-ai-difficulty.html`, `omok-hard-ai-losses.html`, `omok-review-mistakes.html`, `omok-practice-routine.html` |
 | 완료 | 바둑 1급 목표자는 AI 복기를 얼마나 해야 할까 | 1급을 목표로 하는 사용자가 AI 복기를 오래 하지 않고 후보수와 약점만 고르는 법을 찾는 검색 | `baduk-1k-ai-review-time.html`, `baduk-5k-to-1k.html`, `baduk-1k-weekly-review.html`, `baduk-ai-review.html`, `baduk-candidate-moves.html` |
+| 완료 | 바둑 13줄은 언제 시작하면 좋을까 | 9줄 바둑은 익숙하지만 19줄은 부담스러운 입문자가 13줄 시작 기준을 찾는 검색 | `baduk-13x13-start.html`, `baduk-9x9-to-19x19.html`, `baduk-19x19-start.html`, `baduk-ai-difficulty.html`, `baduk-rank-roadmap.html` |
+| 중간 | 바둑 초보는 몇 수까지 읽어야 할까 | 바둑 초보가 단수, 사활, 전투에서 몇 수 앞까지 읽어야 하는지 알고 싶은 검색 | `baduk-candidate-moves.html`, `baduk-atari.html`, `baduk-life-death-vital-point.html`, `baduk-10k-to-5k.html` |
+| 중간 | 오목 선공은 정말 필승일까 | 오목에서 선공이 얼마나 유리한지, 자유룰과 렌주룰 차이를 알고 싶은 검색 | `omok-first-second.html`, `omok-center-opening.html`, `omok-forbidden-moves.html`, `omok-second-player-counterattack.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -254,6 +257,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-free-learn.html` | 바둑 무료 학습 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-26 | `baduk-9x9-to-19x19.html` | 바둑 9줄에서 19줄 전환 기준 검색 유입 |
+| 2026-06-26 | `baduk-13x13-start.html` | 바둑 13줄 시작 기준 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
 | 2026-06-25 | `baduk-rank-roadmap.html` | 바둑 급수표와 공부 순서 검색 유입 |
 | 2026-06-26 | `baduk-30k-to-20k.html` | 바둑 30급에서 20급 학습 순서 검색 유입 |
