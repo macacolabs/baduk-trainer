@@ -216,7 +216,7 @@ Search Console 등록 전에도 문제 풀이, 정답률, 방어 연습처럼 �
 | 완료 | 바둑 초보 정답률은 몇 퍼센트면 좋을까 | 문제 정답률이 낮거나 너무 쉬운 문제만 푸는 초보자가 다음 난이도 기준을 찾는 검색 | `baduk-beginner-accuracy-rate.html`, `baduk-problem-solving-order.html`, `baduk-rank-roadmap.html`, `baduk-30k-to-20k.html`, `baduk-10k-to-5k.html` |
 | 완료 | 오목 방어 연습은 어떻게 해야 할까 | 오목에서 공격만 하다 4목을 놓치는 사용자가 방어 훈련 순서를 찾는 검색 | `omok-defense-practice.html`, `omok-block-four-checklist.html`, `omok-blocking-point.html`, `omok-when-to-defend.html`, `omok-practice-routine.html` |
 | 완료 | 바둑 같은 실수를 반복하지 않으려면 어떻게 할까 | 대국마다 같은 실수를 하는 사용자가 오답과 복기 노트를 연결하는 법을 찾는 검색 | `baduk-repeat-mistakes.html`, `baduk-review-note.html`, `baduk-problem-solving-order.html`, `baduk-1k-weekly-review.html`, `baduk-ai-review.html` |
-| 중간 | 오목 공격 타이밍은 어떻게 잡을까 | 막기와 공격 사이에서 언제 열린 3이나 4목을 만들지 알고 싶은 검색 | `omok-attack-defense-priority.html`, `omok-defense-to-attack.html`, `omok-open-three.html`, `omok-double-threat.html` |
+| 완료 | 오목 공격 타이밍은 어떻게 잡을까 | 막기와 공격 사이에서 언제 열린 3이나 4목을 만들지 알고 싶은 검색 | `omok-attack-timing.html`, `omok-attack-defense-priority.html`, `omok-defense-to-attack.html`, `omok-open-three.html`, `omok-double-threat.html` |
 
 ## 월간 운영 루틴
 
@@ -338,6 +338,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `omok-reading-depth.html` | 오목 수읽기 깊이 검색 유입 |
 | 2026-06-25 | `omok-double-threat.html` | 오목 양방향 위협 검색 유입 |
 | 2026-06-25 | `omok-attack-defense-priority.html` | 오목 공격과 수비 우선순위 검색 유입 |
+| 2026-06-26 | `omok-attack-timing.html` | 오목 공격 타이밍 검색 유입 |
 | 2026-06-26 | `omok-when-to-defend.html` | 오목 공격 포기와 수비 전환 판단 검색 유입 |
 | 2026-06-25 | `omok-defense-to-attack.html` | 오목 수비 후 공격 전환 검색 유입 |
 | 2026-06-26 | `omok-counterattack-after-block.html` | 오목 막은 뒤 반격 후보 검색 유입 |
