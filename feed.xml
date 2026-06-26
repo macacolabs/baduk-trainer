@@ -329,6 +329,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 사활 문제를 풀어도 실전에서 죽는 이유</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-life-death-real-game.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-death-real-game.html</guid>
+      <description>바둑 사활 문제는 푸는데 실전 대국에서 큰 돌이 죽는 이유를 설명합니다. 문제 풀이와 실전 생사 판단의 차이, 복기 기준, 훈련 루틴을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 사활 급소는 어떻게 찾을까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-life-death-vital-point.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-death-vital-point.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-neutral-points.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-neutral-points.html</guid>
       <description>바둑 공배를 언제 메워야 하는지 설명합니다. 공배와 집의 차이, 끝내기와 계가 전 순서, 죽은 돌 확인, 초보자가 자주 하는 공배 실수를 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 포석에서 귀를 먼저 두는 이유</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-opening-corner.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-opening-corner.html</guid>
-      <description>바둑 초보자를 위해 포석에서 귀를 먼저 두는 이유를 설명합니다. 귀, 변, 중앙의 차이와 19줄 초반 큰 자리 판단을 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
