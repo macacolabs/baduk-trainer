@@ -204,6 +204,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-komi-6-5.html` | 바둑 덤과 반집 승부 검색 유입 |
 | 2026-06-25 | `baduk-ko-fight-timing.html` | 바둑 패싸움 시작 기준 검색 유입 |
 | 2026-06-26 | `baduk-save-or-sacrifice.html` | 바둑 살릴 돌과 버릴 돌 판단 검색 유입 |
+| 2026-06-26 | `baduk-scoring-practice-start.html` | 바둑 계가 연습 시작 시점 검색 유입 |
 | 2026-06-25 | `omok-defend-double-threat.html` | 오목 양방향 공격 방어 검색 유입 |
 | 2026-06-25 | `omok-hard-ai-losses.html` | 오목 고수 난이도 패배 원인 검색 유입 |
 | 2026-06-24 | `baduk-life-and-death-practice.html` | 사활 문제 풀이 검색 유입 |
@@ -242,6 +243,6 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
 | 완료 | 오목 6목은 이기는 걸까 | 오목에서 5개를 넘게 이었을 때 승리인지 금수인지 헷갈리는 사용자 | `omok-forbidden-moves.html`, `omok-strategy.html`, `omok-first-second.html`, `omok-open-four.html` |
-| 중간 | 바둑 계가는 언제부터 연습해야 할까 | 집 계산과 승패 확인이 어려워 계가 시작 시점을 알고 싶은 입문자 | `baduk-territory-scoring.html`, `baduk-endgame.html`, `baduk-komi-6-5.html`, `baduk-review-note.html` |
+| 완료 | 바둑 계가는 언제부터 연습해야 할까 | 집 계산과 승패 확인이 어려워 계가 시작 시점을 알고 싶은 입문자 | `baduk-territory-scoring.html`, `baduk-endgame.html`, `baduk-komi-6-5.html`, `baduk-review-note.html` |
 | 중간 | 바둑 10급이 자주 지는 이유 | 10급 전후에서 정체된 사용자가 반복 패배 원인을 찾는 검색 | `baduk-10k-to-5k.html`, `baduk-beginner-mistakes.html`, `baduk-review-10-minute.html`, `baduk-candidate-moves.html` |
 | 낮음 | 오목 렌주룰은 왜 흑에게 불리할까 | 렌주룰과 자유룰의 차이, 흑 금수 이유를 알고 싶은 사용자 | `omok-forbidden-moves.html`, `omok-double-three-four.html`, `omok-forbidden-real-game.html`, `omok-first-second.html` |

@@ -7,6 +7,13 @@
     <language>ko</language>
     <lastBuildDate>Fri, 26 Jun 2026 00:00:00 GMT</lastBuildDate>
     <item>
+      <title>바둑 계가는 끝까지 둔 판이 생기면 바로 연습해도 됩니다</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-start.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-scoring-practice-start.html</guid>
+      <description>바둑 계가를 언제부터 연습하면 좋은지 설명합니다. 집 계산, 끝내기, 덤, 복기 루틴을 초보자 단계에 맞게 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>오목 금수는 실전에서 언제 문제가 될까</title>
       <link>https://macacolabs.github.io/baduk-trainer/omok-forbidden-real-game.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-forbidden-real-game.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/omok-forbidden-moves.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-forbidden-moves.html</guid>
       <description>오목 금수, 자유룰, 렌주룰의 차이를 초보자 눈높이로 설명합니다. 큰돌 오목은 자유룰로 연습하며, 금수는 이후 단계에서 익히면 됩니다.</description>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>오목 고수 난이도에서 계속 지는 이유</title>
-      <link>https://macacolabs.github.io/baduk-trainer/omok-hard-ai-losses.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/omok-hard-ai-losses.html</guid>
-      <description>오목 고수 AI 난이도에서 계속 지는 이유를 설명합니다. 4목 차단, 열린 3, 한 방향 공격, 반격 없는 수비, 첫 10수 복기 기준을 정리합니다.</description>
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
