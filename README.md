@@ -122,6 +122,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - Search Console 색인 요청 체크리스트와 완료 기록 명령 출력 `scripts/indexing-priority.cjs --checklist`
 - Search Console 등록 전 제출값 점검 스크립트 `scripts/prepare-search-console-registration.cjs`
 - SEO 메타데이터 점검 스크립트 `scripts/check-seo-metadata.cjs`
+- FAQ 구조화 데이터와 화면 질문 동기화 점검 스크립트 `scripts/check-faq-schema.cjs`
 - PWA manifest, 서비스워커, 오프라인 페이지 점검 스크립트 `scripts/check-pwa.cjs`
 - 수익화 준비 리포트 스크립트 `scripts/monetization-report.cjs`
 - 수익화 준비 요약 대시보드 `scripts/revenue-dashboard.cjs`
