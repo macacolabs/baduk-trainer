@@ -1,0 +1,24 @@
+name: Monthly Operations Review
+
+on:
+  schedule:
+    - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Run preflight checks
+        run: node scripts/preflight.cjs
+      - name: Write monthly review draft
+        run: node scripts/create-operations-review.cjs --print >> "$GITHUB_STEP_SUMMARY"

@@ -142,6 +142,7 @@ GitHub Pages에서 승인 후 광고와 `ads.txt`를 배포할 때는 저장소 
 - 주간 운영 통합 점검 스크립트 `scripts/weekly-maintenance.cjs`
 - GitHub Actions 주간 요약 출력 스크립트 `scripts/weekly-summary.cjs`
 - 월간 운영 리뷰 생성 스크립트 `scripts/create-operations-review.cjs` (`--blank`으로 자동 스냅샷 생략 가능)
+- GitHub Actions 월간 운영 리뷰 workflow `.github/workflows/monthly-operations.yml`
 - Search Console meta 태그 삽입 스크립트 `scripts/apply-search-console-meta.cjs`
 - Search Console meta 태그 로컬/live 검증 스크립트 `scripts/check-search-console-meta.cjs`
 - 핵심 진입 페이지 공유 미리보기 점검 스크립트 `scripts/check-social-metadata.cjs`
@@ -220,6 +221,7 @@ node scripts/service-next-action.cjs
 
 - Search Console 검색어 확인
 - `node scripts/create-operations-review.cjs`로 대시보드, 다음 외부 작업, 콘텐츠 상태가 들어간 운영 리뷰 작성
+- GitHub Actions의 `Monthly Operations Review` Step Summary에서 월간 리뷰 초안 확인
 - `node scripts/monetization-report.cjs`로 신청 준비 상태 확인
 - `node scripts/prepare-adsense-application.cjs --live`로 AdSense 신청 가능 상태 확인
 - 유입 많은 글 보강
