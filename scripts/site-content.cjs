@@ -16,6 +16,7 @@ const publicPages = [
 
 const articleFiles = [
   "baduk-beginner.html",
+  "baduk-free-learn.html",
   "baduk-9x9-beginner.html",
   "baduk-19x19-start.html",
   "baduk-rank-roadmap.html",
@@ -63,6 +64,7 @@ const articleFiles = [
   "baduk-endgame-mistakes.html",
   "baduk-sente-gote.html",
   "omok-strategy.html",
+  "omok-winning-strategy.html",
   "omok-center-opening.html",
   "omok-first-second.html",
   "omok-first-10-moves.html",

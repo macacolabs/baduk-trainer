@@ -147,6 +147,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 무료로 배우는 순서</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-free-learn.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-free-learn.html</guid>
+      <description>바둑을 무료로 배우고 싶은 초보자를 위한 순서입니다. 9줄 바둑, 단수, 활로, 사활, AI 대국 복기까지 돈을 쓰기 전 먼저 익힐 내용을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 초보자가 먼저 알아야 할 용어</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-glossary.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-glossary.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/omok-attack-defense-priority.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-attack-defense-priority.html</guid>
       <description>오목에서 내 공격이 먼저인지 상대 수비가 먼저인지 판단하는 순서입니다. 5목, 4목 차단, 열린 3, 양방향 위협의 우선순위를 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>오목 4목은 왜 바로 막아야 할까?</title>
-      <link>https://macacolabs.github.io/baduk-trainer/omok-block-four.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/omok-block-four.html</guid>
-      <description>오목에서 상대 4목을 바로 막아야 하는 이유를 설명합니다. 열린 4목, 닫힌 4목, 내 공격과 수비 우선순위를 초보자 기준으로 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

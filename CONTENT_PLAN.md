@@ -133,6 +133,15 @@ Search Console 등록 전까지 운영이 멈추지 않도록, 초보자가 자�
 | 완료 | 바둑 잡힌 돌은 버려야 할까 살려야 할까 | 작은 돌을 무리하게 살리다 손해 보는 이유를 알고 싶은 사용자 | `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html`, `baduk-large-group-death.html` |
 | 완료 | 오목 금수는 실전에서 언제 문제가 될까 | 자유룰과 렌주룰 차이를 실전 장면으로 이해하려는 사용자 | `omok-forbidden-moves.html`, `omok-double-three-four.html`, `omok-first-second.html`, `omok-strategy.html` |
 
+## 12차 확장 후보
+
+Search Console 등록 전에도 검색 의도가 큰 무료 학습/필승법 키워드는 선제 발행합니다. 실제 검색어가 쌓이면 제목과 첫 문단을 Search Console 표현에 맞춰 조정합니다.
+
+| 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
+| --- | --- | --- | --- |
+| 완료 | 바둑 무료로 배우는 순서 | 무료로 바둑을 시작하려는 입문자가 돈을 쓰기 전 학습 순서를 알고 싶은 검색 | `baduk-free-learn.html`, `baduk-9x9-beginner.html`, `baduk-atari.html`, `baduk-ai-review.html` |
+| 완료 | 오목 필승법보다 먼저 알아야 할 것 | 오목 필승법을 찾는 사용자가 실제로는 4목 차단과 열린 3, 양방향 위협을 배우려는 검색 | `omok-winning-strategy.html`, `omok-strategy.html`, `omok-open-three.html`, `omok-double-threat.html` |
+
 ## 월간 운영 루틴
 
 1. Search Console에서 노출 또는 클릭이 생긴 검색어를 확인합니다.
@@ -165,6 +174,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 날짜 | 글 | 목적 |
 | --- | --- | --- |
 | 2026-06-21 | `baduk-beginner.html` | 바둑 입문 검색 유입 |
+| 2026-06-26 | `baduk-free-learn.html` | 바둑 무료 학습 검색 유입 |
 | 2026-06-25 | `baduk-9x9-beginner.html` | 9줄 바둑 입문 검색 유입 |
 | 2026-06-25 | `baduk-19x19-start.html` | 19줄 바둑 시작 기준 검색 유입 |
 | 2026-06-25 | `baduk-rank-roadmap.html` | 바둑 급수표와 공부 순서 검색 유입 |
@@ -181,6 +191,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-shape-empty-triangle.html` | 빈삼각과 좋은 모양 검색 유입 |
 | 2026-06-25 | `baduk-knight-move.html` | 날일자와 한칸뜀 행마 검색 유입 |
 | 2026-06-21 | `omok-strategy.html` | 오목 기본 전략 검색 유입 |
+| 2026-06-26 | `omok-winning-strategy.html` | 오목 필승법 검색 의도 전환 |
 | 2026-06-25 | `omok-center-opening.html` | 오목 첫 수와 중앙 선점 검색 유입 |
 | 2026-06-25 | `omok-first-second.html` | 오목 선공과 후공 검색 유입 |
 | 2026-06-25 | `omok-first-10-moves.html` | 오목 첫 10수 초반 운영 검색 유입 |
