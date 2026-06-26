@@ -168,6 +168,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 침입과 삭감은 어떻게 다를까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-invasion-reduction.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-invasion-reduction.html</guid>
+      <description>바둑에서 침입과 삭감의 차이를 설명합니다. 상대 집 안으로 들어갈 때와 바깥에서 줄일 때를 구분하는 기준, 실패하기 쉬운 장면, 연습법을 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑 정석은 언제부터 외워야 할까</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-joseki-study.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-joseki-study.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-shape-empty-triangle.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-shape-empty-triangle.html</guid>
       <description>바둑 초보자가 자주 만드는 빈삼각이 왜 나쁜 모양인지 설명합니다. 활로, 무거운 돌, 좋은 모양으로 고치는 기준을 쉽게 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 포석에서 변은 언제 두면 좋을까</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-side-opening.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-side-opening.html</guid>
-      <description>바둑 포석에서 귀 다음 변을 언제 두면 좋은지 설명합니다. 벌림, 협공, 중앙 진출, 큰 자리 판단을 초보자 눈높이로 정리합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
