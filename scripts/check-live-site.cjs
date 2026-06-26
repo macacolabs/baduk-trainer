@@ -35,6 +35,7 @@ const privatePathChecks = [
   "scripts/weekly-summary.cjs",
   "scripts/check-learning-pathways.cjs",
   "scripts/sync-breadcrumb-schema.cjs",
+  "scripts/check-adsense-config.cjs",
   "scripts/build-pages-artifact.cjs",
   ".github/workflows/pages.yml",
   "README.md",

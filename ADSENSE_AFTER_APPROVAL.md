@@ -55,6 +55,7 @@ $env:ADSENSE_STATUS='approved'
 $env:ADSENSE_PUBLISHER_ID='pub-1234567890123456'
 $env:ADSENSE_AD_SLOT_ID='1234567890'
 node scripts/build-pages-artifact.cjs
+node scripts/check-adsense-config.cjs --dir dist
 node scripts/check-ad-placement.cjs --dir dist
 node scripts/check-service-readiness.cjs
 node scripts/monetization-report.cjs
@@ -70,11 +71,12 @@ $env:ADSENSE_STATUS='approved'
 $env:ADSENSE_PUBLISHER_ID='pub-1234567890123456'
 $env:ADSENSE_AD_SLOT_ID='1234567890'
 node scripts/build-pages-artifact.cjs
+node scripts/check-adsense-config.cjs --dir dist
 node scripts/check-ad-placement.cjs --dir dist
 Select-String -Path dist\index.html -Pattern "adsbygoogle|ca-pub-|data-ad-slot"
 ```
 
-주의: 기본 검사 모드는 승인 전 상태입니다. 승인 후 광고는 `scripts/inject-adsense.cjs`가 공개 산출물에만 넣습니다. 원본 HTML에 직접 AdSense 코드를 붙이지 않습니다.
+주의: 기본 검사 모드는 승인 전 상태입니다. 승인 후 광고는 `scripts/inject-adsense.cjs`가 공개 산출물에만 넣습니다. 원본 HTML에 직접 AdSense 코드를 붙이지 않습니다. `scripts/check-adsense-config.cjs --dir dist`는 승인 후 publisher ID, slot ID, `dist` 광고 코드, `ads.txt` 일치 여부를 함께 점검합니다.
 
 ## 승인 후 별도 작업으로 바꿀 것
 
