@@ -66,6 +66,7 @@ const articleFiles = [
   "omok-first-10-moves.html",
   "omok-forbidden-moves.html",
   "omok-double-three-four.html",
+  "omok-forbidden-real-game.html",
   "omok-threats.html",
   "omok-double-threat.html",
   "omok-defend-double-threat.html",

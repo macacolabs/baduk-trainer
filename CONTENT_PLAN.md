@@ -131,7 +131,7 @@ Search Console 등록 전까지 운영이 멈추지 않도록, 초보자가 자�
 | 완료 | 바둑 덤은 왜 6.5집일까 | 바둑 덤과 반집 승부의 의미를 알고 싶은 초보자 | `baduk-territory-scoring.html`, `baduk-beginner.html`, `baduk-rank-roadmap.html`, `baduk-endgame.html` |
 | 완료 | 바둑 패싸움은 언제 시작해야 할까 | 패 규칙은 알지만 실전 패싸움 시작 기준을 모르는 사용자 | `baduk-ko-rule.html`, `baduk-sente-gote.html`, `baduk-candidate-moves.html`, `baduk-review-note.html` |
 | 완료 | 바둑 잡힌 돌은 버려야 할까 살려야 할까 | 작은 돌을 무리하게 살리다 손해 보는 이유를 알고 싶은 사용자 | `baduk-profitable-capture.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html`, `baduk-large-group-death.html` |
-| 낮음 | 오목 금수는 실전에서 언제 문제가 될까 | 자유룰과 렌주룰 차이를 실전 장면으로 이해하려는 사용자 | `omok-forbidden-moves.html`, `omok-double-three-four.html`, `omok-first-second.html`, `omok-strategy.html` |
+| 완료 | 오목 금수는 실전에서 언제 문제가 될까 | 자유룰과 렌주룰 차이를 실전 장면으로 이해하려는 사용자 | `omok-forbidden-moves.html`, `omok-double-three-four.html`, `omok-first-second.html`, `omok-strategy.html` |
 
 ## 월간 운영 루틴
 
@@ -186,6 +186,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `omok-first-10-moves.html` | 오목 첫 10수 초반 운영 검색 유입 |
 | 2026-06-25 | `omok-blocking-point.html` | 오목 막기 좋은 자리 검색 유입 |
 | 2026-06-25 | `omok-double-three-four.html` | 오목 3-3과 4-4 금수 검색 유입 |
+| 2026-06-26 | `omok-forbidden-real-game.html` | 오목 실전 금수 판단 검색 유입 |
 | 2026-06-21 | `baduk-glossary.html` | 용어 사전형 유입 |
 | 2026-06-21 | `baduk-opening.html` | 포석 기초 검색 유입 |
 | 2026-06-25 | `baduk-opening-corner.html` | 포석 귀 우선순위 검색 유입 |

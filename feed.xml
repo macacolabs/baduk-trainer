@@ -5,7 +5,14 @@
     <link>https://macacolabs.github.io/baduk-trainer/</link>
     <description>바둑과 오목을 배우는 큰돌 학습 글 업데이트입니다.</description>
     <language>ko</language>
-    <lastBuildDate>Thu, 25 Jun 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jun 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>오목 금수는 실전에서 언제 문제가 될까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/omok-forbidden-real-game.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/omok-forbidden-real-game.html</guid>
+      <description>오목 금수가 실전에서 언제 문제가 되는지 설명합니다. 자유룰과 렌주룰 차이, 흑의 3-3, 4-4, 장목 확인 시점, 초보 연습 순서를 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
     <item>
       <title>바둑 10급에서 5급으로 가는 공부 순서</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-10k-to-5k.html</link>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/omok-open-four.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/omok-open-four.html</guid>
       <description>오목에서 열린 4와 닫힌 4의 차이를 설명합니다. 한 수로 막을 수 있는 4목, 이미 늦은 4목, 열린 3 단계에서 막아야 하는 이유를 정리합니다.</description>
-      <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>오목에서 열린 3을 막아야 하는 이유</title>
-      <link>https://macacolabs.github.io/baduk-trainer/omok-open-three.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/omok-open-three.html</guid>
-      <description>오목 초보자가 자주 지는 열린 3 패턴을 설명합니다. 열린 3과 닫힌 3의 차이, 막아야 하는 타이밍, AI 연습법을 정리합니다.</description>
       <pubDate>Thu, 25 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
