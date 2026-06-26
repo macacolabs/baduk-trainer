@@ -9,6 +9,36 @@ const limit = numberArg("--limit", 5);
 
 const candidates = [
   {
+    priority: "높음",
+    title: "바둑 자충은 왜 위험할까",
+    intent: "바둑 초보가 자충, 자살수, 활로 부족을 헷갈릴 때 금지되는 수와 위험한 수를 구분하려는 검색",
+    links: ["baduk-liberties.html", "baduk-rules-order.html", "baduk-atari.html", "baduk-beginner-mistakes.html", "baduk-profitable-capture.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 단수에서 도망가야 할까 잡아야 할까",
+    intent: "단수를 당했을 때 도망, 연결, 맞단수, 포획 중 무엇을 선택해야 하는지 찾는 검색",
+    links: ["baduk-atari.html", "baduk-atari-practice.html", "baduk-cut-connect.html", "baduk-profitable-capture.html", "baduk-candidate-moves.html"],
+  },
+  {
+    priority: "중간",
+    title: "바둑 13줄 초반은 어디부터 둘까",
+    intent: "13줄 바둑을 시작한 입문자가 귀, 변, 중앙의 초반 순서를 알고 싶은 검색",
+    links: ["baduk-13x13-start.html", "baduk-9x9-to-19x19.html", "baduk-opening.html", "baduk-opening-corner.html", "baduk-side-opening.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 4목을 만들었는데 왜 막힐까",
+    intent: "오목에서 4목을 만들었지만 열린 4가 아니어서 막히는 이유와 다음 위협을 알고 싶은 검색",
+    links: ["omok-open-four.html", "omok-block-four.html", "omok-three-vs-four.html", "omok-attack-defense-priority.html", "omok-double-threat.html"],
+  },
+  {
+    priority: "중간",
+    title: "오목 3목을 만들기 전에 무엇을 봐야 할까",
+    intent: "오목에서 무작정 3목을 만들기 전 상대 4목, 열린 3, 양방향 위협을 확인하려는 검색",
+    links: ["omok-open-three.html", "omok-open-three-losing.html", "omok-attack-timing.html", "omok-attack-defense-priority.html", "omok-review-mistakes.html"],
+  },
+  {
     priority: "중간",
     title: "바둑 13줄은 언제 시작하면 좋을까",
     intent: "9줄 바둑은 익숙하지만 19줄은 부담스러운 입문자가 13줄 시작 기준을 찾는 검색",

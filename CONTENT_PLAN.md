@@ -184,6 +184,11 @@ Search Console 검색어가 아직 없거나 CSV를 받기 전이면 아래 후�
 | 완료 | 오목 한쪽만 막으면 왜 늦을까 | 오목 양방향 위협에서 한쪽만 막고도 지는 이유를 알고 싶은 검색 | `omok-one-side-block-late.html`, `omok-defend-double-threat.html`, `omok-double-threat.html`, `omok-attack-defense-priority.html`, `omok-blocking-point.html` |
 | 완료 | 바둑 초보는 언제 손빼도 될까 | 상대가 둔 곳에 꼭 받아야 하는지, 큰 곳으로 손빼도 되는지 알고 싶은 입문자 검색 | `baduk-beginner-tenuki.html`, `baduk-tenuki-timing.html`, `baduk-sente-gote.html`, `baduk-opening.html`, `baduk-candidate-moves.html` |
 | 완료 | 오목 열린 3을 막았는데도 지는 이유 | 오목에서 열린 3을 막았는데 남은 4목이나 양방향 위협으로 지는 이유를 찾는 검색 | `omok-after-block-open-three-loss.html`, `omok-open-three.html`, `omok-open-three-losing.html`, `omok-after-block-four-loss.html`, `omok-review-mistakes.html` |
+| 완료 | 바둑 자충은 왜 위험할까 | 바둑 초보가 자충, 자살수, 활로 부족을 헷갈릴 때 금지되는 수와 위험한 수를 구분하려는 검색 | `baduk-self-atari.html`, `baduk-liberties.html`, `baduk-rules-order.html`, `baduk-atari.html`, `baduk-beginner-mistakes.html`, `baduk-profitable-capture.html` |
+| 중간 | 바둑 단수에서 도망가야 할까 잡아야 할까 | 단수를 당했을 때 도망, 연결, 맞단수, 포획 중 무엇을 선택해야 하는지 찾는 검색 | `baduk-atari.html`, `baduk-atari-practice.html`, `baduk-cut-connect.html`, `baduk-profitable-capture.html`, `baduk-candidate-moves.html` |
+| 중간 | 바둑 13줄 초반은 어디부터 둘까 | 13줄 바둑을 시작한 입문자가 귀, 변, 중앙의 초반 순서를 알고 싶은 검색 | `baduk-13x13-start.html`, `baduk-9x9-to-19x19.html`, `baduk-opening.html`, `baduk-opening-corner.html`, `baduk-side-opening.html` |
+| 중간 | 오목 4목을 만들었는데 왜 막힐까 | 오목에서 4목을 만들었지만 열린 4가 아니어서 막히는 이유와 다음 위협을 알고 싶은 검색 | `omok-open-four.html`, `omok-block-four.html`, `omok-three-vs-four.html`, `omok-attack-defense-priority.html`, `omok-double-threat.html` |
+| 중간 | 오목 3목을 만들기 전에 무엇을 봐야 할까 | 오목에서 무작정 3목을 만들기 전 상대 4목, 열린 3, 양방향 위협을 확인하려는 검색 | `omok-open-three.html`, `omok-open-three-losing.html`, `omok-attack-timing.html`, `omok-attack-defense-priority.html`, `omok-review-mistakes.html` |
 
 ## Search Console 전 13차 예비 후보
 
@@ -271,6 +276,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-26 | `baduk-endgame-point-size.html` | 바둑 끝내기 크기 판단 검색 유입 |
 | 2026-06-26 | `baduk-atari-loss.html` | 바둑 단수 후 포획 손익 판단 검색 유입 |
 | 2026-06-26 | `baduk-beginner-tenuki.html` | 바둑 초보 손빼기 판단 검색 유입 |
+| 2026-06-26 | `baduk-self-atari.html` | 바둑 자충과 자살수 구분 검색 유입 |
 | 2026-06-26 | `omok-after-block-four-loss.html` | 오목 4목 차단 후 후속 위협 검색 유입 |
 | 2026-06-26 | `omok-after-block-open-three-loss.html` | 오목 열린 3 차단 후 후속 위협 검색 유입 |
 | 2026-06-26 | `omok-one-side-block-late.html` | 오목 양방향 위협 수비 검색 유입 |
