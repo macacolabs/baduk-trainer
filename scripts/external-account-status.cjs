@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { spawnSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
 const checklistPath = path.join(root, "EXTERNAL_ACCOUNT_CHECKLIST.md");
@@ -76,4 +77,19 @@ if (nextTask) {
   console.log(`Next action: [${nextTask.section}] ${nextTask.text}`);
 } else {
   console.log("Next action: all external account checklist items are marked done.");
+}
+
+console.log("");
+console.log("Consistency:");
+const consistency = spawnSync(process.execPath, ["scripts/check-external-checklist-consistency.cjs"], {
+  cwd: root,
+  encoding: "utf8",
+});
+if (consistency.status === 0) {
+  console.log("- OK");
+} else {
+  console.log("- FAILED");
+  process.stdout.write(consistency.stdout || "");
+  process.stderr.write(consistency.stderr || "");
+  process.exit(consistency.status || 1);
 }
