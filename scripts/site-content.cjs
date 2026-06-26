@@ -42,6 +42,7 @@ const articleFiles = [
   "baduk-side-opening.html",
   "baduk-center-opening.html",
   "baduk-thickness-territory.html",
+  "baduk-position-judgment-start.html",
   "baduk-joseki-study.html",
   "baduk-ai-review.html",
   "baduk-candidate-moves.html",

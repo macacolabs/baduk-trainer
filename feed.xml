@@ -273,6 +273,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 형세판단은 집 차이와 약한 돌을 같이 볼 때 시작합니다</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-position-judgment-start.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-position-judgment-start.html</guid>
+      <description>바둑 형세판단을 언제부터 연습하면 좋은지 설명합니다. 집 차이, 약한 돌, 두터움, 후보수 비교를 중급자 눈높이로 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>바둑에서 잡아도 손해인 돌을 구분하는 법</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-profitable-capture.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-profitable-capture.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-side-opening.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-side-opening.html</guid>
       <description>바둑 포석에서 귀 다음 변을 언제 두면 좋은지 설명합니다. 벌림, 협공, 중앙 진출, 큰 자리 판단을 초보자 눈높이로 정리합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 집 계산법은 빈 곳을 세는 것부터 시작합니다</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-territory-scoring.html</guid>
-      <description>바둑 초보자를 위한 집 계산법입니다. 집, 잡은 돌, 덤, 계가, 끝내기 후 형세판단을 어떤 순서로 보면 되는지 쉽게 설명합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>

@@ -160,7 +160,7 @@ Search Console 등록 전까지도 학습 허브가 멈추지 않도록, 1급 �
 
 | 우선순위 | 후보 제목 | 검색 의도 | 연결할 기존 글 |
 | --- | --- | --- | --- |
-| 중간 | 바둑 형세판단은 언제부터 연습해야 할까 | 중급자가 집 차이와 공격 판단을 어느 시점부터 봐야 하는지 찾는 검색 | `baduk-territory-scoring.html`, `baduk-thickness-territory.html`, `baduk-candidate-moves.html`, `baduk-5k-to-1k.html` |
+| 완료 | 바둑 형세판단은 언제부터 연습해야 할까 | 중급자가 집 차이와 공격 판단을 어느 시점부터 봐야 하는지 찾는 검색 | `baduk-position-judgment-start.html`, `baduk-territory-scoring.html`, `baduk-thickness-territory.html`, `baduk-candidate-moves.html`, `baduk-5k-to-1k.html` |
 | 중간 | 바둑 손빼기는 언제 해도 될까 | 상대 수에 바로 받지 않고 큰 곳으로 가도 되는 기준을 알고 싶은 검색 | `baduk-sente-gote.html`, `baduk-candidate-moves.html`, `baduk-opening-corner.html`, `baduk-endgame-big-move.html` |
 | 중간 | 바둑 침입과 삭감은 어떻게 다를까 | 상대 집 안으로 들어갈지 바깥에서 줄일지 헷갈리는 중급자 검색 | `baduk-thickness-territory.html`, `baduk-attack-weak-stones.html`, `baduk-candidate-moves.html`, `baduk-opening.html` |
 | 중간 | 오목 수읽기는 몇 수까지 해야 할까 | 열린 3, 4목, 양방향 위협을 몇 수 앞까지 봐야 하는지 찾는 검색 | `omok-threats.html`, `omok-double-threat.html`, `omok-open-three.html`, `omok-attack-defense-priority.html` |
@@ -230,6 +230,7 @@ node scripts/add-content-candidate.cjs --title "검색어에서 나온 글 제�
 | 2026-06-25 | `baduk-side-opening.html` | 포석 변 선택 기준 검색 유입 |
 | 2026-06-25 | `baduk-center-opening.html` | 초반 중앙 진출 기준 검색 유입 |
 | 2026-06-25 | `baduk-thickness-territory.html` | 바둑 두터움과 실리 검색 유입 |
+| 2026-06-26 | `baduk-position-judgment-start.html` | 바둑 형세판단 시작 기준 검색 유입 |
 | 2026-06-25 | `baduk-joseki-study.html` | 바둑 정석 공부 시작 시점 검색 유입 |
 | 2026-06-25 | `baduk-ai-review.html` | 바둑 AI 복기 사용법 검색 유입 |
 | 2026-06-25 | `baduk-review-note.html` | 바둑 복기 노트 검색 유입 |
