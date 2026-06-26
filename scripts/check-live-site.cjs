@@ -33,6 +33,7 @@ const checks = [
 const privatePathChecks = [
   "scripts/preflight.cjs",
   "scripts/weekly-summary.cjs",
+  "scripts/check-learning-pathways.cjs",
   "scripts/build-pages-artifact.cjs",
   ".github/workflows/pages.yml",
   "README.md",
