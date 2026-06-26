@@ -140,6 +140,13 @@
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
+      <title>바둑 단수에서 도망가야 할까 잡아야 할까</title>
+      <link>https://macacolabs.github.io/baduk-trainer/baduk-atari-response.html</link>
+      <guid>https://macacolabs.github.io/baduk-trainer/baduk-atari-response.html</guid>
+      <description>바둑에서 단수를 당했을 때 도망, 연결, 맞단수, 포획, 버리기 중 무엇을 선택해야 하는지 초보자 기준으로 정리합니다.</description>
+      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
       <title>단수란 무엇이고, 어떻게 잡을까?</title>
       <link>https://macacolabs.github.io/baduk-trainer/baduk-atari.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-atari.html</guid>
@@ -347,13 +354,6 @@
       <link>https://macacolabs.github.io/baduk-trainer/baduk-liberties.html</link>
       <guid>https://macacolabs.github.io/baduk-trainer/baduk-liberties.html</guid>
       <description>바둑 활로의 뜻, 활로를 세는 법, 자살수와 포획의 관계를 초보자에게 맞춰 설명합니다.</description>
-      <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
-    </item>
-    <item>
-      <title>바둑 사활 문제를 처음 푸는 법</title>
-      <link>https://macacolabs.github.io/baduk-trainer/baduk-life-and-death-practice.html</link>
-      <guid>https://macacolabs.github.io/baduk-trainer/baduk-life-and-death-practice.html</guid>
-      <description>바둑 사활 문제를 처음 푸는 초보자를 위해 두 눈, 급소, 가짜 눈, 첫 수 후보를 찾는 순서를 쉽게 설명합니다.</description>
       <pubDate>Fri, 26 Jun 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
