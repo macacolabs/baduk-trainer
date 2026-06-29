@@ -61,35 +61,76 @@ button:disabled {
 .app {
   align-items: start;
   display: grid;
-  gap: 28px;
-  grid-template-columns: minmax(310px, 380px) minmax(420px, 1fr);
+  gap: 18px;
+  grid-template-columns: minmax(190px, 230px) minmax(0, 1fr);
   margin: 0 auto;
-  max-width: 1160px;
+  max-width: 1360px;
   min-height: 100svh;
   padding: 22px;
 }
 
 @media (min-width: 901px) and (max-width: 1180px) {
   .app {
-    grid-template-columns: minmax(300px, 360px) minmax(420px, 1fr);
+    grid-template-columns: 190px minmax(0, 1fr);
     padding: 18px;
   }
 
   .board-wrap {
-    --board-size: min(calc(100svh - 190px), calc(100vw - 430px), 600px);
+    --board-size: min(calc(100svh - 170px), calc(100vw - 640px), 560px);
   }
 
   .board-wrap:has(.board.full-board) {
-    --board-size: min(calc(100svh - 190px), calc(100vw - 420px), 680px);
+    --board-size: min(calc(100svh - 170px), calc(100vw - 620px), 660px);
   }
 }
 
 .side {
   align-content: start;
   display: grid;
-  gap: 14px;
+  gap: 12px;
   position: sticky;
   top: 18px;
+}
+
+@media (min-width: 901px) {
+  .side {
+    max-height: calc(100svh - 36px);
+  }
+
+  .hero-intro h1 {
+    font-size: 32px;
+  }
+
+  .hero-intro .lead {
+    font-size: 14px;
+    line-height: 1.38;
+    margin-top: 6px;
+  }
+
+  .quick-start {
+    margin-top: 10px;
+  }
+}
+
+.play-area {
+  align-items: start;
+  display: grid;
+  gap: 18px;
+  grid-template-areas: "board controls";
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+}
+
+.control-stack {
+  align-content: start;
+  display: grid;
+  gap: 12px;
+  grid-area: controls;
+  max-height: calc(100svh - 44px);
+  overflow-y: auto;
+  padding-right: 4px;
+  position: sticky;
+  scrollbar-gutter: stable;
+  top: 22px;
 }
 
 .eyebrow {
@@ -122,6 +163,31 @@ h2 {
   margin: 10px 0 0;
 }
 
+.hero-intro {
+  background: rgba(255, 254, 248, 0.62);
+  border: 1px solid rgba(43, 49, 45, 0.07);
+  border-radius: 18px;
+  display: grid;
+  padding: 14px;
+}
+
+.quick-start {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr;
+  margin-top: 14px;
+}
+
+.quick-action {
+  min-height: 44px;
+}
+
+.quick-action.secondary {
+  background: rgba(238, 237, 230, 0.92);
+  border: 1px solid rgba(43, 49, 45, 0.1);
+  color: var(--ink);
+}
+
 .mode-tabs {
   backdrop-filter: blur(14px);
   background: rgba(255, 254, 248, 0.72);
@@ -129,7 +195,7 @@ h2 {
   border-radius: 18px;
   display: grid;
   gap: 4px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr;
   padding: 4px;
 }
 
@@ -137,14 +203,46 @@ h2 {
   background: transparent;
   color: var(--muted);
   border-radius: 14px;
-  min-height: 38px;
-  padding: 0 8px;
+  min-height: 40px;
+  padding: 0 10px;
+  text-align: left;
 }
 
 .tab.active {
   background: var(--accent);
   box-shadow: 0 8px 18px rgba(43, 49, 45, 0.14);
   color: #fbfaf4;
+}
+
+.section-nav {
+  background: rgba(255, 254, 248, 0.76);
+  border: 1px solid rgba(43, 49, 45, 0.09);
+  border-radius: 16px;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 4px;
+  position: sticky;
+  top: 0;
+  z-index: 12;
+}
+
+.section-nav.hidden {
+  display: none;
+}
+
+.section-nav button {
+  background: transparent;
+  border-radius: 12px;
+  color: var(--muted);
+  min-height: 38px;
+  padding: 0 8px;
+}
+
+.section-nav button:hover,
+.section-nav button:focus-visible {
+  background: rgba(43, 49, 45, 0.08);
+  color: var(--ink);
 }
 
 .panel {
@@ -154,6 +252,7 @@ h2 {
   border-radius: 22px;
   box-shadow: 0 18px 40px rgba(34, 49, 45, 0.07);
   padding: 16px;
+  scroll-margin-top: 16px;
 }
 
 .panel.hidden {
@@ -310,10 +409,71 @@ h2 {
   margin: 0;
 }
 
+.learning-aids-drawer {
+  margin-top: 12px;
+}
+
+.learning-aids-drawer summary,
+.drill-drawer summary,
+.progress-details summary,
+.training-menu summary,
+.rule-panel summary,
+.content-links summary {
+  align-items: center;
+  background: rgba(239, 236, 227, 0.66);
+  border: 1px solid rgba(43, 49, 45, 0.07);
+  border-radius: 12px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  font-size: 13px;
+  font-weight: 900;
+  justify-content: space-between;
+  list-style: none;
+  min-height: 40px;
+  padding: 0 12px;
+}
+
+.learning-aids-drawer summary::-webkit-details-marker,
+.drill-drawer summary::-webkit-details-marker,
+.progress-details summary::-webkit-details-marker,
+.training-menu summary::-webkit-details-marker,
+.rule-panel summary::-webkit-details-marker,
+.content-links summary::-webkit-details-marker {
+  display: none;
+}
+
+.learning-aids-drawer summary::after,
+.drill-drawer summary::after,
+.progress-details summary::after,
+.training-menu summary::after,
+.rule-panel summary::after,
+.content-links summary::after {
+  content: "+";
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.learning-aids-drawer[open] summary::after,
+.drill-drawer[open] summary::after,
+.progress-details[open] summary::after,
+.training-menu[open] summary::after,
+.rule-panel[open] summary::after,
+.content-links[open] summary::after {
+  content: "-";
+}
+
+.drill-drawer {
+  margin-top: 10px;
+}
+
 .learning-boost {
   display: grid;
   gap: 10px;
-  margin-top: 12px;
+}
+
+.learning-boost.hidden {
+  display: none;
 }
 
 .learning-dashboard {
@@ -341,7 +501,11 @@ h2 {
 }
 
 .dashboard-main p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   margin: 6px 0 0;
+  overflow: hidden;
 }
 
 .dashboard-meter {
@@ -373,7 +537,9 @@ h2 {
 }
 
 .dashboard-stats {
-  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 
 .dashboard-actions {
@@ -381,6 +547,7 @@ h2 {
 }
 
 .rank-road {
+  display: none;
   grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
 }
 
@@ -420,6 +587,7 @@ h2 {
   background: rgba(239, 236, 227, 0.7);
   border: 1px solid rgba(43, 49, 45, 0.06);
   border-radius: 12px;
+  flex: 0 0 88px;
   padding: 9px;
 }
 
@@ -482,6 +650,28 @@ h2 {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+}
+
+.progress-details,
+.training-menu {
+  background: rgba(255, 254, 248, 0.64);
+  border: 1px solid rgba(43, 49, 45, 0.07);
+  border-radius: 16px;
+  padding: 10px;
+}
+
+.progress-details[open],
+.training-menu[open] {
+  display: grid;
+  gap: 10px;
+}
+
+.training-menu .study-actions {
+  margin-top: 8px;
+}
+
+.content-links summary .panel-head {
+  flex: 1;
 }
 
 .coach-chip,
@@ -1193,15 +1383,17 @@ select {
 }
 
 .board-wrap {
-  --board-size: min(calc(100svh - 190px), calc(100vw - 500px), 620px);
+  --board-size: min(calc(100svh - 150px), calc(100vw - 680px), 660px);
   align-content: start;
   display: grid;
   gap: 14px;
+  grid-area: board;
   justify-items: center;
+  scroll-margin-top: 16px;
 }
 
 .board-wrap:has(.board.full-board) {
-  --board-size: min(calc(100svh - 190px), calc(100vw - 460px), 760px);
+  --board-size: min(calc(100svh - 150px), calc(100vw - 650px), 760px);
 }
 
 .board-top {
@@ -1556,6 +1748,7 @@ select {
 .content-links {
   display: grid;
   gap: 8px;
+  scroll-margin-top: 16px;
 }
 
 .content-links a {
@@ -1662,47 +1855,52 @@ select {
 
 @media (max-width: 900px) {
   .app {
+    gap: 14px;
     grid-template-columns: 1fr;
-    padding: 16px;
     max-width: 760px;
+    padding: 16px;
   }
 
   .side {
-    display: contents;
+    display: grid;
+    gap: 10px;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
     position: static;
   }
 
-  .side > :first-child {
-    order: 1;
-  }
-
   .mode-tabs {
-    order: 2;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  #lessonPanel,
-  #gamePanel {
+  .tab {
+    text-align: center;
+  }
+
+  .section-nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     order: 3;
   }
 
+  .play-area {
+    display: grid;
+    gap: 12px;
+    grid-template-areas:
+      "board"
+      "controls";
+    grid-template-columns: 1fr;
+  }
+
+  .control-stack {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+    position: static;
+  }
+
   .board-wrap {
-    order: 4;
-  }
-
-  #statusPanel {
-    order: 5;
-  }
-
-  #termsPanel {
-    order: 6;
-  }
-
-  .rule-panel {
-    order: 7;
-  }
-
-  .board-wrap {
-    --board-size: min(88vw, 58vh, 560px);
+    --board-size: min(82vw, 50vh, 520px);
   }
 
   .board {
@@ -1710,7 +1908,7 @@ select {
   }
 
   .board-wrap:has(.board.full-board) {
-    --board-size: min(92vw, 64vh, 650px);
+    --board-size: min(88vw, 56vh, 600px);
   }
 
   h1 {
@@ -1739,8 +1937,13 @@ select {
     padding: 14px;
   }
 
+  .hero-intro {
+    border-radius: 14px;
+    padding: 12px;
+  }
+
   h1 {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   h2 {
@@ -1748,10 +1951,28 @@ select {
   }
 
   .lead {
-    font-size: 15px;
+    display: none;
   }
 
-  .mode-tabs,
+  .eyebrow {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .quick-start {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 10px;
+  }
+
+  .quick-action {
+    min-height: 40px;
+    padding: 0 10px;
+  }
+
+  .mode-tabs {
+    display: none;
+  }
+
   .score-row {
     grid-template-columns: 1fr;
   }
@@ -1797,6 +2018,20 @@ select {
     min-height: 44px;
   }
 
+  .section-nav {
+    display: none;
+  }
+
+  .section-nav button {
+    min-height: 40px;
+  }
+
+  .board-wrap,
+  .panel,
+  .content-links {
+    scroll-margin-top: 70px;
+  }
+
   .actions,
   .drill-tools {
     display: grid;
@@ -1814,6 +2049,11 @@ select {
 
   .board-wrap {
     --board-size: min(94vw, 430px);
+    gap: 10px;
+  }
+
+  .player-card {
+    display: none;
   }
 
   .board {
@@ -1878,13 +2118,12 @@ select {
   }
 
   .rank-road {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 4px;
+    display: none;
   }
 
-  .rank-road-step {
-    flex: 0 0 96px;
+  .training-menu .study-actions {
+    margin: 8px -10px 0;
+    padding: 0 10px 6px;
   }
 
   .terms {
@@ -1899,10 +2138,10 @@ select {
   }
 
   .board-wrap {
-    --board-size: min(95vw, 360px);
+    --board-size: min(88vw, 315px);
   }
 
   .board-wrap:has(.board.full-board) {
-    --board-size: min(96vw, 370px);
+    --board-size: min(88vw, 315px);
   }
 }

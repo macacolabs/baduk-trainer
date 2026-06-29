@@ -59,10 +59,14 @@
   <body>
     <main class="app">
       <section class="side">
-        <div>
+        <div class="hero-intro">
           <p class="eyebrow">바둑 감각 트레이너</p>
           <h1>큰돌</h1>
           <p class="lead">문제를 풀고, 두고, 복기하면서 실력이 쌓이는 바둑 앱.</p>
+          <div class="quick-start" aria-label="빠른 시작">
+            <button type="button" id="startFirstLesson" class="quick-action">첫 문제 풀기</button>
+            <button type="button" id="startDiagnosis" class="quick-action secondary">급수 진단</button>
+          </div>
         </div>
 
         <div class="mode-tabs" role="tablist" aria-label="게임 모드">
@@ -71,6 +75,16 @@
           <button class="tab" data-mode="ai">AI 대국</button>
         </div>
 
+        <nav class="section-nav" id="learningNav" aria-label="학습 섹션">
+          <button type="button" data-jump-target=".board-wrap">판</button>
+          <button type="button" data-jump-target="#lessonPanel">해설</button>
+          <button type="button" data-jump-target="#learningBoost">진도</button>
+          <button type="button" data-jump-target=".content-links">읽기</button>
+        </nav>
+      </section>
+
+      <section class="play-area">
+        <section class="control-stack" aria-label="학습 조작">
         <div class="panel" id="lessonPanel">
           <div class="panel-head">
             <span id="lessonStep">1 / 50</span>
@@ -81,7 +95,9 @@
           </div>
           <p class="lesson-concept" id="lessonConcept"></p>
           <p id="lessonText"></p>
-          <div class="learning-aids">
+          <details class="learning-aids-drawer">
+            <summary>생각 순서</summary>
+            <div class="learning-aids">
             <div>
               <span>생각 순서</span>
               <ol id="thinkingSteps"></ol>
@@ -91,6 +107,7 @@
               <p id="lessonGoal"></p>
             </div>
           </div>
+          </details>
           <div class="actions">
             <button id="prevLesson" class="ghost">이전</button>
             <button id="resetLesson" class="ghost">다시</button>
@@ -98,40 +115,35 @@
             <button id="showAnswer" class="ghost">정답 보기</button>
           </div>
           <div class="answer-note hidden" id="answerNote"></div>
-          <div class="drill-tools">
-            <label class="field compact">
-              <span>반복 훈련</span>
-              <select id="drillCategory">
-                <option value="all">전체</option>
-                <option value="capture">포획</option>
-                <option value="connect">연결/끊기</option>
-                <option value="shape">행마/모양</option>
-                <option value="life">사활</option>
-                <option value="opening">포석/큰 곳</option>
-                <option value="endgame">끝내기</option>
-              </select>
-            </label>
-            <label class="field compact">
-              <span>난이도</span>
-              <select id="drillDifficulty">
-                <option value="all">전체</option>
-                <option value="basic">기초</option>
-                <option value="intermediate">중급</option>
-                <option value="advanced">고급</option>
-                <option value="mistake">오답만</option>
-              </select>
-            </label>
-            <button id="randomDrill" class="ghost">랜덤 문제</button>
-          </div>
+          <details class="drill-drawer">
+            <summary>문제 바꾸기</summary>
+            <div class="drill-tools">
+              <label class="field compact">
+                <span>반복 훈련</span>
+                <select id="drillCategory">
+                  <option value="all">전체</option>
+                  <option value="capture">포획</option>
+                  <option value="connect">연결/끊기</option>
+                  <option value="shape">행마/모양</option>
+                  <option value="life">사활</option>
+                  <option value="opening">포석/큰 곳</option>
+                  <option value="endgame">끝내기</option>
+                </select>
+              </label>
+              <label class="field compact">
+                <span>난이도</span>
+                <select id="drillDifficulty">
+                  <option value="all">전체</option>
+                  <option value="basic">기초</option>
+                  <option value="intermediate">중급</option>
+                  <option value="advanced">고급</option>
+                  <option value="mistake">오답만</option>
+                </select>
+              </label>
+              <button id="randomDrill" class="ghost">랜덤 문제</button>
+            </div>
+          </details>
         </div>
-
-        <details class="panel terms-panel" id="termsPanel">
-          <summary>
-            <span>용어 사전</span>
-            <strong>47개 + 648문제</strong>
-          </summary>
-          <div class="terms" id="termList"></div>
-        </details>
 
         <div class="panel hidden" id="gamePanel">
           <div class="panel-head">
@@ -173,19 +185,31 @@
           <p id="statusText">표시된 점을 눌러 첫 연습을 시작하세요.</p>
         </div>
 
-        <div class="panel rule-panel">
-          <div class="panel-head">
+        <details class="panel terms-panel" id="termsPanel">
+          <summary>
+            <span>용어 사전</span>
+            <strong>47개 + 648문제</strong>
+          </summary>
+          <div class="terms" id="termList"></div>
+        </details>
+
+        <details class="panel rule-panel">
+          <summary>
+          <span class="panel-head">
             <span>룰</span>
             <strong id="ruleTitle">기본 중국식 계가</strong>
-          </div>
+          </span>
+          </summary>
           <p id="ruleText">착수, 활로, 포획, 자살수 금지, 단순 패 금지, 연속 패스 종국을 지원합니다.</p>
-        </div>
+        </details>
 
-        <nav class="panel content-links" aria-label="학습 글">
-          <div class="panel-head">
+        <details class="panel content-links" id="readingLinks" aria-label="학습 글">
+          <summary>
+          <span class="panel-head">
             <span>읽고 배우기</span>
             <strong>초보 가이드</strong>
-          </div>
+          </span>
+          </summary>
           <a href="learn.html">학습 순서 전체 보기</a>
           <a href="baduk-learn.html">바둑 배우기</a>
           <a href="omok-learn.html">오목 배우기</a>
@@ -196,8 +220,8 @@
           <a href="omok-ai-difficulty.html">오목 AI 난이도</a>
           <a href="baduk-glossary.html">바둑 용어 사전</a>
           <a href="faq.html">자주 묻는 질문</a>
-        </nav>
-      </section>
+        </details>
+        </section>
 
       <section class="board-wrap">
         <div class="board-top">
@@ -224,6 +248,7 @@
           </div>
           <time id="bottomTimer">10:00</time>
         </div>
+      </section>
       </section>
     </main>
     <aside class="ad-slot ad-slot-home" aria-label="광고 영역">

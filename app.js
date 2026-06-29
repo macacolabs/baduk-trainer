@@ -1281,6 +1281,7 @@ const REVIEW_STEPS = [
 const el = {
   board: document.querySelector("#board"),
   tabs: document.querySelectorAll(".tab"),
+  learningNav: document.querySelector("#learningNav"),
   lessonPanel: document.querySelector("#lessonPanel"),
   termsPanel: document.querySelector("#termsPanel"),
   gamePanel: document.querySelector("#gamePanel"),
@@ -1300,6 +1301,8 @@ const el = {
   drillCategory: document.querySelector("#drillCategory"),
   drillDifficulty: document.querySelector("#drillDifficulty"),
   randomDrill: document.querySelector("#randomDrill"),
+  startFirstLesson: document.querySelector("#startFirstLesson"),
+  startDiagnosis: document.querySelector("#startDiagnosis"),
   newGame: document.querySelector("#newGame"),
   undoMove: document.querySelector("#undoMove"),
   passTurn: document.querySelector("#passTurn"),
@@ -1555,7 +1558,9 @@ function ensureLearningBoostUI() {
         <button type="button" class="ghost" id="dashPlan">오늘</button>
       </div>
     </div>
-    <div class="stage-card">
+    <details class="progress-details">
+      <summary>세부 진도</summary>
+      <div class="stage-card">
       <div>
         <span id="stageLabel">입문</span>
         <strong id="stageFocus">교차점, 활로, 단수</strong>
@@ -1566,8 +1571,11 @@ function ensureLearningBoostUI() {
         <small>숙련</small>
       </div>
     </div>
-    <div class="coach-row" id="coachRow"></div>
-    <div class="study-actions">
+      <div class="coach-row" id="coachRow"></div>
+    </details>
+    <details class="training-menu">
+      <summary>훈련 메뉴</summary>
+      <div class="study-actions">
       <button type="button" class="ghost" id="coreReview">핵심 복습</button>
       <button type="button" class="ghost" id="weakReview">약점 훈련</button>
       <button type="button" class="ghost" id="retryWrong">오답 재출제</button>
@@ -1588,8 +1596,9 @@ function ensureLearningBoostUI() {
       <button type="button" class="ghost" id="levelCheck">레벨 평가</button>
       <button type="button" class="ghost" id="diagnosisTest">급수 진단</button>
       <button type="button" class="ghost" id="missionStart">실전 미션</button>
-      <button type="button" id="todayCourse">오늘 코스</button>
-    </div>
+        <button type="button" id="todayCourse">오늘 코스</button>
+      </div>
+    </details>
     <div class="reading-card hidden" id="readingCard">
       <span>수읽기 루틴</span>
       <ol>
@@ -1651,7 +1660,7 @@ function ensureLearningBoostUI() {
       <div class="dan-roadmap-list" id="danRoadmapList"></div>
     </div>
   `;
-  el.lessonPanel.querySelector(".learning-aids").after(boost);
+  document.querySelector("#statusPanel")?.after(boost);
   ensureRankCurriculumUI();
   document.querySelector("#coreReview").addEventListener("click", startCoreReview);
   document.querySelector("#weakReview").addEventListener("click", startWeakReview);
@@ -3347,7 +3356,6 @@ function renderConceptChecklist() {
   const panel = document.createElement("details");
   panel.className = "panel checklist-panel";
   panel.id = "conceptChecklist";
-  panel.open = true;
   panel.innerHTML = `
     <summary>
       <span>학습 체크리스트</span>
@@ -3829,6 +3837,17 @@ function ensureMobileNav() {
   nav.querySelector("[data-mobile-mode='learn']")?.classList.add("active");
 }
 
+function scrollToPlayArea() {
+  const target = document.querySelector(".board-wrap");
+  target?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function jumpToSection(selector) {
+  const target = document.querySelector(selector);
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function stoneName(color) {
   return color === BLACK ? "흑" : "백";
 }
@@ -3988,8 +4007,8 @@ function setupLesson() {
   if (!state.testMode) document.querySelector("#rankExamCard")?.classList.add("hidden");
   el.boardLabel.textContent = "입문 훈련";
   el.boardTitle.textContent = lesson.title;
-  el.topPlayerName.textContent = "학습 목표";
-  el.topPlayerMeta.textContent = lessonType(lesson);
+  el.topPlayerName.textContent = "이번 목표";
+  el.topPlayerMeta.textContent = goalFor(lesson);
   el.topTimer.textContent = lesson.isChapterTest ? `${state.testCorrect}/${state.testTotal}` : `${state.lessonIndex + 1}/${lessons.length}`;
   el.bottomPlayerName.textContent = "나";
   el.bottomPlayerMeta.textContent = "정답을 찾는 중";
@@ -4059,11 +4078,13 @@ function switchMode(mode) {
   el.lessonPanel.classList.toggle("hidden", mode !== "learn");
   el.termsPanel.classList.toggle("hidden", mode !== "learn");
   el.gamePanel.classList.toggle("hidden", mode === "learn");
+  el.learningNav?.classList.toggle("hidden", mode !== "learn");
   if (mode === "learn") {
     state.activeDrill = null;
     setupLesson();
   }
   else startGame(mode);
+  document.querySelector("#learningBoost")?.classList.toggle("hidden", mode !== "learn");
 }
 
 function handlePoint(r, c) {
@@ -4753,6 +4774,20 @@ function render() {
 }
 
 el.tabs.forEach((tab) => tab.addEventListener("click", () => switchMode(tab.dataset.mode)));
+el.learningNav?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-jump-target]");
+  if (!button) return;
+  jumpToSection(button.dataset.jumpTarget);
+});
+el.startFirstLesson?.addEventListener("click", () => {
+  switchMode("learn");
+  scrollToPlayArea();
+});
+el.startDiagnosis?.addEventListener("click", () => {
+  switchMode("learn");
+  startDiagnosisTest();
+  scrollToPlayArea();
+});
 el.gameTypes.forEach((button) => button.addEventListener("click", () => {
   state.gameType = button.dataset.gameType === "omok" ? "omok" : "baduk";
   updateGameTypeControls(true);
