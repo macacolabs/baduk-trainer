@@ -1281,6 +1281,8 @@ const REVIEW_STEPS = [
 const el = {
   board: document.querySelector("#board"),
   tabs: document.querySelectorAll(".tab"),
+  workspaceTabs: document.querySelector("#workspaceTabs"),
+  workspaceButtons: document.querySelectorAll("[data-workspace-view]"),
   learningNav: document.querySelector("#learningNav"),
   lessonPanel: document.querySelector("#lessonPanel"),
   termsPanel: document.querySelector("#termsPanel"),
@@ -1322,6 +1324,12 @@ const el = {
   whiteScoreLabel: document.querySelector("#whiteScoreLabel"),
   statusTitle: document.querySelector("#statusTitle"),
   statusText: document.querySelector("#statusText"),
+  playFeedback: document.querySelector("#playFeedback"),
+  quickStatusTitle: document.querySelector("#quickStatusTitle"),
+  quickStatusText: document.querySelector("#quickStatusText"),
+  quickResetLesson: document.querySelector("#quickResetLesson"),
+  quickShowAnswer: document.querySelector("#quickShowAnswer"),
+  quickNextLesson: document.querySelector("#quickNextLesson"),
   boardLabel: document.querySelector("#boardLabel"),
   boardTitle: document.querySelector("#boardTitle"),
   topPlayerName: document.querySelector("#topPlayerName"),
@@ -1538,6 +1546,7 @@ function ensureLearningBoostUI() {
   const boost = document.createElement("div");
   boost.id = "learningBoost";
   boost.className = "learning-boost";
+  boost.dataset.workspaceSection = "training";
   boost.innerHTML = `
     <div class="learning-dashboard" id="learningDashboard">
       <div class="dashboard-main">
@@ -1662,6 +1671,7 @@ function ensureLearningBoostUI() {
   `;
   document.querySelector("#statusPanel")?.after(boost);
   ensureRankCurriculumUI();
+  setWorkspaceView(activeWorkspaceView);
   document.querySelector("#coreReview").addEventListener("click", startCoreReview);
   document.querySelector("#weakReview").addEventListener("click", startWeakReview);
   document.querySelector("#retryWrong").addEventListener("click", startWrongRetry);
@@ -1847,6 +1857,7 @@ function ensureRankCurriculumUI() {
   const panel = document.createElement("div");
   panel.id = "rankCurriculum";
   panel.className = "rank-curriculum hidden";
+  panel.dataset.workspaceSection = "training";
   panel.innerHTML = `
     <div class="rank-curriculum-head">
       <span>급수별 커리큘럼</span>
@@ -1856,6 +1867,7 @@ function ensureRankCurriculumUI() {
   `;
   document.querySelector("#learningBoost").after(panel);
   updateRankCurriculum();
+  setWorkspaceView(activeWorkspaceView);
 }
 
 function updateRankCurriculum() {
@@ -3356,6 +3368,7 @@ function renderConceptChecklist() {
   const panel = document.createElement("details");
   panel.className = "panel checklist-panel";
   panel.id = "conceptChecklist";
+  panel.dataset.workspaceSection = "training";
   panel.innerHTML = `
     <summary>
       <span>학습 체크리스트</span>
@@ -3364,6 +3377,7 @@ function renderConceptChecklist() {
     <div class="checklist-grid"></div>
   `;
   el.termsPanel.before(panel);
+  setWorkspaceView(activeWorkspaceView);
   const grid = panel.querySelector(".checklist-grid");
   for (const [title, desc] of conceptChecklist) {
     const item = document.createElement("div");
@@ -3742,6 +3756,22 @@ function restoreSnapshot(snapshot) {
 function setStatus(title, text) {
   el.statusTitle.textContent = title;
   el.statusText.textContent = text;
+  if (el.quickStatusTitle) el.quickStatusTitle.textContent = title;
+  if (el.quickStatusText) el.quickStatusText.textContent = text;
+}
+
+let activeWorkspaceView = "play";
+
+function setWorkspaceView(view = "play") {
+  activeWorkspaceView = view;
+  el.workspaceButtons.forEach((button) => {
+    const active = button.dataset.workspaceView === view;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+  document.querySelectorAll("[data-workspace-section]").forEach((section) => {
+    section.classList.toggle("workspace-section-hidden", section.dataset.workspaceSection !== view);
+  });
 }
 
 function updateAiLevelControlText() {
@@ -4015,6 +4045,8 @@ function setupLesson() {
   el.bottomTimer.textContent = lesson.isChapterTest ? "TEST" : state.activeDrill ? "DRILL" : "LESSON";
   el.prevLesson.disabled = state.lessonIndex === 0;
   el.nextLesson.textContent = lesson.isChapterTest ? "다음 문제" : state.activeDrill ? "코스로" : state.lessonIndex === lessons.length - 1 ? "처음으로" : "다음";
+  if (el.quickNextLesson) el.quickNextLesson.textContent = el.nextLesson.textContent;
+  el.playFeedback?.classList.remove("hidden");
   setStatus("연습", "설명을 읽고 표시된 좋은 수를 찾아 두세요.");
   render();
 }
@@ -4075,10 +4107,12 @@ function startGame(mode) {
 function switchMode(mode) {
   el.tabs.forEach((tab) => tab.classList.toggle("active", tab.dataset.mode === mode));
   document.querySelectorAll("[data-mobile-mode]").forEach((button) => button.classList.toggle("active", button.dataset.mobileMode === mode));
+  setWorkspaceView("play");
   el.lessonPanel.classList.toggle("hidden", mode !== "learn");
   el.termsPanel.classList.toggle("hidden", mode !== "learn");
   el.gamePanel.classList.toggle("hidden", mode === "learn");
   el.learningNav?.classList.toggle("hidden", mode !== "learn");
+  el.playFeedback?.classList.toggle("hidden", mode !== "learn");
   if (mode === "learn") {
     state.activeDrill = null;
     setupLesson();
@@ -4773,11 +4807,33 @@ function render() {
   updateReviewTimeline();
 }
 
+function advanceLesson() {
+  if (state.activeDrill?.isChapterTest) {
+    markSkippedDiagnosisQuestion();
+    loadNextTestQuestion();
+    return;
+  }
+  if (state.activeDrill) {
+    state.activeDrill = null;
+    setupLesson();
+    return;
+  }
+  state.lessonIndex = (state.lessonIndex + 1) % lessons.length;
+  saveProgress();
+  setupLesson();
+}
+
 el.tabs.forEach((tab) => tab.addEventListener("click", () => switchMode(tab.dataset.mode)));
+el.workspaceTabs?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-workspace-view]");
+  if (!button) return;
+  setWorkspaceView(button.dataset.workspaceView);
+});
 el.learningNav?.addEventListener("click", (event) => {
   const button = event.target.closest("[data-jump-target]");
   if (!button) return;
-  jumpToSection(button.dataset.jumpTarget);
+  if (button.dataset.jumpView) setWorkspaceView(button.dataset.jumpView);
+  requestAnimationFrame(() => jumpToSection(button.dataset.jumpTarget));
 });
 el.startFirstLesson?.addEventListener("click", () => {
   switchMode("learn");
@@ -4799,23 +4855,12 @@ el.prevLesson.addEventListener("click", () => {
   setupLesson();
 });
 el.resetLesson.addEventListener("click", setupLesson);
-el.nextLesson.addEventListener("click", () => {
-  if (state.activeDrill?.isChapterTest) {
-    markSkippedDiagnosisQuestion();
-    loadNextTestQuestion();
-    return;
-  }
-  if (state.activeDrill) {
-    state.activeDrill = null;
-    setupLesson();
-    return;
-  }
-  state.lessonIndex = (state.lessonIndex + 1) % lessons.length;
-  saveProgress();
-  setupLesson();
-});
+el.nextLesson.addEventListener("click", advanceLesson);
 el.randomDrill.addEventListener("click", startRandomDrill);
 el.showAnswer.addEventListener("click", showCurrentAnswer);
+el.quickResetLesson?.addEventListener("click", setupLesson);
+el.quickShowAnswer?.addEventListener("click", showCurrentAnswer);
+el.quickNextLesson?.addEventListener("click", advanceLesson);
 el.newGame.addEventListener("click", () => startGame(state.mode));
 el.undoMove.addEventListener("click", undoMove);
 el.passTurn.addEventListener("click", passTurn);
@@ -4831,6 +4876,7 @@ updateScoreLabels();
 renderTerms();
 updateTrainingCounts();
 setupLesson();
+setWorkspaceView("play");
 resetViewportTop();
 window.addEventListener("load", resetViewportTop);
 window.addEventListener("pageshow", resetViewportTop);
